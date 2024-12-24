@@ -564,11 +564,11 @@
 				                                <form class="row" action="Reset_Password_Hr" method="post" enctype="multipart/form-data">
 				                                    <div class="form-group col-md-6 m-t-20">
 				                                        <label>Password</label>
-				                                        <input type="text" class="form-control" name="new1" value="" required minlength="6"> 
+				                                        <input type="password" class="form-control" name="new1" value="" required minlength="6"> 
 				                                    </div>
 				                                    <div class="form-group col-md-6 m-t-20">
 				                                        <label>Confirm Password</label>
-				                                        <input type="text" id="" name="new2" class="form-control " required minlength="6"> 
+				                                        <input type="password" id="" name="new2" class="form-control " required minlength="6"> 
 				                                    </div>
 				                                    <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>
                                                     <?php } else { ?>
