@@ -291,26 +291,7 @@
                                                     <?php } else { ?>
                                     <td class="jsgrid-align-center ">
                                         <a href="#" title="Edit" class="btn btn-sm btn-info waves-effect waves-light education" data-id="<?php echo $value->id ?>"><i class="fa fa-pencil-square-o"></i></a>
-                                        <a 
-   onclick="return confirmDelete(this)" 
-   href="#" 
-   title="Delete" 
-   class="btn btn-sm btn-info waves-effect waves-light deletexp" 
-   data-id="<?php echo $value->id ?>">
-   <i class="fa fa-trash-o"></i>
-</a>
-
-<script>
-function confirmDelete(element) {
-    if (confirm('Are you sure want to delete this Value?')) {
-        // Redirect to the delete action URL or trigger AJAX
-        const id = element.getAttribute('data-id');
-        // Example: Update the href dynamically or perform your delete action here
-        window.location.href = `delete.php?id=${id}`; // Update URL to your actual delete handler
-    }
-    return false; // Prevent default action if Cancel is clicked
-}
-</script>
+                                        <a onclick="confirm('Are you sure want to delet this Value?')" href="#" title="Delete" class="btn btn-sm btn-info waves-effect waves-light edudelet"  data-id="<?php echo $value->id ?>"><i class="fa fa-trash-o"></i></a>
 
                                     </td>
                                     <?php } ?>
@@ -420,7 +401,7 @@ function confirmDelete(element) {
 			                                <form class="row" action="Add_Experience" method="post" enctype="multipart/form-data">
 			                                    	<div class="form-group col-md-6 m-t-5">
 			                                    	    <label> Company Name</label>
-			                                    	    <input type="text" name="company_name" class="form-control form-control-line company_name" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> placeholder="Company Name" minlength="2" required> 
+			                                    	    <input type="text" name="company_name" class="form-control form-control-line company_name" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> placeholder="Company Name" minlength="5" required> 
 			                                    	</div>
 			                                    	<div class="form-group col-md-6 m-t-5">
 			                                    	    <label>Position</label>
@@ -432,7 +413,7 @@ function confirmDelete(element) {
 			                                    	</div>
 			                                    	<div class="form-group col-md-6 m-t-5">
 			                                    	    <label>Working Duration</label>
-			                                    	    <input type="text" name="work_duration" class="form-control form-control-line working_period" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> placeholder="Working Duration" required> 
+			                                    	    <input type="text" name="work_duration" class="form-control form-control-line working_period" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> placeholder="Working Duration" min="1" required> 
 			                                    	</div>
 			                                 <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>
                                                     <?php } else { ?>
