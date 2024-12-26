@@ -3,11 +3,6 @@ pipeline {
 
     stages {
         stage('Deploy HRMS') {
-            steps {pipeline {
-    agent any
-
-    stages {
-        stage('Deploy HRMS') {
             steps {
                 sshPublisher(
                     publishers: [
