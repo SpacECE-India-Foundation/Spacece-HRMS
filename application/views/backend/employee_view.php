@@ -291,7 +291,7 @@
                                                     <?php } else { ?>
                                     <td class="jsgrid-align-center ">
                                         <a href="#" title="Edit" class="btn btn-sm btn-info waves-effect waves-light education" data-id="<?php echo $value->id ?>"><i class="fa fa-pencil-square-o"></i></a>
-                                        <a onclick="confirm('Are you sure want to delet this Value?')" href="#" title="Delete" class="btn btn-sm btn-info waves-effect waves-light edudelet"  data-id="<?php echo $value->id ?>"><i class="fa fa-trash-o"></i></a>
+                                        <a onclick="confirm('Are you sure want to delete this Value?')" href="#" title="Delete" class="btn btn-sm btn-info waves-effect waves-light edudelet"  data-id="<?php echo $value->id ?>"><i class="fa fa-trash-o"></i></a>
 
                                     </td>
                                     <?php } ?>
@@ -432,23 +432,23 @@ function confirmDelete(element) {
 			                                <form class="row" action="Add_bank_info" method="post" enctype="multipart/form-data">
 			                                    <div class="form-group col-md-6 m-t-5">
 			                                        <label> Bank Holder Name</label>
-			                                        <input type="text" name="holder_name" value="<?php if(!empty($bankinfo->holder_name)) echo $bankinfo->holder_name  ?>" class="form-control form-control-line" placeholder="Bank Holder Name" minlength="5" required> 
+			                                        <input type="text" name="holder_name" value="<?php if(!empty($bankinfo->holder_name)) echo $bankinfo->holder_name  ?>" class="form-control form-control-line" placeholder="Bank Holder Name" pattern="[A-Za-z ]+" title="Only alphabetic characters and spaces are allowed."  minlength="5" required> 
 			                                    </div>
 			                                    <div class="form-group col-md-6 m-t-5">
 			                                        <label>Bank Name</label>
-			                                        <input type="text" name="bank_name" value="<?php if(!empty($bankinfo->bank_name)) echo $bankinfo->bank_name  ?>" class="form-control form-control-line" placeholder="Bank Name" minlength="5" required> 
+			                                        <input type="text" name="bank_name" value="<?php if(!empty($bankinfo->bank_name)) echo $bankinfo->bank_name  ?>" class="form-control form-control-line" placeholder="Bank Name" pattern="[A-Za-z ]+" title="Only alphabetic characters are allowed." minlength="5" required> 
 			                                    </div>
 			                                    <div class="form-group col-md-6 m-t-5">
 			                                        <label>Branch Name</label>
-			                                        <input type="text" name="branch_name" value="<?php if(!empty($bankinfo->branch_name)) echo $bankinfo->branch_name  ?>" class="form-control form-control-line" placeholder=" Branch Name"> 
+			                                        <input type="text" name="branch_name" value="<?php if(!empty($bankinfo->branch_name)) echo $bankinfo->branch_name  ?>" class="form-control form-control-line" placeholder=" Branch Name" pattern="[A-Za-z ]+" title="Only alphabetic characters and spaces are allowed." required> 
 			                                    </div>
 			                                    <div class="form-group col-md-6 m-t-5">
 			                                        <label>Bank Account Number</label>
-			                                        <input type="text" name="account_number" value="<?php if(!empty($bankinfo->account_number)) echo $bankinfo->account_number ?>" class="form-control form-control-line" minlength="5" required> 
+			                                        <input type="text" name="account_number" value="<?php if(!empty($bankinfo->account_number)) echo $bankinfo->account_number ?>" class="form-control form-control-line" pattern="^\d+" title="Only numeric characters are allowed." minlength="5" required> 
 			                                    </div>
 			                                    <div class="form-group col-md-6 m-t-5">
 			                                        <label>Bank Account Type</label>
-			                                        <input type="text" name="account_type" value="<?php if(!empty($bankinfo->account_type)) echo $bankinfo->account_type ?>" class="form-control form-control-line" placeholder="Bank Account Type"> 
+			                                        <input type="text" name="account_type" value="<?php if(!empty($bankinfo->account_type)) echo $bankinfo->account_type ?>" class="form-control form-control-line" placeholder="Bank Account Type" pattern="[A-Za-z ]+" title="Only alphabetic characters and spaces are allowed." required> 
 			                                    </div>
 			                                    <div class="form-actions col-md-12">
                                                     <input type="hidden" name="emid" value="<?php echo $basic->em_id; ?>">

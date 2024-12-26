@@ -869,7 +869,7 @@ class Employee extends CI_Controller {
         if($this->session->userdata('user_login_access') != False) {  
 		$id= $this->input->get('id');
 		$success = $this->employee_model->DeletEdu($id);
-		echo "Successfully Deletd";
+		echo "Successfully Deleted";
         }
     else{
 		redirect(base_url() , 'refresh');
