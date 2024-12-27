@@ -14,12 +14,14 @@
         </div>
     </div>
     <div class="container-fluid">
-        <div class="row m-b-10">
+        <div class="row m-b-10"> 
             <div class="col-12">
-                <button type="button" class="btn btn-info"><i class="fa fa-plus"></i><a data-toggle="modal" data-target="#noticemodel" data-whatever="@getbootstrap" class="text-white "><i class="" aria-hidden="true"></i> Add Notice </a></button>
+                <button type="button" class="btn btn-info">
+                    <i class="fa fa-plus"></i><a data-toggle="modal" data-target="#noticemodel" data-whatever="@getbootstrap" class="text-white">
+                    Add Notice </a>
+                </button>
             </div>
-        </div>
-        
+        </div> 
         <div class="row">
             <div class="col-12">
                 <div class="card card-outline-info">
@@ -35,6 +37,7 @@
                                         <th>Title</th>
                                         <th>File</th>
                                         <th>Date</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
@@ -43,6 +46,7 @@
                                         <th>Title</th>
                                         <th>File</th>
                                         <th>Date</th>
+                                        <th>Actions</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
@@ -52,6 +56,10 @@
                                         <td><?php echo $value->title; ?></td>
                                         <td><a href="<?php echo base_url(); ?>assets/images/notice/<?php echo $value->file_url; ?>" target="_blank"><?php echo $value->file_url; ?></a></td>
                                         <td><?php echo $value->date; ?></td>
+                                        <td>
+                                            <!-- Delete Button -->
+                                            <a href="<?php echo base_url('Notice/delete_notice/'.$value->id); ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this notice?');">Delete</a>
+                                        </td>
                                     </tr>
                                     <?php endforeach; ?>
                                 </tbody>
@@ -61,30 +69,31 @@
                 </div>
             </div>
         </div>
-        <!-- sample modal content -->
+
+        <!-- Add Notice Modal -->
         <div class="modal fade" id="noticemodel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
             <div class="modal-dialog" role="document">
-                <div class="modal-content ">
+                <div class="modal-content">
                     <div class="modal-header">
                         <h4 class="modal-title" id="exampleModalLabel1">Notice Board</h4>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     </div>
-                    <form role="form" method="post" action="Published_Notice" id="notice_form" enctype="multipart/form-data">
+                    <form role="form" method="post" action="Published_Notice" id="btnSubmit" enctype="multipart/form-data">
                         <div class="modal-body">
-                        <div class="form-group">
-                            <label for="message-text" class="control-label">Notice Title <span style="color: red;">*</span></label>
-                            <textarea class="form-control" name="title" id="message-text1" required minlength="25" maxlength="150"></textarea>
-                            <span id="titleError" style="color: red; display: none;">Notice title must contain at least one alphabet.</span> <!-- Error message -->
-                        </div>
-                        <div class="form-group">
-                            <label class="control-label">Document <span style="color: red;">*</span></label>
-                            <input type="file" name="file_url" class="form-control" id="recipient-name1" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="message-text" class="control-label">Published Date <span style="color: red;">*</span></label>
-                            <input type="date" name="nodate" class="form-control" id="recipient-name1" required>
-                        </div>
-
+                            <div class="form-group">
+                                <label for="message-text" class="control-label">Notice Title</label>
+                                <textarea class="form-control" name="title" id="noticeTitle" required minlength="25" maxlength="150"></textarea>
+                                <span id="titleError" style="color: red; display: none;">Title must contain at least one alphabet.</span>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Document</label>
+                                <label for="recipient-name1" class="control-label">Title</label>
+                                <input type="file" name="file_url" class="form-control" id="recipient-name1" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="message-text" class="control-label">Published Date</label>
+                                <input type="date" name="nodate" class="form-control" id="recipient-name1" required>
+                            </div>
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -94,33 +103,37 @@
                 </div>
             </div>
         </div>
-        <!-- /.modal --> 
-        <script>
-            $(document).ready(function() {
-                $('#message-text1').on('input', function() {
-                    var title = $(this).val().trim();
-                    var titleRegex = /[a-zA-Z]/; // Regex to check if title contains at least one alphabet
 
-                    // Check if the title contains at least one alphabet
-                    if (!titleRegex.test(title)) {
-                        $('#titleError').show();  // Show the error message
-                    } else {
-                        $('#titleError').hide();  // Hide the error message if valid
-                    }
-                });
+    </div>
+</div>
 
-                $('#notice_form').submit(function(event) {
-                    var title = $('#message-text1').val().trim();
-                    var titleRegex = /[a-zA-Z]/; // Regex to check if title contains at least one alphabet
-
-                    // Check if the title contains at least one alphabet
-                    if (!titleRegex.test(title)) {
-                        event.preventDefault();  // Prevent form submission
-                        $('#titleError').show();  // Show the error message
-                    } else {
-                        $('#titleError').hide();  // Hide the error message if valid
-                    }
-                });
-            });
-        </script>
 <?php $this->load->view('backend/footer'); ?>
+
+<script>
+// Validation for notice title
+$('#noticeTitle').on('input', function() {
+    var title = $(this).val().trim();
+    var titleRegex = /[a-zA-Z]/; // Regex to check if title contains at least one alphabet
+
+    // Check if the title contains at least one alphabet
+    if (!titleRegex.test(title)) {
+        $('#titleError').show();  // Show the error message
+    } else {
+        $('#titleError').hide();  // Hide the error message if valid
+    }
+});
+
+// Form submission validation
+$('#btnSubmit').submit(function(event) {
+    var title = $('#noticeTitle').val().trim();
+    var titleRegex = /[a-zA-Z]/; // Regex to check if title contains at least one alphabet
+
+    // Check if the title contains at least one alphabet
+    if (!titleRegex.test(title)) {
+        event.preventDefault();  // Prevent form submission
+        $('#titleError').show();  // Show the error message
+    } else {
+        $('#titleError').hide();  // Hide the error message if valid
+    }
+});
+</script>
