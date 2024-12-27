@@ -19,6 +19,7 @@
                 <button type="button" class="btn btn-info"><i class="fa fa-plus"></i><a data-toggle="modal" data-target="#noticemodel" data-whatever="@getbootstrap" class="text-white "><i class="" aria-hidden="true"></i> Add Notice </a></button>
             </div>
         </div>
+        
         <div class="row">
             <div class="col-12">
                 <div class="card card-outline-info">
@@ -70,20 +71,20 @@
                     </div>
                     <form role="form" method="post" action="Published_Notice" id="notice_form" enctype="multipart/form-data">
                         <div class="modal-body">
-                            <div class="form-group">
-                                <label for="message-text" class="control-label">Notice Title</label>
-                                <textarea class="form-control" name="title" id="message-text1" required minlength="25" maxlength="150"></textarea>
-                                <span id="titleError" style="color: red; display: none;">Notice title must contain at least one alphabet.</span> <!-- Error message -->
-                            </div>
-                            <div class="form-group">
-                                <label class="control-label">Document</label>
-                                <label for="recipient-name1" class="control-label">Title</label>
-                                <input type="file" name="file_url" class="form-control" id="recipient-name1" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="message-text" class="control-label">Published Date</label>
-                                <input type="date" name="nodate" class="form-control" id="recipient-name1" required>
-                            </div>
+                        <div class="form-group">
+                            <label for="message-text" class="control-label">Notice Title <span style="color: red;">*</span></label>
+                            <textarea class="form-control" name="title" id="message-text1" required minlength="25" maxlength="150"></textarea>
+                            <span id="titleError" style="color: red; display: none;">Notice title must contain at least one alphabet.</span> <!-- Error message -->
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Document <span style="color: red;">*</span></label>
+                            <input type="file" name="file_url" class="form-control" id="recipient-name1" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message-text" class="control-label">Published Date <span style="color: red;">*</span></label>
+                            <input type="date" name="nodate" class="form-control" id="recipient-name1" required>
+                        </div>
+
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
