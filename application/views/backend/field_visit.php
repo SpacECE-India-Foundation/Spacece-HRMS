@@ -25,8 +25,7 @@
       <button type="button" class="btn btn-info">
       <i class="fa fa-plus"></i>
       <a data-toggle="modal" data-target="#appmodel" data-whatever="@getbootstrap" class="text-white" id="addNewApplication">
-      <i class="" aria-hidden="true"></i> Add Field Visit Details
-      </a>
+      <i class="" aria-hidden="true"></i> Add Field Visit Details</a>
       </button>
    </div>
 </div>
