@@ -54,6 +54,7 @@
                                             </div>
                                         <div class="form-group" >
                                            <label class="m-t-20">Sign In Time</label>
+                                           <div class="input-group clockpicker">
                                             <input class="form-control" name="signin" id="single-input" value="<?php if(!empty($attval->signin_time)) { echo  $attval->signin_time;} ?>" placeholder="Now" required>
                                         </div>
                                         <div class="form-group">
