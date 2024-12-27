@@ -99,70 +99,66 @@
                                     </div>
                                     <form method="post" action="Add_Logistic_Support" id="logisticsform" enctype="multipart/form-data">
                                     <div class="modal-body">
-    <div class="row">
-        <!-- Left Column -->
-        <div class="col-md-6">
-            <div class="form-group">
-                <label class="control-label">Logistic List</label>
-                <select class="form-control custom-select taskclass assetsstock" data-placeholder="Choose a Category" tabindex="1" name="logid" required>
-                    <option value="">Select Here</option>
-                    <?php foreach($assets as $value): ?>
-                        <option value="<?php echo $value->ass_id; ?>"><?php echo $value->ass_name; ?></option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Project</label>
-                <select class="form-control custom-select taskclass" data-placeholder="Choose a Category" tabindex="1" name="proid" id="OnEmValue" required>
-                    <option value="">Select Here</option>
-                    <?php foreach($projects as $value): ?>
-                        <option value="<?php echo $value->id; ?>"><?php echo $value->pro_name; ?></option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Task List</label>
-                <select class="form-control custom-select taskclass" data-placeholder="Choose a Category" tabindex="1" name="taskid" id="taskval" required>
-                    <option value="">Select Here</option>
-                </select>
-            </div>
-            <div class="form-group">
-                <label class="control-label">Employee Name</label>
-                <select class="form-control custom-select taskclass" data-placeholder="Choose a Category" tabindex="1" name="assignid" id="assignval" required>
-                    <option value="">Select Here</option>
-                    <?php foreach($employee as $value): ?>
-                        <option value="<?php echo $value->em_id ?>"><?php echo $value->first_name.' '.$value->last_name; ?></option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
+                                    <div class="row">
+    <!-- Left Column -->
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="control-label">Logistic List</label>
+            <select class="form-control custom-select taskclass assetsstock" data-placeholder="Choose a Category" tabindex="1" name="logid" required>
+                <option value="">Select Here</option>
+                <?php foreach($assets as $value): ?>
+                    <option value="<?php echo $value->ass_id; ?>"><?php echo $value->ass_name; ?></option>
+                <?php endforeach; ?>
+            </select>
         </div>
-        
-        <!-- Right Column -->
-        <div class="col-md-6">
-            <div class="form-group">
-                <label class="control-label">Start Date</label>
-                <input type="text" name="startdate" class="form-control mydatetimepickerFull" id="recipient-name1" value="">
-            </div>
-            <div class="form-group">
-                <label class="control-label">End Date</label>
-                <input type="text" name="enddate" class="form-control mydatetimepickerFull" id="recipient-name1" value="">
-            </div>
-            
-            <!-- In Stock Field -->
-            <div class="form-group">
-                <label class="control-label">In Stock</label>
-                <div style="color:red" class="qty"></div>
-            </div>
-            
-            <div class="form-group">
-                <label class="control-label">Assign Qty</label>
-                <input type="text" name="assignqty" class="form-control" id="recipient-name1 qty" value="" min="0" max="">
-            </div>
-            
-            <div class="form-group">
-                <label class="control-label">Remarks</label>
-                <textarea class="form-control" name="remarks" id="message-text1"></textarea>
-            </div>
+        <div class="form-group">
+            <label class="control-label">Project</label>
+            <select class="form-control custom-select taskclass" data-placeholder="Choose a Category" tabindex="1" name="proid" id="OnEmValue" required>
+                <option value="">Select Here</option>
+                <?php foreach($projects as $value): ?>
+                    <option value="<?php echo $value->id; ?>"><?php echo $value->pro_name; ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Task List</label>
+            <select class="form-control custom-select taskclass" data-placeholder="Choose a Category" tabindex="1" name="taskid" id="taskval" required>
+                <option value="">Select Here</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label class="control-label">Employee Name</label>
+            <select class="form-control custom-select taskclass" data-placeholder="Choose a Category" tabindex="1" name="assignid" id="assignval" required>
+                <option value="">Select Here</option>
+                <?php foreach($employee as $value): ?>
+                    <option value="<?php echo $value->em_id ?>"><?php echo $value->first_name.' '.$value->last_name; ?></option>
+                <?php endforeach; ?>
+            </select>
+        </div>
+    </div>
+    
+    <!-- Right Column -->
+    <div class="col-md-6">
+        <div class="form-group">
+            <label class="control-label">Start Date</label>
+            <input type="text" name="startdate" class="form-control mydatetimepickerFull" id="recipient-name1" value="">
+        </div>
+        <div class="form-group">
+            <label class="control-label">End Date</label>
+            <input type="text" name="enddate" class="form-control mydatetimepickerFull" id="recipient-name1" value="">
+        </div>
+        <div class="form-group">
+            <label class="control-label">In Stock</label>
+            <div style="color:red" class="qty"></div>
+            <input type="text" name="stock" class="form-control" id="stock-input" value="">
+        </div>
+        <div class="form-group">
+            <label class="control-label">Assign Qty</label>
+            <input type="text" name="assignqty" class="form-control" id="recipient-name1 qty" value="" min="0" max="">
+        </div>
+        <div class="form-group">
+            <label class="control-label">Remarks</label>
+            <textarea class="form-control" name="remarks" id="message-text1"></textarea>
         </div>
     </div>
 </div>
