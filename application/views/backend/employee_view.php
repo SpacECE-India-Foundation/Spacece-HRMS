@@ -413,7 +413,7 @@ function confirmDelete(element) {
 			                                    	</div>
 			                                    	<div class="form-group col-md-6 m-t-5">
 			                                    	    <label>Working Duration</label>
-			                                    	    <input type="text" name="work_duration" class="form-control form-control-line working_period" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> placeholder="Working Duration" min="1" required> 
+			                                    	    <input type="text" name="work_duration" class="form-control form-control-line working_period" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> placeholder="Working Duration" min="1"  required> 
 			                                    	</div>
 			                                 <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>
                                                     <?php } else { ?>
