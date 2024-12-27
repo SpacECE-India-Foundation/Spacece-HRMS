@@ -74,11 +74,13 @@
                                                 <label for="message-text" class="control-label">Notice Title</label>
                                                 <textarea class="form-control" name="title" id="message-text1" required minlength="25" maxlength="150"></textarea>
                                             </div>
+                                            
                                             <div class="form-group">
                                                 <label class="control-label">Document (Supported formats: .doc, .docx, .pdf)</label>
                                                 <label for="recipient-name1" class="control-label">Title</label>
                                                 <input type="file" name="file_url" class="form-control" id="recipient-name1" accept=".doc,.docx,.pdf" required>
                                             </div>
+
                                             <div class="form-group">
                                                 <label for="message-text" class="control-label">Published Date</label>
                                                 <input type="date" name="nodate" class="form-control" id="recipient-name1" required>
