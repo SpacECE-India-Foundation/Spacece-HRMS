@@ -76,8 +76,8 @@
                                             </div>
                                             
                                             <div class="form-group">
-                                            <label class="control-label">Document (Supported formats: .doc, .docx, .pdf)</label>
-                                                <label for="recipient-name1" class="control-label">Title</label>
+                                            <label for="recipient-name1" class="control-label">Title</label>
+                                            <label class="control-label">(Document Supported formats: .doc, .docx, .pdf)</label> 
                                                 <input type="file" name="file_url" class="form-control" id="recipient-name1" accept=".doc,.docx,.pdf" required>
                                             </div>
 
