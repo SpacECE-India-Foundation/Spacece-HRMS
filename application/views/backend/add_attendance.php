@@ -50,7 +50,7 @@
                                                 $old_date_timestamp = strtotime($attval->atten_date);
                                                 $new_date = date('Y-m-d', $old_date_timestamp);    
                                                 echo $new_date; } ?>" required>
-                                                <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                                                 <span class="input-group-addon" onclick="$(this).prev('input').focus();"><i class="fa fa-calendar"></i></span>
                                             </div>
                                         <div class="form-group" >
                                            <label class="m-t-20">Sign In Time</label>
