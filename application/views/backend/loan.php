@@ -107,7 +107,7 @@
                             </div>
                             <div class="form-group row">
                                 <label for="message-text" class="control-label col-md-3">Amount</label>
-                                <input type="number" name="amount" value="" class="form-control col-md-8 amount" id="recipient-name1" required title="Invalid input: Please enter a valid numeric value">
+                                <input type="text" name="amount" value="" class="form-control col-md-8 amount" id="recipient-name1" required>
                             </div> 
 <!--                            <div class="form-group row">
                                 <label for="message-text" class="control-label col-md-3">Interest Percentage</label>
@@ -118,7 +118,7 @@
                                 <input type="text" name="appdate" class="form-control col-md-8 mydatetimepickerFull" id="recipient-name1" value="" required>
                             </div>
                             <div class="form-group row">
-                                <label for="message-text" class="control-label col-md-3">Install Period</label>
+                                <label for="message-text" class="control-label col-md-3">Instalment Period (Monthly or Yearly)</label>
                                 <input type="number" name="install" value="" class="form-control col-md-8 period" id="recipient-name1" required>
                             </div>
                             <div class="form-group row">

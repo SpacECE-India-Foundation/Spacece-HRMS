@@ -115,7 +115,7 @@ https://www.patchesoft.com/fullcalendar-with-php-and-codeigniter/
                                                 <td><?php echo $value->year; ?></td>
                                                 <td class="jsgrid-align-center ">
                                                     <a href="" title="Edit" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> hidden <?php } ?> class="btn btn-sm btn-info waves-effect waves-light holiday" data-id="<?php echo $value->id; ?>"><i class="fa fa-pencil-square-o"></i></a>
-                                                    <a onclick="confirm('Are you sure want to delet this Value?')" href="#" title="Delete" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> hidden <?php } ?> class="btn btn-sm btn-info waves-effect waves-light holidelet" data-id="<?php echo $value->id; ?>"><i class="fa fa-trash-o"></i></a>
+                                                    <a href="#" title="Delete" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> hidden <?php } ?> class="btn btn-sm btn-info waves-effect waves-light holidelet" data-id="<?php echo $value->id; ?>"><i class="fa fa-trash-o"></i></a>
                                                 </td>
                                             </tr>
                                             <?php endforeach; ?>
@@ -211,21 +211,28 @@ https://www.patchesoft.com/fullcalendar-with-php-and-codeigniter/
 </script>
 <script type="text/javascript">
                                         $(document).ready(function () {
-                                            $(".holidelet").click(function (e) {
-                                                e.preventDefault(e);
-                                                // Get the record's ID via attribute  
-                                                var iid = $(this).attr('data-id');
-                                                $.ajax({
-                                                    url: 'HOLIvalueDelet?id=' + iid,
-                                                    method: 'GET',
-                                                    data: 'data',
-                                                }).done(function (response) {
-                                                    console.log(response);
-                                                    $(".message").fadeIn('fast').delay(3000).fadeOut('fast').html(response);
-                                                    window.setTimeout(function(){location.reload()},2000)
-                                                    // Populate the form fields with the data returned from server
-												});
-                                            });
-                                        });
+    $(".holidelet").click(function (e) {
+        e.preventDefault(e);
+        // Ask for confirmation before proceeding
+        var confirmation = confirm('Are you sure you want to delete this value?');
+        if (confirmation) {
+            // If the user presses OK, proceed with the delete action
+            var iid = $(this).attr('data-id');
+            $.ajax({
+                url: 'HOLIvalueDelet?id=' + iid,
+                method: 'GET',
+                data: 'data',
+            }).done(function (response) {
+                console.log(response);
+                $(".message").fadeIn('fast').delay(3000).fadeOut('fast').html(response);
+                window.setTimeout(function(){location.reload()},2000);
+            });
+        } else {
+            // If the user presses Cancel, do nothing
+            return false;
+        }
+    });
+});
+
 </script>                              
 <?php $this->load->view('backend/footer'); ?>

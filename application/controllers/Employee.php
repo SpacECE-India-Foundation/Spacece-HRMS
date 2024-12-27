@@ -501,7 +501,7 @@ class Employee extends CI_Controller {
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters();
         $this->form_validation->set_rules('company_name', 'company_name', 'trim|required|min_length[5]|max_length[150]|xss_clean');
-        $this->form_validation->set_rules('position_name', 'position_name', 'trim|required|min_length[2]|max_length[250]|xss_clean');
+        $this->form_validation->set_rules('position_name', 'position_name', 'trim|required|min_length[5]|max_length[250]|xss_clean');
 
         if ($this->form_validation->run() == FALSE) {
             echo validation_errors();
@@ -869,7 +869,8 @@ class Employee extends CI_Controller {
         if($this->session->userdata('user_login_access') != False) {  
 		$id= $this->input->get('id');
 		$success = $this->employee_model->DeletEdu($id);
-		echo "Successfully Deleted";}
+		echo "Successfully Deletd";
+        }
     else{
 		redirect(base_url() , 'refresh');
 	} 

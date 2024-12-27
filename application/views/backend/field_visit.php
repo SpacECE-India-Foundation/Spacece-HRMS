@@ -25,7 +25,8 @@
       <button type="button" class="btn btn-info">
       <i class="fa fa-plus"></i>
       <a data-toggle="modal" data-target="#appmodel" data-whatever="@getbootstrap" class="text-white" id="addNewApplication">
-      <i class="" aria-hidden="true"></i> Add Field Visit Details</a>
+      <i class="" aria-hidden="true"></i> Add Application 
+      </a>
       </button>
    </div>
 </div>
@@ -240,7 +241,7 @@
                <div class="form-group" id="totalDays">
                   <label class="control-label">Total Days
                   </label>
-                  <input type="number" name="totalDays" class="form-control" id="recipient-name1" readonly>
+                  <input type="number" name="totalDays" class="form-control" id="recipient-name1">
                </div>
                <div class="form-group">
                   <label class="control-label">Notes

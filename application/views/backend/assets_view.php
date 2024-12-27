@@ -15,10 +15,11 @@
             </div>
             <div class="container-fluid">
                 <div class="row m-b-10"> 
-                <div class="col-12">
-                <button type="button" class="btn btn-info"><i class="fa fa-plus"></i><a data-toggle="modal" data-target="#assetsmodel" data-whatever="@getbootstrap" class="text-white"><i class="" aria-hidden="true"></i> Add Assets </a></button>
-                <!-- <button type="button" class="btn btn-primary"><i class="fa fa-bars"></i><a href="<?php echo base_url(); ?>Logistice/logistic_list" class="text-white"><i class="" aria-hidden="true"></i>  Logistic Support List</a></button> -->
-                <button type="button" class="btn btn-primary"><i class="fa fa-bars"></i><a href="<?php echo base_url(); ?>Logistice/logistic_support" class="text-white"><i class="" aria-hidden="true"></i>Logistic Support</a></button></div>
+                    <div class="col-12">
+                        <button type="button" class="btn btn-info"><i class="fa fa-plus"></i><a data-toggle="modal" data-target="#assetsmodel" data-whatever="@getbootstrap" class="text-white"><i class="" aria-hidden="true"></i> Add Assets </a></button>
+                        <button type="button" class="btn btn-primary"><i class="fa fa-bars"></i><a href="<?php echo base_url(); ?>Projects/All_Assets" class="text-white"><i class="" aria-hidden="true"></i>  Logistic Support List</a></button>
+                        <button type="button" class="btn btn-primary"><i class="fa fa-bars"></i><a href="<?php echo base_url(); ?>Projects/All_Assets" class="text-white"><i class="" aria-hidden="true"></i>  Logistic Support</a></button>
+                    </div>
                 </div>
                 <div class="row">
                     <div class="col-12">
@@ -93,56 +94,54 @@
                                     </div>
                                     <form method="post" action="Add_Assets" id="btnSubmit" enctype="multipart/form-data">
                                     <div class="modal-body">
-    <div class="row">
-        <!-- Left Column -->
-        <div class="col-md-6">
-            <div class="form-group">
-                <label class="control-label" for="asset-name">Asset Name</label>
-                <input type="text" name="assname" class="form-control" id="asset-name" required>
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="category-type">Category Type</label>
-                <select name="catid" class="form-control" id="category-type" required>
-                    <option>Select Category</option>
-                    <?php foreach ($catvalue as $value): ?>
-                        <option value="<?php echo $value->cat_id; ?>"><?php echo $value->cat_name; ?></option>
-                    <?php endforeach; ?>
-                </select>
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="asset-brand">Assets Brand</label>
-                <input type="text" name="brand" class="form-control" id="asset-brand">
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="asset-model">Assets Model</label>
-                <input type="text" name="model" class="form-control" id="asset-model">
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="asset-code">Assets Code</label>
-                <input type="text" name="code" class="form-control" id="asset-code">
-            </div>
-        </div>
-
-        <!-- Right Column -->
-        <div class="col-md-6">
-            <div class="form-group">
-                <label class="control-label" for="configuration">Configuration</label>
-                <textarea name="config" class="form-control" id="configuration" rows="5" required minlength="14"></textarea>
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="purchase-date">Purchasing Date</label>
-                <input type="date" name="purchase" class="form-control" id="purchase-date">
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="price">Price</label>
-                <input type="number" name="price" class="form-control" id="price">
-            </div>
-            <div class="form-group">
-                <label class="control-label" for="quantity">Quantity</label>
-                <input type="number" name="pqty" class="form-control" id="quantity">
-            </div>
-        </div>
-    </div>
+                                           <div class="row">
+                                               <div class="col-md-6">      
+                                            <div class="form-group">
+                                                <label class="control-label">Asset name</label>
+                                                <input type="text" name="assname" value="" class="form-control" id="recipient-name1" required>
+                                            </div>
+                                            <div class="form-group">
+                                               <label class="control-label">Category Type </label>
+                                                <select name="catid" value="" class="select2 form-control custom-select" style="width: 100%" required value="">
+                                                    <option>Select Category</option>
+                                                    <?php foreach($catvalue as $value): ?>
+                                                    <option value="<?php echo $value->cat_id ?>"><?php echo $value->cat_name ?></option>
+                                                    <?php endforeach; ?>
+                                                </select>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label">Assets Brand</label>
+                                                <input type="text" name="brand" value="" class="form-control" id="recipient-name1">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label">Assets Model</label>
+                                                <input type="text" name="model" value="" class="form-control" id="recipient-name1">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label">Assets Code</label>
+                                                <input type="text" name="code" value="" class="form-control" id="recipient-name1 ">
+                                            </div>                                                   
+                                               </div>
+                                               <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="control-label">Configuration</label>
+                                                <textarea class="form-control" name="config" id="message-text1" required minlength="14" rows="4"></textarea>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label">Purchasing Date</label>
+                                                <input type="text" name="purchase" value="" class="form-control mydatepicker" id="recipient-name1">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label">Price</label>
+                                                <input type="number" name="price" value="" class="form-control" id="recipient-name1">
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="control-label">Quantity</label>
+                                                <input type="number" name="pqty" value=""
+                                                 class="form-control" id="recipient-name1">
+                                            </div>                                                   
+                                               </div>
+                                        </div>
 <!--
                                             <div class="form-group">
                                                 <input name="type" type="checkbox" id="radio_2" data-value="Logistic" value="Logistic" class="type">

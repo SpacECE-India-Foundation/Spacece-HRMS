@@ -107,7 +107,7 @@
 <?php $this->load->view('backend/footer'); ?>
 <script>
     $('#attendance123').DataTable({
-        "aaSorting": [[2,'desc']],
+        "aaSorting": [[0,'asc']],
         dom: 'Bfrtip',
         buttons: [
             'copy', 'csv', 'excel', 'pdf', 'print'
