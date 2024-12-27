@@ -81,6 +81,7 @@
                                             <option value="LOGISTIC">'Logistics</option>
                                         </select>
                                         </div>
+                                        
                                         <div class="form-group">
                                         <label>Category Name </label>
                                         <input type="text" name="catname" class="form-control" value="" placeholder="Category name..." minlength="2" required>
