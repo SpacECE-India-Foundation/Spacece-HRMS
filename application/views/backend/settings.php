@@ -38,7 +38,8 @@
                                                 <?php } ?>
                                                 </div>
                                                 <label for="img_url" class="custom-file-upload"><i class="fa fa-camera" aria-hidden="true"></i> Upload Logo</label>
-                                                <input type="file" value="" class="" id="img_url" name="img_url" aria-describedby="fileHelp">
+                                                <input type="file" value="" class="" id="img_url" name="img_url" aria-describedby="fileHelp" required>
+                                                <small class="form-text text-muted">Supported formats: .jpg, .jpeg, .png</small>
                                             </div>
                                         </div>
                                         <div class="form-group clearfix">
