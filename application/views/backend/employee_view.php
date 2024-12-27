@@ -400,6 +400,7 @@ function confirmDelete(element) {
 			                                <form class="row" action="Add_Experience" method="post" enctype="multipart/form-data">
 			                                    	<div class="form-group col-md-6 m-t-5">
 			                                    	    <label> Company Name</label>
+                                                        
 			                                    	    <input type="text" name="company_name" class="form-control form-control-line company_name" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> placeholder="Company Name" minlength="5" required> 
 			                                    	</div>
 			                                    	<div class="form-group col-md-6 m-t-5">
