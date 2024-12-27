@@ -3,7 +3,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Notice extends CI_Controller {
 
-
     function __construct() {
         parent::__construct();
         $this->load->database();
@@ -14,25 +13,27 @@ class Notice extends CI_Controller {
         $this->load->model('settings_model');
         $this->load->model('leave_model');
     }
-    
-	public function index()
-	{
-		#Redirect to Admin dashboard after authentication
+
+    public function index() {
+        // Redirect to Admin dashboard after authentication
         if ($this->session->userdata('user_login_access') == 1)
             redirect('dashboard/Dashboard');
-            $data=array();
-            #$data['settingsvalue'] = $this->dashboard_model->GetSettingsValue();
-			$this->load->view('login');
-	}
-    public function All_notice(){
-        if($this->session->userdata('user_login_access') != False) {
-        $data['notice'] = $this->notice_model->GetNotice();
-        $this->load->view('backend/notice',$data);
-        }
-    else{
-		redirect(base_url() , 'refresh');
-	}        
+        
+        $data = array();
+        $this->load->view('login');
     }
+
+    // Display all notices
+    public function All_notice() {
+        if ($this->session->userdata('user_login_access') != False) {
+            $data['notice'] = $this->notice_model->GetNotice();
+            $this->load->view('backend/notice', $data);
+        } else {
+            redirect(base_url(), 'refresh');
+        }
+    }
+
+    // Publish a new notice
     public function Published_Notice() {
         if ($this->session->userdata('user_login_access') != False) {
             $filetitle = $this->input->post('title');        
@@ -99,7 +100,16 @@ class Notice extends CI_Controller {
         }
     }
     
+
     
-    
-    
+    // Delete an existing notice
+    public function Delete_Notice($id) {
+        if ($this->session->userdata('user_login_access') != False) {
+            $this->notice_model->Delete_Notice($id); // Delete the notice
+            redirect('Notice/All_notice');
+        } else {
+            redirect(base_url(), 'refresh');
+        }
+    }
 }
+?>
