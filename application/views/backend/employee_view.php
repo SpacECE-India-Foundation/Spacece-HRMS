@@ -670,7 +670,7 @@ function confirmDelete(element) {
                                 <div class="tab-pane" id="salary" role="tabpanel">
                                     <div class="card">
 				                        <div class="card-body">
-			                        		<h3 class="card-title">Basic Slary</h3>
+			                        		<h3 class="card-title">Basic Salary</h3>
 			                                <form action="Add_Salary" method="post" enctype="multipart/form-data">
                                            <div class="row">
                                             <div class="form-group col-md-6 m-t-5">
