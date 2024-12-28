@@ -418,7 +418,7 @@ function confirmDelete(element) {
 			                                    	</div>
 			                                    	<div class="form-group col-md-6 m-t-5">
 			                                    	    <label>Position</label>
-			                                    	    <input type="text" name="position_name" class="form-control form-control-line position_name" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> placeholder="Position" minlength="3" required> 
+			                                    	    <input type="text" name="position_name" class="form-control form-control-line position_name" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> placeholder="Position" minlength="2" required> 
 			                                    	</div>
 			                                    	<div class="form-group col-md-6 m-t-5">
 			                                    	    <label>Address</label>
