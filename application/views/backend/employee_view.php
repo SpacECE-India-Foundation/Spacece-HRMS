@@ -86,47 +86,54 @@
 				                                        <input type="text" id="" name="lname" class="form-control form-control-line" value="<?php echo $basic->last_name; ?>" placeholder="Your last name" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> minlength="3" required> 
 				                                    </div>
                                                     <div class="form-group col-md-4 m-t-10">
-                                                        <label>Blood Group </label>
-                                                        <select name="blood" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> value="<?php echo $basic->em_blood_group; ?>" class="form-control custom-select">
-                                                            <option value="<?php echo $basic->em_blood_group; ?>"><?php echo $basic->em_blood_group; ?></option>
-                                                            <option value="O+">O+</option>
-                                                            <option value="O-">O-</option>
-                                                            <option value="A+">A+</option>
-                                                            <option value="A-">A-</option>
-                                                            <option value="B+">B+</option>
-                                                            <option value="B-">B-</option>
-                                                            <option value="AB+">AB+</option>
-                                                        </select>
-                                                    </div>
+    <label>Blood Group</label>
+    <select name="blood" 
+        <?php if ($this->session->userdata('user_type') == 'EMPLOYEE') { ?> readonly <?php } ?> 
+        class="form-control custom-select">
+        <option value="" disabled>Select Blood Group</option>
+        <option value="O+" <?php echo ($basic->em_blood_group == 'O+') ? 'selected' : ''; ?>>O+</option>
+        <option value="O-" <?php echo ($basic->em_blood_group == 'O-') ? 'selected' : ''; ?>>O-</option>
+        <option value="A+" <?php echo ($basic->em_blood_group == 'A+') ? 'selected' : ''; ?>>A+</option>
+        <option value="A-" <?php echo ($basic->em_blood_group == 'A-') ? 'selected' : ''; ?>>A-</option>
+        <option value="B+" <?php echo ($basic->em_blood_group == 'B+') ? 'selected' : ''; ?>>B+</option>
+        <option value="B-" <?php echo ($basic->em_blood_group == 'B-') ? 'selected' : ''; ?>>B-</option>
+        <option value="AB+" <?php echo ($basic->em_blood_group == 'AB+') ? 'selected' : ''; ?>>AB+</option>
+    </select>
+</div>
+
 				                                    <div class="form-group col-md-4 m-t-10">
 				                                        <label>Gender </label>
 				                                        <select name="gender" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control custom-select">
 				                                           
-				                                            <option value="<?php echo $basic->em_gender; ?>"><?php echo $basic->em_gender; ?></option>
-				                                            <option value="Male">Male</option>
-				                                            <option value="Female">Female</option>
+                                                        <option value="" disabled selected>Select Gender</option>
+        <option value="Male" <?php echo ($basic->em_gender == 'Male') ? 'selected' : ''; ?>>Male</option>
+        <option value="Female" <?php echo ($basic->em_gender == 'Female') ? 'selected' : ''; ?>>Female</option>
 				                                        </select>
 				                                    </div>
                                                    <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>  <?php } else { ?> 
                                                     <div class="form-group col-md-4 m-t-10">
-                                                        <label>User Type </label>
-                                                        <select name="role" class="form-control custom-select" required >
-				                                            <option value="<?php echo $basic->em_role; ?>"><?php echo $basic->em_role; ?></option>
-                                                            <option value="HR">HR</option>
-                                                            <option value="EMPLOYEE">Employee</option>
-                                                            <option value="ADMIN">Super Admin</option>
-                                                        </select>
-                                                    </div>
+    <label>User Type</label>
+    <select name="role" class="form-control custom-select" required>
+        <option value="" disabled>Select User Type</option>
+        <option value="HR" <?php echo ($basic->em_role == 'HR') ? 'selected' : ''; ?>>HR</option>
+        <option value="EMPLOYEE" <?php echo ($basic->em_role == 'EMPLOYEE') ? 'selected' : ''; ?>>Employee</option>
+        <option value="ADMIN" <?php echo ($basic->em_role == 'ADMIN') ? 'selected' : ''; ?>>Super Admin</option>
+    </select>
+</div>
+
                                                     <?php } ?>
                                                     <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>  <?php } else { ?> 
-                                                    <div class="form-group col-md-4 m-t-10">
-                                                        <label>Status </label>
-                                                        <select name="status" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control custom-select" required >
-				                                            <option value="<?php echo $basic->status; ?>"><?php echo $basic->status; ?></option>
-                                                            <option value="ACTIVE">ACTIVE</option>
-                                                            <option value="INACTIVE">INACTIVE</option>
-                                                        </select>
-                                                    </div>
+                                                        <div class="form-group col-md-4 m-t-10">
+    <label>Status</label>
+    <select name="status" 
+        <?php if ($this->session->userdata('user_type') == 'EMPLOYEE') { ?> readonly <?php } ?> 
+        class="form-control custom-select" required>
+        <option value="" disabled>Select Status</option>
+        <option value="ACTIVE" <?php echo ($basic->status == 'ACTIVE') ? 'selected' : ''; ?>>ACTIVE</option>
+        <option value="INACTIVE" <?php echo ($basic->status == 'INACTIVE') ? 'selected' : ''; ?>>INACTIVE</option>
+    </select>
+</div>
+
                                                     <?php } ?>				                                    
 				                                    <div class="form-group col-md-4 m-t-10">
 				                                        <label>Date Of Birth </label>
@@ -141,15 +148,21 @@
 				                                        <input type="text" class="form-control" placeholder="" name="contact" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> value="<?php echo $basic->em_phone; ?>" minlength="10" maxlength="15" required> 
 				                                    </div>
                                                    <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>  <?php } else { ?> 				                                    
-				                                    <div class="form-group col-md-4 m-t-10">
-				                                        <label>Department</label>
-				                                        <select name="dept" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control custom-select">
-				                                            <option value="<?php echo $basic->id; ?>"><?php echo $basic->dep_name; ?></option>
-                                            <?Php foreach($depvalue as $value): ?>
-                                             <option value="<?php echo $value->id ?>"><?php echo $value->dep_name ?></option>
-                                            <?php endforeach; ?>
-				                                        </select>
-				                                    </div>
+                                                    <div class="form-group col-md-4 m-t-10">
+    <label>Department</label>
+    <select name="dept" 
+        <?php if ($this->session->userdata('user_type') == 'EMPLOYEE') { ?> readonly <?php } ?> 
+        class="form-control custom-select">
+        <option value="" disabled selected>Select Department</option>
+        <?php foreach ($depvalue as $value): ?>
+            <option value="<?php echo $value->id; ?>" 
+                <?php echo ($basic->id == $value->id) ? 'selected' : ''; ?>>
+                <?php echo $value->dep_name; ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
+</div>
+
 				                                    <?php } ?>
                                                    <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>  <?php } else { ?> 				                                    
 				                                    <div class="form-group col-md-4 m-t-10">
