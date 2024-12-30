@@ -175,66 +175,58 @@ class Leave extends CI_Controller
     }
 
     public function Update_Applications()
-{
-    if ($this->session->userdata('user_login_access') != False) {
-        $id = $this->input->post('id');
-        $emid = $this->input->post('emid');
-        $typeid = $this->input->post('typeid');
-        $appstartdate = $this->input->post('startdate');
-        $appenddate = $this->input->post('enddate');
-        $reason = $this->input->post('reason');
-        $duration = $this->input->post('duration');
-        $hour = $this->input->post('hour');
-        $datetime = $this->input->post('datetime');
-
-        $this->load->library('form_validation');
-        $this->form_validation->set_error_delimiters();
-        $this->form_validation->set_rules('reason', 'reason', 'trim|required|min_length[5]|max_length[512]|xss_clean');
-
-        if ($this->form_validation->run() == FALSE) {
-            echo validation_errors();
-        } else {
-            // Prepare data for updating the leave application
-            $data = array(
-                'em_id' => $emid,
-                'typeid' => $typeid,
-                'start_date' => $appstartdate,
-                'end_date' => $appenddate,
-                'reason' => $reason,
-                'leave_duration' => $duration,
-                'leave_status' => 'Approved'  // Or 'Reject' based on the action
-            );
-
-            // Call the model to update the application status
-            $success = $this->leave_model->Application_Apply_Update($id, $data);
-
-            if ($this->db->affected_rows()) {
-                // Additional logic for approve/reject if needed
-                $data = array(
-                    'emp_id' => $emid,
-                    'app_id' => $id,
-                    'type_id' => $typeid,
-                    'day' => $duration,
-                    'hour' => $hour,
-                    'dateyear' => $datetime
+    {
+        if ($this->session->userdata('user_login_access') != False) {
+            $id           = $this->input->post('id');
+            $emid         = $this->input->post('emid');
+            $typeid       = $this->input->post('typeid');
+            $appstartdate = $this->input->post('startdate');
+            $appenddate   = $this->input->post('enddate');
+            $reason       = $this->input->post('reason');
+            /*      $type = $this->input->post('type');*/
+            $duration     = $this->input->post('duration');
+            $hour         = $this->input->post('hour');
+            $datetime     = $this->input->post('datetime');
+            $this->load->library('form_validation');
+            $this->form_validation->set_error_delimiters();
+            $this->form_validation->set_rules('reason', 'reason', 'trim|required|min_length[5]|max_length[512]|xss_clean');
+            if ($this->form_validation->run() == FALSE) {
+                echo validation_errors();
+                #redirect("employee/view?I=" .base64_encode($eid));
+            } else {
+                $data    = array();
+                $data    = array(
+                    'em_id' => $emid,
+                    'typeid' => $typeid,
+                    'start_date' => $appstartdate,
+                    'end_date' => $appenddate,
+                    'reason' => $reason,
+                    /*'leave_type'=>$type,*/
+                    'leave_duration' => $duration,
+                    'leave_status' => 'Approve'
                 );
-                $this->leave_model->Application_Apply_Approve($data);
-
-                // Fetch the updated leave applications after update
-                $applications = $this->leave_model->Get_All_Applications();
-
-                // Load the view with updated applications
-                $data['applications'] = $applications;
-                $this->load->view('leave_application_page', $data);
-
-                echo "Successfully Approved";
+                $success = $this->leave_model->Application_Apply_Update($id, $data);
+                #$this->session->set_flashdata('feedback','Successfully Updated');
+                #redirect("leave/Application");
+                
+                if ($this->db->affected_rows()) {
+                    $data    = array();
+                    $data    = array(
+                        'emp_id' => $emid,
+                        'app_id' => $id,
+                        'type_id' => $typeid,
+                        'day' => $duration,
+                        'hour' => $hour,
+                        'dateyear' => $datetime
+                    );
+                    $success = $this->leave_model->Application_Apply_Approve($data);
+                    echo "Successfully Approved";
+                }
             }
+        } else {
+            redirect(base_url(), 'refresh');
         }
-    } else {
-        redirect(base_url(), 'refresh');
     }
-}
-
 
     public function Add_Applications()
     {
@@ -302,56 +294,33 @@ class Leave extends CI_Controller
     public function Add_L_Status()
     {
         if ($this->session->userdata('user_login_access') != False) {
-            $id = $this->input->post('lid');
-            $value = $this->input->post('lvalue');
+            $id       = $this->input->post('lid');
+            $value    = $this->input->post('lvalue');
             $duration = $this->input->post('duration');
-            $type = $this->input->post('type');
-    
+            $type     = $this->input->post('type');
             $this->load->library('form_validation');
             $this->form_validation->set_error_delimiters();
-    
-            $data = array(
+            $data    = array();
+            $data    = array(
                 'leave_status' => $value
             );
-    
-            // Update the leave status
             $success = $this->leave_model->Application_Apply_Update($id, $data);
-    
             if ($value == 'Approve') {
-                // Update leave duration if approved
                 $totalday = $this->leave_model->GetTotalDay($type);
-                $total = $totalday->total_day + $duration;
-                $data = array('total_day' => $total);
-                $this->leave_model->Assign_Duration_Update($type, $data);
+                $total    = $totalday->total_day + $duration;
+                $data     = array();
+                $data     = array(
+                    'total_day' => $total
+                );
+                $success  = $this->leave_model->Assign_Duration_Update($type, $data);
+                echo "Successfully Updated";
+            } else {
+                echo "Successfully Updated";
             }
-    
-            // Fetch the updated list of applications after status change
-            $applications = $this->leave_model->Get_All_Applications();
-    
-            // Send updated applications back to the view
-            $data['applications'] = $applications;
-            $this->load->view('leave_application_page', $data);
-    
         } else {
             redirect(base_url(), 'refresh');
         }
     }
-    
-    public function Load_Leave_Applications()
-    {
-        if ($this->session->userdata('user_login_access') != False) {
-            // Fetch all leave applications from the model
-            $applications = $this->leave_model->Get_All_Applications();
-            $data['applications'] = $applications;
-    
-            // Load the view with updated data
-            $this->load->view('leave_application_page', $data);
-        } else {
-            redirect(base_url(), 'refresh');
-        }
-    }
-    
-
 
     
 
