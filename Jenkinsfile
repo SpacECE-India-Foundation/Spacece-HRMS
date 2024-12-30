@@ -18,7 +18,7 @@ pipeline {
                                     makeEmptyDirs: false, 
                                     noDefaultExcludes: false, 
                                     patternSeparator: '[, ]+', 
-                                    remoteDirectory: '/var/www/html', 
+                                    remoteDirectory: '/var/www/html/Spacece-HRMS', 
                                     remoteDirectorySDF: false, 
                                     removePrefix: '', 
                                     sourceFiles: '**/*.php'
