@@ -17,8 +17,8 @@
                 <div class="row m-b-10"> 
                 <div class="col-12">
                 <button type="button" class="btn btn-info"><i class="fa fa-plus"></i><a data-toggle="modal" data-target="#assetsmodel" data-whatever="@getbootstrap" class="text-white"><i class="" aria-hidden="true"></i> Add Assets </a></button>
-                <button type="button" class="btn btn-primary"><i class="fa fa-bars"></i><a href="<?php echo base_url(); ?>Logistice/logistic_list" class="text-white"><i class="" aria-hidden="true"></i>  Logistic Support List</a></button>
-                <button type="button" class="btn btn-primary"><i class="fa fa-bars"></i><a href="<?php echo base_url(); ?>Logistice/logistic_support" class="text-white"><i class="" aria-hidden="true"></i>  Logistic Support</a></button></div>
+                <!-- <button type="button" class="btn btn-primary"><i class="fa fa-bars"></i><a href="<?php echo base_url(); ?>Logistice/logistic_list" class="text-white"><i class="" aria-hidden="true"></i>  Logistic Support List</a></button> -->
+                <button type="button" class="btn btn-primary"><i class="fa fa-bars"></i><a href="<?php echo base_url(); ?>Logistice/logistic_support" class="text-white"><i class="" aria-hidden="true"></i>Logistic Support</a></button></div>
                 </div>
                 <div class="row">
                     <div class="col-12">
