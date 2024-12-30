@@ -748,34 +748,44 @@ class Employee extends CI_Controller {
     }
     public function Assign_leave(){
         if($this->session->userdata('user_login_access') != False) {
-        $emid = $this->input->post('em_id');
-        $type = $this->input->post('typeid');
-        $day = $this->input->post('noday');
-        $year = $this->input->post('year');
-        $this->load->library('form_validation');
-        $this->form_validation->set_error_delimiters();
-        $this->form_validation->set_rules('typeid','typeid','trim|required|xss_clean');
-
-        if ($this->form_validation->run() == FALSE) {
-            echo validation_errors();
-            #redirect('employee/Designation');
-        }else{
-            $data = array();
-            $data = array(
-                'emp_id' => $emid,
-                'type_id' => $type,
-                'day' => $day,
-                'total_day' => '0',
-                'year' => $year
-            );
-            $success = $this->employee_model->Add_Assign_Leave($data);
-            echo "Successfully Added";
+            $emid = $this->input->post('em_id');
+            $type = $this->input->post('typeid');
+            $day = (string) $this->input->post('noday'); // Ensure it's a string
+            $year = (int) $this->input->post('year'); // Convert to integer for the year
+    
+            // Log the data to check what is being posted
+            log_message('debug', 'Form Data: ' . print_r($this->input->post(), true));
+    
+            $this->load->library('form_validation');
+            $this->form_validation->set_error_delimiters();
+            $this->form_validation->set_rules('typeid','typeid','trim|required|xss_clean');
+    
+            if ($this->form_validation->run() == FALSE) {
+                echo validation_errors();
+            } else {
+                $data = array(
+                    'emp_id' => $emid,
+                    'type_id' => $type,
+                    'day' => $day,
+                    'total_day' => '0', // Assuming '0' is a placeholder for total_day
+                    'dateyear' => $year
+                );
+                
+                // Log data before insertion
+                log_message('debug', 'Data to Insert: ' . print_r($data, true));
+    
+                $success = $this->employee_model->Add_Assign_Leave($data);
+                if ($success) {
+                    echo "Successfully Added";
+                } else {
+                    echo "Failed to add leave";
+                }
+            }
+        } else {
+            // redirect(base_url(), 'refresh');
         }
-        }
-    else{
-		redirect(base_url() , 'refresh');
-	}
     }
+    
     public function Add_File(){
     if($this->session->userdata('user_login_access') != False) { 
     $em_id = $this->input->post('em_id');    		

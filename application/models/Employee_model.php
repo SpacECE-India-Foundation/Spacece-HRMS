@@ -136,7 +136,7 @@
       `leave_types`.`name`
       FROM `assign_leave`
       LEFT JOIN `leave_types` ON `assign_leave`.`type_id`=`leave_types`.`type_id`
-      WHERE `assign_leave`.`emp_id`='$id' AND `dateyear`='$year'";
+      WHERE `assign_leave`.`emp_id`='$id'";
         $query=$this->db->query($sql);
 		$result = $query->result();
 		return $result;        
@@ -274,9 +274,14 @@
     public function Add_Deduction($data2){
     $this->db->insert('deduction',$data2);
   }
-    public function Add_Assign_Leave($data){
-    $this->db->insert('assign_leave',$data);
-  }
+  public function Add_Assign_Leave($data) {
+    $insert = $this->db->insert('assign_leave', $data);
+    if (!$insert) {
+        log_message('error', 'Failed to insert into assign_leave: ' . print_r($this->db->error(), true));
+    }
+    return $insert; 
+}
+
     public function Insert_Media($data){
     $this->db->insert('social_media',$data);
   }
