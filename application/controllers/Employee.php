@@ -651,7 +651,9 @@ class Employee extends CI_Controller {
         $id = $this->input->post('emid');
         $onep = $this->input->post('new1');
         $twop = $this->input->post('new2');
-            if($onep == $twop){
+        $currentPassword = $this->employee_model->getCurrentPassword($id);
+        
+            if($onep == $twop && sha1($onep) !== $currentPassword ){
                 $data = array();
                 $data = array(
                     'em_password'=> sha1($onep)
@@ -660,10 +662,15 @@ class Employee extends CI_Controller {
         #$this->session->set_flashdata('feedback','Successfully Updated');
         #redirect("employee/view?I=" .base64_encode($id));
                 echo "Successfully Updated";
-            } else {
-        $this->session->set_flashdata('feedback','Please enter valid password');
+            } else if (sha1($onep) === $currentPassword){
+        $this->session->set_flashdata('feedback','New password cannot be the same as the old password.');
         #redirect("employee/view?I=" .base64_encode($id)); 
-                echo "Please enter valid password";
+                echo "New password cannot be the same as the old password.";
+            }
+            else{
+                $this->session->set_flashdata('feedback','Passwords do not match.');
+        #redirect("employee/view?I=" .base64_encode($id)); 
+                echo "Passwords do not match.";
             }
 
         }
@@ -1051,4 +1058,5 @@ class Employee extends CI_Controller {
         $data['invalidem'] = $this->employee_model->getInvalidUser();
         $this->load->view('backend/invalid_user',$data);
     }
+    
 }

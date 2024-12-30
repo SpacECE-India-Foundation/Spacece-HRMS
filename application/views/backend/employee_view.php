@@ -600,26 +600,28 @@ function confirmDelete(element) {
                                 </div>
                                 </div>
                                 <div class="tab-pane" id="password1" role="tabpanel">
-                                    <div class="card-body">
-				                                <form class="row" action="Reset_Password_Hr" method="post" enctype="multipart/form-data">
-				                                    <div class="form-group col-md-6 m-t-20">
-				                                        <label>Password</label>
-				                                        <input type="text" class="form-control" name="new1" value="" required minlength="6"> 
-				                                    </div>
-				                                    <div class="form-group col-md-6 m-t-20">
-				                                        <label>Confirm Password</label>
-				                                        <input type="text" id="" name="new2" class="form-control " required minlength="6"> 
-				                                    </div>
-				                                    <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>
-                                                    <?php } else { ?>
-				                                    <div class="form-actions col-md-12">
-                                                    <input type="hidden" name="emid" value="<?php echo $basic->em_id; ?>">                                                   
-				                                        <button type="submit" class="btn btn-info pull-right"> <i class="fa fa-check"></i> Save</button>
-				                                    </div>
-				                                    <?php } ?>
-				                                </form>
-                                    </div>
-                                </div>
+    <div class="card-body">
+        <form class="row" action="<?php echo base_url('Employee/Reset_Password_Hr'); ?>" method="post" enctype="multipart/form-data">
+            <div class="form-group col-md-6 m-t-20">
+                <label>Password</label>
+                <input type="password" class="form-control" name="new1" value="" required minlength="6" placeholder="Enter new password"> 
+            </div>
+            <div class="form-group col-md-6 m-t-20">
+                <label>Confirm Password</label>
+                <input type="password" id="" name="new2" class="form-control" required minlength="6" placeholder="Confirm your password"> 
+            </div>
+            <?php if ($this->session->userdata('user_type') == 'EMPLOYEE') { ?>
+                <!-- You can add any special condition for employee if needed -->
+            <?php } else { ?>
+                <div class="form-actions col-md-12">
+                    <input type="hidden" name="emid" value="<?php echo $basic->em_id; ?>">                                                   
+                    <button type="submit" class="btn btn-info pull-right"> <i class="fa fa-check"></i> Save</button>
+                </div>
+            <?php } ?>
+        </form>
+    </div>
+</div>
+
                                 <div class="tab-pane" id="social" role="tabpanel">
                                     <div class="card-body">
 				                                <form class="row" action="Save_Social" method="post" enctype="multipart/form-data">
@@ -651,27 +653,27 @@ function confirmDelete(element) {
                                     </div>
                                 </div>
                                 <div class="tab-pane" id="password" role="tabpanel">
-                                    <div class="card-body">
-				                                <form class="row" action="Reset_Password" method="post" enctype="multipart/form-data">
-				                                    <div class="form-group col-md-6 m-t-20">
-				                                        <label>Old Password</label>
-				                                        <input type="text" class="form-control" name="old" value="" placeholder="old password" required minlength="6"> 
-				                                    </div>
-				                                    <div class="form-group col-md-6 m-t-20">
-				                                        <label>Password</label>
-				                                        <input type="text" class="form-control" name="new1" value="" required minlength="6"> 
-				                                    </div>
-				                                    <div class="form-group col-md-6 m-t-20">
-				                                        <label>Confirm Password</label>
-				                                        <input type="text" id="" name="new2" class="form-control " required minlength="6"> 
-				                                    </div>
-				                                    <div class="form-actions col-md-12">
-                                                    <input type="hidden" name="emid" value="<?php echo $basic->em_id; ?>">                                                   
-				                                        <button type="submit" class="btn btn-info pull-right"> <i class="fa fa-check"></i> Save</button>
-				                                    </div>
-				                                </form>
-                                    </div>
+                                <div class="card-body">
+                                    <form class="row" action="Reset_Password" method="post" enctype="multipart/form-data">
+                                        <div class="form-group col-md-6 m-t-20">
+                                            <label>Old Password</label>
+                                            <input type="password" class="form-control" name="old" value="" placeholder="Old password" required minlength="6">
+                                        </div>
+                                        <div class="form-group col-md-6 m-t-20">
+                                            <label>Password</label>
+                                            <input type="password" class="form-control" name="new1" value="" required minlength="6" id="new-password">
+                                        </div>
+                                        <div class="form-group col-md-6 m-t-20">
+                                            <label>Confirm Password</label>
+                                            <input type="password" id="confirm-password" name="new2" class="form-control" required minlength="6">
+                                        </div>
+                                        <div class="form-actions col-md-12">
+                                            <input type="hidden" name="emid" value="<?php echo $basic->em_id; ?>">                                                   
+                                            <button type="submit" class="btn btn-info pull-right"> <i class="fa fa-check"></i> Save</button>
+                                        </div>
+                                    </form>
                                 </div>
+                            </div>
 
                                 <div class="tab-pane" id="salary" role="tabpanel">
                                     <div class="card">
@@ -860,5 +862,29 @@ function confirmDelete(element) {
                                             });
                                         });
 </script>                
+<script>
+document.querySelector("form").addEventListener("submit", function(event) {
+    // Password Criteria (example)
+    const newPassword = document.getElementById("new-password").value;
+    const confirmPassword = document.getElementById("confirm-password").value;
+
+    // Check if the new password meets security criteria (at least one uppercase letter, one number, and one special character)
+    const passwordCriteria = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+    if (!passwordCriteria.test(newPassword)) {
+        alert("Password must be at least 6 characters long, include one uppercase letter, one number, and one special character.");
+        event.preventDefault();
+        return;
+    }
+
+    // Check if the new password and confirm password match
+    if (newPassword !== confirmPassword) {
+        alert("New password and confirm password do not match.");
+        event.preventDefault();
+        return;
+    }
+
+    // You can also add the server-side check here to prevent reusing the old password
+});
+</script>
 
 <?php $this->load->view('backend/footer'); ?>
