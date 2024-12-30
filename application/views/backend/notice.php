@@ -58,7 +58,7 @@
                                         <td><?php echo $value->date; ?></td>
                                         <td>
                                             <!-- Delete Button -->
-                                            <a href="<?php echo base_url('Notice/delete_notice/'.$value->id); ?>" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this notice?');">Delete</a>
+                                            <a href="<?php echo base_url('Notice/delete_notice/'.$value->id); ?>"  onclick="return confirm('Are you sure you want to delete this notice?');"class="btn btn-sm btn-info waves-effect waves-light"><i class="fa fa-trash-o"></i></a>
                                         </td>
                                     </tr>
                                     <?php endforeach; ?>
