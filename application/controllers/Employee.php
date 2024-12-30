@@ -1058,5 +1058,31 @@ class Employee extends CI_Controller {
         $data['invalidem'] = $this->employee_model->getInvalidUser();
         $this->load->view('backend/invalid_user',$data);
     }
+    public function EducationDelete() {
+        $id = $this->input->get('id'); // Get the education record ID from query parameters
+    
+        // Load the model and delete the record
+        $this->load->model('Employee_Model');
+        $result = $this->Employee_Model->delete_record($id);
+    
+        if ($result) {
+            echo "success"; // Success response
+        } else {
+            echo "failure"; // Failure response
+        }
+    }
+    public function ExperienceDelete() {
+        $id = $this->input->get('id'); // Get the education record ID from query parameters
+    
+        // Load the model and delete the record
+        $this->load->model('Employee_Model');
+        $result = $this->Employee_Model->delete_exprecord($id);
+    
+        if ($result) {
+            echo "success"; // Success response
+        } else {
+            echo "failure"; // Failure response
+        }
+    }
     
 }

@@ -310,7 +310,14 @@ public function getCurrentPassword($userId) {
   return $employee ? $employee->em_password : null; // Return the current password (hashed)
 }
 
-
+public function delete_record($id) {
+  $this->db->where('id', $id);
+  return $this->db->delete('education'); 
+}
+public function delete_exprecord($id) {
+  $this->db->where('id', $id);
+  return $this->db->delete('emp_experience'); 
+}
 
     }
 ?>
