@@ -601,25 +601,32 @@ class Employee extends CI_Controller {
 	}        
     }
     public function Add_bank_info(){
-        if($this->session->userdata('user_login_access') != False) {
-        $id = $this->input->post('id');
-        $em_id = $this->input->post('emid');
-        $holder = $this->input->post('holder_name');
-        $bank = $this->input->post('bank_name');
-        $branch = $this->input->post('branch_name');
-        $number = $this->input->post('account_number');
-        $account = $this->input->post('account_type');
-        $this->load->library('form_validation');
-        $this->form_validation->set_error_delimiters();
-        $this->form_validation->set_rules('holder_name', 'holder name', 'trim|required|min_length[5]|max_length[120]|xss_clean');
-        $this->form_validation->set_rules('account_number', 'account name', 'trim|required|min_length[5]|max_length[120]|xss_clean');
-        $this->form_validation->set_rules('branch_name', 'branch name', 'trim|required|min_length[5]|max_length[120]|xss_clean');
-
-        if ($this->form_validation->run() == FALSE) {
-            echo validation_errors();
-			redirect("employee/view?I=" .base64_encode($em_id));
-			} else {
-            $data = array();
+        if($this->session->userdata('user_login_access') != FALSE) {
+            $id = $this->input->post('id');
+            $em_id = $this->input->post('emid');
+            $holder = $this->input->post('holder_name');
+            $bank = $this->input->post('bank_name');
+            $branch = $this->input->post('branch_name');
+            $number = $this->input->post('account_number');
+            $account = $this->input->post('account_type');
+            
+            $this->load->library('form_validation');
+            $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+            
+            // Set validation rules for each field
+            $this->form_validation->set_rules('holder_name', 'Holder Name', 'trim|required|max_length[120]|xss_clean|callback_alpha_spaces');
+        $this->form_validation->set_rules('branch_name', 'Branch Name', 'trim|required|max_length[120]|xss_clean|callback_alpha_spaces');
+        
+        // Other validation rules
+        $this->form_validation->set_rules('bank_name', 'Bank Name', 'trim|required|max_length[120]|xss_clean|callback_alpha_spaces');
+        $this->form_validation->set_rules('account_number', 'Account Number', 'trim|required|max_length[20]|xss_clean|numeric');
+        $this->form_validation->set_rules('account_type', 'Account Type', 'required|in_list[Savings,Current]');
+        
+            if ($this->form_validation->run() == FALSE) {
+                // Validation failed, echo errors and redirect back
+                echo validation_errors();
+            } else {
+                // Prepare data array
                 $data = array(
                     'em_id' => $em_id,
                     'holder_name' => $holder,
@@ -628,24 +635,30 @@ class Employee extends CI_Controller {
                     'account_number' => $number,
                     'account_type' => $account
                 );
-            if(empty($id)){
-                $success = $this->employee_model->Add_BankInfo($data);
-                #$this->session->set_flashdata('feedback','Successfully Added');
-                #redirect("employee/view?I=" .base64_encode($em_id));
-                echo "Successfully Added";
-            } else {
-                $success = $this->employee_model->Update_BankInfo($id,$data);
-                #$this->session->set_flashdata('feedback','Successfully Updated');
-                #redirect("employee/view?I=" .base64_encode($em_id));
-                echo "Successfully Updated";
+                
+                // Insert or update based on whether $id is empty
+                if(empty($id)){
+                    $success = $this->employee_model->Add_BankInfo($data);
+                    echo "Successfully Added";
+                } else {
+                    $success = $this->employee_model->Update_BankInfo($id, $data);
+                    echo "Successfully Updated";
+                }
             }
-                       
+        } else {
+            // Redirect if not logged in
+            redirect(base_url(), 'refresh');
         }
-        }
-    else{
-		redirect(base_url() , 'refresh');
-	}            
     }
+    public function alpha_spaces($str)
+{
+    if (!preg_match("/^[A-Za-z ]*$/", $str)) {
+        $this->form_validation->set_message('alpha_spaces', 'The {field} field can only contain alphabetic characters.');
+        return FALSE;
+    }
+    return TRUE;
+}
+    
     public function Reset_Password_Hr(){
         if($this->session->userdata('user_login_access') != False) {
         $id = $this->input->post('emid');

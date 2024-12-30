@@ -494,38 +494,182 @@ $(document).ready(function () {
         </div>
     </div>
     <div class="card">
-        <div class="card-body">
-            <!-- Bank Information Form -->
-            <form class="row" action="Add_bank_info" method="post" enctype="multipart/form-data">
-                <div class="form-group col-md-6 m-t-5">
-                    <label>Bank Holder Name</label>
-                    <input type="text" name="holder_name" value="<?php if (!empty($bankinfo->holder_name)) echo $bankinfo->holder_name; ?>" class="form-control form-control-line" placeholder="Bank Holder Name" minlength="5" required>
-                </div>
-                <div class="form-group col-md-6 m-t-5">
-                    <label>Bank Name</label>
-                    <input type="text" name="bank_name" value="<?php if (!empty($bankinfo->bank_name)) echo $bankinfo->bank_name; ?>" class="form-control form-control-line" placeholder="Bank Name" minlength="5" required>
-                </div>
-                <div class="form-group col-md-6 m-t-5">
-                    <label>Branch Name</label>
-                    <input type="text" name="branch_name" value="<?php if (!empty($bankinfo->branch_name)) echo $bankinfo->branch_name; ?>" class="form-control form-control-line" placeholder="Branch Name">
-                </div>
-                <div class="form-group col-md-6 m-t-5">
-                    <label>Bank Account Number</label>
-                    <input type="text" name="account_number" value="<?php if (!empty($bankinfo->account_number)) echo $bankinfo->account_number; ?>" class="form-control form-control-line" minlength="5" required>
-                </div>
-                <div class="form-group col-md-6 m-t-5">
-                    <label>Bank Account Type</label>
-                    <input type="text" name="account_type" value="<?php if (!empty($bankinfo->account_type)) echo $bankinfo->account_type; ?>" class="form-control form-control-line" placeholder="Bank Account Type">
-                </div>
-                <div class="form-actions col-md-12">
-                    <input type="hidden" name="emid" value="<?php echo $basic->em_id; ?>">
-                    <input type="hidden" name="id" value="<?php if (!empty($bankinfo->id)) echo $bankinfo->id; ?>">
-                    <button type="submit" class="btn btn-info"><i class="fa fa-check"></i> Save</button>
-                </div>
-            </form>
-        </div>
+    <div class="card-body">
+        <!-- Bank Information Form -->
+        <form class="row" action="Add_bank_info" method="post" enctype="multipart/form-data" onsubmit="return validateForm();">
+            <!-- Bank Holder Name -->
+            <div class="form-group col-md-6 m-t-5">
+                <label>Bank Holder Name</label>
+                <input 
+                    type="text" 
+                    name="holder_name" 
+                    id="holder_name" 
+                    value="<?php if (!empty($bankinfo->holder_name)) echo $bankinfo->holder_name; ?>" 
+                    class="form-control form-control-line" 
+                    placeholder="Bank Holder Name" 
+                    maxlength="100" 
+                    required 
+                    pattern="[A-Za-zÀ-ÿ ]+" 
+                    title="Only alphabetic characters." autocomplete="off">
+                    <span id="holder_name_error" class="error-message" style="color: red; display: none;">Only alphabetic characters are allowed.</span>
+
+            </div>
+            <!-- Bank Name -->
+            <div class="form-group col-md-6 m-t-5">
+                <label>Bank Name</label>
+                <input 
+                    type="text" 
+                    name="bank_name" 
+                    id="bank_name"
+                    value="<?php if (!empty($bankinfo->bank_name)) echo $bankinfo->bank_name; ?>" 
+                    class="form-control form-control-line" 
+                    placeholder="Bank Name" 
+
+                    maxlength="100" 
+                    required 
+                    pattern="[A-Za-zÀ-ÿ]+" 
+                    title="Only alphabetic characters are allowed." autocomplete="off">
+                    <span id="bank_name_error" class="error-message" style="color: red; display: none;">Only alphabetic characters are allowed.</span>
+
+            </div>
+            <!-- Branch Name -->
+            <div class="form-group col-md-6 m-t-5">
+                <label>Branch Name</label>
+                <input 
+                    type="text" 
+                    name="branch_name" 
+                    id="branch_name"
+                    value="<?php if (!empty($bankinfo->branch_name)) echo $bankinfo->branch_name; ?>" 
+                    class="form-control form-control-line" 
+                    placeholder="Branch Name" 
+                    pattern="[A-Za-zÀ-ÿ ]*" 
+                    title="Only alphabetic characters." autocomplete="off">
+                    <span id="branch_name_error" class="error-message" style="color: red; display: none;">Only alphabetic characters are allowed.</span>
+
+            </div>
+            <!-- Bank Account Number -->
+            <div class="form-group col-md-6 m-t-5">
+                <label>Bank Account Number</label>
+                <input 
+                    type="text" 
+                    name="account_number" 
+                    id="account_number"
+                    value="<?php if (!empty($bankinfo->account_number)) echo $bankinfo->account_number; ?>" 
+                    class="form-control form-control-line" 
+                    minlength="5" 
+                    maxlength="20" 
+                    required 
+                    pattern="\d+" 
+                    title="Only numeric values are allowed." autocomplete="off">
+                    <span id="account_number_error" class="error-message" style="color: red; display: none;">Only numeric values are allowed.</span>
+
+            </div>
+            <!-- Bank Account Type -->
+            <div class="form-group col-md-6 m-t-5">
+                <label>Bank Account Type</label>
+                <select name="account_type" class="form-control form-control-line" required>
+                    <option value="">-- Select Account Type --</option>
+                    <option value="Savings" <?php if (!empty($bankinfo->account_type) && $bankinfo->account_type == 'Savings') echo 'selected'; ?>>Savings</option>
+                    <option value="Current" <?php if (!empty($bankinfo->account_type) && $bankinfo->account_type == 'Current') echo 'selected'; ?>>Current</option>
+                </select>
+            </div>
+            <!-- Submit Button -->
+            <div class="form-actions col-md-12">
+                <input type="hidden" name="emid" value="<?php echo $basic->em_id; ?>">
+                <input type="hidden" name="id" value="<?php if (!empty($bankinfo->id)) echo $bankinfo->id; ?>">
+                <button type="submit" class="btn btn-info"><i class="fa fa-check"></i> Save</button>
+            </div>
+        </form>
     </div>
 </div>
+</div>
+<script>
+    $(document).ready(function() {
+    // Real-time input validation for Bank Holder Name
+    $('#holder_name').on('input', function() {
+        var holderName = $(this).val().trim();
+        var nameRegex = /^[A-Za-zÀ-ÿ ]+$/; // Allow only alphabetic characters and spaces
+
+        if (!nameRegex.test(holderName)) {
+            $('#holder_name_error').show();  // Show error message if invalid
+        } else {
+            $('#holder_name_error').hide();  // Hide error message if valid
+        }
+    });
+
+    // Real-time input validation for Bank Name
+    $('#bank_name').on('input', function() {
+        var bankName = $(this).val().trim();
+        var nameRegex = /^[A-Za-zÀ-ÿ ]+$/; // Allow only alphabetic characters and spaces
+
+        if (!nameRegex.test(bankName)) {
+            $('#bank_name_error').show();  // Show error message if invalid
+        } else {
+            $('#bank_name_error').hide();  // Hide error message if valid
+        }
+    });
+
+    // Real-time input validation for Branch Name
+    $('#branch_name').on('input', function() {
+        var branchName = $(this).val().trim();
+        var nameRegex = /^[A-Za-zÀ-ÿ ]+$/; // Allow only alphabetic characters and spaces
+
+        if (!nameRegex.test(branchName)) {
+            $('#branch_name_error').show();  // Show error message if invalid
+        } else {
+            $('#branch_name_error').hide();  // Hide error message if valid
+        }
+    });
+
+    // Real-time input validation for Bank Account Number
+    $('#account_number').on('input', function() {
+        var accountNumber = $(this).val().trim();
+        var accountRegex = /^\d+$/; // Allow only numeric characters
+
+        if (!accountRegex.test(accountNumber)) {
+            $('#account_number_error').show();  // Show error message if invalid
+        } else {
+            $('#account_number_error').hide();  // Hide error message if valid
+        }
+    });
+
+    // Form submission validation
+    $('#bankInfoForm').submit(function(event) {
+        var isValid = true;
+
+        // Check if Bank Holder Name is valid
+        if (!/^[A-Za-zÀ-ÿ ]+$/.test($('#holder_name').val().trim())) {
+            $('#holder_name_error').show();
+            isValid = false;
+        }
+
+        // Check if Bank Name is valid
+        if (!/^[A-Za-zÀ-ÿ ]+$/.test($('#bank_name').val().trim())) {
+            $('#bank_name_error').show();
+            isValid = false;
+        }
+
+        // Check if Branch Name is valid
+        if (!/^[A-Za-zÀ-ÿ ]+$/.test($('#branch_name').val().trim())) {
+            $('#branch_name_error').show();
+            isValid = false;
+        }
+
+        // Check if Account Number is valid
+        if (!/^\d+$/.test($('#account_number').val().trim())) {
+            $('#account_number_error').show();
+            isValid = false;
+        }
+
+        // Prevent form submission if any field is invalid
+        if (!isValid) {
+            event.preventDefault();
+        }
+    });
+});
+
+</script>
+
 
                                 
                                 <div class="tab-pane" id="document" role="tabpanel">
