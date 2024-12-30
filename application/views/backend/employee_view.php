@@ -415,18 +415,6 @@ $(document).ready(function () {
    <i class="fa fa-trash-o"></i>
 </a>
 
-<!-- <script>
-function confirmDelete(element) {
-    if (confirm('Are you sure want to delete this Value?')) {
-        // Redirect to the delete action URL or trigger AJAX
-        const id = element.getAttribute('data-id');
-        // Example: Update the href dynamically or perform your delete action here
-        // window.location.href = `delete.php?id=${id}`; // Update URL to your actual delete handler
-    }
-    return false; // Prevent default action if Cancel is clicked
-}
-</script> -->
-
                                         <?php } ?>
                                     </td>
                                 </tr>
@@ -465,38 +453,81 @@ function confirmDelete(element) {
                                     </div>
                                 </div>
                                 <div class="tab-pane" id="bank" role="tabpanel">
-                                    <div class="card">
-	                                    <div class="card-body">
-			                                <form class="row" action="Add_bank_info" method="post" enctype="multipart/form-data">
-			                                    <div class="form-group col-md-6 m-t-5">
-			                                        <label> Bank Holder Name</label>
-			                                        <input type="text" name="holder_name" value="<?php if(!empty($bankinfo->holder_name)) echo $bankinfo->holder_name  ?>" class="form-control form-control-line" placeholder="Bank Holder Name" minlength="5" required> 
-			                                    </div>
-			                                    <div class="form-group col-md-6 m-t-5">
-			                                        <label>Bank Name</label>
-			                                        <input type="text" name="bank_name" value="<?php if(!empty($bankinfo->bank_name)) echo $bankinfo->bank_name  ?>" class="form-control form-control-line" placeholder="Bank Name" minlength="5" required> 
-			                                    </div>
-			                                    <div class="form-group col-md-6 m-t-5">
-			                                        <label>Branch Name</label>
-			                                        <input type="text" name="branch_name" value="<?php if(!empty($bankinfo->branch_name)) echo $bankinfo->branch_name  ?>" class="form-control form-control-line" placeholder=" Branch Name"> 
-			                                    </div>
-			                                    <div class="form-group col-md-6 m-t-5">
-			                                        <label>Bank Account Number</label>
-			                                        <input type="text" name="account_number" value="<?php if(!empty($bankinfo->account_number)) echo $bankinfo->account_number ?>" class="form-control form-control-line" minlength="5" required> 
-			                                    </div>
-			                                    <div class="form-group col-md-6 m-t-5">
-			                                        <label>Bank Account Type</label>
-			                                        <input type="text" name="account_type" value="<?php if(!empty($bankinfo->account_type)) echo $bankinfo->account_type ?>" class="form-control form-control-line" placeholder="Bank Account Type"> 
-			                                    </div>
-			                                    <div class="form-actions col-md-12">
-                                                    <input type="hidden" name="emid" value="<?php echo $basic->em_id; ?>">
-                                                    <input type="hidden" name="id" value="<?php if(!empty($bankinfo->id)) echo $bankinfo->id  ?>">
-			                                        <button type="submit" class="btn btn-info"> <i class="fa fa-check"></i> Save</button>
-			                                    </div>
-			                                </form>
-					                    </div>
-                                    </div>
-                                </div>
+                                <div class="card mt-4">
+        <div class="card-body">
+            <?php if (!empty($bankinfo)) { ?>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Bank Holder Name</th>
+                            <th>Bank Name</th>
+                            <th>Branch Name</th>
+                            <th>Account Number</th>
+                            <th>Account Type</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>ID</th>
+                            <th>Bank Holder Name</th>
+                            <th>Bank Name</th>
+                            <th>Branch Name</th>
+                            <th>Account Number</th>
+                            <th>Account Type</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><?php echo $bankinfo->holder_name; ?></td>
+                            <td><?php echo $bankinfo->bank_name; ?></td>
+                            <td><?php echo $bankinfo->branch_name; ?></td>
+                            <td><?php echo $bankinfo->account_number; ?></td>
+                            <td><?php echo $bankinfo->account_type; ?></td>
+                        </tr>
+                    </tbody>
+                </table>
+            <?php } else { ?>
+                <p>No bank information found. Please add details.</p>
+            <?php } ?>
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-body">
+            <!-- Bank Information Form -->
+            <form class="row" action="Add_bank_info" method="post" enctype="multipart/form-data">
+                <div class="form-group col-md-6 m-t-5">
+                    <label>Bank Holder Name</label>
+                    <input type="text" name="holder_name" value="<?php if (!empty($bankinfo->holder_name)) echo $bankinfo->holder_name; ?>" class="form-control form-control-line" placeholder="Bank Holder Name" minlength="5" required>
+                </div>
+                <div class="form-group col-md-6 m-t-5">
+                    <label>Bank Name</label>
+                    <input type="text" name="bank_name" value="<?php if (!empty($bankinfo->bank_name)) echo $bankinfo->bank_name; ?>" class="form-control form-control-line" placeholder="Bank Name" minlength="5" required>
+                </div>
+                <div class="form-group col-md-6 m-t-5">
+                    <label>Branch Name</label>
+                    <input type="text" name="branch_name" value="<?php if (!empty($bankinfo->branch_name)) echo $bankinfo->branch_name; ?>" class="form-control form-control-line" placeholder="Branch Name">
+                </div>
+                <div class="form-group col-md-6 m-t-5">
+                    <label>Bank Account Number</label>
+                    <input type="text" name="account_number" value="<?php if (!empty($bankinfo->account_number)) echo $bankinfo->account_number; ?>" class="form-control form-control-line" minlength="5" required>
+                </div>
+                <div class="form-group col-md-6 m-t-5">
+                    <label>Bank Account Type</label>
+                    <input type="text" name="account_type" value="<?php if (!empty($bankinfo->account_type)) echo $bankinfo->account_type; ?>" class="form-control form-control-line" placeholder="Bank Account Type">
+                </div>
+                <div class="form-actions col-md-12">
+                    <input type="hidden" name="emid" value="<?php echo $basic->em_id; ?>">
+                    <input type="hidden" name="id" value="<?php if (!empty($bankinfo->id)) echo $bankinfo->id; ?>">
+                    <button type="submit" class="btn btn-info"><i class="fa fa-check"></i> Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+                                
                                 <div class="tab-pane" id="document" role="tabpanel">
                                     <div class="card-body">
                     <div class="table-responsive ">
@@ -526,6 +557,7 @@ function confirmDelete(element) {
                             </tbody>
                         </table>
                     </div>
+                    
                 </div>                                    
                                     <div class="card-body">
                                         <form class="row" action="Add_File" method="post" enctype="multipart/form-data">
