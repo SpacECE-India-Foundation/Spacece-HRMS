@@ -375,7 +375,7 @@ class Leave extends CI_Controller
         if ($this->session->userdata('user_login_access') != False) {
             $id      = $this->input->get('id');
             $success = $this->leave_model->DeletHoliday($id);
-            echo "Successfully Deletd";
+            echo "Successfully Deleted";
         } else {
             redirect(base_url(), 'refresh');
         }

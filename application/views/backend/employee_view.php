@@ -292,24 +292,43 @@
                                     <td class="jsgrid-align-center ">
                                         <a href="#" title="Edit" class="btn btn-sm btn-info waves-effect waves-light education" data-id="<?php echo $value->id ?>"><i class="fa fa-pencil-square-o"></i></a>
                                         <a 
-   onclick="return confirmDelete(this)" 
-   href="#" 
-   title="Delete" 
-   class="btn btn-sm btn-info waves-effect waves-light deletexp" 
-   data-id="<?php echo $value->id ?>">
-   <i class="fa fa-trash-o"></i>
-</a>
+                    onclick="return confirmDelete(this)" 
+                    href="#" 
+                    title="Delete" 
+                    class="btn btn-sm btn-info waves-effect waves-light deleteEducation" 
+                    data-id="<?php echo $value->id ?>">
+                    <i class="fa fa-trash-o"></i>
+                    </a>
 
 <script>
-function confirmDelete(element) {
-    if (confirm('Are you sure want to delete this Value?')) {
-        // Redirect to the delete action URL or trigger AJAX
-        const id = element.getAttribute('data-id');
-        // Example: Update the href dynamically or perform your delete action here
-        window.location.href = `delete.php?id=${id}`; // Update URL to your actual delete handler
-    }
-    return false; // Prevent default action if Cancel is clicked
-}
+$(document).ready(function () {
+    $(".deleteEducation").click(function (e) {
+        e.preventDefault(); // Prevent default behavior of the link
+
+        var eid = $(this).attr("data-id"); // Get the ID of the education record
+        var row = $(this).closest("tr"); // Get the row for removal
+
+        if (confirm("Are you sure you want to delete this record?")) {
+            $.ajax({
+                url: "EducationDelete?id=" + eid, // Backend endpoint
+                method: "GET",
+                success: function (response) {
+                    // Check the server response
+                    if (response.trim() === "success") {
+                        // alert("Education record deleted successfully!");
+                        row.remove(); // Remove the row dynamically
+                    } else {
+                        alert("Failed to delete the education record.");
+                    }
+                },
+                error: function () {
+                    alert("An error occurred while deleting the record.");
+                }
+            });
+        }
+    });
+});
+
 </script>
 
                                     </td>
@@ -396,17 +415,17 @@ function confirmDelete(element) {
    <i class="fa fa-trash-o"></i>
 </a>
 
-<script>
+<!-- <script>
 function confirmDelete(element) {
     if (confirm('Are you sure want to delete this Value?')) {
         // Redirect to the delete action URL or trigger AJAX
         const id = element.getAttribute('data-id');
         // Example: Update the href dynamically or perform your delete action here
-        window.location.href = `delete.php?id=${id}`; // Update URL to your actual delete handler
+        // window.location.href = `delete.php?id=${id}`; // Update URL to your actual delete handler
     }
     return false; // Prevent default action if Cancel is clicked
 }
-</script>
+</script> -->
 
                                         <?php } ?>
                                     </td>
@@ -824,25 +843,36 @@ function confirmDelete(element) {
                                             });
                                         });
 </script>                
-<script type="text/javascript">
-                                        $(document).ready(function () {
-                                            $(".deletexp").click(function (e) {
-                                                e.preventDefault(e);
-                                                // Get the record's ID via attribute  
-                                                var iid = $(this).attr('data-id');
-                                                $.ajax({
-                                                    url: 'EXPvalueDelet?id=' + iid,
-                                                    method: 'GET',
-                                                    data: 'data',
-                                                }).done(function (response) {
-                                                    console.log(response);
-                                                    $(".message").fadeIn('fast').delay(3000).fadeOut('fast').html(response);
-                                                    window.setTimeout(function(){location.reload()},2000)
-                                                    // Populate the form fields with the data returned from server
-												});
-                                            });
-                                        });
-</script>                 
+<script>
+$(document).ready(function () {
+    $(".deletexp").click(function (e) {
+        e.preventDefault(); // Prevent default behavior of the link
+
+        var eid = $(this).attr("data-id"); // Get the ID of the education record
+        var row = $(this).closest("tr"); // Get the row for removal
+
+        if (confirm("Are you sure you want to delete this record?")) {
+            $.ajax({
+                url: "ExperienceDelete?id=" + eid, // Backend endpoint
+                method: "GET",
+                success: function (response) {
+                    // Check the server response
+                    if (response.trim() === "success") {
+                        // alert("Education record deleted successfully!");
+                        row.remove(); // Remove the row dynamically
+                    } else {
+                        alert("Failed to delete the education record.");
+                    }
+                },
+                error: function () {
+                    alert("An error occurred while deleting the record.");
+                }
+            });
+        }
+    });
+});
+
+</script>
 <script type="text/javascript">
                                         $(document).ready(function () {
                                             $(".edudelet").click(function (e) {
