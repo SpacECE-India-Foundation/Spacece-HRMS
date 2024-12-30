@@ -208,7 +208,7 @@
       FROM `emp_leave`
       LEFT JOIN `employee` ON `emp_leave`.`em_id`=`employee`.`em_id`
       LEFT JOIN `leave_types` ON `emp_leave`.`typeid`=`leave_types`.`type_id`
-      WHERE `emp_leave`.`leave_status`='Not Approve'";
+      ORDER BY `emp_leave`.`apply_date` DESC";
         $query=$this->db->query($sql);
 		$result = $query->result();
 		return $result; 
@@ -290,6 +290,19 @@
         $sql = "SELECT * FROM `holiday` WHERE ('$day' = `holiday`.`from_date`) OR ('$day' BETWEEN `holiday`.`from_date` AND `holiday`.`to_date`)";
         $query = $this->db->query($sql);
         return $query->row();
+    }
+    public function updateLeaveStatus($leave_id, $status) {
+        $sql = "UPDATE leave_applications SET status = ? WHERE application_id = ?";
+        $stmt = $this->db->prepare($sql);
+        $stmt->bind_param('si', $status, $leave_id);
+        return $stmt->execute();
+    }
+
+    // Function to fetch leave applications
+    public function getLeaveApplications() {
+        $sql = "SELECT application_id, employee_name, leave_start_date, leave_end_date, status FROM leave_applications";
+        $result = $this->db->query($sql);
+        return $result->fetch_all(MYSQLI_ASSOC);
     }
     }
 ?>    
