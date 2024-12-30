@@ -50,17 +50,17 @@
                                     <input name="attdate" class="form-control mydatetimepickerFull" value="<?php if(!empty($attval->atten_date)) { 
                                     $old_date_timestamp = strtotime($attval->atten_date);
                                     $new_date = date('Y-m-d', $old_date_timestamp);    
-                                    echo $new_date; } ?>" required>
+                                    echo $new_date; } ?>" required autocomplete="off">
                                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                 </div>
                                 <div class="form-group" >
                                     <label class="m-t-20">Sign In Time</label>
-                                    <input class="form-control" name="signin" id="single-input" value="<?php if(!empty($attval->signin_time)) { echo  $attval->signin_time;} ?>" placeholder="Now" required>
+                                    <input class="form-control" name="signin" id="single-input" value="<?php if(!empty($attval->signin_time)) { echo  $attval->signin_time;} ?>" placeholder="Now" required autocomplete="off">
                                 </div>
                                 <div class="form-group">
                                     <label class="m-t-20">Sign Out Time</label>
                                     <div class="input-group clockpicker">
-                                        <input type="text" name="signout" class="form-control" value="<?php if(!empty($attval->signout_time)) { echo  $attval->signout_time;} ?>">
+                                        <input type="text" name="signout" class="form-control" value="<?php if(!empty($attval->signout_time)) { echo  $attval->signout_time;} ?>" autocomplete="off">
                                     </div>
                                 </div> 
                                 <div class="form-group">
