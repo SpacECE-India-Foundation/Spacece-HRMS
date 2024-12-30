@@ -468,59 +468,42 @@ class Leave extends CI_Controller
     
     // Get leave details hourly
     public function Get_LeaveDetails()
-    {
-        $emid   = $this->input->get('emp_id');
-        $date   = $this->input->get('date_time');
-            $this->load->library('form_validation');
-            $this->form_validation->set_error_delimiters();
-            $this->form_validation->set_rules('date_time', 'Date Time', 'trim|required|xss_clean');
-            $this->form_validation->set_rules('emp_id', 'Employee', 'trim|required|xss_clean');
-        $date = explode('-', $date);
+{
+    $emid = $this->input->get('emp_id');
+    $date = $this->input->get('date_time');
 
-        $day = @$date[0];
-        $year = @$date[1];
-        
-        $report = $this->leave_model->GetEmLEaveReport($emid, $day, $year);
+    $this->load->library('form_validation');
+    $this->form_validation->set_error_delimiters();
+    $this->form_validation->set_rules('date_time', 'Date Time', 'trim|required|xss_clean');
+    $this->form_validation->set_rules('emp_id', 'Employee', 'trim|required|xss_clean');
 
-        if (is_array($report) || is_object($report))
-        {
-            foreach ($report as $value) {
+    // Split date into day and year
+    $date = explode('-', $date);
+    $day = @$date[0];
+    $year = @$date[1];
+    
+    // Fetch leave report from the model
+    $report = $this->leave_model->GetEmLEaveReport($emid, $day, $year);
 
-                /*if($value->hour > 8) {
-                    $originalDays = $value->hour;
-                    $days = $originalDays / 8;
-                    $hour = 0;
-                    // 120 / 8 = 15 // 15 day
-                    // 13 - (1*8) = 5 hour
-
-                    if(is_float($days)) {
-                        
-                        $days = floor($days); // 1
-                        $hour = $value->hour - ($days * 8); // 5
-                    }
-                } else {
-                    $days = 0;
-                    $hour = $value->hour;
-                }*/
-                
-
-                /*$daysDenom = ($days == 1) ? " day " : " days ";
-                $hourDenom = ($hour == 1) ? " hour " : " hours ";
-                <td>$value->total_duration hours</td>*/
-
-                echo "<tr>
-                        <td>$value->em_code</td>
-                        <td>$value->first_name $value->last_name</td>
-                        <td>$value->name</td>
-                        <td>$value->leave_duration hours</td>
-                        <td>$value->start_date</td>
-                        <td>$value->end_date</td>
-                    </tr>";
-            }
-        } else {
-            echo "<p>No Data Found</p>";
+    // Prepare response data
+    $response = [];
+    if (is_array($report) || is_object($report)) {
+        foreach ($report as $value) {
+            $response[] = [
+                'em_code' => $value->em_code,
+                'employee_name' => $value->first_name . ' ' . $value->last_name,
+                'leave_type' => $value->name,
+                'leave_duration' => $value->leave_duration . ' hours',
+                'start_date' => $value->start_date,
+                'end_date' => $value->end_date,
+            ];
         }
     }
+
+    // Return JSON response
+    echo json_encode(['data' => $response]);
+}
+
 
 
     /*Approve and update leave status*/
