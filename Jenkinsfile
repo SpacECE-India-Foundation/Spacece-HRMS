@@ -7,7 +7,7 @@ pipeline {
                 sshPublisher(
                     publishers: [
                         sshPublisherDesc(
-                            configName: 'android-server', 
+                            configName: 'hrms-server', 
                             transfers: [
                                 sshTransfer(
                                     cleanRemote: false, 
