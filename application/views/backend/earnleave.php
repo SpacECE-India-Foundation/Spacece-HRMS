@@ -89,11 +89,11 @@
                                         </div>
                                         <div class="form-group">
                                         <label>Start Date </label>
-                                        <input type="text" name="startdate" class="form-control mydatepicker" value="" required>
+                                        <input type="text" name="startdate" class="form-control mydatepicker" value="" required autocomplete="off">
                                         </div>
                                         <div class="form-group">
                                         <label>End Date</label>
-                                        <input type="text" name="enddate" class="form-control mydatepicker" value="">
+                                        <input type="text" name="enddate" class="form-control mydatepicker" value="" autocomplete="off">
                                         </div>
                                         <!--<div class="form-group">
                                         <label>Number Of Days </label>
