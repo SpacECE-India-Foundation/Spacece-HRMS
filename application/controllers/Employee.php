@@ -76,7 +76,7 @@ class Employee extends CI_Controller {
         $confirm = $this->input->post('confirm');	
         $nid = $this->input->post('nid');		
         $blood = $this->input->post('blood');		
-
+        $address = $this->input->post('address');		
             $this->load->library('form_validation');
             $this->form_validation->set_error_delimiters();
             // Validating Name Field
@@ -167,6 +167,7 @@ class Employee extends CI_Controller {
                         'em_birthday'=>$dob,
                         'em_joining_date'=>$joindate,
                         'em_contact_end'=>$leavedate,
+                        'em_address'=>$address,
                         'em_nid'=>$nid,
                         'em_blood_group'=> $blood
                     );
