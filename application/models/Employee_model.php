@@ -299,5 +299,11 @@
     public function DeletDisiplinary($id){
       $this->db->delete('desciplinary',array('id'=> $id));
   }        
+  public function deleteEmployee($emp_id) {
+    // Delete the employee record from the database
+    $this->db->where('em_id', $emp_id);
+    return $this->db->delete('employee'); // Assuming the table name is 'employee'
+}
+
     }
 ?>
