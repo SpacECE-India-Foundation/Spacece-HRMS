@@ -268,13 +268,13 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                           <?php foreach($running AS $value): ?>
-                                            <tr style="vertical-align:top;background-color:#e3f0f7">
-                                                <td><a href="<?php echo base_url(); ?>Projects/view?P=<?php echo base64_encode($value->id); ?>"><?php echo substr("$value->pro_name",0,25).'...'; ?></a></td>
-                                                <td><?php echo $value->pro_start_date; ?></td>
-                                                <td><?php echo $value->pro_end_date; ?></td>
-                                            </tr>
-                                            <?php endforeach; ?>
+                                        <?php foreach($running AS $value): ?>
+                                        <tr style="vertical-align:top;background-color:#e3f0f7">
+                                            <td><a href="<?php echo base_url(); ?>Projects/view?P=<?php echo base64_encode($value->id); ?>"><?php echo substr("$value->pro_name",0,25).'...'; ?></a></td>
+                                            <td><?php echo date('d-m-Y', strtotime($value->pro_start_date)); ?></td>
+                                            <td><?php echo date('d-m-Y', strtotime($value->pro_end_date)); ?></td>
+                                        </tr>
+                                        <?php endforeach; ?>
                                         </tbody>
                                     </table>
                                 </div>                                
@@ -291,26 +291,26 @@
                             <div class="card-body">
                                 <div class="table-responsive" style="height:600px;overflow-y:scroll">
                                     <table class="table table-hover earning-box">
-                                       <thead>
+                                    <thead>
                                             <tr>
                                                 <th>Holiday Name</th>
                                                 <th>Date</th>
                                             </tr>                                           
-                                       </thead>
-                                       <tbody>
-                                          <?php foreach($holiday as $value): ?>
-                                           <tr style="background-color:#e3f0f7">
-                                               <td><?php echo $value->holiday_name ?></td>
-                                               <td><?php echo $value->from_date; ?></td>
-                                           </tr>
-                                           <?php endforeach ?>
-                                       </tbody> 
+                                    </thead>
+                                    <tbody>
+                                        <?php foreach($holiday as $value): ?>
+                                        <tr style="background-color:#e3f0f7">
+                                            <td><?php echo $value->holiday_name ?></td>
+                                            <td><?php echo date('d-m-Y', strtotime($value->from_date)); ?></td>
+                                        </tr>
+                                        <?php endforeach ?>
+                                    </tbody> 
                                     </table>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div> 
+
 <script>
   $(".to-do").on("click", function(){
       //console.log($(this).attr('data-value'));
