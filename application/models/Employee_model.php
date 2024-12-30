@@ -304,6 +304,13 @@
     $this->db->where('em_id', $emp_id);
     return $this->db->delete('employee'); // Assuming the table name is 'employee'
 }
+public function getCurrentPassword($userId) {
+  $query = $this->db->get_where('employee', ['em_id' => $userId]);
+  $employee = $query->row();
+  return $employee ? $employee->em_password : null; // Return the current password (hashed)
+}
+
+
 
     }
 ?>
