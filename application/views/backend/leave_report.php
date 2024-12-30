@@ -82,24 +82,63 @@
             </div>
         </div>
         <script>
-            $(document).ready(function() {
-                $("#BtnSubmit").on("click", function(event) {
+          $(document).ready(function() {
+    // Initialize the DataTable once
+            var table = $('#example23').DataTable({
+                responsive: true,
+                paging: true,
+                searching: true,
+                ordering: true,
+                destroy: true // Allow reinitialization if needed
+            });
 
-                    event.preventDefault();
+            // Handle form submission
+            $("#BtnSubmit").on("click", function(event) {
+                event.preventDefault();
 
-                    var emid = $('#emid').val();
-                    var datetime = $('.mydatetimepicker').val();
-                    console.log(datetime);
-                    $.ajax({
-                        url: "Get_LeaveDetails?date_time=" + datetime + "&emp_id=" + emid,
-                        type: "GET",
-                        data: 'data',
-                        success: function(response) {
-                            $('.leave').html(response);
+                var emid = $('#emid').val();
+                var datetime = $('#date_from').val();
+
+                console.log("Fetching leave details for:", emid, datetime);
+
+                $.ajax({
+                    url: "Get_LeaveDetails",
+                    type: "GET",
+                    data: {
+                        date_time: datetime,
+                        emp_id: emid,
+                    },
+                    dataType: "json",
+                    success: function(response) {
+                        // Clear existing data from the table
+                        table.clear();
+
+                        // Add new rows to the table
+                        if (response.data.length > 0) {
+                            $.each(response.data, function(index, row) {
+                                table.row.add([
+                                    row.em_code,
+                                    row.employee_name,
+                                    row.leave_type,
+                                    row.leave_duration,
+                                    row.start_date,
+                                    row.end_date
+                                ]);
+                            });
+                        } else {
+                            console.log("No data found.");
                         }
-                    });
+
+                        // Redraw the table
+                        table.draw();
+                    },
+                    error: function(xhr, status, error) {
+                        console.error("Error fetching leave details:", error);
+                    },
                 });
             });
+        });
+
 
         </script>
         <?php $this->load->view('backend/footer'); ?>
