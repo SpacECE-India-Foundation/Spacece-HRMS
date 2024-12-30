@@ -221,51 +221,83 @@ class Attendance extends CI_Controller
     }
 }
 
-    function import()
-    {
-        $this->load->library('csvimport');
-        $file_data = $this->csvimport->get_array($_FILES["csv_file"]["tmp_name"]);
-        //echo $file_data;
-        foreach ($file_data as $row){
-            if($row["Check-in at"] > '0:00:00'){
-                $date = date('Y-m-d',strtotime($row["Date"]));
-                $duplicate = $this->attendance_model->getDuplicateVal($row["Employee No"],$date);
-                //print_r($duplicate);
-            if(!empty($duplicate)){
-            $data = array();
+public function import()
+{
+    $this->load->library('csvimport');
+    $file_data = $this->csvimport->get_array($_FILES["csv_file"]["tmp_name"]);
+    
+    foreach ($file_data as $row) {
+        // Check if any required fields are missing
+        $missingFields = [];
+
+        if (empty($row["Employee No"])) {
+            $missingFields[] = 'Employee No';
+        }
+        if (empty($row["Check-in at"])) {
+            $missingFields[] = 'Check-in at';
+        }
+        if (empty($row["Check-out at"])) {
+            $missingFields[] = 'Check-out at';
+        }
+
+        // If any required fields are missing, echo a message and skip storing
+        if (!empty($missingFields)) {
+            echo "Missing fields: " . implode(", ", $missingFields) . " for Employee No: " . $row["Employee No"] . ". Skipping this entry.<br>";
+            continue;  // Skip this row and move to the next one
+        }
+
+        // If Check-in time is greater than '0:00:00', proceed with the processing
+        if ($row["Check-in at"] > '0:00:00') {
+            $date = date('Y-m-d', strtotime($row["Date"]));
+
+            // Calculate working hours if 'Work Duration' is not provided
+            if (empty($row["Work Duration"])) {
+                $checkInTime = strtotime($row["Check-in at"]);
+                $checkOutTime = strtotime($row["Check-out at"]);
+                if ($checkInTime && $checkOutTime) {
+                    $workingSeconds = $checkOutTime - $checkInTime; // Difference in seconds
+                    $row["Work Duration"] = gmdate('H:i:s', $workingSeconds); // Convert seconds to H:i:s format
+                } else {
+                    $row["Work Duration"] = '00:00:00'; // Default if no valid time
+                }
+            }
+
+            // Prepare data to update or insert
             $data = array(
                 'signin_time' => $row["Check-in at"],
                 'signout_time' => $row["Check-out at"],
                 'working_hour' => $row["Work Duration"],
-                'absence' => $row["Absence Duration"],
-                'overtime' => $row["Overtime Duration"],
                 'status' => 'A',
                 'place' => 'office'
             );
-            $this->attendance_model->bulk_Update($row["Employee No"],$date,$data);
-            } else {
-            $data = array();
-            $data = array(
-                'emp_id' => $row["Employee No"],
-                'atten_date' => date('Y-m-d',strtotime($row["Date"])),
-                'signin_time' => $row["Check-in at"],
-                'signout_time' => $row["Check-out at"],
-                'working_hour' => $row["Work Duration"],
-                'absence' => $row["Absence Duration"],
-                'overtime' => $row["Overtime Duration"],
-                'status' => 'A',
-                'place' => 'office'
-            ); 
-                    //echo count($data); 
-        $this->attendance_model->Add_AttendanceData($data);          
-        }
-        }
-            else {
 
+            // Add absence and overtime if they exist
+            if (!empty($row["Absence Duration"])) {
+                $data['absence'] = $row["Absence Duration"];
+            }
+            if (!empty($row["Overtime Duration"])) {
+                $data['overtime'] = $row["Overtime Duration"];
+            }
+
+            // Check if attendance record exists for the employee on the given date
+            // $duplicate = $this->attendance_model->getDuplicateVal($row["Employee No"], $date);
+
+            if (!empty($duplicate)) {
+                // Update existing record if duplicate found
+                $this->attendance_model->bulk_Update($row["Employee No"], $date, $data);
+            } else {
+                // Insert new record if no duplicate found
+                $data['emp_id'] = $row["Employee No"];
+                $data['atten_date'] = $date;
+                $this->attendance_model->Add_AttendanceData($data);
             }
         }
-         echo "successfully Updated"; 
-        }
+    }
+
+    echo "Successfully Updated";
+}
+
+
 
 }
 ?>
