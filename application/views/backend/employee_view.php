@@ -1077,7 +1077,7 @@ document.querySelector("form").addEventListener("submit", function(event) {
     // Check if the new password meets security criteria (at least one uppercase letter, one number, and one special character)
     const passwordCriteria = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
     if (!passwordCriteria.test(newPassword)) {
-        alert("Password must be at least 6 characters long, include one uppercase letter, one number, and one special character.");
+        // alert("Password must be at least 6 characters long, include one uppercase letter, one number, and one special character.");
         event.preventDefault();
         return;
     }
