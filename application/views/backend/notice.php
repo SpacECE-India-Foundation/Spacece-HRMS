@@ -17,8 +17,8 @@
         <div class="row m-b-10"> 
             <div class="col-12">
                 <button type="button" class="btn btn-info">
-                    <i class="fa fa-plus"></i><a data-toggle="modal" data-target="#noticemodel" data-whatever="@getbootstrap" class="text-white">
-                    Add Notice </a>
+                    <i class="fa fa-plus"></i>
+                    <a data-toggle="modal" data-target="#noticemodel" data-whatever="@getbootstrap" class="text-white">Add Notice</a>
                 </button>
             </div>
         </div> 
@@ -57,8 +57,7 @@
                                         <td><a href="<?php echo base_url(); ?>assets/images/notice/<?php echo $value->file_url; ?>" target="_blank"><?php echo $value->file_url; ?></a></td>
                                         <td><?php echo $value->date; ?></td>
                                         <td>
-                                            <!-- Delete Button -->
-                                            <a href="<?php echo base_url('Notice/delete_notice/'.$value->id); ?>"  onclick="return confirm('Are you sure you want to delete this notice?');"class="btn btn-sm btn-info waves-effect waves-light"><i class="fa fa-trash-o"></i></a>
+                                            <a href="<?php echo base_url('Notice/delete_notice/'.$value->id); ?>"  onclick="return confirm('Are you sure you want to delete this notice?');" class="btn btn-sm btn-info waves-effect waves-light"><i class="fa fa-trash-o"></i></a>
                                         </td>
                                     </tr>
                                     <?php endforeach; ?>
@@ -83,16 +82,15 @@
                             <div class="form-group">
                                 <label for="message-text" class="control-label">Notice Title</label>
                                 <textarea class="form-control" name="title" id="noticeTitle" required minlength="25" maxlength="150"></textarea>
-                                <span id="titleError" style="color: red; display: none;">Title must contain at least one alphabet.</span>
+                                <span id="titleError" class="error" style="display: none;">Title must contain at least one alphabet.</span>
                             </div>
                             <div class="form-group">
                                 <label class="control-label">Document</label>
-                                <label for="recipient-name1" class="control-label">Title</label>
-                                <input type="file" name="file_url" class="form-control" id="recipient-name1" required>
+                                <input type="file" name="file_url" class="form-control" id="fileInput" required>
                             </div>
                             <div class="form-group">
                                 <label for="message-text" class="control-label">Published Date</label>
-                                <input type="date" name="nodate" class="form-control" id="recipient-name1" required>
+                                <input type="date" name="nodate" class="form-control" id="dateInput" required>
                             </div>
                         </div>
                         <div class="modal-footer">
@@ -103,37 +101,96 @@
                 </div>
             </div>
         </div>
-
     </div>
 </div>
 
 <?php $this->load->view('backend/footer'); ?>
 
+<style>
+.error {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+.input-error {
+    border-color: red;
+}
+</style>
+
 <script>
-// Validation for notice title
+// Real-time validation for the title
 $('#noticeTitle').on('input', function() {
-    var title = $(this).val().trim();
-    var titleRegex = /[a-zA-Z]/; // Regex to check if title contains at least one alphabet
-
-    // Check if the title contains at least one alphabet
-    if (!titleRegex.test(title)) {
-        $('#titleError').show();  // Show the error message
+    let title = $(this).val().trim();
+    if (title.length > 0 && !/[a-zA-Z]/.test(title)) {
+        $('#titleError').show();
+        $(this).addClass('input-error');
     } else {
-        $('#titleError').hide();  // Hide the error message if valid
+        $('#titleError').hide();
+        $(this).removeClass('input-error');
     }
 });
 
-// Form submission validation
+// Real-time validation for the file input
+$('#fileInput').on('change', function() {
+    let file = $(this).val();
+    if (!file) {
+        $('#fileError').show();
+        $(this).addClass('input-error');
+    } else {
+        $('#fileError').hide();
+        $(this).removeClass('input-error');
+    }
+});
+
+// Real-time validation for the date input
+$('#dateInput').on('change', function() {
+    let date = $(this).val();
+    if (!date) {
+        $('#dateError').show();
+        $(this).addClass('input-error');
+    } else {
+        $('#dateError').hide();
+        $(this).removeClass('input-error');
+    }
+});
+
+// Submit validation for the form
 $('#btnSubmit').submit(function(event) {
-    var title = $('#noticeTitle').val().trim();
-    var titleRegex = /[a-zA-Z]/; // Regex to check if title contains at least one alphabet
+    let isValid = true;
 
-    // Check if the title contains at least one alphabet
-    if (!titleRegex.test(title)) {
-        event.preventDefault();  // Prevent form submission
-        $('#titleError').show();  // Show the error message
-    } else {
-        $('#titleError').hide();  // Hide the error message if valid
+    // Validate title
+    let title = $('#noticeTitle').val().trim();
+    if (title.length > 0 && !/[a-zA-Z]/.test(title)) {
+        isValid = false;
+        $('#titleError').show();
+        $('#noticeTitle').addClass('input-error').focus();
+    } else if (!title) {
+        isValid = false;
+        $('#titleError').hide();
+        $('#noticeTitle').addClass('input-error').focus();
+    }
+
+    // Validate file
+    let file = $('#fileInput').val();
+    if (!file) {
+        isValid = false;
+        $('#fileError').show();
+        $('#fileInput').addClass('input-error').focus();
+    }
+
+    // Validate date
+    let date = $('#dateInput').val();
+    if (!date) {
+        isValid = false;
+        $('#dateError').show();
+        $('#dateInput').addClass('input-error').focus();
+    }
+
+    // Prevent form submission if validation fails
+    if (!isValid) {
+        event.preventDefault();
     }
 });
+
+
 </script>
