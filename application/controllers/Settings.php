@@ -30,8 +30,8 @@ class Settings extends CI_Controller {
         }            
     }
 
-    public function Add_Settings() { 
-        if($this->session->userdata('user_login_access') != False) { 
+    public function Add_Settings() {
+        if ($this->session->userdata('user_login_access') != False) {
             $id = $this->input->post('id');
             $title = $this->input->post('title');
             $description = $this->input->post('description');
@@ -54,12 +54,12 @@ class Settings extends CI_Controller {
             $this->form_validation->set_rules('address2', 'Address 2', 'trim|min_length[5]|max_length[600]|xss_clean');
             $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email|xss_clean');
             $this->form_validation->set_rules('symbol', 'Symbol', 'trim|required|min_length[1]|max_length[10]|xss_clean');
-
+    
             if ($this->form_validation->run() == FALSE) {
                 echo validation_errors();
             } else {
+                // Handle first image upload
                 if ($_FILES['img_url']['name']) {
-                    // Handling file upload
                     $settings = $this->settings_model->GetSettingsValue();
                     $file_name = $_FILES['img_url']['name'];
                     $checkimage = "./assets/images/$settings->sitelogo";
@@ -74,52 +74,74 @@ class Settings extends CI_Controller {
                         'max_width' => "850"
                     );
                     
-                    $this->load->library('Upload', $config);
+                    $this->load->library('upload', $config);
                     $this->upload->initialize($config);
                     
                     if (!$this->upload->do_upload('img_url')) {
                         echo $this->upload->display_errors();
                     } else {
                         if (file_exists($checkimage)) {
-                            unlink($checkimage);
+                            unlink($checkimage); // Remove old image if exists
                         }
                         $path = $this->upload->data();
                         $img_url = $path['file_name'];
-                        
-                        $data = array(
-                            'sitelogo' => $img_url,
-                            'sitetitle' => $title,
-                            'description' => $description,
-                            'copyright' => $copyright,
-                            'contact' => $contact,
-                            'currency' => $currency,
-                            'symbol' => $symbol,
-                            'system_email' => $email,
-                            'address' => $address,
-                            'address2' => $address2
-                        );
-                        $success = $this->settings_model->SettingsUpdate($id, $data);
-                        echo 'Successfully Updated';
                     }
-                } else {
-                    // No file uploaded, just update the settings
-                    $data = array(
-                        'sitetitle' => $title,
-                        'description' => $description,
-                        'copyright' => $copyright,
-                        'contact' => $contact,
-                        'currency' => $currency,
-                        'symbol' => $symbol,
-                        'system_email' => $email,
-                        'address' => $address,
-                        'address2' => $address2
-                    );
-                    $success = $this->settings_model->SettingsUpdate($id, $data);
-                    echo 'Successfully Updated';
                 }
+    
+                // Handle second image upload
+                if ($_FILES['img_url2']['name']) {
+                    $settings = $this->settings_model->GetSettingsValue();
+                    $file_name = $_FILES['img_url2']['name'];
+                    $checkimage = "./assets/images/$settings->site2logo"; // Update check path for second image
+                    
+                    $config = array(
+                        'file_name' => $file_name,
+                        'upload_path' => "./assets/images/",
+                        'allowed_types' => "gif|jpg|png|jpeg|svg",
+                        'overwrite' => False,
+                        'max_size' => "13038", // Max size 13MB
+                        'max_height' => "850",
+                        'max_width' => "850"
+                    );
+                    
+                    $this->load->library('upload', $config);
+                    $this->upload->initialize($config);
+                    
+                    if (!$this->upload->do_upload('img_url2')) {
+                        echo $this->upload->display_errors();
+                    } else {
+                        // Delete the old second image if exists
+                        if (file_exists($checkimage)) {
+                            unlink($checkimage);
+                        }
+                        $path = $this->upload->data();
+                        $img_url2 = $path['file_name'];
+                    }
+                }
+    
+                // Prepare data for updating settings
+                $data = array(
+                    'sitelogo' => isset($img_url) ? $img_url : $settings->sitelogo,
+                    'site2logo' => isset($img_url2) ? $img_url2 : $settings->site2logo,
+                    'sitetitle' => $title,
+                    'description' => $description,
+                    'copyright' => $copyright,
+                    'contact' => $contact,
+                    'currency' => $currency,
+                    'symbol' => $symbol,
+                    'system_email' => $email,
+                    'address' => $address,
+                    'address2' => $address2
+                );
+                
+                // Update settings in the database
+                $success = $this->settings_model->SettingsUpdate($id, $data);
+                echo 'Successfully Updated';
             }
         } else {
             redirect(base_url(), 'refresh');
         }
     }
+    
+    
 }
