@@ -44,7 +44,7 @@
                                 <div class="form-group clearfix">
                                     <label for="title" class="col-md-3">Site Title</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" name="title" value="<?php echo $settingsvalue->sitetitle; ?>" id="title" placeholder="Title..." required minlength="7" maxlength="120">
+                                        <input type="text" class="form-control" name="title" value="<?php echo $settingsvalue->sitetitle; ?>" id="title" placeholder="Title..." required minlength="5" maxlength="120">
                                         <small id="titleError" class="text-danger"></small>
                                     </div>
                                 </div>                                  
@@ -58,38 +58,44 @@
                                 <div class="form-group clearfix">
                                     <label for="copyright" class="col-md-3">Copyright</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" name="copyright" value="<?php echo $settingsvalue->copyright; ?>" id="copyright" placeholder="copyright...">
+                                        <input type="text" class="form-control" name="copyright" value="<?php echo $settingsvalue->copyright; ?>" id="copyright" placeholder="copyright..." required>
                                     </div>
                                 </div>                                  
                                 <div class="form-group clearfix">
-                                    <label for="contact" class="col-md-3">Contact</label>
-                                    <div class="col-md-9">
-                                        <input type="number" class="form-control" name="contact" value="<?php echo $settingsvalue->contact; ?>" id="contact" placeholder="contact...">
-                                    </div>
-                                </div>                                  
-                                <div class="form-group clearfix">
-                                    <label for="currency" class="col-md-3">Currency</label>
-                                    <div class="col-md-9">
-                                        <input type="text" class="form-control" name="currency" value="<?php echo $settingsvalue->currency; ?>" id="currency" placeholder="currency...">
-                                    </div>
-                                </div>                                  
-                                <div class="form-group clearfix">
-                                    <label for="symbol" class="col-md-3">Symbol</label>
-                                    <div class="col-md-9">
-                                        <input type="text" class="form-control" name="symbol" value="<?php echo $settingsvalue->symbol; ?>" id="symbol" placeholder="symbol...">
-                                    </div>
-                                </div>                                  
+                                <label for="contact" class="col-md-3">Contact</label>
+                                <div class="col-md-9">
+                                    <input type="number" class="form-control" name="contact" value="<?php echo $settingsvalue->contact; ?>" id="contact" placeholder="contact..." required>
+                                    <span id="contactError" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group clearfix">
+                                <label for="currency" class="col-md-3">Currency</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="currency" value="<?php echo $settingsvalue->currency; ?>" id="currency" placeholder="currency..." required>
+                                    <span id="currencyError" class="text-danger"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group clearfix">
+                                <label for="symbol" class="col-md-3">Symbol</label>
+                                <div class="col-md-9">
+                                    <input type="text" class="form-control" name="symbol" value="<?php echo $settingsvalue->symbol; ?>" id="symbol" placeholder="symbol..." required>
+                                    <span id="symbolError" class="text-danger"></span>
+                                </div>
+                            </div>
+                                        
                                 <div class="form-group clearfix">
                                     <label for="email" class="col-md-3">System Email</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" name="email" id="email" value="<?php echo $settingsvalue->system_email; ?>" placeholder="email...">
+                                        <input type="text" class="form-control" name="email" id="email" value="<?php echo $settingsvalue->system_email; ?>" placeholder="email..." required>
                                         <small id="emailError" class="text-danger"></small>
                                     </div>
                                 </div>                                  
                                 <div class="form-group clearfix">
                                     <label for="address" class="col-md-3">Address</label>
                                     <div class="col-md-9">
-                                        <input type="text" class="form-control" name="address" id="address" value="<?php echo $settingsvalue->address; ?>" placeholder="address...">
+                                        <input type="text" class="form-control" name="address" value="<?php echo $settingsvalue->address; ?>" id="address" placeholder="address..." required>
                                         <small id="addressError" class="text-danger"></small>
                                     </div>
                                 </div>                                  
@@ -112,60 +118,139 @@
                 </div>
             </div>
         </div>
+        <style>
+.error {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+}
+.input-error {
+    border-color: red;
+}
+</style>
         <script>
             $(document).ready(function() {
     // Real-time validation for Title
-    $('#title').on('input', function() {
-        var title = $(this).val();
-        var alphaPattern = /[a-zA-Z]/;  // Check for at least one alphabet
-        if (title.length < 5 || title.length > 120 || !alphaPattern.test(title)) {
-            $('#titleError').text('Title must be between 5 and 120 characters and contain at least one alphabet.');
-        } else {
-            $('#titleError').text('');
-        }
-    });
+    // Real-time validation for Title
+$('#title').on('input', function() {
+    var title = $(this).val();
+    var alphaPattern = /[a-zA-Z]/;  // Check for at least one alphabet
+    if (!title) {
+        $(this).addClass('input-error'); // Add the error class (red border)
+        console.log("Title error: Adding red border");
+    } 
+    if (title.length > 0 && (!alphaPattern.test(title))) {
+        $('#titleError').text('Title contain at least one alphabet.');
+        $(this).addClass('input-error'); // Add the error class (red border)
+    } else {
+        $('#titleError').text('');
+        $(this).removeClass('input-error'); // Remove the error class (remove red border)
+        console.log("Title valid: Removing red border");
+    }
+});
+
 
     // Real-time validation for Description
+    // Real-time validation for Description
     $('#description').on('input', function() {
-        var description = $(this).val();
-        var alphaPattern = /[a-zA-Z]/;  // Check for at least one alphabet
-        if (description.length < 20 || description.length > 512 || !alphaPattern.test(description)) {
-            $('#descriptionError').text('Description must be between 20 and 512 characters and contain at least one alphabet.');
-        } else {
-            $('#descriptionError').text('');
-        }
-    });
+    var description = $(this).val();
+    var alphaPattern = /[a-zA-Z]/;  // Check for at least one alphabet
+
+    // Check if the description is empty
+    if (!description) {
+        // $('#descriptionError').text('');
+        $(this).addClass('input-error'); // Add the error class (red border)
+        console.log("Description error: Empty input");
+    } 
+    // Check if the description fails other conditions (length and alphabet check)
+    else if (!alphaPattern.test(description)) {
+        $('#descriptionError').text('Description must contain at least one alphabet.');
+        $(this).addClass('input-error'); // Add the error class (red border)
+        console.log("Description error: Invalid length or no alphabet");
+    } else {
+        // Clear error message and remove red border when valid
+        $('#descriptionError').text('');
+        $(this).removeClass('input-error'); // Remove the error class (remove red border)
+        console.log("Description valid: Removing red border");
+    }
+});
+
+    
+// Contact validation
+$('#contact').on('input', function() {
+    var contact = $(this).val();
+    if (!contact ) {
+        $(this).addClass('input-error'); // Add red border
+    } else {
+        $('#contactError').text('');
+        $(this).removeClass('input-error'); // Remove red border
+    }
+});
+
+// Currency validation
+$('#currency').on('input', function() {
+    var currency = $(this).val();
+    if (!currency || currency.length < 3) {
+        $(this).addClass('input-error'); // Add red border
+    } else {
+        $('#currencyError').text('');
+        $(this).removeClass('input-error'); // Remove red border
+    }
+});
+
+// Symbol validation
+$('#symbol').on('input', function() {
+    var symbol = $(this).val();
+    if (!symbol || symbol.length < 1) {
+        $(this).addClass('input-error'); // Add red border
+    } else {
+        $('#symbolError').text('');
+        $(this).removeClass('input-error'); // Remove red border
+    }
+});
 
     // Real-time validation for Email
     $('#email').on('input', function() {
-        var email = $(this).val();
-        var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
-        if (!emailPattern.test(email)) {
-            $('#emailError').text('Please enter a valid email address.');
-        } else {
-            $('#emailError').text('');
-        }
-    });
+    var email = $(this).val();
+    var emailPattern = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+
+    // Check if email is empty
+    if (!email) {
+        // $('#emailError').text('Email is required.');
+        $(this).addClass('input-error'); // Add the error class (red border)
+        console.log("Email error: Empty input");
+    } 
+    // Check if email matches the valid email pattern
+    else if (!emailPattern.test(email)) {
+        $('#emailError').text('Please enter a valid email address.');
+        $(this).addClass('input-error'); // Add the error class (red border)
+        console.log("Email error: Invalid email format");
+    } else {
+        // Clear the error message and remove the red border when valid
+        $('#emailError').text('');
+        $(this).removeClass('input-error'); // Remove the error class (remove red border)
+        console.log("Email valid: Removing red border");
+    }
+});
+
 
     // Real-time validation for Address
     $('#address').on('input', function() {
-        var address = $(this).val();
-        if (address.length < 5) {
-            $('#addressError').text('Address must be at least 5 characters.');
-        } else {
-            $('#addressError').text('');
-        }
-    });
+    var address = $(this).val();
 
-    // Real-time validation for Symbol
-    $('#symbol').on('input', function() {
-        var symbol = $(this).val();
-        if (symbol.length < 1 || symbol.length > 10) {
-            $('#symbolError').text('Symbol must be between 1 and 10 characters.');
-        } else {
-            $('#symbolError').text('');
-        }
-    });
+    // Check if address is empty or too short
+    if (!address || symbol.length < 1) {
+        $(this).addClass('input-error'); // Add the error class (red border)
+        console.log("Address error: Empty input");
+    } 
+    // Check if address length is less than 5 characters
+    else {
+        // Clear the error message and remove the red border when valid
+        $('#addressError').text('');
+        $(this).removeClass('input-error'); // Remove the error class (remove red border)
+        console.log("Address valid: Removing red border");
+    }
+});
 
     // Form submission
     $('#fileUploadForm').submit(function(event) {
