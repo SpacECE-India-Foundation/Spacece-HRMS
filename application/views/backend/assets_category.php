@@ -78,9 +78,10 @@
                                         <select name="cattype" class="form-control custom-select" required>
                                             <option>Select Category</option>
                                             <option value="ASSETS">Assets</option>
-                                            <option value="LOGISTIC">Logistice</option>
+                                            <option value="LOGISTIC">Logistics</option>
                                         </select>
                                         </div>
+                                        
                                         <div class="form-group">
                                         <label>Category Name </label>
                                         <input type="text" name="catname" class="form-control" value="" placeholder="Category name..." minlength="2" required>

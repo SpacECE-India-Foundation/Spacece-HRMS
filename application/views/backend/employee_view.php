@@ -86,47 +86,54 @@
 				                                        <input type="text" id="" name="lname" class="form-control form-control-line" value="<?php echo $basic->last_name; ?>" placeholder="Your last name" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> minlength="3" required> 
 				                                    </div>
                                                     <div class="form-group col-md-4 m-t-10">
-                                                        <label>Blood Group </label>
-                                                        <select name="blood" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> value="<?php echo $basic->em_blood_group; ?>" class="form-control custom-select">
-                                                            <option value="<?php echo $basic->em_blood_group; ?>"><?php echo $basic->em_blood_group; ?></option>
-                                                            <option value="O+">O+</option>
-                                                            <option value="O-">O-</option>
-                                                            <option value="A+">A+</option>
-                                                            <option value="A-">A-</option>
-                                                            <option value="B+">B+</option>
-                                                            <option value="B-">B-</option>
-                                                            <option value="AB+">AB+</option>
-                                                        </select>
-                                                    </div>
+    <label>Blood Group</label>
+    <select name="blood" 
+        <?php if ($this->session->userdata('user_type') == 'EMPLOYEE') { ?> readonly <?php } ?> 
+        class="form-control custom-select">
+        <option value="" disabled>Select Blood Group</option>
+        <option value="O+" <?php echo ($basic->em_blood_group == 'O+') ? 'selected' : ''; ?>>O+</option>
+        <option value="O-" <?php echo ($basic->em_blood_group == 'O-') ? 'selected' : ''; ?>>O-</option>
+        <option value="A+" <?php echo ($basic->em_blood_group == 'A+') ? 'selected' : ''; ?>>A+</option>
+        <option value="A-" <?php echo ($basic->em_blood_group == 'A-') ? 'selected' : ''; ?>>A-</option>
+        <option value="B+" <?php echo ($basic->em_blood_group == 'B+') ? 'selected' : ''; ?>>B+</option>
+        <option value="B-" <?php echo ($basic->em_blood_group == 'B-') ? 'selected' : ''; ?>>B-</option>
+        <option value="AB+" <?php echo ($basic->em_blood_group == 'AB+') ? 'selected' : ''; ?>>AB+</option>
+    </select>
+</div>
+
 				                                    <div class="form-group col-md-4 m-t-10">
 				                                        <label>Gender </label>
 				                                        <select name="gender" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control custom-select">
 				                                           
-				                                            <option value="<?php echo $basic->em_gender; ?>"><?php echo $basic->em_gender; ?></option>
-				                                            <option value="Male">Male</option>
-				                                            <option value="Female">Female</option>
+                                                        <option value="" disabled selected>Select Gender</option>
+        <option value="Male" <?php echo ($basic->em_gender == 'Male') ? 'selected' : ''; ?>>Male</option>
+        <option value="Female" <?php echo ($basic->em_gender == 'Female') ? 'selected' : ''; ?>>Female</option>
 				                                        </select>
 				                                    </div>
                                                    <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>  <?php } else { ?> 
                                                     <div class="form-group col-md-4 m-t-10">
-                                                        <label>User Type </label>
-                                                        <select name="role" class="form-control custom-select" required >
-				                                            <option value="<?php echo $basic->em_role; ?>"><?php echo $basic->em_role; ?></option>
-                                                            <option value="HR">HR</option>
-                                                            <option value="EMPLOYEE">Employee</option>
-                                                            <option value="ADMIN">Super Admin</option>
-                                                        </select>
-                                                    </div>
+    <label>User Type</label>
+    <select name="role" class="form-control custom-select" required>
+        <option value="" disabled>Select User Type</option>
+        <option value="HR" <?php echo ($basic->em_role == 'HR') ? 'selected' : ''; ?>>HR</option>
+        <option value="EMPLOYEE" <?php echo ($basic->em_role == 'EMPLOYEE') ? 'selected' : ''; ?>>Employee</option>
+        <option value="ADMIN" <?php echo ($basic->em_role == 'ADMIN') ? 'selected' : ''; ?>>Super Admin</option>
+    </select>
+</div>
+
                                                     <?php } ?>
                                                     <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>  <?php } else { ?> 
-                                                    <div class="form-group col-md-4 m-t-10">
-                                                        <label>Status </label>
-                                                        <select name="status" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control custom-select" required >
-				                                            <option value="<?php echo $basic->status; ?>"><?php echo $basic->status; ?></option>
-                                                            <option value="ACTIVE">ACTIVE</option>
-                                                            <option value="INACTIVE">INACTIVE</option>
-                                                        </select>
-                                                    </div>
+                                                        <div class="form-group col-md-4 m-t-10">
+    <label>Status</label>
+    <select name="status" 
+        <?php if ($this->session->userdata('user_type') == 'EMPLOYEE') { ?> readonly <?php } ?> 
+        class="form-control custom-select" required>
+        <option value="" disabled>Select Status</option>
+        <option value="ACTIVE" <?php echo ($basic->status == 'ACTIVE') ? 'selected' : ''; ?>>ACTIVE</option>
+        <option value="INACTIVE" <?php echo ($basic->status == 'INACTIVE') ? 'selected' : ''; ?>>INACTIVE</option>
+    </select>
+</div>
+
                                                     <?php } ?>				                                    
 				                                    <div class="form-group col-md-4 m-t-10">
 				                                        <label>Date Of Birth </label>
@@ -138,18 +145,24 @@
 				                                    </div>
 				                                    <div class="form-group col-md-4 m-t-10">
 				                                        <label>Contact Number </label>
-				                                        <input type="text" class="form-control" placeholder="" name="contact" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> value="<?php echo $basic->em_phone; ?>" minlength="10" maxlength="15" required> 
+				                                        <input type="text" class="form-control" placeholder="" name="contact" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> value="<?php echo $basic->em_phone; ?>" minlength="10" maxlength="15" pattern="^\d+(\.\d+)?$" title="Invalid input: Please enter a valid contact number" required> 
 				                                    </div>
                                                    <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>  <?php } else { ?> 				                                    
-				                                    <div class="form-group col-md-4 m-t-10">
-				                                        <label>Department</label>
-				                                        <select name="dept" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control custom-select">
-				                                            <option value="<?php echo $basic->id; ?>"><?php echo $basic->dep_name; ?></option>
-                                            <?Php foreach($depvalue as $value): ?>
-                                             <option value="<?php echo $value->id ?>"><?php echo $value->dep_name ?></option>
-                                            <?php endforeach; ?>
-				                                        </select>
-				                                    </div>
+                                                    <div class="form-group col-md-4 m-t-10">
+    <label>Department</label>
+    <select name="dept" 
+        <?php if ($this->session->userdata('user_type') == 'EMPLOYEE') { ?> readonly <?php } ?> 
+        class="form-control custom-select">
+        <option value="" disabled selected>Select Department</option>
+        <?php foreach ($depvalue as $value): ?>
+            <option value="<?php echo $value->id; ?>" 
+                <?php echo ($basic->id == $value->id) ? 'selected' : ''; ?>>
+                <?php echo $value->dep_name; ?>
+            </option>
+        <?php endforeach; ?>
+    </select>
+</div>
+
 				                                    <?php } ?>
                                                    <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>  <?php } else { ?> 				                                    
 				                                    <div class="form-group col-md-4 m-t-10">
@@ -291,26 +304,7 @@
                                                     <?php } else { ?>
                                     <td class="jsgrid-align-center ">
                                         <a href="#" title="Edit" class="btn btn-sm btn-info waves-effect waves-light education" data-id="<?php echo $value->id ?>"><i class="fa fa-pencil-square-o"></i></a>
-                                        <a 
-   onclick="return confirmDelete(this)" 
-   href="#" 
-   title="Delete" 
-   class="btn btn-sm btn-info waves-effect waves-light deletexp" 
-   data-id="<?php echo $value->id ?>">
-   <i class="fa fa-trash-o"></i>
-</a>
-
-<script>
-function confirmDelete(element) {
-    if (confirm('Are you sure want to delete this Value?')) {
-        // Redirect to the delete action URL or trigger AJAX
-        const id = element.getAttribute('data-id');
-        // Example: Update the href dynamically or perform your delete action here
-        window.location.href = `delete.php?id=${id}`; // Update URL to your actual delete handler
-    }
-    return false; // Prevent default action if Cancel is clicked
-}
-</script>
+                                        <a onclick="confirm('Are you sure want to delete this Value?')" href="#" title="Delete" class="btn btn-sm btn-info waves-effect waves-light edudelet"  data-id="<?php echo $value->id ?>"><i class="fa fa-trash-o"></i></a>
 
                                     </td>
                                     <?php } ?>
@@ -332,8 +326,7 @@ function confirmDelete(element) {
 			                                    </div>
 			                                    <div class="form-group col-md-6 m-t-5">
 			                                        <label>Institute name</label>
-			                                        <input type="text" name="institute" class="form-control form-control-line" placeholder=" Institute name" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> minlength="7" required> 
-			                                    </div>
+                                                    <input type="text" name="institute" class="form-control form-control-line" placeholder=" Institute name" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> minlength="7" required> 			                                    </div>
 			                                    <div class="form-group col-md-6 m-t-5">
 			                                        <label>Result</label>
 			                                        <input type="text" name="result" class="form-control form-control-line" placeholder=" Result" minlength="2" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> required> 
@@ -420,11 +413,12 @@ function confirmDelete(element) {
 			                                <form class="row" action="Add_Experience" method="post" enctype="multipart/form-data">
 			                                    	<div class="form-group col-md-6 m-t-5">
 			                                    	    <label> Company Name</label>
-			                                    	    <input type="text" name="company_name" class="form-control form-control-line company_name" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> placeholder="Company Name" minlength="2" required> 
+                                                        
+			                                    	    <input type="text" name="company_name" class="form-control form-control-line company_name" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> placeholder="Company Name" minlength="5" required> 
 			                                    	</div>
 			                                    	<div class="form-group col-md-6 m-t-5">
 			                                    	    <label>Position</label>
-			                                    	    <input type="text" name="position_name" class="form-control form-control-line position_name" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> placeholder="Position" minlength="3" required> 
+			                                    	    <input type="text" name="position_name" class="form-control form-control-line position_name" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> placeholder="Position" minlength="2" required> 
 			                                    	</div>
 			                                    	<div class="form-group col-md-6 m-t-5">
 			                                    	    <label>Address</label>
@@ -432,7 +426,7 @@ function confirmDelete(element) {
 			                                    	</div>
 			                                    	<div class="form-group col-md-6 m-t-5">
 			                                    	    <label>Working Duration</label>
-			                                    	    <input type="text" name="work_duration" class="form-control form-control-line working_period" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> placeholder="Working Duration" required> 
+			                                    	    <input type="text" name="work_duration" class="form-control form-control-line working_period" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> placeholder="Working Duration" min="1"  required> 
 			                                    	</div>
 			                                 <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>
                                                     <?php } else { ?>
@@ -451,23 +445,23 @@ function confirmDelete(element) {
 			                                <form class="row" action="Add_bank_info" method="post" enctype="multipart/form-data">
 			                                    <div class="form-group col-md-6 m-t-5">
 			                                        <label> Bank Holder Name</label>
-			                                        <input type="text" name="holder_name" value="<?php if(!empty($bankinfo->holder_name)) echo $bankinfo->holder_name  ?>" class="form-control form-control-line" placeholder="Bank Holder Name" minlength="5" required> 
+			                                        <input type="text" name="holder_name" value="<?php if(!empty($bankinfo->holder_name)) echo $bankinfo->holder_name  ?>" class="form-control form-control-line" placeholder="Bank Holder Name" pattern="[A-Za-z ]+" title="Only alphabetic characters and spaces are allowed."  minlength="5" required> 
 			                                    </div>
 			                                    <div class="form-group col-md-6 m-t-5">
 			                                        <label>Bank Name</label>
-			                                        <input type="text" name="bank_name" value="<?php if(!empty($bankinfo->bank_name)) echo $bankinfo->bank_name  ?>" class="form-control form-control-line" placeholder="Bank Name" minlength="5" required> 
+			                                        <input type="text" name="bank_name" value="<?php if(!empty($bankinfo->bank_name)) echo $bankinfo->bank_name  ?>" class="form-control form-control-line" placeholder="Bank Name" pattern="[A-Za-z ]+" title="Only alphabetic characters are allowed." minlength="5" required> 
 			                                    </div>
 			                                    <div class="form-group col-md-6 m-t-5">
 			                                        <label>Branch Name</label>
-			                                        <input type="text" name="branch_name" value="<?php if(!empty($bankinfo->branch_name)) echo $bankinfo->branch_name  ?>" class="form-control form-control-line" placeholder=" Branch Name"> 
+			                                        <input type="text" name="branch_name" value="<?php if(!empty($bankinfo->branch_name)) echo $bankinfo->branch_name  ?>" class="form-control form-control-line" placeholder=" Branch Name" pattern="[A-Za-z ]+" title="Only alphabetic characters and spaces are allowed." required> 
 			                                    </div>
 			                                    <div class="form-group col-md-6 m-t-5">
 			                                        <label>Bank Account Number</label>
-			                                        <input type="text" name="account_number" value="<?php if(!empty($bankinfo->account_number)) echo $bankinfo->account_number ?>" class="form-control form-control-line" minlength="5" required> 
+			                                        <input type="text" name="account_number" value="<?php if(!empty($bankinfo->account_number)) echo $bankinfo->account_number ?>" class="form-control form-control-line" pattern="^\d+" title="Only numeric characters are allowed." minlength="5" required> 
 			                                    </div>
 			                                    <div class="form-group col-md-6 m-t-5">
 			                                        <label>Bank Account Type</label>
-			                                        <input type="text" name="account_type" value="<?php if(!empty($bankinfo->account_type)) echo $bankinfo->account_type ?>" class="form-control form-control-line" placeholder="Bank Account Type"> 
+			                                        <input type="text" name="account_type" value="<?php if(!empty($bankinfo->account_type)) echo $bankinfo->account_type ?>" class="form-control form-control-line" placeholder="Bank Account Type" pattern="[A-Za-z ]+" title="Only alphabetic characters and spaces are allowed." required> 
 			                                    </div>
 			                                    <div class="form-actions col-md-12">
                                                     <input type="hidden" name="emid" value="<?php echo $basic->em_id; ?>">
@@ -676,7 +670,7 @@ function confirmDelete(element) {
                                 <div class="tab-pane" id="salary" role="tabpanel">
                                     <div class="card">
 				                        <div class="card-body">
-			                        		<h3 class="card-title">Basic Slary</h3>
+			                        		<h3 class="card-title">Basic Salary</h3>
 			                                <form action="Add_Salary" method="post" enctype="multipart/form-data">
                                            <div class="row">
                                             <div class="form-group col-md-6 m-t-5">
