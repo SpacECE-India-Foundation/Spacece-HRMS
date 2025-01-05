@@ -56,262 +56,240 @@ class Employee extends CI_Controller {
 	}            
     }
 	public function Save(){ 
-    if($this->session->userdata('user_login_access') != False) {     
-    $eid = $this->input->post('eid');    
-    $id = $this->input->post('emid');    
-	$fname = $this->input->post('fname');
-	$lname = $this->input->post('lname');
-    $emrand = substr($lname,0,3).rand(1000,2000);    
-	$dept = $this->input->post('dept');
-	$deg = $this->input->post('deg');
-	$role = $this->input->post('role');
-	$gender = $this->input->post('gender');
-	$contact = $this->input->post('contact');
-	$dob = $this->input->post('dob');	
-	$joindate = $this->input->post('joindate');	
-	$leavedate = $this->input->post('leavedate');	
-	$username = $this->input->post('username');	
-	$email = $this->input->post('email');	
-	$password = sha1($contact);	
-	$confirm = $this->input->post('confirm');	
-	$nid = $this->input->post('nid');		
-	$blood = $this->input->post('blood');		
-        $this->load->library('form_validation');
-        $this->form_validation->set_error_delimiters();
-        // Validating Name Field
-        $this->form_validation->set_rules('contact', 'contact', 'trim|required|min_length[10]|max_length[15]|xss_clean');
-        /*validating email field*/
-        $this->form_validation->set_rules('email', 'Email','trim|required|min_length[7]|max_length[100]|xss_clean');
-
-        if ($this->form_validation->run() == FALSE) {
-            echo validation_errors();
-			} else {
-            if($this->employee_model->Does_email_exists($email) && $password != $confirm){
-                $this->session->set_flashdata('formdata','Email is already Exist or Check your password');
-                echo "Email is already Exist or Check your password";
+        if($this->session->userdata('user_login_access') != False) {     
+        $eid = $this->input->post('eid');    
+        $id = $this->input->post('emid');    
+        $fname = $this->input->post('fname');
+        $lname = $this->input->post('lname');
+        $emrand = substr($lname,0,3).rand(1000,2000);    
+        $dept = $this->input->post('dept');
+        $deg = $this->input->post('deg');
+        $role = $this->input->post('role');
+        $gender = $this->input->post('gender');
+        $contact = $this->input->post('contact');
+        $dob = $this->input->post('dob');	
+        $joindate = $this->input->post('joindate');	
+        $leavedate = $this->input->post('leavedate');	
+        $username = $this->input->post('username');	
+        $email = $this->input->post('email');	
+        $password = sha1($contact);	
+        $confirm = $this->input->post('confirm');	
+        $nid = $this->input->post('nid');		
+        $blood = $this->input->post('blood');		
+        $address = $this->input->post('address');		
+            $this->load->library('form_validation');
+            $this->form_validation->set_error_delimiters();
+            // Validating Name Field
+            $this->form_validation->set_rules('contact', 'contact', 'trim|required|min_length[10]|max_length[15]|xss_clean');
+            /*validating email field*/
+            $this->form_validation->set_rules('email', 'Email','trim|required|min_length[7]|max_length[100]|xss_clean');
+    
+            if ($this->form_validation->run() == FALSE) {
+                echo validation_errors();
+                } else {
+                if($this->employee_model->Does_email_exists($email) && $password != $confirm){
+                    $this->session->set_flashdata('formdata','Email is already Exist or Check your password');
+                    echo "Email is already Exist or Check your password";
+                } else {
+                if($_FILES['image_url']['name']){
+                $file_name = $_FILES['image_url']['name'];
+                $fileSize = $_FILES["image_url"]["size"]/1024;
+                $fileType = $_FILES["image_url"]["type"];
+                $new_file_name='';
+                $new_file_name .= $emrand;
+    
+                $config = array(
+                    'file_name' => $new_file_name,
+                    'upload_path' => "./assets/images/users",
+                    'allowed_types' => "gif|jpg|png|jpeg",
+                    'overwrite' => False,
+                    'max_size' => "20240000", // Can be set to particular file size , here it is 2 MB(2048 Kb)
+                    'max_height' => "800",
+                    'max_width' => "800"
+                );
+        
+                $this->load->library('Upload', $config);
+                $this->upload->initialize($config);                
+                if (!$this->upload->do_upload('image_url')) {
+                    echo $this->upload->display_errors();
+                }
+       
+                else {
+                    $path = $this->upload->data();
+                    $img_url = $path['file_name'];
+                    $data = array();
+                    $data = array(
+                        'em_id' => $emrand,
+                        'em_code' => $eid,
+                        'des_id' => $deg,
+                        'dep_id' => $dept,
+                        'first_name' => $fname,
+                        'last_name' => $lname,
+                        'em_email' => $email,
+                        'em_password'=>$password,
+                        'em_role'=>$role,
+                        'em_gender'=>$gender,
+                        'status'=>'ACTIVE',
+                        'em_phone'=>$contact,
+                        'em_birthday'=>$dob,
+                        'em_joining_date'=>$joindate,
+                        'em_contact_end'=>$leavedate,
+                        'em_image'=>$img_url,
+                        'em_nid'=>$nid,
+                        'em_blood_group'=> $blood
+                    );
+                    if($id){
+                $success = $this->employee_model->Update($data,$id); 
+                #$this->session->set_flashdata('feedback','Successfully Updated');
+                echo "Successfully Updated";
+                    } else {
+                $success = $this->employee_model->Add($data);
+                #$this->confirm_mail_send($email,$pass_hash);        
+                #$this->session->set_flashdata('feedback','Successfully Created');
+                echo "Successfully Added";                     
+                    }
+                }
             } else {
-            if($_FILES['image_url']['name']){
-            $file_name = $_FILES['image_url']['name'];
-			$fileSize = $_FILES["image_url"]["size"]/1024;
-			$fileType = $_FILES["image_url"]["type"];
-			$new_file_name='';
-            $new_file_name .= $emrand;
-
-            $config = array(
-                'file_name' => $new_file_name,
-                'upload_path' => "./assets/images/users",
-                'allowed_types' => "gif|jpg|png|jpeg",
-                'overwrite' => False,
-                'max_size' => "20240000", // Can be set to particular file size , here it is 2 MB(2048 Kb)
-                'max_height' => "800",
-                'max_width' => "800"
-            );
-    
-            $this->load->library('Upload', $config);
-            $this->upload->initialize($config);                
-            if (!$this->upload->do_upload('image_url')) {
-                echo $this->upload->display_errors();
-			}
-   
-			else {
-                $path = $this->upload->data();
-                $img_url = $path['file_name'];
-                $data = array();
-                $data = array(
-                    'em_id' => $emrand,
-                    'em_code' => $eid,
-                    'des_id' => $deg,
-                    'dep_id' => $dept,
-                    'first_name' => $fname,
-                    'last_name' => $lname,
-					'em_email' => $email,
-					'em_password'=>$password,
-					'em_role'=>$role,
-					'em_gender'=>$gender,
-                    'status'=>'ACTIVE',
-                    'em_phone'=>$contact,
-                    'em_birthday'=>$dob,
-                    'em_joining_date'=>$joindate,
-                    'em_contact_end'=>$leavedate,
-                    'em_image'=>$img_url,
-                    'em_nid'=>$nid,
-                    'em_blood_group'=> $blood
-                );
-                if($id){
-            $success = $this->employee_model->Update($data,$id); 
-            #$this->session->set_flashdata('feedback','Successfully Updated');
-            echo "Successfully Updated";
+                    $data = array();
+                    $data = array(
+                        'em_id' => $emrand,
+                        'em_code' => $eid,
+                        'des_id' => $deg,
+                        'dep_id' => $dept,
+                        'first_name' => $fname,
+                        'last_name' => $lname,
+                        'em_email' => $email,
+                        'em_password'=>$password,
+                        'em_role'=>$role,
+                        'em_gender'=>$gender,
+                        'status'=>'ACTIVE',
+                        'em_phone'=>$contact,
+                        'em_birthday'=>$dob,
+                        'em_joining_date'=>$joindate,
+                        'em_contact_end'=>$leavedate,
+                        'em_address'=>$address,
+                        'em_nid'=>$nid,
+                        'em_blood_group'=> $blood
+                    );
+                    if($id){
+                $success = $this->employee_model->Update($data,$id); 
+                #$this->session->set_flashdata('feedback','Successfully Updated');
+                echo "Successfully Updated";        
+                #redirect('employee/Add_employee'); 
+                    } else {
+                $success = $this->employee_model->Add($data);
+                #$this->confirm_mail_send($email,$pass_hash);        
+                echo "Successfully Added";
+                #redirect('employee/Add_employee');                     
+                    }
+                }
+                }
+            }
+            }
+        else{
+            redirect(base_url() , 'refresh');
+               }        
+            }
+            public function Update() {
+                if ($this->session->userdata('user_login_access') != False) {
+                    $eid = $this->input->post('eid');
+                    $id = $this->input->post('emid');
+                    $fname = $this->input->post('fname');
+                    $lname = $this->input->post('lname');
+                    $dept = $this->input->post('dept');
+                    $deg = $this->input->post('deg');
+                    $role = $this->input->post('role');
+                    $gender = $this->input->post('gender');
+                    $contact = $this->input->post('contact');
+                    $dob = $this->input->post('dob');
+                    $joindate = $this->input->post('joindate');
+                    $leavedate = $this->input->post('leavedate');
+                    $username = $this->input->post('username');
+                    $email = $this->input->post('email');
+                    $password = $this->input->post('password');
+                    $address = $this->input->post('address');
+                    $nid = $this->input->post('nid');
+                    $status = $this->input->post('status');
+                    $blood = $this->input->post('blood');
+            
+                    $this->load->library('form_validation');
+                    $this->form_validation->set_error_delimiters();
+                    $this->form_validation->set_rules('contact', 'contact', 'trim|required|min_length[10]|max_length[15]|xss_clean');
+                    $this->form_validation->set_rules('email', 'Email', 'trim|required|min_length[7]|max_length[100]|xss_clean');
+            
+                    if ($this->form_validation->run() == FALSE) {
+                        echo validation_errors();
+                    } else {
+                        $data = array(
+                            'em_code' => $eid,
+                            'des_id' => $deg,
+                            'dep_id' => $dept,
+                            'first_name' => $fname,
+                            'last_name' => $lname,
+                            'em_email' => $email,
+                            'em_role' => $role,
+                            'em_gender' => $gender,
+                            'status' => $status,
+                            'em_phone' => $contact,
+                            'em_birthday' => $dob,
+                            'em_joining_date' => $joindate,
+                            'em_contact_end' => $leavedate,
+                            'em_address' => $address,
+                            'em_nid' => $nid,
+                            'em_blood_group' => $blood
+                        );
+            
+                        // Check if a new password is provided
+                        if (!empty($password)) {
+                            $hashedPassword = password_hash($password, PASSWORD_DEFAULT); // Hash the password
+                            $data['em_password'] = $hashedPassword; // Add password to the update array
+                        }
+            
+                        // Image upload logic
+                        if ($_FILES['image_url']['name']) {
+                            $file_name = $_FILES['image_url']['name'];
+                            $fileSize = $_FILES["image_url"]["size"] / 1024;
+                            $fileType = $_FILES["image_url"]["type"];
+                            $new_file_name = $id;
+            
+                            $config = array(
+                                'file_name' => $new_file_name,
+                                'upload_path' => "./assets/images/users",
+                                'allowed_types' => "gif|jpg|png|jpeg",
+                                'overwrite' => False,
+                                'max_size' => "20240000",
+                                'max_height' => "600",
+                                'max_width' => "600"
+                            );
+            
+                            $this->load->library('Upload', $config);
+                            $this->upload->initialize($config);
+            
+                            if (!$this->upload->do_upload('image_url')) {
+                                echo $this->upload->display_errors();
+                            } else {
+                                $employee = $this->employee_model->GetBasic($id);
+                                $checkimage = "./assets/images/users/$employee->em_image";
+                                if (file_exists($checkimage)) {
+                                    unlink($checkimage);
+                                }
+                                $path = $this->upload->data();
+                                $data['em_image'] = $path['file_name'];
+                            }
+                        }
+            
+                        // Update the database
+                        if ($id) {
+                            $success = $this->employee_model->Update($data, $id);
+                            $this->session->set_flashdata('feedback', 'Successfully Updated');
+                            echo "Successfully Updated";
+                        }
+                    }
                 } else {
-            $success = $this->employee_model->Add($data);
-            #$this->confirm_mail_send($email,$pass_hash);        
-            #$this->session->set_flashdata('feedback','Successfully Created');
-            echo "Successfully Added";                     
-                }
-			}
-        } else {
-                $data = array();
-                $data = array(
-                    'em_id' => $emrand,
-                    'em_code' => $eid,
-                    'des_id' => $deg,
-                    'dep_id' => $dept,
-                    'first_name' => $fname,
-                    'last_name' => $lname,
-					'em_email' => $email,
-					'em_password'=>$password,
-					'em_role'=>$role,
-					'em_gender'=>$gender,
-                    'status'=>'ACTIVE',
-                    'em_phone'=>$contact,
-                    'em_birthday'=>$dob,
-                    'em_joining_date'=>$joindate,
-                    'em_contact_end'=>$leavedate,
-                    'em_address'=>$address,
-                    'em_nid'=>$nid,
-                    'em_blood_group'=> $blood
-                );
-                if($id){
-            $success = $this->employee_model->Update($data,$id); 
-            #$this->session->set_flashdata('feedback','Successfully Updated');
-            echo "Successfully Updated";        
-            #redirect('employee/Add_employee'); 
-                } else {
-            $success = $this->employee_model->Add($data);
-            #$this->confirm_mail_send($email,$pass_hash);        
-            echo "Successfully Added";
-            #redirect('employee/Add_employee');                     
+                    redirect(base_url(), 'refresh');
                 }
             }
-            }
-        }
-        }
-    else{
-		redirect(base_url() , 'refresh');
-	       }        
-		}
-	public function Update(){
-    if($this->session->userdata('user_login_access') != False) {    
-    $eid = $this->input->post('eid');    
-    $id = $this->input->post('emid');    
-	$fname = $this->input->post('fname');
-	$lname = $this->input->post('lname');
-	$dept = $this->input->post('dept');
-	$deg = $this->input->post('deg');
-	$role = $this->input->post('role');
-	$gender = $this->input->post('gender');
-	$contact = $this->input->post('contact');
-	$dob = $this->input->post('dob');	
-	$joindate = $this->input->post('joindate');	
-	$leavedate = $this->input->post('leavedate');	
-	$username = $this->input->post('username');	
-	$email = $this->input->post('email');	
-	$password = $this->input->post('password');	
-	$confirm = $this->input->post('confirm');	
-	$address = $this->input->post('address');		
-	$nid = $this->input->post('nid');		
-	$status = $this->input->post('status');		
-	$blood = $this->input->post('blood');		
-        $this->load->library('form_validation');
-        $this->form_validation->set_error_delimiters();
-        $this->form_validation->set_rules('contact', 'contact', 'trim|required|min_length[10]|max_length[15]|xss_clean');
-
-        $this->form_validation->set_rules('email', 'Email','trim|required|min_length[7]|max_length[100]|xss_clean');
-
-
-        if ($this->form_validation->run() == FALSE) {
-            echo validation_errors();
-			#redirect("employee/view?I=" .base64_encode($eid));
-			} else {
-            if($_FILES['image_url']['name']){
-            $file_name = $_FILES['image_url']['name'];
-			$fileSize = $_FILES["image_url"]["size"]/1024;
-			$fileType = $_FILES["image_url"]["type"];
-			$new_file_name='';
-            $new_file_name .= $id;
-
-            $config = array(
-                'file_name' => $new_file_name,
-                'upload_path' => "./assets/images/users",
-                'allowed_types' => "gif|jpg|png|jpeg",
-                'overwrite' => False,
-                'max_size' => "20240000", // Can be set to particular file size , here it is 2 MB(2048 Kb)
-                'max_height' => "600",
-                'max_width' => "600"
-            );
-    
-            $this->load->library('Upload', $config);
-            $this->upload->initialize($config);                
-            if (!$this->upload->do_upload('image_url')) {
-                echo $this->upload->display_errors();
-                #redirect("employee/view?I=" .base64_encode($eid));
-			}
-   
-			else {
-            $employee = $this->employee_model->GetBasic($id);
-            $checkimage = "./assets/images/users/$employee->em_image";                 
-                if(file_exists($checkimage)){
-            	unlink($checkimage);
-				}
-                $path = $this->upload->data();
-                $img_url = $path['file_name'];
-                $data = array();
-                $data = array(
-                    'em_code' => $eid,
-                    'des_id' => $deg,
-                    'dep_id' => $dept,
-                    'first_name' => $fname,
-                    'last_name' => $lname,
-					'em_email' => $email,
-					'em_role'=>$role,
-					'em_gender'=>$gender,
-                    'status'=>$status,
-                    'em_phone'=>$contact,
-                    'em_birthday'=>$dob,
-                    'em_joining_date'=>$joindate,
-                    'em_contact_end'=>$leavedate,
-                    'em_image'=>$img_url,
-                    'em_address'=>$address,
-                    'em_nid'=> $nid,
-                    'em_blood_group'=> $blood
-                );
-                if($id){
-            $success = $this->employee_model->Update($data,$id); 
-            $this->session->set_flashdata('feedback','Successfully Updated');
-            echo "Successfully Updated";
-                }
-			}
-        } else {
-                $data = array();
-                $data = array(
-                    'em_code' => $eid,
-                    'des_id' => $deg,
-                    'dep_id' => $dept,
-                    'first_name' => $fname,
-                    'last_name' => $lname,
-					'em_email' => $email,
-					'em_role'=>$role,
-					'em_gender'=>$gender,
-                    'status'=>$status,
-                    'em_phone'=>$contact,
-                    'em_birthday'=>$dob,
-                    'em_joining_date'=>$joindate,
-                    'em_contact_end'=>$leavedate,
-                    'em_address'=>$address,
-                    'em_nid'=>$nid,
-                    'em_blood_group'=> $blood
-                );
-                if($id){
-            $success = $this->employee_model->Update($data,$id); 
-            $this->session->set_flashdata('feedback','Successfully Updated');
-            echo "Successfully Updated";
-                }
-            }
-        }
-        }
-    else{
-		redirect(base_url() , 'refresh');
-	       }        
-		}
+            
     public function view(){
         if($this->session->userdata('user_login_access') != False) {
         $id = base64_decode($this->input->get('I'));
@@ -334,6 +312,24 @@ class Employee extends CI_Controller {
 		redirect(base_url() , 'refresh');
 	}         
     }
+    public function deleteEmployee($emp_id) {
+        // Check if the user is logged in
+        if($this->session->userdata('user_login_access') != False) {
+            // Call the delete function in the model to delete the employee
+            $result = $this->employee_model->deleteEmployee($emp_id);
+            
+            // Redirect back to the employee list with a success or failure message
+            if($result) {
+                $this->session->set_flashdata('message', 'Employee deleted successfully.');
+            } else {
+                $this->session->set_flashdata('message', 'Failed to delete employee.');
+            }
+            redirect('employee'); // Redirect back to the employee list page
+        } else {
+            redirect(base_url(), 'refresh'); // Redirect to login page if not logged in
+        }
+    }
+    
     public function Parmanent_Address(){
         if($this->session->userdata('user_login_access') != False) {
         $id = $this->input->post('id');
@@ -501,7 +497,7 @@ class Employee extends CI_Controller {
         $this->load->library('form_validation');
         $this->form_validation->set_error_delimiters();
         $this->form_validation->set_rules('company_name', 'company_name', 'trim|required|min_length[5]|max_length[150]|xss_clean');
-        $this->form_validation->set_rules('position_name', 'position_name', 'trim|required|min_length[2]|max_length[250]|xss_clean');
+        $this->form_validation->set_rules('position_name', 'position_name', 'trim|required|min_length[5]|max_length[250]|xss_clean');
 
         if ($this->form_validation->run() == FALSE) {
             echo validation_errors();
@@ -582,25 +578,32 @@ class Employee extends CI_Controller {
 	}        
     }
     public function Add_bank_info(){
-        if($this->session->userdata('user_login_access') != False) {
-        $id = $this->input->post('id');
-        $em_id = $this->input->post('emid');
-        $holder = $this->input->post('holder_name');
-        $bank = $this->input->post('bank_name');
-        $branch = $this->input->post('branch_name');
-        $number = $this->input->post('account_number');
-        $account = $this->input->post('account_type');
-        $this->load->library('form_validation');
-        $this->form_validation->set_error_delimiters();
-        $this->form_validation->set_rules('holder_name', 'holder name', 'trim|required|min_length[5]|max_length[120]|xss_clean');
-        $this->form_validation->set_rules('account_number', 'account name', 'trim|required|min_length[5]|max_length[120]|xss_clean');
-        $this->form_validation->set_rules('branch_name', 'branch name', 'trim|required|min_length[5]|max_length[120]|xss_clean');
-
-        if ($this->form_validation->run() == FALSE) {
-            echo validation_errors();
-			redirect("employee/view?I=" .base64_encode($em_id));
-			} else {
-            $data = array();
+        if($this->session->userdata('user_login_access') != FALSE) {
+            $id = $this->input->post('id');
+            $em_id = $this->input->post('emid');
+            $holder = $this->input->post('holder_name');
+            $bank = $this->input->post('bank_name');
+            $branch = $this->input->post('branch_name');
+            $number = $this->input->post('account_number');
+            $account = $this->input->post('account_type');
+            
+            $this->load->library('form_validation');
+            $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
+            
+            // Set validation rules for each field
+            $this->form_validation->set_rules('holder_name', 'Holder Name', 'trim|required|max_length[120]|xss_clean|callback_alpha_spaces');
+        $this->form_validation->set_rules('branch_name', 'Branch Name', 'trim|required|max_length[120]|xss_clean|callback_alpha_spaces');
+        
+        // Other validation rules
+        $this->form_validation->set_rules('bank_name', 'Bank Name', 'trim|required|max_length[120]|xss_clean|callback_alpha_spaces');
+        $this->form_validation->set_rules('account_number', 'Account Number', 'trim|required|max_length[20]|xss_clean|numeric');
+        $this->form_validation->set_rules('account_type', 'Account Type', 'required|in_list[Savings,Current]');
+        
+            if ($this->form_validation->run() == FALSE) {
+                // Validation failed, echo errors and redirect back
+                echo validation_errors();
+            } else {
+                // Prepare data array
                 $data = array(
                     'em_id' => $em_id,
                     'holder_name' => $holder,
@@ -609,30 +612,38 @@ class Employee extends CI_Controller {
                     'account_number' => $number,
                     'account_type' => $account
                 );
-            if(empty($id)){
-                $success = $this->employee_model->Add_BankInfo($data);
-                #$this->session->set_flashdata('feedback','Successfully Added');
-                #redirect("employee/view?I=" .base64_encode($em_id));
-                echo "Successfully Added";
-            } else {
-                $success = $this->employee_model->Update_BankInfo($id,$data);
-                #$this->session->set_flashdata('feedback','Successfully Updated');
-                #redirect("employee/view?I=" .base64_encode($em_id));
-                echo "Successfully Updated";
+                
+                // Insert or update based on whether $id is empty
+                if(empty($id)){
+                    $success = $this->employee_model->Add_BankInfo($data);
+                    echo "Successfully Added";
+                } else {
+                    $success = $this->employee_model->Update_BankInfo($id, $data);
+                    echo "Successfully Updated";
+                }
             }
-                       
+        } else {
+            // Redirect if not logged in
+            redirect(base_url(), 'refresh');
         }
-        }
-    else{
-		redirect(base_url() , 'refresh');
-	}            
     }
+    public function alpha_spaces($str)
+{
+    if (!preg_match("/^[A-Za-z ]*$/", $str)) {
+        $this->form_validation->set_message('alpha_spaces', 'The {field} field can only contain alphabetic characters.');
+        return FALSE;
+    }
+    return TRUE;
+}
+    
     public function Reset_Password_Hr(){
         if($this->session->userdata('user_login_access') != False) {
         $id = $this->input->post('emid');
         $onep = $this->input->post('new1');
         $twop = $this->input->post('new2');
-            if($onep == $twop){
+        $currentPassword = $this->employee_model->getCurrentPassword($id);
+        
+            if($onep == $twop && sha1($onep) !== $currentPassword ){
                 $data = array();
                 $data = array(
                     'em_password'=> sha1($onep)
@@ -641,10 +652,15 @@ class Employee extends CI_Controller {
         #$this->session->set_flashdata('feedback','Successfully Updated');
         #redirect("employee/view?I=" .base64_encode($id));
                 echo "Successfully Updated";
-            } else {
-        $this->session->set_flashdata('feedback','Please enter valid password');
+            } else if (sha1($onep) === $currentPassword){
+        $this->session->set_flashdata('feedback','New password cannot be the same as the old password.');
         #redirect("employee/view?I=" .base64_encode($id)); 
-                echo "Please enter valid password";
+                echo "New password cannot be the same as the old password.";
+            }
+            else{
+                $this->session->set_flashdata('feedback','Passwords do not match.');
+        #redirect("employee/view?I=" .base64_encode($id)); 
+                echo "Passwords do not match.";
             }
 
         }
@@ -748,34 +764,44 @@ class Employee extends CI_Controller {
     }
     public function Assign_leave(){
         if($this->session->userdata('user_login_access') != False) {
-        $emid = $this->input->post('em_id');
-        $type = $this->input->post('typeid');
-        $day = $this->input->post('noday');
-        $year = $this->input->post('year');
-        $this->load->library('form_validation');
-        $this->form_validation->set_error_delimiters();
-        $this->form_validation->set_rules('typeid','typeid','trim|required|xss_clean');
-
-        if ($this->form_validation->run() == FALSE) {
-            echo validation_errors();
-            #redirect('employee/Designation');
-        }else{
-            $data = array();
-            $data = array(
-                'emp_id' => $emid,
-                'type_id' => $type,
-                'day' => $day,
-                'total_day' => '0',
-                'year' => $year
-            );
-            $success = $this->employee_model->Add_Assign_Leave($data);
-            echo "Successfully Added";
+            $emid = $this->input->post('em_id');
+            $type = $this->input->post('typeid');
+            $day = (string) $this->input->post('noday'); // Ensure it's a string
+            $year = (int) $this->input->post('year'); // Convert to integer for the year
+    
+            // Log the data to check what is being posted
+            log_message('debug', 'Form Data: ' . print_r($this->input->post(), true));
+    
+            $this->load->library('form_validation');
+            $this->form_validation->set_error_delimiters();
+            $this->form_validation->set_rules('typeid','typeid','trim|required|xss_clean');
+    
+            if ($this->form_validation->run() == FALSE) {
+                echo validation_errors();
+            } else {
+                $data = array(
+                    'emp_id' => $emid,
+                    'type_id' => $type,
+                    'day' => $day,
+                    'total_day' => '0', // Assuming '0' is a placeholder for total_day
+                    'dateyear' => $year
+                );
+                
+                // Log data before insertion
+                log_message('debug', 'Data to Insert: ' . print_r($data, true));
+    
+                $success = $this->employee_model->Add_Assign_Leave($data);
+                if ($success) {
+                    echo "Successfully Added";
+                } else {
+                    echo "Failed to add leave";
+                }
+            }
+        } else {
+            // redirect(base_url(), 'refresh');
         }
-        }
-    else{
-		redirect(base_url() , 'refresh');
-	}
     }
+    
     public function Add_File(){
     if($this->session->userdata('user_login_access') != False) { 
     $em_id = $this->input->post('em_id');    		
@@ -869,7 +895,8 @@ class Employee extends CI_Controller {
         if($this->session->userdata('user_login_access') != False) {  
 		$id= $this->input->get('id');
 		$success = $this->employee_model->DeletEdu($id);
-		echo "Successfully Deleted";}
+		echo "Successfully Deletd";
+        }
     else{
 		redirect(base_url() , 'refresh');
 	} 
@@ -1021,4 +1048,31 @@ class Employee extends CI_Controller {
         $data['invalidem'] = $this->employee_model->getInvalidUser();
         $this->load->view('backend/invalid_user',$data);
     }
+    public function EducationDelete() {
+        $id = $this->input->get('id'); // Get the education record ID from query parameters
+    
+        // Load the model and delete the record
+        $this->load->model('Employee_Model');
+        $result = $this->Employee_Model->delete_record($id);
+    
+        if ($result) {
+            echo "success"; // Success response
+        } else {
+            echo "failure"; // Failure response
+        }
+    }
+    public function ExperienceDelete() {
+        $id = $this->input->get('id'); // Get the education record ID from query parameters
+    
+        // Load the model and delete the record
+        $this->load->model('Employee_Model');
+        $result = $this->Employee_Model->delete_exprecord($id);
+    
+        if ($result) {
+            echo "success"; // Success response
+        } else {
+            echo "failure"; // Failure response
+        }
+    }
+    
 }

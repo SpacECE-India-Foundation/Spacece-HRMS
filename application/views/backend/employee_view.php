@@ -86,54 +86,47 @@
 				                                        <input type="text" id="" name="lname" class="form-control form-control-line" value="<?php echo $basic->last_name; ?>" placeholder="Your last name" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> minlength="3" required> 
 				                                    </div>
                                                     <div class="form-group col-md-4 m-t-10">
-    <label>Blood Group</label>
-    <select name="blood" 
-        <?php if ($this->session->userdata('user_type') == 'EMPLOYEE') { ?> readonly <?php } ?> 
-        class="form-control custom-select">
-        <option value="" disabled>Select Blood Group</option>
-        <option value="O+" <?php echo ($basic->em_blood_group == 'O+') ? 'selected' : ''; ?>>O+</option>
-        <option value="O-" <?php echo ($basic->em_blood_group == 'O-') ? 'selected' : ''; ?>>O-</option>
-        <option value="A+" <?php echo ($basic->em_blood_group == 'A+') ? 'selected' : ''; ?>>A+</option>
-        <option value="A-" <?php echo ($basic->em_blood_group == 'A-') ? 'selected' : ''; ?>>A-</option>
-        <option value="B+" <?php echo ($basic->em_blood_group == 'B+') ? 'selected' : ''; ?>>B+</option>
-        <option value="B-" <?php echo ($basic->em_blood_group == 'B-') ? 'selected' : ''; ?>>B-</option>
-        <option value="AB+" <?php echo ($basic->em_blood_group == 'AB+') ? 'selected' : ''; ?>>AB+</option>
-    </select>
-</div>
-
+                                                        <label>Blood Group </label>
+                                                        <select name="blood" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> value="<?php echo $basic->em_blood_group; ?>" class="form-control custom-select">
+                                                            <option value="<?php echo $basic->em_blood_group; ?>"><?php echo $basic->em_blood_group; ?></option>
+                                                            <option value="O+">O+</option>
+                                                            <option value="O-">O-</option>
+                                                            <option value="A+">A+</option>
+                                                            <option value="A-">A-</option>
+                                                            <option value="B+">B+</option>
+                                                            <option value="B-">B-</option>
+                                                            <option value="AB+">AB+</option>
+                                                        </select>
+                                                    </div>
 				                                    <div class="form-group col-md-4 m-t-10">
 				                                        <label>Gender </label>
 				                                        <select name="gender" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control custom-select">
 				                                           
-                                                        <option value="" disabled selected>Select Gender</option>
-        <option value="Male" <?php echo ($basic->em_gender == 'Male') ? 'selected' : ''; ?>>Male</option>
-        <option value="Female" <?php echo ($basic->em_gender == 'Female') ? 'selected' : ''; ?>>Female</option>
+				                                            <option value="<?php echo $basic->em_gender; ?>"><?php echo $basic->em_gender; ?></option>
+				                                            <option value="Male">Male</option>
+				                                            <option value="Female">Female</option>
 				                                        </select>
 				                                    </div>
                                                    <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>  <?php } else { ?> 
                                                     <div class="form-group col-md-4 m-t-10">
-    <label>User Type</label>
-    <select name="role" class="form-control custom-select" required>
-        <option value="" disabled>Select User Type</option>
-        <option value="HR" <?php echo ($basic->em_role == 'HR') ? 'selected' : ''; ?>>HR</option>
-        <option value="EMPLOYEE" <?php echo ($basic->em_role == 'EMPLOYEE') ? 'selected' : ''; ?>>Employee</option>
-        <option value="ADMIN" <?php echo ($basic->em_role == 'ADMIN') ? 'selected' : ''; ?>>Super Admin</option>
-    </select>
-</div>
-
+                                                        <label>User Type </label>
+                                                        <select name="role" class="form-control custom-select" required >
+				                                            <option value="<?php echo $basic->em_role; ?>"><?php echo $basic->em_role; ?></option>
+                                                            <option value="HR">HR</option>
+                                                            <option value="EMPLOYEE">Employee</option>
+                                                            <option value="ADMIN">Super Admin</option>
+                                                        </select>
+                                                    </div>
                                                     <?php } ?>
                                                     <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>  <?php } else { ?> 
-                                                        <div class="form-group col-md-4 m-t-10">
-    <label>Status</label>
-    <select name="status" 
-        <?php if ($this->session->userdata('user_type') == 'EMPLOYEE') { ?> readonly <?php } ?> 
-        class="form-control custom-select" required>
-        <option value="" disabled>Select Status</option>
-        <option value="ACTIVE" <?php echo ($basic->status == 'ACTIVE') ? 'selected' : ''; ?>>ACTIVE</option>
-        <option value="INACTIVE" <?php echo ($basic->status == 'INACTIVE') ? 'selected' : ''; ?>>INACTIVE</option>
-    </select>
-</div>
-
+                                                    <div class="form-group col-md-4 m-t-10">
+                                                        <label>Status </label>
+                                                        <select name="status" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control custom-select" required >
+				                                            <option value="<?php echo $basic->status; ?>"><?php echo $basic->status; ?></option>
+                                                            <option value="ACTIVE">ACTIVE</option>
+                                                            <option value="INACTIVE">INACTIVE</option>
+                                                        </select>
+                                                    </div>
                                                     <?php } ?>				                                    
 				                                    <div class="form-group col-md-4 m-t-10">
 				                                        <label>Date Of Birth </label>
@@ -145,24 +138,18 @@
 				                                    </div>
 				                                    <div class="form-group col-md-4 m-t-10">
 				                                        <label>Contact Number </label>
-				                                        <input type="text" class="form-control" placeholder="" name="contact" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> value="<?php echo $basic->em_phone; ?>" minlength="10" maxlength="15" pattern="^\d+(\.\d+)?$" title="Invalid input: Please enter a valid contact number" required> 
+				                                        <input type="text" class="form-control" placeholder="" name="contact" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> value="<?php echo $basic->em_phone; ?>" minlength="10" maxlength="15" required> 
 				                                    </div>
                                                    <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>  <?php } else { ?> 				                                    
-                                                    <div class="form-group col-md-4 m-t-10">
-    <label>Department</label>
-    <select name="dept" 
-        <?php if ($this->session->userdata('user_type') == 'EMPLOYEE') { ?> readonly <?php } ?> 
-        class="form-control custom-select">
-        <option value="" disabled selected>Select Department</option>
-        <?php foreach ($depvalue as $value): ?>
-            <option value="<?php echo $value->id; ?>" 
-                <?php echo ($basic->id == $value->id) ? 'selected' : ''; ?>>
-                <?php echo $value->dep_name; ?>
-            </option>
-        <?php endforeach; ?>
-    </select>
-</div>
-
+				                                    <div class="form-group col-md-4 m-t-10">
+				                                        <label>Department</label>
+				                                        <select name="dept" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control custom-select">
+				                                            <option value="<?php echo $basic->id; ?>"><?php echo $basic->dep_name; ?></option>
+                                            <?Php foreach($depvalue as $value): ?>
+                                             <option value="<?php echo $value->id ?>"><?php echo $value->dep_name ?></option>
+                                            <?php endforeach; ?>
+				                                        </select>
+				                                    </div>
 				                                    <?php } ?>
                                                    <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>  <?php } else { ?> 				                                    
 				                                    <div class="form-group col-md-4 m-t-10">
@@ -304,7 +291,45 @@
                                                     <?php } else { ?>
                                     <td class="jsgrid-align-center ">
                                         <a href="#" title="Edit" class="btn btn-sm btn-info waves-effect waves-light education" data-id="<?php echo $value->id ?>"><i class="fa fa-pencil-square-o"></i></a>
-                                        <a onclick="confirm('Are you sure want to delete this Value?')" href="#" title="Delete" class="btn btn-sm btn-info waves-effect waves-light edudelet"  data-id="<?php echo $value->id ?>"><i class="fa fa-trash-o"></i></a>
+                                        <a 
+                    onclick="return confirmDelete(this)" 
+                    href="#" 
+                    title="Delete" 
+                    class="btn btn-sm btn-info waves-effect waves-light deleteEducation" 
+                    data-id="<?php echo $value->id ?>">
+                    <i class="fa fa-trash-o"></i>
+                    </a>
+
+<script>
+$(document).ready(function () {
+    $(".deleteEducation").click(function (e) {
+        e.preventDefault(); // Prevent default behavior of the link
+
+        var eid = $(this).attr("data-id"); // Get the ID of the education record
+        var row = $(this).closest("tr"); // Get the row for removal
+
+        if (confirm("Are you sure you want to delete this record?")) {
+            $.ajax({
+                url: "EducationDelete?id=" + eid, // Backend endpoint
+                method: "GET",
+                success: function (response) {
+                    // Check the server response
+                    if (response.trim() === "success") {
+                        // alert("Education record deleted successfully!");
+                        row.remove(); // Remove the row dynamically
+                    } else {
+                        alert("Failed to delete the education record.");
+                    }
+                },
+                error: function () {
+                    alert("An error occurred while deleting the record.");
+                }
+            });
+        }
+    });
+});
+
+</script>
 
                                     </td>
                                     <?php } ?>
@@ -326,7 +351,8 @@
 			                                    </div>
 			                                    <div class="form-group col-md-6 m-t-5">
 			                                        <label>Institute name</label>
-                                                    <input type="text" name="institute" class="form-control form-control-line" placeholder=" Institute name" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> minlength="7" required> 			                                    </div>
+			                                        <input type="text" name="institute" class="form-control form-control-line" placeholder=" Institute name" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> minlength="7" required> 
+			                                    </div>
 			                                    <div class="form-group col-md-6 m-t-5">
 			                                        <label>Result</label>
 			                                        <input type="text" name="result" class="form-control form-control-line" placeholder=" Result" minlength="2" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> required> 
@@ -389,18 +415,6 @@
    <i class="fa fa-trash-o"></i>
 </a>
 
-<script>
-function confirmDelete(element) {
-    if (confirm('Are you sure want to delete this Value?')) {
-        // Redirect to the delete action URL or trigger AJAX
-        const id = element.getAttribute('data-id');
-        // Example: Update the href dynamically or perform your delete action here
-        window.location.href = `delete.php?id=${id}`; // Update URL to your actual delete handler
-    }
-    return false; // Prevent default action if Cancel is clicked
-}
-</script>
-
                                         <?php } ?>
                                     </td>
                                 </tr>
@@ -413,20 +427,19 @@ function confirmDelete(element) {
 			                                <form class="row" action="Add_Experience" method="post" enctype="multipart/form-data">
 			                                    	<div class="form-group col-md-6 m-t-5">
 			                                    	    <label> Company Name</label>
-                                                        
-			                                    	    <input type="text" name="company_name" class="form-control form-control-line company_name" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> placeholder="Company Name" minlength="5" required> 
+			                                    	    <input type="text" name="company_name" class="form-control form-control-line company_name" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> placeholder="Company Name" minlength="2" required> 
 			                                    	</div>
 			                                    	<div class="form-group col-md-6 m-t-5">
 			                                    	    <label>Position</label>
-			                                    	    <input type="text" name="position_name" class="form-control form-control-line position_name" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> placeholder="Position" minlength="2" required> 
+			                                    	    <input type="text" name="position_name" class="form-control form-control-line position_name" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> placeholder="Position" minlength="3" required> 
 			                                    	</div>
 			                                    	<div class="form-group col-md-6 m-t-5">
 			                                    	    <label>Address</label>
-			                                    	    <input type="text" name="address" class="form-control form-control-line duty" placeholder=" Duty" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> minlength="7" required> 
+			                                    	    <input type="text" name="address" class="form-control form-control-line duty" placeholder="Address" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> minlength="7" required> 
 			                                    	</div>
 			                                    	<div class="form-group col-md-6 m-t-5">
 			                                    	    <label>Working Duration</label>
-			                                    	    <input type="text" name="work_duration" class="form-control form-control-line working_period" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> placeholder="Working Duration" min="1"  required> 
+			                                    	    <input type="text" name="work_duration" class="form-control form-control-line working_period" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> placeholder="Working Duration" required> 
 			                                    	</div>
 			                                 <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>
                                                     <?php } else { ?>
@@ -440,38 +453,225 @@ function confirmDelete(element) {
                                     </div>
                                 </div>
                                 <div class="tab-pane" id="bank" role="tabpanel">
-                                    <div class="card">
-	                                    <div class="card-body">
-			                                <form class="row" action="Add_bank_info" method="post" enctype="multipart/form-data">
-			                                    <div class="form-group col-md-6 m-t-5">
-			                                        <label> Bank Holder Name</label>
-			                                        <input type="text" name="holder_name" value="<?php if(!empty($bankinfo->holder_name)) echo $bankinfo->holder_name  ?>" class="form-control form-control-line" placeholder="Bank Holder Name" pattern="[A-Za-z ]+" title="Only alphabetic characters and spaces are allowed."  minlength="5" required> 
-			                                    </div>
-			                                    <div class="form-group col-md-6 m-t-5">
-			                                        <label>Bank Name</label>
-			                                        <input type="text" name="bank_name" value="<?php if(!empty($bankinfo->bank_name)) echo $bankinfo->bank_name  ?>" class="form-control form-control-line" placeholder="Bank Name" pattern="[A-Za-z ]+" title="Only alphabetic characters are allowed." minlength="5" required> 
-			                                    </div>
-			                                    <div class="form-group col-md-6 m-t-5">
-			                                        <label>Branch Name</label>
-			                                        <input type="text" name="branch_name" value="<?php if(!empty($bankinfo->branch_name)) echo $bankinfo->branch_name  ?>" class="form-control form-control-line" placeholder=" Branch Name" pattern="[A-Za-z ]+" title="Only alphabetic characters and spaces are allowed." required> 
-			                                    </div>
-			                                    <div class="form-group col-md-6 m-t-5">
-			                                        <label>Bank Account Number</label>
-			                                        <input type="text" name="account_number" value="<?php if(!empty($bankinfo->account_number)) echo $bankinfo->account_number ?>" class="form-control form-control-line" pattern="^\d+" title="Only numeric characters are allowed." minlength="5" required> 
-			                                    </div>
-			                                    <div class="form-group col-md-6 m-t-5">
-			                                        <label>Bank Account Type</label>
-			                                        <input type="text" name="account_type" value="<?php if(!empty($bankinfo->account_type)) echo $bankinfo->account_type ?>" class="form-control form-control-line" placeholder="Bank Account Type" pattern="[A-Za-z ]+" title="Only alphabetic characters and spaces are allowed." required> 
-			                                    </div>
-			                                    <div class="form-actions col-md-12">
-                                                    <input type="hidden" name="emid" value="<?php echo $basic->em_id; ?>">
-                                                    <input type="hidden" name="id" value="<?php if(!empty($bankinfo->id)) echo $bankinfo->id  ?>">
-			                                        <button type="submit" class="btn btn-info"> <i class="fa fa-check"></i> Save</button>
-			                                    </div>
-			                                </form>
-					                    </div>
-                                    </div>
-                                </div>
+                                <div class="card mt-4">
+        <div class="card-body">
+            <?php if (!empty($bankinfo)) { ?>
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Bank Holder Name</th>
+                            <th>Bank Name</th>
+                            <th>Branch Name</th>
+                            <th>Account Number</th>
+                            <th>Account Type</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>ID</th>
+                            <th>Bank Holder Name</th>
+                            <th>Bank Name</th>
+                            <th>Branch Name</th>
+                            <th>Account Number</th>
+                            <th>Account Type</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td><?php echo $bankinfo->holder_name; ?></td>
+                            <td><?php echo $bankinfo->bank_name; ?></td>
+                            <td><?php echo $bankinfo->branch_name; ?></td>
+                            <td><?php echo $bankinfo->account_number; ?></td>
+                            <td><?php echo $bankinfo->account_type; ?></td>
+                        </tr>
+                    </tbody>
+                </table>
+            <?php } else { ?>
+                <p>No bank information found. Please add details.</p>
+            <?php } ?>
+        </div>
+    </div>
+    <div class="card">
+    <div class="card-body">
+        <!-- Bank Information Form -->
+        <form class="row" action="Add_bank_info" method="post" enctype="multipart/form-data" onsubmit="return validateForm();">
+            <!-- Bank Holder Name -->
+            <div class="form-group col-md-6 m-t-5">
+                <label>Bank Holder Name</label>
+                <input 
+                    type="text" 
+                    name="holder_name" 
+                    id="holder_name" 
+                    value="<?php if (!empty($bankinfo->holder_name)) echo $bankinfo->holder_name; ?>" 
+                    class="form-control form-control-line" 
+                    placeholder="Bank Holder Name" 
+                    maxlength="100" 
+                    required 
+                    pattern="[A-Za-zÀ-ÿ ]+" 
+                    title="Only alphabetic characters." autocomplete="off">
+                    <span id="holder_name_error" class="error-message" style="color: red; display: none;">Only alphabetic characters are allowed.</span>
+
+            </div>
+            <!-- Bank Name -->
+            <div class="form-group col-md-6 m-t-5">
+                <label>Bank Name</label>
+                <input 
+                    type="text" 
+                    name="bank_name" 
+                    id="bank_name"
+                    value="<?php if (!empty($bankinfo->bank_name)) echo $bankinfo->bank_name; ?>" 
+                    class="form-control form-control-line" 
+                    placeholder="Bank Name" 
+
+                    maxlength="100" 
+                    required 
+                    pattern="[A-Za-zÀ-ÿ]+" 
+                    title="Only alphabetic characters are allowed." autocomplete="off">
+                    <span id="bank_name_error" class="error-message" style="color: red; display: none;">Only alphabetic characters are allowed.</span>
+
+            </div>
+            <!-- Branch Name -->
+            <div class="form-group col-md-6 m-t-5">
+                <label>Branch Name</label>
+                <input 
+                    type="text" 
+                    name="branch_name" 
+                    id="branch_name"
+                    value="<?php if (!empty($bankinfo->branch_name)) echo $bankinfo->branch_name; ?>" 
+                    class="form-control form-control-line" 
+                    placeholder="Branch Name" 
+                    pattern="[A-Za-zÀ-ÿ ]*" 
+                    title="Only alphabetic characters." autocomplete="off">
+                    <span id="branch_name_error" class="error-message" style="color: red; display: none;">Only alphabetic characters are allowed.</span>
+
+            </div>
+            <!-- Bank Account Number -->
+            <div class="form-group col-md-6 m-t-5">
+                <label>Bank Account Number</label>
+                <input 
+                    type="text" 
+                    name="account_number" 
+                    id="account_number"
+                    value="<?php if (!empty($bankinfo->account_number)) echo $bankinfo->account_number; ?>" 
+                    class="form-control form-control-line" 
+                    minlength="5" 
+                    maxlength="20" 
+                    required 
+                    pattern="\d+" 
+                    title="Only numeric values are allowed." autocomplete="off">
+                    <span id="account_number_error" class="error-message" style="color: red; display: none;">Only numeric values are allowed.</span>
+
+            </div>
+            <!-- Bank Account Type -->
+            <div class="form-group col-md-6 m-t-5">
+                <label>Bank Account Type</label>
+                <select name="account_type" class="form-control form-control-line" required>
+                    <option value="">-- Select Account Type --</option>
+                    <option value="Savings" <?php if (!empty($bankinfo->account_type) && $bankinfo->account_type == 'Savings') echo 'selected'; ?>>Savings</option>
+                    <option value="Current" <?php if (!empty($bankinfo->account_type) && $bankinfo->account_type == 'Current') echo 'selected'; ?>>Current</option>
+                </select>
+            </div>
+            <!-- Submit Button -->
+            <div class="form-actions col-md-12">
+                <input type="hidden" name="emid" value="<?php echo $basic->em_id; ?>">
+                <input type="hidden" name="id" value="<?php if (!empty($bankinfo->id)) echo $bankinfo->id; ?>">
+                <button type="submit" class="btn btn-info"><i class="fa fa-check"></i> Save</button>
+            </div>
+        </form>
+    </div>
+</div>
+</div>
+<script>
+    $(document).ready(function() {
+    // Real-time input validation for Bank Holder Name
+    $('#holder_name').on('input', function() {
+        var holderName = $(this).val().trim();
+        var nameRegex = /^[A-Za-zÀ-ÿ ]+$/; // Allow only alphabetic characters and spaces
+
+        if (!nameRegex.test(holderName)) {
+            $('#holder_name_error').show();  // Show error message if invalid
+        } else {
+            $('#holder_name_error').hide();  // Hide error message if valid
+        }
+    });
+
+    // Real-time input validation for Bank Name
+    $('#bank_name').on('input', function() {
+        var bankName = $(this).val().trim();
+        var nameRegex = /^[A-Za-zÀ-ÿ ]+$/; // Allow only alphabetic characters and spaces
+
+        if (!nameRegex.test(bankName)) {
+            $('#bank_name_error').show();  // Show error message if invalid
+        } else {
+            $('#bank_name_error').hide();  // Hide error message if valid
+        }
+    });
+
+    // Real-time input validation for Branch Name
+    $('#branch_name').on('input', function() {
+        var branchName = $(this).val().trim();
+        var nameRegex = /^[A-Za-zÀ-ÿ ]+$/; // Allow only alphabetic characters and spaces
+
+        if (!nameRegex.test(branchName)) {
+            $('#branch_name_error').show();  // Show error message if invalid
+        } else {
+            $('#branch_name_error').hide();  // Hide error message if valid
+        }
+    });
+
+    // Real-time input validation for Bank Account Number
+    $('#account_number').on('input', function() {
+        var accountNumber = $(this).val().trim();
+        var accountRegex = /^\d+$/; // Allow only numeric characters
+
+        if (!accountRegex.test(accountNumber)) {
+            $('#account_number_error').show();  // Show error message if invalid
+        } else {
+            $('#account_number_error').hide();  // Hide error message if valid
+        }
+    });
+
+    // Form submission validation
+    $('#bankInfoForm').submit(function(event) {
+        var isValid = true;
+
+        // Check if Bank Holder Name is valid
+        if (!/^[A-Za-zÀ-ÿ ]+$/.test($('#holder_name').val().trim())) {
+            $('#holder_name_error').show();
+            isValid = false;
+        }
+
+        // Check if Bank Name is valid
+        if (!/^[A-Za-zÀ-ÿ ]+$/.test($('#bank_name').val().trim())) {
+            $('#bank_name_error').show();
+            isValid = false;
+        }
+
+        // Check if Branch Name is valid
+        if (!/^[A-Za-zÀ-ÿ ]+$/.test($('#branch_name').val().trim())) {
+            $('#branch_name_error').show();
+            isValid = false;
+        }
+
+        // Check if Account Number is valid
+        if (!/^\d+$/.test($('#account_number').val().trim())) {
+            $('#account_number_error').show();
+            isValid = false;
+        }
+
+        // Prevent form submission if any field is invalid
+        if (!isValid) {
+            event.preventDefault();
+        }
+    });
+});
+
+</script>
+
+
+                                
                                 <div class="tab-pane" id="document" role="tabpanel">
                                     <div class="card-body">
                     <div class="table-responsive ">
@@ -501,6 +701,7 @@ function confirmDelete(element) {
                             </tbody>
                         </table>
                     </div>
+                    
                 </div>                                    
                                     <div class="card-body">
                                         <form class="row" action="Add_File" method="post" enctype="multipart/form-data">
@@ -594,26 +795,28 @@ function confirmDelete(element) {
                                 </div>
                                 </div>
                                 <div class="tab-pane" id="password1" role="tabpanel">
-                                    <div class="card-body">
-				                                <form class="row" action="Reset_Password_Hr" method="post" enctype="multipart/form-data">
-				                                    <div class="form-group col-md-6 m-t-20">
-				                                        <label>Password</label>
-				                                        <input type="text" class="form-control" name="new1" value="" required minlength="6"> 
-				                                    </div>
-				                                    <div class="form-group col-md-6 m-t-20">
-				                                        <label>Confirm Password</label>
-				                                        <input type="text" id="" name="new2" class="form-control " required minlength="6"> 
-				                                    </div>
-				                                    <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>
-                                                    <?php } else { ?>
-				                                    <div class="form-actions col-md-12">
-                                                    <input type="hidden" name="emid" value="<?php echo $basic->em_id; ?>">                                                   
-				                                        <button type="submit" class="btn btn-info pull-right"> <i class="fa fa-check"></i> Save</button>
-				                                    </div>
-				                                    <?php } ?>
-				                                </form>
-                                    </div>
-                                </div>
+    <div class="card-body">
+        <form class="row" action="<?php echo base_url('Employee/Reset_Password_Hr'); ?>" method="post" enctype="multipart/form-data">
+            <div class="form-group col-md-6 m-t-20">
+                <label>Password</label>
+                <input type="password" class="form-control" name="new1" value="" required minlength="6" placeholder="Enter new password"> 
+            </div>
+            <div class="form-group col-md-6 m-t-20">
+                <label>Confirm Password</label>
+                <input type="password" id="" name="new2" class="form-control" required minlength="6" placeholder="Confirm your password"> 
+            </div>
+            <?php if ($this->session->userdata('user_type') == 'EMPLOYEE') { ?>
+                <!-- You can add any special condition for employee if needed -->
+            <?php } else { ?>
+                <div class="form-actions col-md-12">
+                    <input type="hidden" name="emid" value="<?php echo $basic->em_id; ?>">                                                   
+                    <button type="submit" class="btn btn-info pull-right"> <i class="fa fa-check"></i> Save</button>
+                </div>
+            <?php } ?>
+        </form>
+    </div>
+</div>
+
                                 <div class="tab-pane" id="social" role="tabpanel">
                                     <div class="card-body">
 				                                <form class="row" action="Save_Social" method="post" enctype="multipart/form-data">
@@ -645,32 +848,32 @@ function confirmDelete(element) {
                                     </div>
                                 </div>
                                 <div class="tab-pane" id="password" role="tabpanel">
-                                    <div class="card-body">
-				                                <form class="row" action="Reset_Password" method="post" enctype="multipart/form-data">
-				                                    <div class="form-group col-md-6 m-t-20">
-				                                        <label>Old Password</label>
-				                                        <input type="text" class="form-control" name="old" value="" placeholder="old password" required minlength="6"> 
-				                                    </div>
-				                                    <div class="form-group col-md-6 m-t-20">
-				                                        <label>Password</label>
-				                                        <input type="text" class="form-control" name="new1" value="" required minlength="6"> 
-				                                    </div>
-				                                    <div class="form-group col-md-6 m-t-20">
-				                                        <label>Confirm Password</label>
-				                                        <input type="text" id="" name="new2" class="form-control " required minlength="6"> 
-				                                    </div>
-				                                    <div class="form-actions col-md-12">
-                                                    <input type="hidden" name="emid" value="<?php echo $basic->em_id; ?>">                                                   
-				                                        <button type="submit" class="btn btn-info pull-right"> <i class="fa fa-check"></i> Save</button>
-				                                    </div>
-				                                </form>
-                                    </div>
+                                <div class="card-body">
+                                    <form class="row" action="Reset_Password" method="post" enctype="multipart/form-data">
+                                        <div class="form-group col-md-6 m-t-20">
+                                            <label>Old Password</label>
+                                            <input type="password" class="form-control" name="old" value="" placeholder="Old password" required minlength="6">
+                                        </div>
+                                        <div class="form-group col-md-6 m-t-20">
+                                            <label>Password</label>
+                                            <input type="password" class="form-control" name="new1" value="" required minlength="6" id="new-password">
+                                        </div>
+                                        <div class="form-group col-md-6 m-t-20">
+                                            <label>Confirm Password</label>
+                                            <input type="password" id="confirm-password" name="new2" class="form-control" required minlength="6">
+                                        </div>
+                                        <div class="form-actions col-md-12">
+                                            <input type="hidden" name="emid" value="<?php echo $basic->em_id; ?>">                                                   
+                                            <button type="submit" class="btn btn-info pull-right"> <i class="fa fa-check"></i> Save</button>
+                                        </div>
+                                    </form>
                                 </div>
+                            </div>
 
                                 <div class="tab-pane" id="salary" role="tabpanel">
                                     <div class="card">
 				                        <div class="card-body">
-			                        		<h3 class="card-title">Basic Salary</h3>
+			                        		<h3 class="card-title">Basic Slary</h3>
 			                                <form action="Add_Salary" method="post" enctype="multipart/form-data">
                                            <div class="row">
                                             <div class="form-group col-md-6 m-t-5">
@@ -816,25 +1019,36 @@ function confirmDelete(element) {
                                             });
                                         });
 </script>                
-<script type="text/javascript">
-                                        $(document).ready(function () {
-                                            $(".deletexp").click(function (e) {
-                                                e.preventDefault(e);
-                                                // Get the record's ID via attribute  
-                                                var iid = $(this).attr('data-id');
-                                                $.ajax({
-                                                    url: 'EXPvalueDelet?id=' + iid,
-                                                    method: 'GET',
-                                                    data: 'data',
-                                                }).done(function (response) {
-                                                    console.log(response);
-                                                    $(".message").fadeIn('fast').delay(3000).fadeOut('fast').html(response);
-                                                    window.setTimeout(function(){location.reload()},2000)
-                                                    // Populate the form fields with the data returned from server
-												});
-                                            });
-                                        });
-</script>                 
+<script>
+$(document).ready(function () {
+    $(".deletexp").click(function (e) {
+        e.preventDefault(); // Prevent default behavior of the link
+
+        var eid = $(this).attr("data-id"); // Get the ID of the education record
+        var row = $(this).closest("tr"); // Get the row for removal
+
+        if (confirm("Are you sure you want to delete this record?")) {
+            $.ajax({
+                url: "ExperienceDelete?id=" + eid, // Backend endpoint
+                method: "GET",
+                success: function (response) {
+                    // Check the server response
+                    if (response.trim() === "success") {
+                        // alert("Education record deleted successfully!");
+                        row.remove(); // Remove the row dynamically
+                    } else {
+                        alert("Failed to delete the education record.");
+                    }
+                },
+                error: function () {
+                    alert("An error occurred while deleting the record.");
+                }
+            });
+        }
+    });
+});
+
+</script>
 <script type="text/javascript">
                                         $(document).ready(function () {
                                             $(".edudelet").click(function (e) {
@@ -854,5 +1068,29 @@ function confirmDelete(element) {
                                             });
                                         });
 </script>                
+<script>
+document.querySelector("form").addEventListener("submit", function(event) {
+    // Password Criteria (example)
+    const newPassword = document.getElementById("new-password").value;
+    const confirmPassword = document.getElementById("confirm-password").value;
+
+    // Check if the new password meets security criteria (at least one uppercase letter, one number, and one special character)
+    const passwordCriteria = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/;
+    if (!passwordCriteria.test(newPassword)) {
+        // alert("Password must be at least 6 characters long, include one uppercase letter, one number, and one special character.");
+        event.preventDefault();
+        return;
+    }
+
+    // Check if the new password and confirm password match
+    if (newPassword !== confirmPassword) {
+        alert("New password and confirm password do not match.");
+        event.preventDefault();
+        return;
+    }
+
+    // You can also add the server-side check here to prevent reusing the old password
+});
+</script>
 
 <?php $this->load->view('backend/footer'); ?>

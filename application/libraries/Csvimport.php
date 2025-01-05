@@ -90,11 +90,14 @@ class Csvimport {
         // Column headers
         if(! $column_headers)
         {
-            $column_headers = $this->_get_column_headers();    
+            $column_headers = $this->_get_column_headers();
+            if (!$column_headers) {
+                $column_headers = [];  // Initialize as an empty array
+            }
         }
         else
         {
-            // If column headers provided, set them
+    // If column headers provided, set them
             $this->_set_column_headers($column_headers);
         }
         // Open the CSV for reading
@@ -134,7 +137,8 @@ class Csvimport {
                     $new_row = $row - $this->initial_line - 1; // needed so that the returned array starts at 0 instead of 1
                     foreach($column_headers as $key => $value) // assumes there are as many columns as their are title columns
                     {
-                    $result[$new_row][$value] = utf8_encode(trim($data[$key]));
+                        $result[$new_row][$value] = mb_convert_encoding(trim($data[$key]), 'UTF-8', 'auto');
+
                     }
                 }
             
