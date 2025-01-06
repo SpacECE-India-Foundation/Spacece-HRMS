@@ -63,10 +63,10 @@
                                 <h6><?php echo $basic->em_phone; ?></h6> 
                                 <small class="text-muted p-t-30 db">Social Profile</small>
                                 <br/>
-                                <a class="btn btn-circle btn-secondary" href="<?php if(!empty($socialmedia->skype_id)) echo $socialmedia->facebook ?>" target="_blank"><i class="fa fa-facebook"></i></a>
-                                <a class="btn btn-circle btn-secondary" href="<?php if(!empty($socialmedia->skype_id)) echo $socialmedia->twitter ?>" target="_blank"><i class="fa fa-twitter"></i></a>
-                                <a class="btn btn-circle btn-secondary" href="<?php if(!empty($socialmedia->skype_id)) echo $socialmedia->skype_id ?>" target="_blank"><i class="fa fa-skype"></i></a>
-                                <a class="btn btn-circle btn-secondary" href="<?php if(!empty($socialmedia->google_Plus)) echo $socialmedia->google_Plus ?>" target="_blank"><i class="fa fa-google"></i></a>
+                                <a class="btn btn-circle btn-secondary" href="<?php if(!empty($socialmedia->skype_id)){ echo $socialmedia->facebook;}else{ echo "https://www.facebook.com";} ?>" target="_blank"><i class="fa fa-facebook"></i></a>
+                                <a class="btn btn-circle btn-secondary" href="<?php if(!empty($socialmedia->skype_id)){ echo $socialmedia->twitter;}else{ echo "https://www.x.com";} ?>" target="_blank"><i class="fa fa-twitter"></i></a>
+                                <a class="btn btn-circle btn-secondary" href="<?php if(!empty($socialmedia->skype_id)){ echo $socialmedia->skype_id;}else{ echo "https://signup.live.com/";} ?>" target="_blank"><i class="fa fa-skype"></i></a>
+                                <a class="btn btn-circle btn-secondary" href="<?php if(!empty($socialmedia->google_Plus)){ echo $socialmedia->google_Plus;}else{echo "https://www.google.co.in/";} ?>" target="_blank"><i class="fa fa-google"></i></a>
                             </div>
                         </div>                                                    
                                                 </div>
