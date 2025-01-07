@@ -12,8 +12,8 @@ pipeline {
                 script {
                     // Set Git username and email for the pipeline
                     sh """
-                        git config user.name "spacece-hrms"
-                        git config user.email "technology@spacece.co"
+                        git config user.name "dhanushharsh"
+                        git config user.email "mr.harshsaini108@gmail.com"
                     """
                     
                     // Tag the repository with the build version
