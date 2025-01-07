@@ -10,6 +10,12 @@ pipeline {
         stage('Tag Source Code') {
             steps {
                 script {
+                    // Set Git username and email for the pipeline
+                    sh """
+                        git config user.name "spacece-hrms"
+                        git config user.email "technology@spacece.co"
+                    """
+                    
                     // Tag the repository with the build version
                     sh "git tag -a ${BUILD_VERSION} -m 'Build version ${BUILD_VERSION}'"
                     sh "git push origin ${BUILD_VERSION}"
