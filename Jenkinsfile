@@ -25,15 +25,34 @@ pipeline {
             }
         }
 
-        // Other stages
         stage('Deploy HRMS') {
             steps {
-                // Deployment logic here
+                script {
+                    // Create the build version directory on the HRMS server
+                    sh """
+                        mkdir -p ${REMOTE_DIR}/${BUILD_VERSION}
+                    """
+                    // Copy the build files to the versioned directory on the HRMS server
+                    sh """
+                        cp -R ${WORKSPACE}/**/*.php ${REMOTE_DIR}/${BUILD_VERSION}/
+                    """
+                    // Clean up old builds, keeping only the latest 10
+                    sh """
+                        cd ${REMOTE_DIR}
+                        TOTAL_BUILDS=\$(ls -dt build_* | wc -l)
+                        if [ "\$TOTAL_BUILDS" -gt 10 ]; then
+                            mkdir -p backups
+                            mv build_* backups/
+                            echo "Old builds backed up and retained the latest 10 builds."
+                        fi
+                    """
+                }
             }
         }
 
         stage('Archive Artifacts') {
             steps {
+                // Archive the build artifacts (PHP files in this case)
                 archiveArtifacts artifacts: '**/*.php', allowEmptyArchive: true
             }
         }
