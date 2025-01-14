@@ -47,10 +47,10 @@ pipeline {
         }
 
         stage('Deploy HRMS') {
-            steps {
-                parallel {
-                    // Using SSH agent to deploy
-                    deployUsingSSHAgent: {
+            parallel {
+                // Using SSH agent to deploy
+                deployUsingSSHAgent: {
+                    steps {
                         sshagent(['hrms-dev']) {
                             sh '''
                             # Deployment command using Jenkins agent (hrms-dev)
@@ -58,9 +58,11 @@ pipeline {
                             '''
                         }
                     }
+                }
 
-                    // Using Publish Over SSH for deployment
-                    deployUsingPublishOverSSH: {
+                // Using Publish Over SSH for deployment
+                deployUsingPublishOverSSH: {
+                    steps {
                         sshPublisher(publishers: [
                             sshPublisherDesc(
                                 configName: 'hrms-server', // Your SSH config name
