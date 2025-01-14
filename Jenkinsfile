@@ -50,7 +50,7 @@ pipeline {
             steps {
                 sshPublisher(publishers: [
                     sshPublisherDesc(
-                        configName: 'hrms-server',
+                        configName: 'hrms-dev',
                         transfers: [
                             sshTransfer(
                                 cleanRemote: false,
