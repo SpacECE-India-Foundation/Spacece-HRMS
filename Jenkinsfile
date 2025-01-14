@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        GITHUB_CREDENTIALS = credentials('github-token') // Using the Jenkins credential ID
+        GITHUB_CREDENTIALS = credentials('github-token') // This will pull the secret text token
     }
 
     stages {
