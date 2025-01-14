@@ -24,13 +24,16 @@ pipeline {
 
         stage('Tag Source Code') {
             steps {
-                sh '''
-                git config --global --add safe.directory '*'
-                git config user.name "tech-spacece"
-                git config user.email "technology@spacece.in"
-                git tag -a build_${BUILD_NUMBER} -m "Build version build_${BUILD_NUMBER}"
-                git push https://tech-spacece:${GITHUB_CREDENTIALS_PSW}@github.com/SpacECE-India-Foundation/Spacece-HRMS.git build_${BUILD_NUMBER}
-                '''
+                script {
+                    // Set Git user configuration
+                    sh '''
+                    git config --global --add safe.directory '*'
+                    git config user.name "tech-spacece"
+                    git config user.email "technology@spacece.in"
+                    git tag -a build_${BUILD_NUMBER} -m "Build version build_${BUILD_NUMBER}"
+                    git push https://${GITHUB_CREDENTIALS_USR}:${GITHUB_CREDENTIALS_PSW}@github.com/SpacECE-India-Foundation/Spacece-HRMS.git build_${BUILD_NUMBER}
+                    '''
+                }
             }
         }
 
