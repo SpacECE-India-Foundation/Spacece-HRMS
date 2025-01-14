@@ -2,7 +2,8 @@ pipeline {
     agent { label 'hrms-dev' }
 
     environment {
-        GITHUB_CREDENTIALS = credentials('github-token') 
+        GITHUB_CREDENTIALS = credentials('github-token')
+        ARTIFACT_DIR = '/var/www/html/builds'  // Directory to store build artifacts
     }
 
     stages {
@@ -31,11 +32,17 @@ pipeline {
                         git config user.name "tech-spacece"
                         git config user.email "technology@spacece.in"
                         git tag -a build_${BUILD_NUMBER} -m "Build version build_${BUILD_NUMBER}"
-
                         git push https://tech-spacece:${GITHUB_TOKEN}@github.com/SpacECE-India-Foundation/Spacece-HRMS.git build_${BUILD_NUMBER}
                         '''
                     }
                 }
+            }
+        }
+
+        stage('Build') {
+            steps {
+                // Add build commands here (e.g., compile, package, etc.)
+                sh 'make build'  // Example build command
             }
         }
 
@@ -44,9 +51,14 @@ pipeline {
                 stage('Deploy Using SSH Agent') {
                     steps {
                         sshagent(['hrms-dev']) {
-                            sh '''
-                            rsync -avz /home/devopsadmin/workspace/hrms-cicd/*.php devopsadmin@43.204.210.9:/var/www/html/Spacece-HRMS/
-                            '''
+                            script {
+                                // Create a versioned directory for the build artifacts
+                                def buildVersion = "build_${BUILD_NUMBER}"
+                                sh """
+                                mkdir -p ${ARTIFACT_DIR}/${buildVersion}
+                                cp /home/devopsadmin/workspace/hrms-cicd/*.php ${ARTIFACT_DIR}/${buildVersion}/
+                                """
+                            }
                         }
                     }
                 }
