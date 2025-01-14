@@ -2,14 +2,20 @@ pipeline {
     agent { label 'hrms-dev' }
 
     environment {
-        GITHUB_CREDENTIALS = credentials('github-token')
-        ARTIFACT_DIR = '/var/www/html/builds'  // Directory to store build artifacts
+        GITHUB_CREDENTIALS = credentials('github-token') 
     }
 
     stages {
         stage('Checkout Code') {
             steps {
-                checkout scm
+                checkout([
+                    $class: 'GitSCM',
+                    branches: [[name: '*/main']],
+                    userRemoteConfigs: [[
+                        url: 'https://github.com/SpacECE-India-Foundation/Spacece-HRMS.git',
+                        credentialsId: 'github-token'
+                    ]]
+                ])
             }
         }
 
@@ -31,80 +37,48 @@ pipeline {
 
         stage('Build') {
             steps {
-                sh 'make build'  // Your build command here
+                sh '''
+                # Build your project
+                make build
+                # Package the build artifact
+                tar -czf hrms_build_${BUILD_NUMBER}.tar.gz *
+                '''
             }
         }
 
-        stage('Deploy HRMS') {
-            parallel {
-                stage('Deploy Using SSH Agent') {
-                    steps {
-                        sshagent(['hrms-dev']) {
-                            sh '''
-                            mkdir -p ${ARTIFACT_DIR}/build_${BUILD_NUMBER}
-                            cp /home/devopsadmin/workspace/hrms-cicd/*.php ${ARTIFACT_DIR}/build_${BUILD_NUMBER}/
-                            '''
-                        }
-                    }
-                }
-
-                stage('Deploy Using Publish Over SSH') {
-                    steps {
-                        sshPublisher(publishers: [
-                            sshPublisherDesc(
-                                configName: 'hrms-server', 
-                                transfers: [
-                                    sshTransfer(
-                                        cleanRemote: false,
-                                        remoteDirectory: '/var/www/html/Spacece-HRMS',
-                                        sourceFiles: '**/*.php'
-                                    )
-                                ],
-                                verbose: false
-                            )
-                        ])
-                    }
+        stage('Upload Build Artifact') {
+            steps {
+                sshagent(['hrms-dev']) {
+                    sh '''
+                    # Upload the build artifact to the server
+                    mv hrms_build_${BUILD_NUMBER}.tar.gz /var/www/html/Spacece-HRMS/builds/
+                    '''
                 }
             }
         }
 
         stage('Cleanup Old Builds') {
             steps {
-                script {
-                    def buildDir = '/var/www/html/builds/'
-                    def allBuilds = sh(script: "ls -d ${buildDir}build_*", returnStdout: true).split("\n")
-                    allBuilds.sort().reverse().drop(5).each { buildToDelete ->
-                        sh "rm -rf ${buildToDelete}"
-                    }
+                sshagent(['hrms-dev']) {
+                    sh '''
+                    # Keep only the latest 5 builds
+                    ls /var/www/html/Spacece-HRMS/builds/ | sort -V | head -n -5 | xargs -I {} rm /var/www/html/Spacece-HRMS/builds/{}
+                    '''
                 }
             }
         }
 
-        stage('Update Build Page') {
+        stage('Update Webpage') {
             steps {
-                script {
-                    def buildPagePath = '/var/www/html/builds/index.html'
-                    def latestBuilds = sh(script: "ls -d ${buildDir}build_* | sort -r | head -n 5", returnStdout: true).split("\n")
-                    def buildLinks = latestBuilds.collect { build ->
-                        def version = build.split('_')[1]
-                        return "<li><a href='/dev/${version}'>HRMS ${version}</a></li>"
-                    }.join("\n")
-
-                    def htmlContent = """
-                    <!DOCTYPE html>
-                    <html>
-                        <head><title>HRMS Development Builds</title></head>
-                        <body>
-                            <h1>HRMS Module: Development Builds</h1>
-                            <p>You can access even previous 5 development builds:</p>
-                            <ul>
-                                ${buildLinks}
-                            </ul>
-                        </body>
-                    </html>
-                    """
-
-                    writeFile(file: buildPagePath, text: htmlContent)
+                sshagent(['hrms-dev']) {
+                    sh '''
+                    # Generate a webpage with the latest 5 builds
+                    echo "<html><body><h1>HRMS Development Builds</h1><ul>" > /var/www/html/Spacece-HRMS/index.html
+                    for version in $(ls /var/www/html/Spacece-HRMS/builds/ | sort -V | tail -n 5); do
+                        echo "<li><a href='/builds/$version'>$version</a></li>" >> /var/www/html/Spacece-HRMS/index.html
+                    done
+                    echo "</ul></body></html>" >> /var/www/html/Spacece-HRMS/index.html
+                    '''
                 }
             }
         }
