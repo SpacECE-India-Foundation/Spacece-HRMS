@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        GITHUB_CREDENTIALS = credentials('github-token') // Using the Jenkins credential ID
+        GITHUB_CREDENTIALS = credentials('github-token') // This will pull the secret text token
     }
 
     stages {
@@ -25,20 +25,19 @@ pipeline {
         stage('Tag Source Code') {
             steps {
                 script {
-                    // Use the withCredentials block to inject the GitHub token
-                    withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
-                        // Debugging - printing the GitHub username and token
-                        echo "GitHub Username: tech-spacece"
-                        echo "GitHub Token: ${GITHUB_TOKEN}"
+                    // Debugging - print the username and token from Jenkins credentials
+                    echo "GitHub Username: tech-spacece"
+                    echo "GitHub Token: ${GITHUB_CREDENTIALS_PSW}"
 
-                        // Now use the token for git operations
+                    // Using withCredentials block to inject token properly
+                    withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
                         sh '''
                         git config --global --add safe.directory '*'
                         git config user.name "tech-spacece"
                         git config user.email "technology@spacece.in"
                         git tag -a build_${BUILD_NUMBER} -m "Build version build_${BUILD_NUMBER}"
 
-                        # Use GitHub token for push
+                        # Using the GitHub token for authentication
                         git push https://tech-spacece:${GITHUB_TOKEN}@github.com/SpacECE-India-Foundation/Spacece-HRMS.git build_${BUILD_NUMBER}
                         '''
                     }
@@ -48,15 +47,30 @@ pipeline {
 
         stage('Deploy HRMS') {
             steps {
-                script {
-                    // Using the SSH agent to deploy
-                    sshagent(['hrms-dev']) {
-                        sh '''
-                        # Deployment command using rsync (or use any other deployment method)
-                        rsync -avz --exclude '.git' --exclude 'node_modules' --exclude '.env' ./ user@remote-server:/var/www/html/Spacece-HRMS
-                        '''
-                    }
-                }
+                sshPublisher(publishers: [
+                    sshPublisherDesc(
+                        configName: 'hrms-server',
+                        transfers: [
+                            sshTransfer(
+                                cleanRemote: false,
+                                excludes: '',
+                                execCommand: '',
+                                execTimeout: 120000,
+                                flatten: false,
+                                makeEmptyDirs: false,
+                                noDefaultExcludes: false,
+                                patternSeparator: '[, ]+',
+                                remoteDirectory: '/var/www/html/Spacece-HRMS',
+                                remoteDirectorySDF: false,
+                                removePrefix: '',
+                                sourceFiles: '**/*.php'
+                            )
+                        ],
+                        usePromotionTimestamp: false,
+                        useWorkspaceInPromotion: false,
+                        verbose: false
+                    )
+                ])
             }
         }
     }
