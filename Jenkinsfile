@@ -45,7 +45,7 @@ pipeline {
                     steps {
                         sshagent(['hrms-dev']) {
                             sh '''
-                            rsync -avz /var/lib/jenkins/workspace/hrms-cicd/*.php user@43.204.210.9:/var/www/html/Spacece-HRMS/
+                            rsync -avz /var/lib/jenkins/workspace/hrms-cicd/*.php devopsadmin@43.204.210.9:/var/www/html/Spacece-HRMS/
                             '''
                         }
                     }
