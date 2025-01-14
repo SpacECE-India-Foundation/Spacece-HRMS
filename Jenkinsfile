@@ -9,14 +9,7 @@ pipeline {
     stages {
         stage('Checkout Code') {
             steps {
-                checkout([
-                    $class: 'GitSCM',
-                    branches: [[name: '*/main']],
-                    userRemoteConfigs: [[
-                        url: 'https://github.com/SpacECE-India-Foundation/Spacece-HRMS.git',
-                        credentialsId: 'github-token'
-                    ]]
-                ])
+                checkout scm
             }
         }
 
@@ -24,9 +17,6 @@ pipeline {
             steps {
                 script {
                     withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
-                        echo "GitHub Username: tech-spacece"
-                        echo "GitHub Token: ${GITHUB_TOKEN}"
-
                         sh '''
                         git config --global --add safe.directory '*'
                         git config user.name "tech-spacece"
@@ -41,8 +31,7 @@ pipeline {
 
         stage('Build') {
             steps {
-                // Add build commands here (e.g., compile, package, etc.)
-                sh 'make build'  // Example build command
+                sh 'make build'  // Your build command here
             }
         }
 
@@ -51,14 +40,10 @@ pipeline {
                 stage('Deploy Using SSH Agent') {
                     steps {
                         sshagent(['hrms-dev']) {
-                            script {
-                                // Create a versioned directory for the build artifacts
-                                def buildVersion = "build_${BUILD_NUMBER}"
-                                sh """
-                                mkdir -p ${ARTIFACT_DIR}/${buildVersion}
-                                cp /home/devopsadmin/workspace/hrms-cicd/*.php ${ARTIFACT_DIR}/${buildVersion}/
-                                """
-                            }
+                            sh '''
+                            mkdir -p ${ARTIFACT_DIR}/build_${BUILD_NUMBER}
+                            cp /home/devopsadmin/workspace/hrms-cicd/*.php ${ARTIFACT_DIR}/build_${BUILD_NUMBER}/
+                            '''
                         }
                     }
                 }
@@ -79,6 +64,47 @@ pipeline {
                             )
                         ])
                     }
+                }
+            }
+        }
+
+        stage('Cleanup Old Builds') {
+            steps {
+                script {
+                    def buildDir = '/var/www/html/builds/'
+                    def allBuilds = sh(script: "ls -d ${buildDir}build_*", returnStdout: true).split("\n")
+                    allBuilds.sort().reverse().drop(5).each { buildToDelete ->
+                        sh "rm -rf ${buildToDelete}"
+                    }
+                }
+            }
+        }
+
+        stage('Update Build Page') {
+            steps {
+                script {
+                    def buildPagePath = '/var/www/html/builds/index.html'
+                    def latestBuilds = sh(script: "ls -d ${buildDir}build_* | sort -r | head -n 5", returnStdout: true).split("\n")
+                    def buildLinks = latestBuilds.collect { build ->
+                        def version = build.split('_')[1]
+                        return "<li><a href='/dev/${version}'>HRMS ${version}</a></li>"
+                    }.join("\n")
+
+                    def htmlContent = """
+                    <!DOCTYPE html>
+                    <html>
+                        <head><title>HRMS Development Builds</title></head>
+                        <body>
+                            <h1>HRMS Module: Development Builds</h1>
+                            <p>You can access even previous 5 development builds:</p>
+                            <ul>
+                                ${buildLinks}
+                            </ul>
+                        </body>
+                    </html>
+                    """
+
+                    writeFile(file: buildPagePath, text: htmlContent)
                 }
             }
         }
