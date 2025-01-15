@@ -35,13 +35,11 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage('Package Application') {
             steps {
                 sh '''
-                # Build your project
-                make build
-                # Package the build artifact
-                tar -czf hrms_build_${BUILD_NUMBER}.tar.gz *
+                # Archive the PHP application
+                tar -czf hrms_build_${BUILD_NUMBER}.tar.gz ./*
                 '''
             }
         }
@@ -62,7 +60,8 @@ pipeline {
                 sshagent(['hrms-dev']) {
                     sh '''
                     # Keep only the latest 5 builds
-                    ls /var/www/html/Spacece-HRMS/builds/ | sort -V | head -n -5 | xargs -I {} rm /var/www/html/Spacece-HRMS/builds/{}
+                    cd /var/www/html/Spacece-HRMS/builds/
+                    ls -1t | tail -n +6 | xargs -d '\n' rm -f
                     '''
                 }
             }
@@ -74,7 +73,7 @@ pipeline {
                     sh '''
                     # Generate a webpage with the latest 5 builds
                     echo "<html><body><h1>HRMS Development Builds</h1><ul>" > /var/www/html/Spacece-HRMS/index.html
-                    for version in $(ls /var/www/html/Spacece-HRMS/builds/ | sort -V | tail -n 5); do
+                    for version in $(ls /var/www/html/Spacece-HRMS/builds/ | sort -Vr | head -n 5); do
                         echo "<li><a href='/builds/$version'>$version</a></li>" >> /var/www/html/Spacece-HRMS/index.html
                     done
                     echo "</ul></body></html>" >> /var/www/html/Spacece-HRMS/index.html
