@@ -63,7 +63,10 @@ pipeline {
         stage('Cleanup Old Builds') {
             steps {
                 echo "Cleaning up old builds..."
-                // Add cleanup steps if necessary
+                script {
+                    // Delete directories older than 15 days
+                    sh "find /var/www/html/build_version/ -type d -mtime +15 -exec rm -rf {} \\;"
+                }
             }
         }
 
