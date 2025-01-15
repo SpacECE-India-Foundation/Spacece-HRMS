@@ -71,14 +71,24 @@ pipeline {
         stage('Update Webpage') {
             steps {
                 sshagent(['hrms-dev']) {
-                    sh '''
-                    # Generate a webpage with the latest 5 builds
-                    echo "<html><body><h1>HRMS Development Builds</h1><ul>" > /var/www/html/Spacece-HRMS/index.html
-                    for version in $(ls /var/www/html/Spacece-HRMS/build_version/ | sort -V | tail -n 5); do
-                        echo "<li><a href='/build_version/$version'>$version</a></li>" >> /var/www/html/Spacece-HRMS/index.html
-                    done
-                    echo "</ul></body></html>" >> /var/www/html/Spacece-HRMS/index.html
-                    '''
+                    script {
+                        // Fetch the latest 5 build versions
+                        def buildFiles = sh(script: "ls /var/www/html/Spacece-HRMS/build_version/ | sort -V | tail -n 5", returnStdout: true).trim().split("\n")
+                        
+                        // Start generating the HTML content
+                        def htmlContent = "<html><body><h1>HRMS Development Builds</h1><ul>\n"
+                        
+                        // Add each build file as a link in the HTML page
+                        buildFiles.each { file ->
+                            htmlContent += "<li><a href='/build_version/${file}'>${file}</a></li>\n"
+                        }
+                        
+                        // Close the HTML tags
+                        htmlContent += "</ul></body></html>"
+                        
+                        // Write the HTML content to the webpage
+                        writeFile file: '/var/www/html/Spacece-HRMS/index.html', text: htmlContent
+                    }
                 }
             }
         }
