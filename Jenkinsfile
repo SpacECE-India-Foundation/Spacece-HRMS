@@ -35,23 +35,15 @@ pipeline {
             }
         }
 
-        stage('Package Application') {
-            steps {
-                sh '''
-                # Package the build artifact
-                tar -czf hrms_build_${BUILD_NUMBER}.tar.gz ./Jenkinsfile ./README.md ./application ./assets ./composer.json ./contributing.md ./database ./error_log ./index.php ./license.txt ./readme.rst ./system
-                '''
-            }
-        }
-
-        stage('Upload Build Artifact') {
+        stage('Deploy Build Artifacts') {
             steps {
                 sshagent(['hrms-dev']) {
                     sh '''
                     # Ensure the build_version directory exists
-                    mkdir -p /var/www/html/Spacece-HRMS/build_version/
-                    # Upload the build artifact
-                    mv hrms_build_${BUILD_NUMBER}.tar.gz /var/www/html/Spacece-HRMS/build_version/
+                    mkdir -p /var/www/html/Spacece-HRMS/build_version/build_${BUILD_NUMBER}
+                    
+                    # Copy all required files into the new build directory
+                    cp -r ./Jenkinsfile ./README.md ./application ./assets ./composer.json ./contributing.md ./database ./error_log ./index.php ./license.txt ./readme.rst ./system /var/www/html/Spacece-HRMS/build_version/build_${BUILD_NUMBER}
                     '''
                 }
             }
@@ -62,7 +54,7 @@ pipeline {
                 sshagent(['hrms-dev']) {
                     sh '''
                     # Keep only the latest 5 builds
-                    ls /var/www/html/Spacece-HRMS/build_version/ | sort -V | head -n -5 | xargs -I {} rm /var/www/html/Spacece-HRMS/build_version/{}
+                    ls /var/www/html/Spacece-HRMS/build_version/ | sort -V | head -n -5 | xargs -I {} rm -rf /var/www/html/Spacece-HRMS/build_version/{}
                     '''
                 }
             }
@@ -71,25 +63,28 @@ pipeline {
         stage('Update Webpage') {
             steps {
                 sshagent(['hrms-dev']) {
-                    script {
-                        // Fetch the latest 5 build versions
-                        def buildFiles = sh(script: "ls /var/www/html/Spacece-HRMS/build_version/ | sort -V | tail -n 5", returnStdout: true).trim().split("\n")
-                        
-                        // Start generating the HTML content
-                        def htmlContent = "<html><body><h1>HRMS Development Builds</h1><ul>\n"
-                        
-                        // Add each build file as a link in the HTML page
-                        buildFiles.each { file ->
-                            htmlContent += "<li><a href='/build_version/${file}'>${file}</a></li>\n"
-                        }
-                        
-                        // Close the HTML tags
-                        htmlContent += "</ul></body></html>"
-                        
-                        // Write the HTML content to the webpage
-                        writeFile file: '/var/www/html/Spacece-HRMS/index.html', text: htmlContent
-                    }
+                    sh '''
+                    # Generate a webpage with the latest 5 builds
+                    echo "<html><body><h1>HRMS Development Builds</h1><ul>" > /var/www/html/Spacece-HRMS/index.html
+                    for version in $(ls /var/www/html/Spacece-HRMS/build_version/ | sort -V | tail -n 5); do
+                        echo "<li><a href='/build_version/$version'>$version</a></li>" >> /var/www/html/Spacece-HRMS/index.html
+                    done
+                    echo "</ul></body></html>" >> /var/www/html/Spacece-HRMS/index.html
+                    '''
                 }
+            }
+        }
+
+        stage('Send Email Notification') {
+            steps {
+                emailext(
+                    subject: "Build ${BUILD_NUMBER} - Successful",
+                    body: """The build version ${BUILD_NUMBER} has been successfully deployed.
+                    Access the latest builds at: http://43.204.210.9/
+                    """,
+                    recipientProviders: [[$class: 'CulpritsRecipientProvider']],
+                    to: 'suryaharsh59@gmail.com'
+                )
             }
         }
     }
