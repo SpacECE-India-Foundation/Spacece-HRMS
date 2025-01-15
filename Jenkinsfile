@@ -19,7 +19,7 @@ pipeline {
                 script {
                     withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
                         sh """
-                            git config --global --add safe.directory *
+                            git config --global --add safe.directory /var/lib/jenkins/workspace/hrms-cicd
                             git config user.name 'tech-spacece'
                             git config user.email 'technology@spacece.in'
                             git fetch --tags --force --progress
