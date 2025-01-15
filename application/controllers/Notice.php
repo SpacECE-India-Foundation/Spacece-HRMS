@@ -65,7 +65,7 @@ class Notice extends CI_Controller {
                 $config = array(
                     'file_name' => $file_name,
                     'upload_path' => "./assets/images/notice",
-                    'allowed_types' => "gif|jpg|png|jpeg|pdf|doc|docx",
+                    'allowed_types' => "pdf|doc|docx",
                     'overwrite' => False,
                     'max_size' => "50720"
                 );
@@ -73,7 +73,7 @@ class Notice extends CI_Controller {
                 $this->load->library('upload', $config);
                 $this->upload->initialize($config);                
                 if (!$this->upload->do_upload('file_url')) {
-                    $error = $this->upload->display_errors();
+                    $error = 'Invalid file type. Only PDF, DOC and DOCX files are allowed.';
                     echo $error;  // Return upload error as plain text
                     return;
                 }
