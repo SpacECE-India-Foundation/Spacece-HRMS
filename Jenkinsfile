@@ -17,7 +17,7 @@ pipeline {
         stage('Checkout Code') {
             steps {
                 script {
-                    withCredentials([usernamePassword(credentialsId: 'github-token', passwordVariable: 'GITHUB_TOKEN', usernameVariable: 'GITHUB_USERNAME')]) {
+                    withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
                         sh """
                             git config --global --add safe.directory *
                             git config user.name 'tech-spacece'
@@ -35,7 +35,7 @@ pipeline {
                     withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
                         sh """
                             git tag -a build_${BUILD_NUMBER} -m "Build version build_${BUILD_NUMBER}"
-                            git push https://${GITHUB_USERNAME}:${GITHUB_TOKEN}@github.com/SpacECE-India-Foundation/Spacece-HRMS.git build_${BUILD_NUMBER}
+                            git push https://tech-spacece:${GITHUB_TOKEN}@github.com/SpacECE-India-Foundation/Spacece-HRMS.git build_${BUILD_NUMBER}
                         """
                     }
                 }
