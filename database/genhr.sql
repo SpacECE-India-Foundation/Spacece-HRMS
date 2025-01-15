@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.2
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 27, 2019 at 08:25 PM
--- Server version: 10.1.34-MariaDB
--- PHP Version: 7.2.7
+-- Generation Time: Jan 15, 2025 at 06:07 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -35,7 +34,7 @@ CREATE TABLE `addition` (
   `medical` varchar(64) DEFAULT NULL,
   `house_rent` varchar(64) DEFAULT NULL,
   `conveyance` varchar(64) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -50,7 +49,7 @@ CREATE TABLE `address` (
   `country` varchar(128) DEFAULT NULL,
   `address` varchar(512) DEFAULT NULL,
   `type` enum('Present','Permanent') DEFAULT 'Present'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -70,7 +69,14 @@ CREATE TABLE `assets` (
   `ass_price` varchar(128) DEFAULT NULL,
   `ass_qty` varchar(64) DEFAULT NULL,
   `in_stock` varchar(64) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `assets`
+--
+
+INSERT INTO `assets` (`ass_id`, `catid`, `ass_name`, `ass_brand`, `ass_model`, `ass_code`, `configuration`, `purchasing_date`, `ass_price`, `ass_qty`, `in_stock`) VALUES
+(19, '1', 'sdfsdfds', 'ssssssss', 'sssssssss', 'sssss', 'sssssssssssssssssssssssss', '12/16/2024', '2', '2', '2');
 
 -- --------------------------------------------------------
 
@@ -82,7 +88,7 @@ CREATE TABLE `assets_category` (
   `cat_id` int(14) NOT NULL,
   `cat_status` enum('ASSETS','LOGISTIC') NOT NULL DEFAULT 'ASSETS',
   `cat_name` varchar(256) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `assets_category`
@@ -109,7 +115,20 @@ CREATE TABLE `assign_leave` (
   `hour` varchar(255) NOT NULL,
   `total_day` varchar(64) DEFAULT NULL,
   `dateyear` varchar(64) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `assign_leave`
+--
+
+INSERT INTO `assign_leave` (`id`, `app_id`, `emp_id`, `type_id`, `day`, `hour`, `total_day`, `dateyear`) VALUES
+(22, '', 'sha1343', 9, '1', '', '0', '2016'),
+(23, '', 'sha1343', 5, '15', '', '0', '2024'),
+(24, '', 'Doe1753', 9, '2', '5460', '0', '2016'),
+(25, '', 'Doe1753', 9, '11', '5460', '0', '2017'),
+(26, '', 'Doe1753', 9, '11', '5460', '0', '2016'),
+(27, '', 'Doe1753', 9, '4', '5460', '0', '2019'),
+(28, '', 'data-id=\"37\"', 7, NULL, '14', NULL, '2025');
 
 -- --------------------------------------------------------
 
@@ -123,7 +142,7 @@ CREATE TABLE `assign_task` (
   `project_id` int(14) NOT NULL,
   `assign_user` varchar(64) DEFAULT NULL,
   `user_type` enum('Team Head','Collaborators') NOT NULL DEFAULT 'Collaborators'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -143,32 +162,38 @@ CREATE TABLE `attendance` (
   `overtime` varchar(128) DEFAULT NULL,
   `earnleave` varchar(128) DEFAULT NULL,
   `status` varchar(64) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `attendance`
 --
 
 INSERT INTO `attendance` (`id`, `emp_id`, `atten_date`, `signin_time`, `signout_time`, `working_hour`, `place`, `absence`, `overtime`, `earnleave`, `status`) VALUES
-(993, '4', '2018-04-09', '11:00:00', '19:29:00', '247 min', 'office', '232 min', '149 min', NULL, 'A'),
-(994, '20', '2018-04-12', '09:00:00', '17:00:00', '480', '', NULL, NULL, NULL, 'E'),
-(995, '20', '2018-04-13', '09:00:00', '17:00:00', '480', '', NULL, NULL, NULL, 'E'),
-(996, '20', '2018-04-14', '09:00:00', '17:00:00', '480', '', NULL, NULL, NULL, 'E'),
-(997, '20', '2018-04-15', '09:00:00', '17:00:00', '480', '', NULL, NULL, NULL, 'E'),
-(998, '2', '2018-02-20', '10:00:00', '17:00:00', '0 min', 'office', '429 min', '0 min', NULL, 'A'),
-(999, '3', '2018-02-21', '09:00:00', '18:00:00', '0 min', 'office', '480 min', '0 min', NULL, 'A'),
-(1000, '4', '2018-02-22', '09:00:00', '19:00:00', '247 min', 'office', '232 min', '149 min', NULL, 'A'),
-(1001, '12', '2018-03-02', '01:00:00', '03:00:00', '396 min', 'office', '83 min', '142 min', NULL, 'A'),
-(1002, '13', '2018-03-03', '02:00:00', '04:00:00', '480 min', 'office', '0 min', '34 min', NULL, 'A'),
-(1003, '14', '2018-03-04', '03:00:00', '05:00:00', '399 min', 'office', '80 min', '152 min', NULL, 'A'),
-(1004, '15', '2018-03-05', '04:00:00', '06:00:00', '480 min', 'office', '0 min', '133 min', NULL, 'A'),
-(1005, '16', '2018-03-06', '05:00:00', '07:00:00', '0 min', 'office', '480 min', '0 min', NULL, 'A'),
-(1006, '17', '2018-03-07', '06:00:00', '08:00:00', '480 min', 'office', '0 min', '286 min', NULL, 'A'),
-(1007, '18', '2018-03-08', '07:00:00', '09:00:00', '431 min', 'office', '0 min', '140 min', NULL, 'A'),
-(1008, '19', '2018-03-09', '08:00:00', '10:00:00', '377 min', 'office', '102 min', '192 min', NULL, 'A'),
-(1009, '24', '2018-03-14', '01:00:00', '15:00:00', '433 min', 'office', '0 min', '140 min', NULL, 'A'),
-(1010, '25', '2018-03-15', '02:00:00', '16:00:00', '480 min', 'office', '0 min', '0 min', NULL, 'A'),
-(1011, '26', '2018-02-20', '03:00:00', '17:00:00', '339 min', 'office', '140 min', '178 min', NULL, 'A');
+(1031, '121', '2032-05-16', '12:00:00', '00:00:00', '12 h 0 m', 'office', NULL, NULL, NULL, 'A'),
+(1032, '123456', '2033-05-16', '12:00:00', '04:05:00', NULL, 'office', NULL, NULL, NULL, 'A'),
+(1033, '111', '2032-05-16', '12:00:00', '00:00:00', '12 h 0 m', 'office', NULL, NULL, NULL, 'A'),
+(1036, '123456', '2033-05-16', '12:00:00', '04:05:00', NULL, 'office', NULL, NULL, NULL, 'A'),
+(1037, '121', '2032-05-16', '12:00:00', '00:00:00', '12 h 0 m', 'office', NULL, NULL, NULL, 'A'),
+(1038, '123456', '2033-05-16', '12:00:00', '04:05:00', NULL, 'office', NULL, NULL, NULL, 'A'),
+(1039, '99', '2024-12-19', '09:00:00', '17:00:00', '480', '', NULL, NULL, NULL, 'E'),
+(1040, '99', '2024-12-04', '09:00:00', '17:00:00', '480', '', NULL, NULL, NULL, 'E'),
+(1041, '99', '2024-12-05', '09:00:00', '17:00:00', '480', '', NULL, NULL, NULL, 'E'),
+(1042, '123456', '2033-05-16', '12:00:00', '04:05:00', NULL, 'office', NULL, NULL, NULL, 'A'),
+(1043, '123456', '2033-05-16', '12:00:00', '04:05:00', NULL, 'office', NULL, NULL, NULL, 'A'),
+(1044, '121', '2025-01-21', '12:15:00', '01:15:00', '11 h 0 m', 'field', NULL, NULL, NULL, 'A'),
+(1045, '121', '2025-01-29', '00:05:00', '00:00:00', '00 h 5 m', 'field', NULL, NULL, NULL, 'A'),
+(1046, '121', '2025-01-07', '09:00:00', '17:00:00', '480', '', NULL, NULL, NULL, 'E'),
+(1047, '121', '2025-01-08', '09:00:00', '17:00:00', '480', '', NULL, NULL, NULL, 'E'),
+(1048, '121', '2025-01-09', '09:00:00', '17:00:00', '480', '', NULL, NULL, NULL, 'E'),
+(1049, '121', '2025-01-10', '09:00:00', '17:00:00', '480', '', NULL, NULL, NULL, 'E'),
+(1050, '121', '2025-01-11', '09:00:00', '17:00:00', '480', '', NULL, NULL, NULL, 'E'),
+(1051, '121', '2025-01-12', '09:00:00', '17:00:00', '480', '', NULL, NULL, NULL, 'E'),
+(1052, '121', '2025-01-13', '09:00:00', '17:00:00', '480', '', NULL, NULL, NULL, 'E'),
+(1053, '121', '2025-01-14', '09:00:00', '17:00:00', '480', '', NULL, NULL, NULL, 'E'),
+(1054, '121', '2025-01-15', '09:00:00', '17:00:00', '480', '', NULL, NULL, NULL, 'E'),
+(1055, '123456', '2033-05-16', '12:00:00', '04:05:00', '16:05:00', 'office', NULL, NULL, NULL, 'A'),
+(1056, '123456', '2033-05-16', '12:00:00', '04:05:00', '16:05:00', 'office', NULL, NULL, NULL, 'A'),
+(1057, '#', '2025-01-13', '23:05:00', '00:00:00', '23 h 5 m', 'office', NULL, NULL, NULL, 'A');
 
 -- --------------------------------------------------------
 
@@ -184,7 +209,14 @@ CREATE TABLE `bank_info` (
   `branch_name` varchar(256) DEFAULT NULL,
   `account_number` varchar(256) DEFAULT NULL,
   `account_type` varchar(256) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `bank_info`
+--
+
+INSERT INTO `bank_info` (`id`, `em_id`, `holder_name`, `bank_name`, `branch_name`, `account_number`, `account_type`) VALUES
+(11, 'Doe1753', 'ESHa shastri', 'ddddd sdd', 'dddddddd', '000111', 'Savings');
 
 -- --------------------------------------------------------
 
@@ -199,7 +231,7 @@ CREATE TABLE `deduction` (
   `bima` varchar(64) DEFAULT NULL,
   `tax` varchar(64) DEFAULT NULL,
   `others` varchar(64) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -210,7 +242,7 @@ CREATE TABLE `deduction` (
 CREATE TABLE `department` (
   `id` int(11) NOT NULL,
   `dep_name` varchar(64) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `department`
@@ -235,7 +267,7 @@ CREATE TABLE `desciplinary` (
   `action` varchar(256) DEFAULT NULL,
   `title` varchar(256) DEFAULT NULL,
   `description` varchar(512) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -246,7 +278,7 @@ CREATE TABLE `desciplinary` (
 CREATE TABLE `designation` (
   `id` int(11) NOT NULL,
   `des_name` varchar(64) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `designation`
@@ -279,7 +311,7 @@ CREATE TABLE `earned_leave` (
   `present_date` varchar(64) DEFAULT NULL,
   `hour` varchar(64) DEFAULT NULL,
   `status` varchar(64) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `earned_leave`
@@ -288,7 +320,9 @@ CREATE TABLE `earned_leave` (
 INSERT INTO `earned_leave` (`id`, `em_id`, `present_date`, `hour`, `status`) VALUES
 (26, 'Mir1685', '0', '0', '1'),
 (27, 'Rah1682', '0', '0', '1'),
-(28, 'edr1432', '0', '0', '1');
+(28, 'edr1432', '0', '0', '1'),
+(29, 'Soy1332', '1', '8', '1'),
+(30, 'sha1343', '8', '64', '1');
 
 -- --------------------------------------------------------
 
@@ -303,7 +337,7 @@ CREATE TABLE `education` (
   `institute` varchar(256) DEFAULT NULL,
   `result` varchar(64) DEFAULT NULL,
   `year` varchar(64) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -332,16 +366,19 @@ CREATE TABLE `employee` (
   `em_contact_end` varchar(128) DEFAULT NULL,
   `em_image` varchar(128) DEFAULT NULL,
   `em_nid` varchar(64) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `employee`
 --
 
 INSERT INTO `employee` (`id`, `em_id`, `em_code`, `des_id`, `dep_id`, `first_name`, `last_name`, `em_email`, `em_password`, `em_role`, `em_address`, `status`, `em_gender`, `em_phone`, `em_birthday`, `em_blood_group`, `em_joining_date`, `em_contact_end`, `em_image`, `em_nid`) VALUES
-(10, 'Soy1332', '99', 0, 0, 'Dir', 'Soyeb', 'nawjeshbd@gmail.com', '996a3778768a2c3ea7c5b586fdfc92051dfdd39c', 'SUPER ADMIN', NULL, 'ACTIVE', 'Female', '01723177901', '2017-12-26', 'B+', '2018-01-06', '2018-01-06', 'Soy1332.jpg', '132154566556'),
-(36, 'Doe1753', '123456', 12, 2, 'Jhon', 'Doe', 'admin@gmail.com', 'cd5ea73cd58f827fa78eef7197b8ee606c99b2e6', 'ADMIN', NULL, 'ACTIVE', 'Male', 'admin123456', '2019-02-13', 'O+', '2019-02-15', '2019-02-22', 'Doe1753.jpg', '01253568955555'),
-(37, 'Doe1754', '123444', 12, 2, 'Jhon', 'Doe', 'employee@gmail.com', 'cd5ea73cd58f827fa78eef7197b8ee606c99b2e6', 'EMPLOYEE', NULL, 'ACTIVE', 'Male', 'abc123456', '2019-02-13', 'O+', '2019-02-15', '2019-02-22', 'Doe1753.jpg', '01253568955555');
+(36, 'Doe1753', '123456', 2, 2, 'Jhon', 'Doe', 'admin@gmail.com', 'd4e8e6deaa7b1f8381e09e3e6b83e36f0b681c5c', 'ADMIN', NULL, 'ACTIVE', 'Male', 'admin123456', '2019-02-13', 'O+', '2019-02-15', '2019-02-22', 'Doe1753.jpg', '01253568955555'),
+(37, 'Doe1754', '123444', 12, 2, 'Jhon', 'Doe', 'employee@gmail.com', 'cd5ea73cd58f827fa78eef7197b8ee606c99b2e6', 'EMPLOYEE', NULL, 'ACTIVE', 'Male', 'abc123456', '2019-02-13', 'O+', '2019-02-15', '2019-02-22', 'Doe1753.jpg', '01253568955555'),
+(41, 'sha1343', '121', 4, 4, 'Esha', 'shastri', 'eshashastri12@gmail.com', 'ab0a776bace93aed953f0c29ec41c442874b63a8', 'EMPLOYEE', NULL, 'ACTIVE', 'Male', '111111111111111', '2004-12-11', 'O+', '2003-11-11', '2000-01-22', NULL, '11111111111111'),
+(42, 'jos1005', '111', 0, 0, 'fanny', 'jose', 'esha.shastri@somaiya.edu', '279fb854eb9fa001b4629518a45c921cfad6d697', 'EMPLOYEE', NULL, 'ACTIVE', '', '111111111111111', '1111-11-11', '', '1111-11-11', '', NULL, '111111111111'),
+(43, 'sha1016', '1111', 0, 0, 'pooja', 'shah', 'eshashastri123@gmail.com', '058e3ba69de965e016e0263821539ebddb369c78', 'EMPLOYEE', NULL, 'ACTIVE', '', '21309812391239', '0011-11-11', '', '0001-11-11', '', NULL, '11111111111111'),
+(44, ';a;1973', '1111', 0, 0, 'lala', ';a;a;', 'eshash@gmail.com', '279fb854eb9fa001b4629518a45c921cfad6d697', '', NULL, 'ACTIVE', '', '111111111111111', '11111-11-11', '', '', '', NULL, '22222222222');
 
 -- --------------------------------------------------------
 
@@ -354,7 +391,7 @@ CREATE TABLE `employee_file` (
   `em_id` varchar(64) DEFAULT NULL,
   `file_title` varchar(512) DEFAULT NULL,
   `file_url` varchar(512) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -368,7 +405,7 @@ CREATE TABLE `emp_assets` (
   `assets_id` int(11) NOT NULL,
   `given_date` date NOT NULL,
   `return_date` date NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -383,7 +420,14 @@ CREATE TABLE `emp_experience` (
   `exp_com_position` varchar(128) DEFAULT NULL,
   `exp_com_address` varchar(128) DEFAULT NULL,
   `exp_workduration` varchar(128) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `emp_experience`
+--
+
+INSERT INTO `emp_experience` (`id`, `emp_id`, `exp_company`, `exp_com_position`, `exp_com_address`, `exp_workduration`) VALUES
+(27, 'Doe1753', 'aaaaaaaaaaaa', 'aaaaaa', 'aaaaaaaaaaa', '11');
 
 -- --------------------------------------------------------
 
@@ -402,7 +446,15 @@ CREATE TABLE `emp_leave` (
   `apply_date` varchar(64) DEFAULT NULL,
   `reason` varchar(1024) DEFAULT NULL,
   `leave_status` enum('Approve','Not Approve','Rejected') NOT NULL DEFAULT 'Not Approve'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `emp_leave`
+--
+
+INSERT INTO `emp_leave` (`id`, `em_id`, `typeid`, `leave_type`, `start_date`, `end_date`, `leave_duration`, `apply_date`, `reason`, `leave_status`) VALUES
+(37, 'Soy1332', 7, 'Half Day', '2024-12-31', '', '7', '2024-12-30', '', 'Rejected'),
+(38, 'Doe1753', 9, 'Half Day', '2025-01-16', '', '4', '2025-01-15', 'ss', 'Approve');
 
 -- --------------------------------------------------------
 
@@ -414,8 +466,8 @@ CREATE TABLE `emp_penalty` (
   `id` int(11) NOT NULL,
   `emp_id` int(11) NOT NULL,
   `penalty_id` int(11) NOT NULL,
-  `penalty_desc` text
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `penalty_desc` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -428,7 +480,7 @@ CREATE TABLE `emp_salary` (
   `emp_id` varchar(64) DEFAULT NULL,
   `type_id` int(11) NOT NULL,
   `total` varchar(64) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -440,7 +492,7 @@ CREATE TABLE `emp_training` (
   `id` int(11) NOT NULL,
   `trainig_id` int(11) NOT NULL,
   `emp_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -460,7 +512,7 @@ CREATE TABLE `field_visit` (
   `actual_return_date` varchar(28) NOT NULL,
   `status` enum('Approved','Not Approve','Rejected') NOT NULL DEFAULT 'Not Approve',
   `attendance_updated` varchar(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -475,14 +527,13 @@ CREATE TABLE `holiday` (
   `to_date` varchar(64) DEFAULT NULL,
   `number_of_days` varchar(64) DEFAULT NULL,
   `year` varchar(64) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `holiday`
 --
 
 INSERT INTO `holiday` (`id`, `holiday_name`, `from_date`, `to_date`, `number_of_days`, `year`) VALUES
-(1, 'Aids Day', '2017-12-21', '2017-12-29', '2', '2017'),
 (3, 'Language Day', '2018-02-21', '2018-02-21', '1', '02-2018'),
 (4, 'independent day', '2018-03-26', '', '1', '03-2018');
 
@@ -496,15 +547,14 @@ CREATE TABLE `leave_types` (
   `type_id` int(14) NOT NULL,
   `name` varchar(64) NOT NULL,
   `leave_day` varchar(255) NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+  `status` tinyint(1) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `leave_types`
 --
 
 INSERT INTO `leave_types` (`type_id`, `name`, `leave_day`, `status`) VALUES
-(1, 'Casual Leave', '21', 1),
 (2, 'Sick Leave', '15', 1),
 (3, 'Maternity Leave', '90', 1),
 (4, 'Paternal Leave', '7', 1),
@@ -533,7 +583,14 @@ CREATE TABLE `loan` (
   `approve_date` varchar(256) DEFAULT NULL,
   `install_period` varchar(256) DEFAULT NULL,
   `status` enum('Granted','Deny','Pause','Done') NOT NULL DEFAULT 'Pause'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `loan`
+--
+
+INSERT INTO `loan` (`id`, `emp_id`, `amount`, `interest_percentage`, `total_amount`, `total_pay`, `total_due`, `installment`, `loan_number`, `loan_details`, `approve_date`, `install_period`, `status`) VALUES
+(35, 'sha1343', 'abcd', NULL, NULL, '0', '0', '0', '11307208', 'sssssssssssssss', '2025-01-16', '11', 'Deny');
 
 -- --------------------------------------------------------
 
@@ -552,7 +609,7 @@ CREATE TABLE `loan_installment` (
   `receiver` varchar(256) DEFAULT NULL,
   `install_no` varchar(256) DEFAULT NULL,
   `notes` varchar(512) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `loan_installment`
@@ -576,7 +633,7 @@ CREATE TABLE `logistic_asset` (
   `name` varchar(256) DEFAULT NULL,
   `qty` varchar(64) DEFAULT NULL,
   `entry_date` varchar(64) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `logistic_asset`
@@ -603,7 +660,7 @@ CREATE TABLE `logistic_assign` (
   `back_date` varchar(64) DEFAULT NULL,
   `back_qty` varchar(64) DEFAULT NULL,
   `remarks` varchar(512) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -616,7 +673,29 @@ CREATE TABLE `notice` (
   `title` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `file_url` varchar(256) DEFAULT NULL,
   `date` varchar(64) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `notice`
+--
+
+INSERT INTO `notice` (`id`, `title`, `file_url`, `date`) VALUES
+(7, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'BG-login.jpg', '2024-12-19'),
+(8, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'dataflow_drawio.png', '1111-11-11');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notifications`
+--
+
+CREATE TABLE `notifications` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -629,7 +708,7 @@ CREATE TABLE `owner` (
   `owner_name` varchar(64) NOT NULL,
   `owner_position` varchar(64) DEFAULT NULL,
   `note` int(11) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -658,7 +737,7 @@ CREATE TABLE `pay_salary` (
   `diduction` int(128) NOT NULL,
   `status` enum('Paid','Process') DEFAULT 'Process',
   `paid_type` enum('Hand Cash','Bank') NOT NULL DEFAULT 'Bank'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -669,8 +748,8 @@ CREATE TABLE `pay_salary` (
 CREATE TABLE `penalty` (
   `id` int(11) NOT NULL,
   `penalty_name` varchar(64) NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT '1'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `status` tinyint(1) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -687,7 +766,14 @@ CREATE TABLE `project` (
   `pro_summary` varchar(512) DEFAULT NULL,
   `pro_status` enum('upcoming','complete','running') NOT NULL DEFAULT 'running',
   `progress` varchar(128) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `project`
+--
+
+INSERT INTO `project` (`id`, `pro_name`, `pro_start_date`, `pro_end_date`, `pro_description`, `pro_summary`, `pro_status`, `progress`) VALUES
+(6, 'slkjfsldkfjlkj', '02-12-2024', '12/30/2024', ' sdjfldksflksl', 'ksdjdlkjfljs', 'running', NULL);
 
 -- --------------------------------------------------------
 
@@ -701,7 +787,7 @@ CREATE TABLE `project_file` (
   `file_details` varchar(1028) DEFAULT NULL,
   `file_url` varchar(256) DEFAULT NULL,
   `assigned_to` varchar(64) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -716,7 +802,7 @@ CREATE TABLE `pro_expenses` (
   `details` varchar(512) DEFAULT NULL,
   `amount` varchar(256) DEFAULT NULL,
   `date` varchar(128) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -729,7 +815,7 @@ CREATE TABLE `pro_notes` (
   `assign_to` varchar(64) DEFAULT NULL,
   `pro_id` int(14) NOT NULL,
   `details` varchar(1024) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -752,7 +838,7 @@ CREATE TABLE `pro_task` (
   `total_days` varchar(128) DEFAULT NULL,
   `create_date` varchar(128) DEFAULT NULL,
   `approve_status` enum('Approved','Not Approve','Rejected') NOT NULL DEFAULT 'Not Approve'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -764,7 +850,7 @@ CREATE TABLE `pro_task_assets` (
   `id` int(11) NOT NULL,
   `pro_task_id` int(11) NOT NULL,
   `assign_id` varchar(64) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -776,7 +862,7 @@ CREATE TABLE `salary_type` (
   `id` int(14) NOT NULL,
   `salary_type` varchar(256) DEFAULT NULL,
   `create_date` varchar(256) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `salary_type`
@@ -805,15 +891,16 @@ CREATE TABLE `settings` (
   `symbol` varchar(64) DEFAULT NULL,
   `system_email` varchar(128) DEFAULT NULL,
   `address` varchar(256) DEFAULT NULL,
-  `address2` varchar(256) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `address2` varchar(256) NOT NULL,
+  `site2logo` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
 -- Dumping data for table `settings`
 --
 
-INSERT INTO `settings` (`id`, `sitelogo`, `sitetitle`, `description`, `copyright`, `contact`, `currency`, `symbol`, `system_email`, `address`, `address2`) VALUES
-(1, 'HRPAYROLL11.png', 'Development Research Initiative (dRi)', 'Prochesta Foundation aims at the upliftment & betterment of people living below the poverty line.', 'GenIT Bangladesh', '017112233445', 'BDT', '$', 'contact@dri-int.org', 'House 39/7 (First Floor) Hazi Ali Hossain Road', 'Dhaka');
+INSERT INTO `settings` (`id`, `sitelogo`, `sitetitle`, `description`, `copyright`, `contact`, `currency`, `symbol`, `system_email`, `address`, `address2`, `site2logo`) VALUES
+(1, 'HRPAYROLL11.png', 'Development Research Initiative (dRi)', 'Prochesta Foundation aims at the upliftment & betterment of people living below the poverty line.', 'GenIT Bangladesh', '017112233445', 'BDT', '$', 'contact@dri-int.org', 'aaaaaaaaaaa', 'Dhaka', 'logo-icon3.png');
 
 -- --------------------------------------------------------
 
@@ -828,7 +915,7 @@ CREATE TABLE `social_media` (
   `twitter` varchar(256) DEFAULT NULL,
   `google_plus` varchar(512) DEFAULT NULL,
   `skype_id` varchar(256) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
@@ -842,7 +929,14 @@ CREATE TABLE `to-do_list` (
   `to_dodata` varchar(256) CHARACTER SET utf8 COLLATE utf8_unicode_ci DEFAULT NULL,
   `date` varchar(128) DEFAULT NULL,
   `value` varchar(14) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `to-do_list`
+--
+
+INSERT INTO `to-do_list` (`id`, `user_id`, `to_dodata`, `date`, `value`) VALUES
+(31, 'Doe1753', 'sssssss', '2025-01-15 07:32:22pm', '0');
 
 --
 -- Indexes for dumped tables
@@ -1023,6 +1117,12 @@ ALTER TABLE `notice`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `notifications`
+--
+ALTER TABLE `notifications`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `pay_salary`
 --
 ALTER TABLE `pay_salary`
@@ -1108,7 +1208,7 @@ ALTER TABLE `address`
 -- AUTO_INCREMENT for table `assets`
 --
 ALTER TABLE `assets`
-  MODIFY `ass_id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
+  MODIFY `ass_id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT for table `assets_category`
@@ -1120,7 +1220,7 @@ ALTER TABLE `assets_category`
 -- AUTO_INCREMENT for table `assign_leave`
 --
 ALTER TABLE `assign_leave`
-  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `assign_task`
@@ -1132,13 +1232,13 @@ ALTER TABLE `assign_task`
 -- AUTO_INCREMENT for table `attendance`
 --
 ALTER TABLE `attendance`
-  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1012;
+  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1058;
 
 --
 -- AUTO_INCREMENT for table `bank_info`
 --
 ALTER TABLE `bank_info`
-  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `deduction`
@@ -1168,19 +1268,19 @@ ALTER TABLE `designation`
 -- AUTO_INCREMENT for table `earned_leave`
 --
 ALTER TABLE `earned_leave`
-  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `education`
 --
 ALTER TABLE `education`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `employee`
 --
 ALTER TABLE `employee`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `employee_file`
@@ -1198,13 +1298,13 @@ ALTER TABLE `emp_assets`
 -- AUTO_INCREMENT for table `emp_experience`
 --
 ALTER TABLE `emp_experience`
-  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
 
 --
 -- AUTO_INCREMENT for table `emp_leave`
 --
 ALTER TABLE `emp_leave`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- AUTO_INCREMENT for table `emp_penalty`
@@ -1240,7 +1340,7 @@ ALTER TABLE `leave_types`
 -- AUTO_INCREMENT for table `loan`
 --
 ALTER TABLE `loan`
-  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `loan_installment`
@@ -1264,7 +1364,13 @@ ALTER TABLE `logistic_assign`
 -- AUTO_INCREMENT for table `notice`
 --
 ALTER TABLE `notice`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `notifications`
+--
+ALTER TABLE `notifications`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `pay_salary`
@@ -1276,7 +1382,7 @@ ALTER TABLE `pay_salary`
 -- AUTO_INCREMENT for table `project`
 --
 ALTER TABLE `project`
-  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `project_file`
@@ -1330,7 +1436,7 @@ ALTER TABLE `social_media`
 -- AUTO_INCREMENT for table `to-do_list`
 --
 ALTER TABLE `to-do_list`
-  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

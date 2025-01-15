@@ -78,7 +78,8 @@ class Settings extends CI_Controller {
                     $this->upload->initialize($config);
                     
                     if (!$this->upload->do_upload('img_url')) {
-                        echo $this->upload->display_errors();
+                        $error_message = "The file you uploaded is not allowed. Please upload one of the following file types: gif, jpg, png, jpeg, svg. ";
+                        echo $error_message;
                     } else {
                         if (file_exists($checkimage)) {
                             unlink($checkimage); // Remove old image if exists
@@ -108,7 +109,8 @@ class Settings extends CI_Controller {
                     $this->upload->initialize($config);
                     
                     if (!$this->upload->do_upload('img_url2')) {
-                        echo $this->upload->display_errors();
+                        $error_message = "The file you uploaded is not allowed. Please upload one of the following file types: gif, jpg, png, jpeg, svg. ";
+                        echo $error_message;
                     } else {
                         // Delete the old second image if exists
                         if (file_exists($checkimage)) {

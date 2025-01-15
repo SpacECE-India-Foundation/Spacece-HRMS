@@ -147,7 +147,7 @@
                                             echo $this->db->count_all_results();
                                         ?> 
                                 </h1>
-                                <h6 class="text-white">Upcomming Project</h6>
+                                <h6 class="text-white">Upcoming Project</h6>
                             </div>
                         </div>
                     </div>

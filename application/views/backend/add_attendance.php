@@ -46,17 +46,25 @@
                                     </select>
                                 </div>
                                 <label>Select Date: </label>
+                                <div class="form-group" >
                                 <div id="" class="input-group date" >
                                     <input name="attdate" class="form-control mydatetimepickerFull" value="<?php if(!empty($attval->atten_date)) { 
                                     $old_date_timestamp = strtotime($attval->atten_date);
                                     $new_date = date('Y-m-d', $old_date_timestamp);    
-                                    echo $new_date; } ?>" required autocomplete="off">
+                                    echo $new_date; } ?>" autocomplete="off">
                                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                 </div>
-                                <div class="form-group" >
-                                    <label class="m-t-20">Sign In Time</label>
-                                    <input class="form-control" name="signin" id="single-input" value="<?php if(!empty($attval->signin_time)) { echo  $attval->signin_time;} ?>" placeholder="Now" required autocomplete="off">
+                                <div class="error-message" style="display: none;">This field is required.</div>
                                 </div>
+                                <div class="form-group">
+                                    <label class="m-t-20">Sign In Time</label>
+                                    <div class="input-group clockpicker">
+                                        <input type="text" name="signin" class="form-control" 
+                                            value="<?php if(!empty($attval->signin_time)) { echo $attval->signin_time;} ?>" 
+                                            autocomplete="off">
+                                    </div>
+                                </div>
+
                                 <div class="form-group">
                                     <label class="m-t-20">Sign Out Time</label>
                                     <div class="input-group clockpicker">
@@ -120,7 +128,13 @@
                 </div>
             </div>
         </div>
+<style>
+    .error-message {
+        font-weight: 400;
 
+}
+
+</style>
 <script type="text/javascript">
 $(document).ready(function () {
     $(".holiday").click(function (e) {
@@ -165,6 +179,31 @@ $(document).ready(function () {
         });
     });
 });
+document.querySelector('form').addEventListener('submit', function (event) {
+    const input = document.querySelector('input[name="attdate"]');
+    const errorMessage = input.closest('.form-group').querySelector('.error-message');
+
+    if (!input.value.trim()) {
+        event.preventDefault(); // Prevent form submission
+        errorMessage.style.display = 'block'; // Show error message
+        input.classList.add('input-error'); // Highlight input field
+    } else {
+        errorMessage.style.display = 'none'; // Hide error message
+        input.classList.remove('input-error'); // Remove error highlight
+    }
+});
+
+$(document).ready(function () {
+    $('.mydatetimepickerFull').datepicker({
+        format: 'yyyy-mm-dd',
+        autoclose: true
+    });
+
+    $('.input-group-addon').on('click', function () {
+        $(this).siblings('input').datepicker('show');
+    });
+});
+
 </script>                              
 
 <?php $this->load->view('backend/footer'); ?>
