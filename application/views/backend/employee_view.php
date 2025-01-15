@@ -102,7 +102,6 @@
 				                                        <label>Gender </label>
 				                                        <select name="gender" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control custom-select">
 				                                           
-				                                            <option value="<?php echo $basic->em_gender; ?>"><?php echo $basic->em_gender; ?></option>
 				                                            <option value="Male">Male</option>
 				                                            <option value="Female">Female</option>
 				                                        </select>

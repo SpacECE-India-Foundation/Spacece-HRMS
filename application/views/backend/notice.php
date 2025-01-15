@@ -78,6 +78,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     </div>
                     <form role="form" method="post" action="Published_Notice" id="btnSubmit" enctype="multipart/form-data">
+<<<<<<< HEAD
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="message-text" class="control-label">Notice Title</label>
@@ -98,6 +99,28 @@
                             <button type="submit" class="btn btn-primary">Submit</button>
                         </div>
                     </form>
+
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="noticeTitle" class="control-label">Notice Title <span style="color: red;">*</span></label>
+                            <textarea class="form-control" name="title" id="noticeTitle" required minlength="25" maxlength="150"></textarea>
+                            <span id="titleError" class="error" style="display: none;">Title must contain at least one alphabet.</span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Document <span style="color: red;">*</span></label>
+                            <input type="file" name="file_url" class="form-control" id="fileInput" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="dateInput" class="control-label">Published Date <span style="color: red;">*</span></label>
+                            <input type="date" name="nodate" class="form-control" id="dateInput" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+>>>>>>> 0b32b76 (bugfix-pooja)
                 </div>
             </div>
         </div>
