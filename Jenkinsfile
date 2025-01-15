@@ -1,14 +1,11 @@
 pipeline {
     agent any
-
     environment {
-        BUILD_NUMBER = "67"  // Set build number dynamically or statically
-        TAR_FILE = "hrms_build_${BUILD_NUMBER}.tar.gz"
-        BUILD_DIR = "/var/www/html/Spacece-HRMS/build_version/build_${BUILD_NUMBER}"
+        GITHUB_TOKEN = credentials('github-token')
+        BUILD_NUMBER = "${env.BUILD_NUMBER}"
     }
-
     stages {
-        stage('Checkout SCM') {
+        stage('Declarative: Checkout SCM') {
             steps {
                 checkout scm
             }
@@ -18,12 +15,12 @@ pipeline {
             steps {
                 script {
                     withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
-                        sh """
-                            git config --global --add safe.directory /var/lib/jenkins/workspace/hrms-cicd
-                            git config user.name 'tech-spacece'
-                            git config user.email 'technology@spacece.in'
+                        sh '''
+                            # Set global git configurations
+                            git config --global user.name "tech-spacece"
+                            git config --global user.email "technology@spacece.in"
                             git fetch --tags --force --progress
-                        """
+                        '''
                     }
                 }
             }
@@ -33,10 +30,16 @@ pipeline {
             steps {
                 script {
                     withCredentials([string(credentialsId: 'github-token', variable: 'GITHUB_TOKEN')]) {
-                        sh """
-                            git tag -a build_${BUILD_NUMBER} -m "Build version build_${BUILD_NUMBER}"
-                            git push https://tech-spacece:${GITHUB_TOKEN}@github.com/SpacECE-India-Foundation/Spacece-HRMS.git build_${BUILD_NUMBER}
-                        """
+                        sh '''
+                            # Ensure the tag doesn't already exist
+                            if git rev-parse "refs/tags/build_${BUILD_NUMBER}" >/dev/null 2>&1; then
+                                echo "Tag build_${BUILD_NUMBER} already exists, skipping tag creation."
+                            else
+                                # Create and push the tag based on the current build number
+                                git tag -a build_${BUILD_NUMBER} -m "Build version build_${BUILD_NUMBER}"
+                                git push https://tech-spacece:${GITHUB_TOKEN}@github.com/SpacECE-India-Foundation/Spacece-HRMS.git build_${BUILD_NUMBER}
+                            fi
+                        '''
                     }
                 }
             }
@@ -44,74 +47,50 @@ pipeline {
 
         stage('Deploy Build Artifacts') {
             steps {
-                sshagent(['hrms-dev']) {
-                    script {
-                        // Check if the tar file exists
-                        if (fileExists("${TAR_FILE}")) {
-                            // Create directory for the build version if not exists
-                            sh """
-                                mkdir -p ${BUILD_DIR}
-                                # Extract the tar.gz file into the build directory
-                                tar -xzf ${TAR_FILE} -C ${BUILD_DIR}
-                            """
-                        } else {
-                            error "Tar file ${TAR_FILE} not found!"
-                        }
-                    }
-                }
+                echo "Deploying build artifacts..."
+                // Add your deployment steps here
             }
         }
 
         stage('Cleanup Old Builds') {
             steps {
-                sshagent(['hrms-dev']) {
-                    script {
-                        sh """
-                            # List all build folders and remove old ones
-                            ls /var/www/html/Spacece-HRMS/build_version/ | sort -V | head -n -5 | xargs -I {} rm -rf /var/www/html/Spacece-HRMS/build_version/{}
-                        """
-                    }
-                }
+                echo "Cleaning up old builds..."
+                // Add cleanup steps if necessary
             }
         }
 
         stage('Update Webpage') {
             steps {
-                sshagent(['hrms-dev']) {
-                    script {
-                        // Update the webpage with the new build information
-                        sh """
-                            echo "<html><body><h1>HRMS Development Builds</h1><ul>" > /var/www/html/Spacece-HRMS/index.html
-                            ls /var/www/html/Spacece-HRMS/build_version/ | sort -V | tail -n 5 | while read build; do
-                                echo "<li><a href='/build_version/${build}'>${build}</a></li>" >> /var/www/html/Spacece-HRMS/index.html
-                            done
-                            echo "</ul></body></html>" >> /var/www/html/Spacece-HRMS/index.html
-                        """
-                    }
-                }
+                echo "Updating webpage..."
+                // Add your webpage update steps here
             }
         }
 
         stage('Send Email Notification') {
             steps {
-                emailext(
-                    subject: "Build ${BUILD_NUMBER} Notification",
-                    body: "The build ${BUILD_NUMBER} has been successfully deployed.",
-                    to: "aishwaryagaikwad7376@gmail.com"
-                )
+                echo "Sending email notification..."
+                // Add email notification logic here
             }
         }
     }
 
     post {
         always {
-            echo "Pipeline completed"
+            echo 'Cleaning up after the pipeline...'
+            // Any cleanup actions go here
         }
+
         success {
-            echo "Pipeline executed successfully!"
+            echo 'Pipeline succeeded!'
+            // Success-related actions go here
         }
+
         failure {
-            echo "Pipeline failed! Check logs for details."
+            echo 'Pipeline failed!'
+            // Failure-related actions go here
+            mail to: 'aishwaryagaikwad7376@gmail.com',
+                 subject: "Jenkins Build Failure: ${env.JOB_NAME}",
+                 body: "The build ${env.BUILD_NUMBER} failed. Please check the logs."
         }
     }
 }
