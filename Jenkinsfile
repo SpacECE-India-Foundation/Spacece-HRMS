@@ -42,7 +42,7 @@ pipeline {
                     # Ensure the build_version directory exists
                     mkdir -p /var/www/html/Spacece-HRMS/build_version/build_${BUILD_NUMBER}
 
-                    # Extract the .tar.gz file and copy its content into the build directory
+                    # Extract the tar.gz file and copy its content into the build directory
                     tar -xzf hrms_build_${BUILD_NUMBER}.tar.gz -C /var/www/html/Spacece-HRMS/build_version/build_${BUILD_NUMBER}
                     '''
                 }
