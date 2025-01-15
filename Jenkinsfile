@@ -1,5 +1,5 @@
 pipeline {
-    agent any
+    agent { label 'hrms-dev' }  // Use your specific Jenkins agent 'hrms-dev'
     environment {
         GITHUB_TOKEN = credentials('github-token')
         BUILD_NUMBER = "${env.BUILD_NUMBER}"
@@ -102,4 +102,3 @@ pipeline {
         }
     }
 }
-
