@@ -39,10 +39,10 @@ pipeline {
             steps {
                 sshagent(['hrms-dev']) {
                     sh '''
-                    # Ensure the build_version directory exists
+                    # Ensure the build_version directory exists for this build
                     mkdir -p /var/www/html/Spacece-HRMS/build_version/build_${BUILD_NUMBER}
                     
-                    # Copy all required files into the new build directory
+                    # Copy all required files into the build directory
                     cp -r ./Jenkinsfile ./README.md ./application ./assets ./composer.json ./contributing.md ./database ./error_log ./index.php ./license.txt ./readme.rst ./system /var/www/html/Spacece-HRMS/build_version/build_${BUILD_NUMBER}
                     '''
                 }
@@ -53,7 +53,7 @@ pipeline {
             steps {
                 sshagent(['hrms-dev']) {
                     sh '''
-                    # Keep only the latest 5 builds
+                    # Keep only the latest 5 builds and remove older ones
                     ls /var/www/html/Spacece-HRMS/build_version/ | sort -V | head -n -5 | xargs -I {} rm -rf /var/www/html/Spacece-HRMS/build_version/{}
                     '''
                 }
@@ -64,7 +64,7 @@ pipeline {
             steps {
                 sshagent(['hrms-dev']) {
                     sh '''
-                    # Generate a webpage with the latest 5 builds
+                    # Generate a webpage listing the latest 5 builds
                     echo "<html><body><h1>HRMS Development Builds</h1><ul>" > /var/www/html/Spacece-HRMS/index.html
                     for version in $(ls /var/www/html/Spacece-HRMS/build_version/ | sort -V | tail -n 5); do
                         echo "<li><a href='/build_version/$version'>$version</a></li>" >> /var/www/html/Spacece-HRMS/index.html
@@ -83,7 +83,7 @@ pipeline {
                     Access the latest builds at: http://43.204.210.9/
                     """,
                     recipientProviders: [[$class: 'CulpritsRecipientProvider']],
-                    to: 'suryaharsh59@gmail.com'
+                    to: 'aishwaryagaikwad7376@gmail.com'
                 )
             }
         }
