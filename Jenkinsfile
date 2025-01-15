@@ -49,9 +49,23 @@ pipeline {
             steps {
                 echo "Deploying build artifacts..."
                 script {
-                    // Unzip the build artifact into the respective folder under existing build_version
+                    def artifactPath = '/path/to/your/artifact/your_artifact.zip'  // Update this with the correct path
+                    def targetDir = "/var/www/html/Spacece-HRMS/build_version/build_${BUILD_NUMBER}"
+                    
+                    // Ensure the artifact exists
                     sh """
-                        unzip /path/to/your/artifact/your_artifact.zip -d /var/www/html/Spacece-HRMS/build_version/build_${BUILD_NUMBER}/
+                        if [ ! -f ${artifactPath} ]; then
+                            echo "Artifact not found at ${artifactPath}"
+                            exit 1
+                        fi
+                    """
+                    
+                    // Create a directory for the build version
+                    sh "mkdir -p ${targetDir}"
+                    
+                    // Unzip the build artifact into the respective folder
+                    sh """
+                        unzip ${artifactPath} -d ${targetDir}/
                     """
                 }
             }
@@ -102,3 +116,4 @@ pipeline {
         }
     }
 }
+
