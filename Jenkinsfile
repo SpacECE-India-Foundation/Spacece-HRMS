@@ -38,8 +38,8 @@ pipeline {
         stage('Package Application') {
             steps {
                 sh '''
-                # Archive the PHP application
-                tar -czf hrms_build_${BUILD_NUMBER}.tar.gz ./*
+                # Package the build artifact
+                tar -czf hrms_build_${BUILD_NUMBER}.tar.gz ./Jenkinsfile ./README.md ./application ./assets ./composer.json ./contributing.md ./database ./error_log ./index.php ./license.txt ./readme.rst ./system
                 '''
             }
         }
@@ -48,8 +48,10 @@ pipeline {
             steps {
                 sshagent(['hrms-dev']) {
                     sh '''
-                    # Upload the build artifact to the server
-                    mv hrms_build_${BUILD_NUMBER}.tar.gz /var/www/html/Spacece-HRMS/builds/
+                    # Ensure the build_version directory exists
+                    mkdir -p /var/www/html/Spacece-HRMS/build_version/
+                    # Upload the build artifact
+                    mv hrms_build_${BUILD_NUMBER}.tar.gz /var/www/html/Spacece-HRMS/build_version/
                     '''
                 }
             }
@@ -60,8 +62,7 @@ pipeline {
                 sshagent(['hrms-dev']) {
                     sh '''
                     # Keep only the latest 5 builds
-                    cd /var/www/html/Spacece-HRMS/builds/
-                    ls -1t | tail -n +6 | xargs -d '\n' rm -f
+                    ls /var/www/html/Spacece-HRMS/build_version/ | sort -V | head -n -5 | xargs -I {} rm /var/www/html/Spacece-HRMS/build_version/{}
                     '''
                 }
             }
@@ -73,8 +74,8 @@ pipeline {
                     sh '''
                     # Generate a webpage with the latest 5 builds
                     echo "<html><body><h1>HRMS Development Builds</h1><ul>" > /var/www/html/Spacece-HRMS/index.html
-                    for version in $(ls /var/www/html/Spacece-HRMS/builds/ | sort -Vr | head -n 5); do
-                        echo "<li><a href='/builds/$version'>$version</a></li>" >> /var/www/html/Spacece-HRMS/index.html
+                    for version in $(ls /var/www/html/Spacece-HRMS/build_version/ | sort -V | tail -n 5); do
+                        echo "<li><a href='/build_version/$version'>$version</a></li>" >> /var/www/html/Spacece-HRMS/index.html
                     done
                     echo "</ul></body></html>" >> /var/www/html/Spacece-HRMS/index.html
                     '''
