@@ -55,7 +55,7 @@
                                         <td><?php echo $value->leave_day ?></td>
                                         <td class="jsgrid-align-center ">
                                             <a href="" title="Edit" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> hidden <?php } ?> class="btn btn-sm btn-info waves-effect waves-light leavetype" data-id="<?php echo $value->type_id; ?>"><i class="fa fa-pencil-square-o"></i></a>
-                                            <a onclick="confirm('Are you sure want to delet this Value?')" href="LeavetypeDelet?D=<?php echo $value->type_id; ?>" title="Delete" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> hidden <?php } ?> class="btn btn-sm btn-info waves-effect waves-light"><i class="fa fa-trash-o"></i></a>
+                                            <a onclick="confirm('Are you sure want to delete this Value?')" href="LeavetypeDelet?D=<?php echo $value->type_id; ?>" title="Delete" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> hidden <?php } ?> class="btn btn-sm btn-info waves-effect waves-light"><i class="fa fa-trash-o"></i></a>
                                         </td>
                                     </tr>
                                     <?php endforeach; ?>
