@@ -49,12 +49,9 @@ pipeline {
             steps {
                 echo "Deploying build artifacts..."
                 script {
-                    // Create a directory for the build version
-                    sh "mkdir -p /var/www/html/build_version/build_${BUILD_NUMBER}"
-
-                    // Unzip the build artifact into the respective folder
+                    // Unzip the build artifact into the respective folder under existing build_version
                     sh """
-                        unzip /path/to/your/artifact/your_artifact.zip -d /var/www/html/build_version/build_${BUILD_NUMBER}/
+                        unzip /path/to/your/artifact/your_artifact.zip -d /var/www/html/Spacece-HRMS/build_version/build_${BUILD_NUMBER}/
                     """
                 }
             }
@@ -65,7 +62,7 @@ pipeline {
                 echo "Cleaning up old builds..."
                 script {
                     // Delete directories older than 15 days
-                    sh "find /var/www/html/build_version/ -type d -mtime +15 -exec rm -rf {} \\;"
+                    sh "find /var/www/html/Spacece-HRMS/build_version/ -type d -mtime +15 -exec rm -rf {} \\;"
                 }
             }
         }
