@@ -84,64 +84,78 @@
                         </div>
                     </div>
                 </div>
-                            <!-- sample modal content -->
-                        <div class="modal fade" id="assetsmodel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
-                            <div class="modal-dialog modal-lg" role="document">
-                                <div class="modal-content ">
-                                    <div class="modal-header">
-                                        <h4 class="modal-title" id="exampleModalLabel1">Add Asset </h4>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                                    </div>
-                                    <form method="post" action="Add_Assets" id="btnSubmit" enctype="multipart/form-data">
-                                    <div class="modal-body">
-                                           <div class="row">
-                                               <div class="col-md-6">      
-                                            <div class="form-group">
-                                                <label class="control-label">Asset name</label>
-                                                <input type="text" name="assname" value="" class="form-control" id="recipient-name1" required>
-                                            </div>
-                                            <div class="form-group">
-                                               <label class="control-label">Category Type </label>
-                                                <select name="catid" value="" class="select2 form-control custom-select" style="width: 100%" required value="">
-                                                    <option>Select Category</option>
-                                                    <?php foreach($catvalue as $value): ?>
-                                                    <option value="<?php echo $value->cat_id ?>"><?php echo $value->cat_name ?></option>
-                                                    <?php endforeach; ?>
-                                                </select>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label">Assets Brand</label>
-                                                <input type="text" name="brand" value="" class="form-control" id="recipient-name1">
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label">Assets Model</label>
-                                                <input type="text" name="model" value="" class="form-control" id="recipient-name1">
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label">Assets Code</label>
-                                                <input type="text" name="code" value="" class="form-control" id="recipient-name1 ">
-                                            </div>                                                   
-                                               </div>
-                                               <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="control-label">Configuration</label>
-                                                <textarea class="form-control" name="config" id="message-text1" required minlength="14" rows="4"></textarea>
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label">Purchasing Date</label>
-                                                <input type="text" name="purchase" value="" class="form-control mydatepicker" id="recipient-name1">
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label">Price</label>
-                                                <input type="number" name="price" value="" class="form-control" id="recipient-name1">
-                                            </div>
-                                            <div class="form-group">
-                                                <label class="control-label">Quantity</label>
-                                                <input type="number" name="pqty" value=""
-                                                 class="form-control" id="recipient-name1">
-                                            </div>                                                   
-                                               </div>
-                                        </div>
+                <div class="modal fade" id="assetsmodel" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
+    <div class="modal-dialog modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="exampleModalLabel1">Add Asset</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form method="post" action="Add_Assets" id="btnSubmit" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="row">
+                        <!-- Left Column -->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Asset Name</label>
+                                <input type="text" name="assname" class="form-control" required>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Category Type</label>
+                                <select name="catid" class="form-control select2 custom-select" style="width: 100%" required>
+                                    <option>Select Category</option>
+                                    <?php foreach($catvalue as $value): ?>
+                                        <option value="<?php echo $value->cat_id ?>"><?php echo $value->cat_name ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Assets Brand</label>
+                                <input type="text" name="brand" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Assets Model</label>
+                                <input type="text" name="model" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Assets Code</label>
+                                <input type="text" name="code" class="form-control">
+                            </div>
+                        </div>
+                        <!-- Right Column -->
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label class="control-label">Configuration</label>
+                                <textarea class="form-control" name="config" required minlength="14" rows="4"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Purchasing Date</label>
+                                <input type="text" name="purchase" class="form-control mydatepicker">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Price</label>
+                                <input type="number" name="price" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label class="control-label">Quantity</label>
+                                <input type="number" name="pqty" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <input type="hidden" name="aid" value="">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
 <!--
                                             <div class="form-group">
                                                 <input name="type" type="checkbox" id="radio_2" data-value="Logistic" value="Logistic" class="type">

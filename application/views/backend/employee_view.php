@@ -135,10 +135,54 @@
 				                                        <label>NID Number </label>
 				                                        <input type="text" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control"placeholder="NID Number" name="nid" value="<?php echo $basic->em_nid; ?>" minlength="10" required> 
 				                                    </div>
-				                                    <div class="form-group col-md-4 m-t-10">
-				                                        <label>Contact Number </label>
-				                                        <input type="text" class="form-control" placeholder="" name="contact" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> value="<?php echo $basic->em_phone; ?>" minlength="10" maxlength="15" required> 
-				                                    </div>
+                                                    
+                                                    <div class="form-group col-md-4 m-t-10">
+    <label>Contact Number</label>
+    <input 
+        type="text" 
+        class="form-control" 
+        placeholder="Enter contact number" 
+        name="contact" 
+        <?php if($this->session->userdata('user_type') == 'EMPLOYEE'){ ?> readonly <?php } ?> 
+        value="<?php echo $basic->em_phone; ?>" 
+        minlength="10" 
+        maxlength="15" 
+        pattern="\d+" 
+        title="Contact number must contain only digits (0-9)." 
+        required
+    >
+   
+</div>
+
+<script>
+document.querySelector('input[name="contact"]').addEventListener('input', function (e) {
+    const inputField = e.target;
+    const errorMessage = document.getElementById('error-message');
+
+    // Check if the input contains non-numeric characters
+    if (/[^0-9]/.test(inputField.value)) {
+        // Show the error message
+        errorMessage.style.display = 'block';
+    } else {
+        // Hide the error message
+        errorMessage.style.display = 'none';
+    }
+});
+
+document.querySelector('input[name="contact"]').addEventListener('invalid', function (e) {
+    const inputField = e.target;
+    const errorMessage = document.getElementById('error-message');
+
+    // Prevent default error message and show custom error
+    e.preventDefault();
+    errorMessage.style.display = 'block';
+});
+</script>
+
+
+
+
+
                                                    <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>  <?php } else { ?> 				                                    
 				                                    <div class="form-group col-md-4 m-t-10">
 				                                        <label>Department</label>
@@ -437,9 +481,35 @@ $(document).ready(function () {
 			                                    	    <input type="text" name="address" class="form-control form-control-line duty" placeholder="Address" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> minlength="7" required> 
 			                                    	</div>
 			                                    	<div class="form-group col-md-6 m-t-5">
-			                                    	    <label>Working Duration</label>
-			                                    	    <input type="text" name="work_duration" class="form-control form-control-line working_period" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> placeholder="Working Duration" required> 
-			                                    	</div>
+    <label>Working Duration</label>
+    <div style="display: flex; align-items: center;">
+        <input 
+            type="number" 
+            name="work_duration" 
+            class="form-control form-control-line working_period" 
+            <?php if($this->session->userdata('user_type') == 'EMPLOYEE'){ ?> readonly <?php } ?> 
+            placeholder="Working Duration" 
+            min="1" 
+            required 
+            oninput="validateWorkDuration(this)" 
+            style="flex: 1; margin-right: 5px;"
+        > 
+        <span style="white-space: nowrap;">Months</span>
+    </div>
+</div>
+
+<script>
+function validateWorkDuration(input) {
+    const value = parseFloat(input.value) || 0;
+    if (value <= 0) {
+        input.setCustomValidity("Work duration must be greater than zero.");
+    } else {
+        input.setCustomValidity(""); // Clear any existing validation message
+    }
+}
+</script>
+
+
 			                                 <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>
                                                     <?php } else { ?>
 		                                    	<div class="form-actions col-md-12">

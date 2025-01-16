@@ -223,10 +223,33 @@ class Attendance extends CI_Controller
 
 public function import()
 {
+    // Check if the file is uploaded
+    if (empty($_FILES["csv_file"]["tmp_name"])) {
+        echo "Error: No file uploaded. Please upload a valid CSV file.";
+        return;
+    }
+
+    // Load the CSV import library
     $this->load->library('csvimport');
-    $file_data = $this->csvimport->get_array($_FILES["csv_file"]["tmp_name"]);
     
-    foreach ($file_data as $row) {
+    // Check if the file is a valid CSV
+    if (($fileData = $this->csvimport->get_array($_FILES["csv_file"]["tmp_name"])) === false) {
+        echo "Error: The uploaded file is not a valid CSV file.";
+        return;
+    }
+
+    // Ensure the required headers exist
+    $requiredHeaders = ["Employee No", "Check-in at", "Check-out at", "Date"];
+    $fileHeaders = array_keys($fileData[0]);  // Get the headers from the first row
+
+    $missingHeaders = array_diff($requiredHeaders, $fileHeaders);
+    if (!empty($missingHeaders)) {
+        echo "Error: The following required columns are missing from the CSV file: " . implode(", ", $missingHeaders);
+        return;
+    }
+
+    // Iterate through the CSV data and check for missing fields
+    foreach ($fileData as $row) {
         // Check if any required fields are missing
         $missingFields = [];
 
@@ -239,10 +262,13 @@ public function import()
         if (empty($row["Check-out at"])) {
             $missingFields[] = 'Check-out at';
         }
+        if (empty($row["Date"])) {
+            $missingFields[] = 'Date';
+        }
 
-        // If any required fields are missing, echo a message and skip storing
+        // If any required fields are missing, display an error and skip this entry
         if (!empty($missingFields)) {
-            echo "Missing fields: " . implode(", ", $missingFields) . " for Employee No: " . $row["Employee No"] . ". Skipping this entry.<br>";
+            echo "Error: Missing fields (" . implode(", ", $missingFields) . ") for Employee No: " . $row["Employee No"] . ". Skipping this entry.<br>";
             continue;  // Skip this row and move to the next one
         }
 
@@ -280,7 +306,7 @@ public function import()
             }
 
             // Check if attendance record exists for the employee on the given date
-            // $duplicate = $this->attendance_model->getDuplicateVal($row["Employee No"], $date);
+            $duplicate = $this->attendance_model->getDuplicateVal($row["Employee No"], $date);
 
             if (!empty($duplicate)) {
                 // Update existing record if duplicate found
@@ -296,6 +322,7 @@ public function import()
 
     echo "Successfully Updated";
 }
+
 
 
 
