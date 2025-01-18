@@ -101,19 +101,11 @@
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>NID</label>
-<<<<<<< HEAD
-                                        <input type="text" name="nid" class="form-control" value="" placeholder="" minlength="10" required> 
-                                    </div>
-                                    <div class="form-group col-md-3 m-t-20">
-                                        <label>Contact Number </label>
-                                        <input type="text" name="contact" class="form-control" value="" placeholder="+8801231456" minlength="10" maxlength="15" required> 
-=======
                                         <input type="text" name="nid" class="form-control" value="" placeholder="Please enter your NID" minlength="10" required> 
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>Contact Number </label>
                                         <input type="text" name="contact" class="form-control" value="" placeholder="Please enter your contact number" minlength="10" maxlength="15" required> 
->>>>>>> 7849a83 (bugfix-esha)
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>Date Of Birth </label>
@@ -129,19 +121,11 @@
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>Username </label>
-<<<<<<< HEAD
-                                        <input type="text" name="username" class="form-control form-control-line" value="" placeholder="Username"> 
-                                    </div>
-                                    <div class="form-group col-md-3 m-t-20">
-                                        <label>Email </label>
-                                        <input type="email" id="example-email2" name="email" class="form-control" placeholder="email@mail.com" minlength="7" required > 
-=======
                                         <input type="text" name="username" class="form-control form-control-line" value="" placeholder="Please enter your username"> 
                                     </div>
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>Email </label>
                                         <input type="email" id="example-email2" name="email" class="form-control" placeholder="Please enter your email" minlength="7" required > 
->>>>>>> 7849a83 (bugfix-esha)
                                     </div><!--
                                     <div class="form-group col-md-3 m-t-20">
                                         <label>Password </label>

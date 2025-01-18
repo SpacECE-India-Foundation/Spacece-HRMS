@@ -103,6 +103,7 @@
                             </ul>
                         </li>
                         <li> <a href="<?php echo base_url()?>notice/All_notice" ><i class="mdi mdi-treasure-chest"></i><span class="hide-menu">Notice <span class="hide-menu"></a></li>
+                        <li> <a href="<?php echo base_url()?>event/All_event" ><i class="mdi mdi-treasure-chest"></i><span class="hide-menu">Event <span class="hide-menu"></a></li>
                         <li> <a href="<?php echo base_url(); ?>settings/Settings" ><i class="mdi mdi-settings"></i><span class="hide-menu">Settings <span class="hide-menu"></a></li>
                         <?php } ?>
                     </ul>

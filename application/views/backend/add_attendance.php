@@ -54,15 +54,16 @@
                                     echo $new_date; } ?>" autocomplete="off">
                                     <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                                 </div>
-                                <div class="error-message" style="display: none;">This field is required.</div>
+                                <div class="error" style="color:red; font-size: 14px; display: none;">This field is required.</div>
                                 </div>
                                 <div class="form-group">
                                     <label class="m-t-20">Sign In Time</label>
                                     <div class="input-group clockpicker">
                                         <input type="text" name="signin" class="form-control" 
-                                            value="<?php if(!empty($attval->signin_time)) { echo $attval->signin_time;} ?>" 
+                                            value="<?php if(!empty($attval->signin_time)) { echo $attval->signin_time;}?>" 
                                             autocomplete="off">
                                     </div>
+                                    <span class="error" style="color:red; font-size: 14px; display: none;">Sign-in time is required.</span>
                                 </div>
 
                                 <div class="form-group">
@@ -137,6 +138,56 @@
 </style>
 <script type="text/javascript">
 $(document).ready(function () {
+    // Prevent form submission initially
+    $('form').submit(function(event) {
+        var signinTime = $('input[name="signin"]').val().trim();
+        var attDate = $('input[name="attdate"]').val().trim();
+        
+        var valid = true;  // Assume the form is valid initially
+
+        // Validate Sign-in time
+        if (!signinTime) {
+            $('.error').show();  // Show error message for signin time
+            valid = false;  // Set form to invalid
+        } else {
+            $('.error').hide();  // Hide error message if signin time is valid
+        }
+        
+        // Validate Attendance Date
+        if (!attDate) {
+            $('.error-message').show();  // Show error message for attendance date
+            valid = false;  // Set form to invalid
+        } else {
+            $('.error-message').hide();  // Hide error message if valid
+        }
+
+        // If either field is invalid, prevent form submission
+        if (!valid) {
+            event.preventDefault();  // Prevent form submission
+        } else {
+            this.submit();  // Manually submit the form if everything is valid
+        }
+    });
+
+    // Additional validation for attendance date (for custom styles or highlighting)
+    document.querySelector('form').addEventListener('submit', function (event) {
+        const input = document.querySelector('input[name="attdate"]');
+        const errorMessage = input.closest('.form-group').querySelector('.error-message');
+
+        if (!input.value.trim()) {
+            event.preventDefault(); // Prevent form submission if attdate is empty
+            errorMessage.style.display = 'block'; // Show error message
+            input.classList.add('input-error'); // Highlight input field
+        } else {
+            errorMessage.style.display = 'none'; // Hide error message
+            input.classList.remove('input-error'); // Remove error highlight
+        }
+    });
+});
+
+
+
+$(document).ready(function () {
     $(".holiday").click(function (e) {
         e.preventDefault(e);
         // Get the record's ID via attribute  
@@ -179,19 +230,6 @@ $(document).ready(function () {
         });
     });
 });
-document.querySelector('form').addEventListener('submit', function (event) {
-    const input = document.querySelector('input[name="attdate"]');
-    const errorMessage = input.closest('.form-group').querySelector('.error-message');
-
-    if (!input.value.trim()) {
-        event.preventDefault(); // Prevent form submission
-        errorMessage.style.display = 'block'; // Show error message
-        input.classList.add('input-error'); // Highlight input field
-    } else {
-        errorMessage.style.display = 'none'; // Hide error message
-        input.classList.remove('input-error'); // Remove error highlight
-    }
-});
 
 $(document).ready(function () {
     $('.mydatetimepickerFull').datepicker({
@@ -203,6 +241,7 @@ $(document).ready(function () {
         $(this).siblings('input').datepicker('show');
     });
 });
+
 
 </script>                              
 
