@@ -71,170 +71,165 @@
                         </div>                                                    
                                                 </div>
                                                 <div class="col-md-8">
-				                                <form class="row" action="Update" method="post" enctype="multipart/form-data">
-				                                    
-				                                    <div class="form-group col-md-4 m-t-10">
-				                                        <label>Employee PIN </label>
-				                                        <input type="text" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control form-control-line" placeholder="ID" name="eid" value="<?php echo $basic->em_code; ?>" required > 
-				                                    </div>
-				                                    <div class="form-group col-md-4 m-t-10">
-				                                        <label>First Name</label>
-				                                        <input type="text" class="form-control form-control-line" placeholder="Your first name" name="fname" value="<?php echo $basic->first_name; ?>" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> minlength="3" required> 
-				                                    </div>
-				                                    <div class="form-group col-md-4 m-t-10">
-				                                        <label>Last Name </label>
-				                                        <input type="text" id="" name="lname" class="form-control form-control-line" value="<?php echo $basic->last_name; ?>" placeholder="Your last name" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> minlength="3" required> 
-				                                    </div>
-                                                    <div class="form-group col-md-4 m-t-10">
-                                                        <label>Blood Group </label>
-                                                        <select name="blood" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> value="<?php echo $basic->em_blood_group; ?>" class="form-control custom-select">
-                                                            <option value="<?php echo $basic->em_blood_group; ?>"><?php echo $basic->em_blood_group; ?></option>
-                                                            <option value="O+">O+</option>
-                                                            <option value="O-">O-</option>
-                                                            <option value="A+">A+</option>
-                                                            <option value="A-">A-</option>
-                                                            <option value="B+">B+</option>
-                                                            <option value="B-">B-</option>
-                                                            <option value="AB+">AB+</option>
-                                                        </select>
-                                                    </div>
-				                                    <div class="form-group col-md-4 m-t-10">
-				                                        <label>Gender </label>
-				                                        <select name="gender" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control custom-select">
-				                                           
-				                                            <option value="Male">Male</option>
-				                                            <option value="Female">Female</option>
-				                                        </select>
-				                                    </div>
-                                                   <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>  <?php } else { ?> 
-                                                    <div class="form-group col-md-4 m-t-10">
-                                                        <label>User Type </label>
-                                                        <select name="role" class="form-control custom-select" required >
-				                                            <option value="<?php echo $basic->em_role; ?>"><?php echo $basic->em_role; ?></option>
-                                                            <option value="HR">HR</option>
-                                                            <option value="EMPLOYEE">Employee</option>
-                                                            <option value="ADMIN">Super Admin</option>
-                                                        </select>
-                                                    </div>
-                                                    <?php } ?>
-                                                    <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>  <?php } else { ?> 
-                                                    <div class="form-group col-md-4 m-t-10">
-                                                        <label>Status </label>
-                                                        <select name="status" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control custom-select" required >
-				                                            <option value="<?php echo $basic->status; ?>"><?php echo $basic->status; ?></option>
-                                                            <option value="ACTIVE">ACTIVE</option>
-                                                            <option value="INACTIVE">INACTIVE</option>
-                                                        </select>
-                                                    </div>
-                                                    <?php } ?>				                                    
-				                                    <div class="form-group col-md-4 m-t-10">
-				                                        <label>Date Of Birth </label>
-				                                        <input type="date" id="example-email2" name="dob" class="form-control" placeholder="" value="<?php echo $basic->em_birthday; ?>" required> 
-				                                    </div>
-				                                    <div class="form-group col-md-4 m-t-10">
-				                                        <label>NID Number </label>
-				                                        <input type="text" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control"placeholder="NID Number" name="nid" value="<?php echo $basic->em_nid; ?>" minlength="10" required> 
-				                                    </div>
-                                                    
-                                                    <div class="form-group col-md-4 m-t-10">
-    <label>Contact Number</label>
-    <input 
-        type="text" 
-        class="form-control" 
-        placeholder="Enter contact number" 
-        name="contact" 
-        <?php if($this->session->userdata('user_type') == 'EMPLOYEE'){ ?> readonly <?php } ?> 
-        value="<?php echo $basic->em_phone; ?>" 
-        minlength="10" 
-        maxlength="15" 
-        pattern="\d+" 
-        title="Contact number must contain only digits (0-9)." 
-        required
-    >
-   
-</div>
+				                            <form class="row" action="Update" method="post" enctype="multipart/form-data">
+    <div class="form-group col-md-4 m-t-10">
+        <label>Employee PIN</label>
+        <input type="text" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control form-control-line" placeholder="ID" name="eid" value="<?php echo $basic->em_code; ?>" required> 
+    </div>
+    <div class="form-group col-md-4 m-t-10">
+        <label>First Name</label>
+        <input type="text" class="form-control form-control-line" placeholder="Your first name" name="fname" value="<?php echo $basic->first_name; ?>" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> required <?php } ?> minlength="3" required> 
+    </div>
+    <div class="form-group col-md-4 m-t-10">
+        <label>Last Name</label>
+        <input type="text" id="" name="lname" class="form-control form-control-line" value="<?php echo $basic->last_name; ?>" placeholder="Your last name" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> minlength="3" required> 
+    </div>
+    <div class="form-group col-md-4 m-t-10">
+        <label>Blood Group</label>
+        <select name="blood" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control custom-select">
+            <option value="<?php echo $basic->em_blood_group; ?>"><?php echo $basic->em_blood_group; ?></option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="AB+">AB+</option>
+        </select>
+    </div>
+    <div class="form-group col-md-4 m-t-10">
+        <label>Gender</label>
+        <select name="gender" class="form-control custom-select" required>
+            <option value="MALE" <?= (isset($basic->em_gender) && $basic->em_gender == 'Male') ? 'selected' : '' ?>>Male</option>
+            <option value="FEMALE" <?= (isset($basic->em_gender) && $basic->em_gender == 'Female') ? 'selected' : '' ?>>Female</option>
+        </select>
+    </div>
 
-<script>
-document.querySelector('input[name="contact"]').addEventListener('input', function (e) {
-    const inputField = e.target;
-    const errorMessage = document.getElementById('error-message');
+    <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>  <?php } else { ?> 
+    <div class="form-group col-md-4 m-t-10">
+        <label>User Type</label>
+        <select name="role" class="form-control custom-select" required>
+            <option value="<?php echo $basic->em_role; ?>"><?php echo $basic->em_role; ?></option>
+            <option value="HR">HR</option>
+            <option value="EMPLOYEE">Employee</option>
+            <option value="ADMIN">Super Admin</option>
+        </select>
+    </div>
+    <?php } ?>
+    
+    <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>  <?php } else { ?> 
+    <div class="form-group col-md-4 m-t-10">
+        <label>Status</label>
+        <select name="status" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control custom-select" required>
+            <option value="<?php echo $basic->status; ?>"><?php echo $basic->status; ?></option>
+            <option value="ACTIVE">ACTIVE</option>
+            <option value="INACTIVE">INACTIVE</option>
+        </select>
+    </div>
+    <?php } ?>				                                    
+    <div class="form-group col-md-4 m-t-10">
+        <label>Date Of Birth</label>
+        <input type="date" id="example-email2" name="dob" class="form-control" value="<?php echo $basic->em_birthday; ?>" required> 
+    </div>
+    <div class="form-group col-md-4 m-t-10">
+        <label>NID Number</label>
+        <input type="text" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control" placeholder="NID Number" name="nid" value="<?php echo $basic->em_nid; ?>" minlength="10" required> 
+    </div>
+    <div class="form-group col-md-4 m-t-10">
+        <label>Contact Number</label>
+        <input 
+            type="text" 
+            class="form-control" 
+            placeholder="Enter contact number" 
+            name="contact" 
+            <?php if($this->session->userdata('user_type') == 'EMPLOYEE'){ ?> required <?php } ?> 
+            value="<?php echo $basic->em_phone; ?>" 
+            minlength="10" 
+            maxlength="15" 
+            pattern="\d+" 
+            title="Contact number must contain only digits (0-9)." 
+            required
+        >
+    </div>
 
-    // Check if the input contains non-numeric characters
-    if (/[^0-9]/.test(inputField.value)) {
-        // Show the error message
+    <script>
+    document.querySelector('input[name="contact"]').addEventListener('input', function (e) {
+        const inputField = e.target;
+        const errorMessage = document.getElementById('error-message');
+
+        // Check if the input contains non-numeric characters
+        if (/[^0-9]/.test(inputField.value)) {
+            // Show the error message
+            errorMessage.style.display = 'block';
+        } else {
+            // Hide the error message
+            errorMessage.style.display = 'none';
+        }
+    });
+
+    document.querySelector('input[name="contact"]').addEventListener('invalid', function (e) {
+        const inputField = e.target;
+        const errorMessage = document.getElementById('error-message');
+
+        // Prevent default error message and show custom error
+        e.preventDefault();
         errorMessage.style.display = 'block';
-    } else {
-        // Hide the error message
-        errorMessage.style.display = 'none';
-    }
-});
+    });
+    </script>
 
-document.querySelector('input[name="contact"]').addEventListener('invalid', function (e) {
-    const inputField = e.target;
-    const errorMessage = document.getElementById('error-message');
-
-    // Prevent default error message and show custom error
-    e.preventDefault();
-    errorMessage.style.display = 'block';
-});
-</script>
-
-
-
-
-
-                                                   <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>  <?php } else { ?> 				                                    
-				                                    <div class="form-group col-md-4 m-t-10">
-				                                        <label>Department</label>
-				                                        <select name="dept" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control custom-select">
-				                                            <option value="<?php echo $basic->id; ?>"><?php echo $basic->dep_name; ?></option>
-                                            <?Php foreach($depvalue as $value): ?>
-                                             <option value="<?php echo $value->id ?>"><?php echo $value->dep_name ?></option>
-                                            <?php endforeach; ?>
-				                                        </select>
-				                                    </div>
-				                                    <?php } ?>
-                                                   <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>  <?php } else { ?> 				                                    
-				                                    <div class="form-group col-md-4 m-t-10">
-				                                        <label>Designation </label>
-				                                        <select name="deg" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control custom-select">
-				                                            <option value="<?php echo $basic->id; ?>"><?php echo $basic->des_name; ?></option>
-                                            <?Php foreach($degvalue as $value): ?>
-                                            <option value="<?php echo $value->id ?>"><?php echo $value->des_name ?></option>
-                                            <?php endforeach; ?>
-				                                        </select>
-				                                    </div>
-				                                    <?php } ?>
-				                                    <div class="form-group col-md-4 m-t-10">
-				                                        <label>Date Of Joining </label>
-				                                        <input type="date" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> id="example-email2" name="joindate" class="form-control" value="<?php echo $basic->em_joining_date; ?>" placeholder=""> 
-				                                    </div>
-				                                    <div class="form-group col-md-4 m-t-10">
-				                                        <label>Contract End Date</label>
-				                                        <input type="date" id="example-email2" name="leavedate" class="form-control" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> value="<?php echo $basic->em_contact_end; ?>" placeholder=""> 
-				                                    </div>
-				                                    <div class="form-group col-md-4 m-t-10">
-				                                        <label>Email </label>
-				                                        <input type="email" id="example-email2" name="email" class="form-control" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> value="<?php echo $basic->em_email; ?>" placeholder="email@mail.com" minlength="7" required> 
-				                                    </div>
-				                                    <div class="form-group col-md-12 m-t-10">
-                                   <?php if(!empty($basic->em_image)){ ?>
-                                    <img src="<?php echo base_url(); ?>assets/images/users/<?php echo $basic->em_image; ?>" class="img-circle" width="150" />
-                                    <?php } else { ?>
-                                    <img src="<?php echo base_url(); ?>assets/images/users/user.png" class="img-circle" width="150" alt="<?php echo $basic->first_name ?>" title="<?php echo $basic->first_name ?>"/>                                   
-                                    <?php } ?>
-                                                        <label>Image </label>
-                                                        <input type="file" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> name="image_url" class="form-control" value=""> 
-                                                    </div>
-                                                    <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>
-                                                    <?php } else { ?>
-				                                    <div class="form-actions col-md-12">
-                                                        <input type="hidden" name="emid" value="<?php echo $basic->em_id; ?>">
-				                                        <button type="submit" class="btn btn-info"> <i class="fa fa-check"></i> Save</button>
-				                                        <button type="button" class="btn btn-info">Cancel</button>
-				                                    </div>
-				                                    <?php } ?>
-				                                </form>
+    <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>  <?php } else { ?> 				                                    
+    <div class="form-group col-md-4 m-t-10">
+        <label>Department</label>
+        <select name="dept" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control custom-select">
+            <option value="<?php echo $basic->id; ?>"><?php echo $basic->dep_name; ?></option>
+            <?php foreach($depvalue as $value): ?>
+                <option value="<?php echo $value->id ?>"><?php echo $value->dep_name ?></option>
+            <?php endforeach; ?>
+        </select>
+    </div>
+    <?php } ?>
+    
+    <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>  <?php } else { ?> 				                                    
+    <div class="form-group col-md-4 m-t-10">
+        <label>Designation</label>
+        <select name="deg" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control custom-select">
+            <option value="<?php echo $basic->id; ?>"><?php echo $basic->des_name; ?></option>
+            <?php foreach($degvalue as $value): ?>
+                <option value="<?php echo $value->id ?>"><?php echo $value->des_name ?></option>
+            <?php endforeach; ?>
+        </select>
+    </div>
+    <?php } ?>
+    
+    <div class="form-group col-md-4 m-t-10">
+        <label>Date Of Joining</label>
+        <input type="date" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> id="example-email2" name="joindate" class="form-control" value="<?php echo $basic->em_joining_date; ?>" placeholder=""> 
+    </div>
+    <div class="form-group col-md-4 m-t-10">
+        <label>Contract End Date</label>
+        <input type="date" id="example-email2" name="leavedate" class="form-control" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> value="<?php echo $basic->em_contact_end; ?>" placeholder=""> 
+    </div>
+    <div class="form-group col-md-4 m-t-10">
+        <label>Email</label>
+        <input type="email" id="example-email2" name="email" class="form-control" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> value="<?php echo $basic->em_email; ?>" placeholder="email@mail.com" minlength="7" required> 
+    </div>
+    
+    <div class="form-group col-md-12 m-t-10">
+        <?php if(!empty($basic->em_image)){ ?>
+            <img src="<?php echo base_url(); ?>assets/images/users/<?php echo $basic->em_image; ?>" class="img-circle" width="150" />
+        <?php } else { ?>
+            <img src="<?php echo base_url(); ?>assets/images/users/user.png" class="img-circle" width="150" alt="<?php echo $basic->first_name ?>" title="<?php echo $basic->first_name ?>"/>                                   
+        <?php } ?>
+        <label>Image</label>
+        <input type="file" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> name="image_url" class="form-control" value=""> 
+    </div>
+    
+    <div class="form-actions col-md-12">
+        <input type="hidden" name="emid" value="<?php echo $basic->em_id; ?>">
+        <button type="submit" class="btn btn-info"> <i class="fa fa-check"></i> Save</button>
+        <button type="button" class="btn btn-info" onclick="window.history.back();">Cancel</button>
+    </div>
+</form>
                                                 </div>
                                         </div>
 				                        </div>
