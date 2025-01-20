@@ -144,6 +144,112 @@
                                         <button type="button" class="btn btn-info">Cancel</button>
                                     </div>
                                 </form>
+                            <form class="row" method="post" action="Save" enctype="multipart/form-data">
+    <!-- First Row -->
+    <div class="form-group col-md-3 m-t-20">
+        <label>First Name</label>
+        <input type="text" name="fname" class="form-control form-control-line" placeholder="Please enter your first name" minlength="2" required>
+    </div>
+    <div class="form-group col-md-3 m-t-20">
+        <label>Last Name</label>
+        <input type="text" name="lname" class="form-control form-control-line" placeholder="Please enter your last name" minlength="2" required>
+    </div>
+    <div class="form-group col-md-3 m-t-20">
+        <label>Employee Code</label>
+        <input type="text" name="eid" class="form-control form-control-line" placeholder="Please enter your ID">
+    </div>
+    <div class="form-group col-md-3 m-t-20">
+        <label>Department</label>
+        <select name="dept" class="form-control custom-select" required>
+            <option>Select Department</option>
+            <?php foreach ($depvalue as $value): ?>
+            <option value="<?php echo $value->id ?>"><?php echo $value->dep_name ?></option>
+            <?php endforeach; ?>
+        </select>
+    </div>
+
+    <!-- Second Row -->
+    <div class="form-group col-md-3 m-t-20">
+        <label>Blood Group</label>
+        <select name="blood" class="form-control custom-select">
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="AB+">AB+</option>
+        </select>
+    </div>
+    <div class="form-group col-md-3 m-t-20">
+        <label>Designation</label>
+        <select name="deg" class="form-control custom-select" required>
+            <option>Select Designation</option>
+            <?php foreach ($degvalue as $value): ?>
+            <option value="<?php echo $value->id ?>"><?php echo $value->des_name ?></option>
+            <?php endforeach; ?>
+        </select>
+    </div>
+    <div class="form-group col-md-3 m-t-20">
+        <label>Role</label>
+        <select name="role" class="form-control custom-select" required>
+            <option>Select Role</option>
+            <option value="ADMIN">ADMIN</option>
+            <option value="EMPLOYEE">Employee</option>
+            <option value="SUPER ADMIN">Super Admin</option>
+        </select>
+    </div>
+    <div class="form-group col-md-3 m-t-20">
+        <label>Gender</label>
+        <select name="gender" class="form-control custom-select" required>
+            <option value="MALE" <?= (isset($basic->em_gender) && $basic->em_gender == 'MALE') ? 'selected' : '' ?>>Male</option>
+            <option value="FEMALE" <?= (isset($basic->em_gender) && $basic->em_gender == 'FEMALE') ? 'selected' : '' ?>>Female</option>
+        </select>
+    </div>
+
+    <!-- Third Row -->
+    <div class="form-group col-md-3 m-t-20">
+        <label>NID</label>
+        <input type="text" name="nid" class="form-control" placeholder="Please enter your NID" minlength="10" required>
+    </div>
+    <div class="form-group col-md-3 m-t-20">
+        <label>Contact Number</label>
+        <input type="text" name="contact" class="form-control" placeholder="Please enter your contact number" minlength="10" maxlength="15" required>
+    </div>
+    <div class="form-group col-md-3 m-t-20">
+        <label>Date Of Birth</label>
+        <input type="date" name="dob" class="form-control" required>
+    </div>
+    <div class="form-group col-md-3 m-t-20">
+        <label>Date Of Joining</label>
+        <input type="date" name="joindate" class="form-control">
+    </div>
+
+    <!-- Fourth Row -->
+    <div class="form-group col-md-3 m-t-20">
+        <label>Date Of Leaving</label>
+        <input type="date" name="leavedate" class="form-control">
+    </div>
+    <div class="form-group col-md-3 m-t-20">
+        <label>Username</label>
+        <input type="text" name="username" class="form-control form-control-line" placeholder="Please enter your username">
+    </div>
+    <div class="form-group col-md-3 m-t-20">
+        <label>Email</label>
+        <input type="email" name="email" class="form-control" placeholder="Please enter your email" minlength="7" required>
+    </div>
+    <div class="form-group col-md-3 m-t-20">
+        <label>Image</label>
+        <input type="file" name="image_url" class="form-control">
+    </div>
+
+    <!-- Submit Buttons -->
+    <div class="form-actions col-md-12">
+        <button type="submit" class="btn btn-info"> <i class="fa fa-check"></i> Save</button>
+        <button type="button" class="btn btn-secondary">Cancel</button>
+    </div>
+</form>
+
                             </div>
                         </div>
                     </div>

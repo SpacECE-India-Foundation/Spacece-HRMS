@@ -87,7 +87,7 @@
                                                 <input type="text" name="enddate" value="<?php echo $details->pro_end_date; ?>" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control mydatepicker" id="recipient-name1" required>
                                             </div>
                                             <div class="form-group">
-                                                <label for="message-text" class="control-label">Project Summery</label>
+                                                <label for="message-text" class="control-label">Project Summary</label>
                                                 <textarea class="form-control" value="<?php echo $details->pro_summary; ?>" name="summery" rows="6" id="message-text1" minlength="5" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> maxlength="512" ><?php echo $details->pro_summary; ?></textarea>
                                             </div>
                                             <div class="form-group">
@@ -133,15 +133,7 @@
                                     <th>Assigned users </th>
                                 </tr>
                             </thead>
-                            <tfoot>
-                                <tr>
-                                    <th>Id</th>
-                                    <th>Task Title </th>
-                                    <th>Start Date </th>
-                                    <th>End Date </th>
-                                    <th>Assigned users </th>
-                                </tr>
-                            </tfoot>
+                            
                             <tbody>
                                <?php foreach($tasklist as $value): ?>
                                 <tr>

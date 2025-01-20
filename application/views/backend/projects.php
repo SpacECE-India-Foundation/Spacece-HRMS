@@ -43,22 +43,15 @@
                                         <th>Action </th>
                                     </tr>
                                 </thead>
-                                <tfoot>
-                                    <tr>
-                                        <th>Project Title</th>
-                                        <th>Status </th>
-                                        <th>Start Date </th>
-                                        <th>End Date </th>
-                                        <th>Action </th>
-                                    </tr>
-                                </tfoot>
+                                
                                 <tbody>
                                    <?php foreach($projects as $value): ?>
                                     <tr>
                                         <td><?php echo substr($value->pro_name,0,50).'....' ?></td>
                                         <td><?php echo $value->pro_status ?></td>
-                                        <td><?php echo date('jS \of F Y',strtotime($value->pro_start_date)); ?></td>
-                                        <td><?php echo date('jS \of F Y',strtotime($value->pro_end_date)) ?></td>
+                                        <td><?php echo date('d/m/Y', strtotime($value->pro_start_date)); ?></td>
+                                        <td><?php echo date('d/m/Y', strtotime($value->pro_end_date)); ?></td>
+
                                         <td class="jsgrid-align-center ">
                                             <a href="view?P=<?php echo base64_encode($value->id); ?>" title="Edit" class="btn btn-sm btn-info waves-effect waves-light"><i class="fa fa-pencil-square-o"></i></a>
                                             <a href="pDelet?D=<?php echo base64_encode($value->id); ?>" title="Delete" onclick="alert('Are Yoy Want To Delet This Project!!!')" class="btn btn-sm btn-info waves-effect waves-light projectdelet"><i class="fa fa-trash-o"></i></a>
