@@ -63,10 +63,11 @@
                                 <h6><?php echo $basic->em_phone; ?></h6> 
                                 <small class="text-muted p-t-30 db">Social Profile</small>
                                 <br/>
-                                <a class="btn btn-circle btn-secondary" href="<?php if(!empty($socialmedia->skype_id)) echo $socialmedia->facebook ?>" target="_blank"><i class="fa fa-facebook"></i></a>
-                                <a class="btn btn-circle btn-secondary" href="<?php if(!empty($socialmedia->skype_id)) echo $socialmedia->twitter ?>" target="_blank"><i class="fa fa-twitter"></i></a>
-                                <a class="btn btn-circle btn-secondary" href="<?php if(!empty($socialmedia->skype_id)) echo $socialmedia->skype_id ?>" target="_blank"><i class="fa fa-skype"></i></a>
-                                <a class="btn btn-circle btn-secondary" href="<?php if(!empty($socialmedia->google_Plus)) echo $socialmedia->google_Plus ?>" target="_blank"><i class="fa fa-google"></i></a>
+                                <a class="btn btn-circle btn-secondary" href="<?php echo !empty($socialmedia->facebook) ? $socialmedia->facebook : 'https://www.facebook.com/login.php'; ?>" target="_blank"><i class="fa fa-facebook"></i></a>
+                                <a class="btn btn-circle btn-secondary" href="<?php echo !empty($socialmedia->twitter) ? $socialmedia->twitter : 'https://twitter.com/login'; ?>" target="_blank"><i class="fa fa-twitter"></i></a>
+                                <a class="btn btn-circle btn-secondary" href="<?php echo !empty($socialmedia->skype_id) ? $socialmedia->skype_id : 'https://www.skype.com/en/get-skype/'; ?>" target="_blank"><i class="fa fa-skype"></i></a>
+                                <a class="btn btn-circle btn-secondary" href="<?php echo !empty($socialmedia->google_Plus) ? $socialmedia->google_Plus : 'https://accounts.google.com/'; ?>" target="_blank"><i class="fa fa-google"></i></a>
+
                             </div>
                         </div>                                                    
                                                 </div>
@@ -236,7 +237,44 @@
                                     </div>
                                 </div>
                                 <!--second tab-->
-                                <div class="tab-pane" id="profile" role="tabpanel">
+                    <div class="tab-pane" id="profile" role="tabpanel">
+                    <div class="card mt-4">
+        <div class="card-body">
+            <h3 class="card-title">Permanent Contact Information</h3>
+            <?php if (!empty($permanent)) { ?>
+                <table id="example23" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Address</th>
+                            <th>City</th>
+                            <th>Country</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Address</th>
+                            <th>City</th>
+                            <th>Country</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        <tr>
+                            <td><?php echo $permanent->address; ?></td>
+                            <td><?php echo $permanent->city; ?></td>
+                            <td><?php echo $permanent->country; ?></td>
+                        </tr>
+                        <tr>
+                            <td><?php echo $present->address; ?></td>
+                            <td><?php echo $present->city; ?></td>
+                            <td><?php echo $present->country; ?></td>
+                        </tr>
+                    </tbody>
+                </table>
+            <?php } else { ?>
+                <p>No address information found. Please add details.</p>
+            <?php } ?>
+        </div>
+    </div>
                                     <div class="card">
 				                        <div class="card-body">
 			                        		<h3 class="card-title">Permanent Contact Information</h3>
@@ -516,8 +554,8 @@ function validateWorkDuration(input) {
 					                    </div>
                                     </div>
                                 </div>
-                                <div class="tab-pane" id="bank" role="tabpanel">
-                                <div class="card mt-4">
+        <div class="tab-pane" id="bank" role="tabpanel">
+        <div class="card mt-4">
         <div class="card-body">
             <?php if (!empty($bankinfo)) { ?>
                 <table class="table table-bordered">

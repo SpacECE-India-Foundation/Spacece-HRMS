@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 15, 2025 at 06:07 PM
+-- Generation Time: Jan 18, 2025 at 06:40 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -50,6 +50,14 @@ CREATE TABLE `address` (
   `address` varchar(512) DEFAULT NULL,
   `type` enum('Present','Permanent') DEFAULT 'Present'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `address`
+--
+
+INSERT INTO `address` (`id`, `emp_id`, `city`, `country`, `address`, `type`) VALUES
+(29, 'Doe1753', 'wwwwwwww', 'wwwwwwwwww', 'wwwwwwwwwwwww', 'Permanent'),
+(30, 'Doe1753', 'ssss', 'ssss', 'sssssssss', 'Present');
 
 -- --------------------------------------------------------
 
@@ -497,6 +505,26 @@ CREATE TABLE `emp_training` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `event`
+--
+
+CREATE TABLE `event` (
+  `id` int(11) NOT NULL,
+  `title` text NOT NULL,
+  `file_url` varchar(256) DEFAULT NULL,
+  `date` varchar(64) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `event`
+--
+
+INSERT INTO `event` (`id`, `title`, `file_url`, `date`) VALUES
+(2, 'sssssssssssssssssssssssssssssssssssssssssssssssssss', 'onlineexam.pdf', '1111-11-07');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `field_visit`
 --
 
@@ -680,8 +708,11 @@ CREATE TABLE `notice` (
 --
 
 INSERT INTO `notice` (`id`, `title`, `file_url`, `date`) VALUES
-(7, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'BG-login.jpg', '2024-12-19'),
-(8, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'dataflow_drawio.png', '1111-11-11');
+(7, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'gym3.pdf', '2024-12-19'),
+(8, 'dadaddddddddddddddddddddddddddddd', 'gym2.pdf', '1111-11-11'),
+(9, 'aaaaaaaaaaaaaaaaaaaaaaaaaddddddaaaaaa', 'gym.pdf', '2024-12-19'),
+(10, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'gym1.pdf', '2024-12-19'),
+(11, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'onlineexam.pdf', '2024-12-19');
 
 -- --------------------------------------------------------
 
@@ -900,7 +931,7 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`id`, `sitelogo`, `sitetitle`, `description`, `copyright`, `contact`, `currency`, `symbol`, `system_email`, `address`, `address2`, `site2logo`) VALUES
-(1, 'HRPAYROLL11.png', 'Development Research Initiative (dRi)', 'Prochesta Foundation aims at the upliftment & betterment of people living below the poverty line.', 'GenIT Bangladesh', '017112233445', 'BDT', '$', 'contact@dri-int.org', 'aaaaaaaaaaa', 'Dhaka', 'logo-icon3.png');
+(1, 'HRPAYROLL11.png', 'Development Research Initiative (dRi)', 'Prochesta Foundation aims at the upliftment & betterment of people living below the poverty line.', 'GenIT Bangladesh', '017112233445', 'BDT', '$', 'contact@dri-int.org', 'aaaaaaaaaaa', 'Dhaka', 'logo-icon21.png');
 
 -- --------------------------------------------------------
 
@@ -916,6 +947,13 @@ CREATE TABLE `social_media` (
   `google_plus` varchar(512) DEFAULT NULL,
   `skype_id` varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `social_media`
+--
+
+INSERT INTO `social_media` (`id`, `emp_id`, `facebook`, `twitter`, `google_plus`, `skype_id`) VALUES
+(5, 'Doe1753', 'https://www.instagram.com/', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -1069,6 +1107,12 @@ ALTER TABLE `emp_salary`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `event`
+--
+ALTER TABLE `event`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `field_visit`
 --
 ALTER TABLE `field_visit`
@@ -1202,7 +1246,7 @@ ALTER TABLE `addition`
 -- AUTO_INCREMENT for table `address`
 --
 ALTER TABLE `address`
-  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `assets`
@@ -1319,6 +1363,12 @@ ALTER TABLE `emp_salary`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
+-- AUTO_INCREMENT for table `event`
+--
+ALTER TABLE `event`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `field_visit`
 --
 ALTER TABLE `field_visit`
@@ -1364,7 +1414,7 @@ ALTER TABLE `logistic_assign`
 -- AUTO_INCREMENT for table `notice`
 --
 ALTER TABLE `notice`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `notifications`
@@ -1430,7 +1480,7 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `social_media`
 --
 ALTER TABLE `social_media`
-  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `to-do_list`

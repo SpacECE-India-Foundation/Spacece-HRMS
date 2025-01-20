@@ -57,6 +57,7 @@
                                         <td><a href="<?php echo base_url(); ?>assets/images/notice/<?php echo $value->file_url; ?>" target="_blank"><?php echo $value->file_url; ?></a></td>
                                         <td><?php echo $value->date; ?></td>
                                         <td>
+                                        <a href="" title="Edit" class="btn btn-sm btn-info waves-effect waves-light AssetsModal" data-id="<?php echo $value->id; ?>"><i class="fa fa-pencil-square-o"></i></a>
                                             <a href="<?php echo base_url('Notice/delete_notice/'.$value->id); ?>"  onclick="return confirm('Are you sure you want to delete this notice?');" class="btn btn-sm btn-info waves-effect waves-light"><i class="fa fa-trash-o"></i></a>
                                         </td>
                                     </tr>
@@ -78,6 +79,7 @@
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     </div>
                     <form role="form" method="post" action="Published_Notice" id="btnSubmit" enctype="multipart/form-data">
+                    <input type="hidden" name="id" id="noticeID" value="">
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="noticeTitle" class="control-label">Notice Title <span style="color: red;">*</span></label>
@@ -85,8 +87,9 @@
                             <span id="titleError" class="error" style="display: none;">Title must contain at least one alphabet.</span>
                         </div>
                         <div class="form-group">
-                            <label class="control-label">Document <span style="color: red;">*</span></label>
+                            <label class="control-label">Document (Supported formats: .docx, .pdf) <span style="color: red;">*</span></label>
                             <input type="file" name="file_url" class="form-control" id="fileInput" required>
+                        
                         </div>
                         <div class="form-group">
                             <label for="dateInput" class="control-label">Published Date <span style="color: red;">*</span></label>
@@ -98,6 +101,43 @@
                         <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </form>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="noticemodel1" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel1">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="exampleModalLabel1">Notice Board</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    </div>
+                    <form role="form" method="post" action="Published_Notice" id="btnSubmit1" enctype="multipart/form-data">
+                    <input type="hidden" name="id" id="noticeID" value="">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="noticeTitle" class="control-label">Notice Title <span style="color: red;">*</span></label>
+                            <textarea class="form-control" name="title" id="noticeTitle" required minlength="25" maxlength="150"></textarea>
+                            <span id="titleError" class="error" style="display: none;">Title must contain at least one alphabet.</span>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label">Document (Supported formats: .docx, .pdf) <span style="color: red;">*</span></label>
+                            <input type="file" name="file_url" class="form-control" id="fileInput">
+                        <p id="fileName"></p>
+                        </div>
+                        <div class="form-group">
+                            <label for="dateInput" class="control-label">Published Date <span style="color: red;">*</span></label>
+                            <input type="date" name="nodate" class="form-control" id="dateInput" required>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </div>
+                </form>
+
                 </div>
             </div>
         </div>
@@ -191,6 +231,36 @@ $('#btnSubmit').submit(function(event) {
         event.preventDefault();
     }
 });
+$(document).ready(function () {
+    $(".AssetsModal").click(function (e) {
+        e.preventDefault();
+        var iid = $(this).attr('data-id'); // Get the notice ID
+        $('#btnSubmit1').trigger("reset");
+        $('#noticemodel1').modal('show');
+
+        // Fetch the notice details via AJAX
+        $.ajax({
+            url: 'NoticeByID?id=' + iid,
+            method: 'GET',
+            dataType: 'json',
+        }).done(function (response) {
+            console.log(response);
+            var rawDate = response.notice.date;
+
+            $('#btnSubmit1').find('[name="id"]').val(response.notice.id); // Set the notice ID
+            $('#btnSubmit1').find('[name="title"]').val(response.notice.title);
+            $('#btnSubmit1').find('[name="nodate"]').val(rawDate); 
+            $('#fileName').text('File: ' + response.notice.file_url);
+        }).fail(function () {
+            alert("There was an error fetching the notice details.");
+        });
+    });
+});
+
+
+
+
+
 
 
 </script>
