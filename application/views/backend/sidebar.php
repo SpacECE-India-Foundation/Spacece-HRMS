@@ -45,6 +45,14 @@
         <li><a href="<?php echo base_url(); ?>employee/Inactive_Employee">Inactive User</a></li>
     </ul>
 </li>
+<li>
+    <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
+        <i class="mdi mdi-calendar-multiple-check"></i>
+        <span class="hide-menu">Meetings</span>
+    </a>
+    <ul aria-expanded="false" class="collapse">
+        <li><a href="<?php echo base_url(); ?>Meetings/meeting_notification"> Meeting Notifications</a></li>
+    </ul>
 
             <li>
                 <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
@@ -79,6 +87,18 @@
                     <li><a href="<?php echo base_url(); ?>organization/Designation">Designation</a></li>
                 </ul>
             </li>
+            <li>
+    <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
+        <i class="mdi mdi-calendar-multiple-check"></i>
+        <span class="hide-menu">Meetings</span>
+    </a>
+    <ul aria-expanded="false" class="collapse">
+        <li><a href="<?php echo base_url(); ?>Meetings/index">Meeting List</a></li>
+        <li><a href="<?php echo base_url(); ?>Meetings/meeting_views">Meeting View</a></li>
+        <li><a href="<?php echo base_url(); ?>Meetings/create">Create New Meeting</a></li>
+    </ul>
+</li>
+
             <li>
                 <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
                     <i class="mdi mdi-account-multiple"></i>
@@ -155,6 +175,8 @@
                     <li><a href="<?php echo base_url(); ?>Payroll/Salary_List">Payroll List</a></li>
                     <li><a href="<?php echo base_url(); ?>Payroll/Generate_salary">Generate Payslip</a></li>
                     <li><a href="<?php echo base_url(); ?>Payroll/Payslip_Report">Payslip Report</a></li>
+                    <li><a href="<?php echo base_url(); ?>Payroll/submit_expense_form">Expense Management</a></li>
+
                 </ul>
             </li>
             <li>
