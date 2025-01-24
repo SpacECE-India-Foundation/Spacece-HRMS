@@ -30,6 +30,14 @@
                             <li> <a href="<?php echo base_url(); ?>Job/empjoblisting" ><i class="mdi mdi-gauge"></i><span class="hide-menu">Careers </span></a></li>
                         <li> <a class="has-arrow waves-effect waves-dark" href="<?php echo base_url(); ?>employee/view?I=<?php echo base64_encode($basicinfo->em_id); ?>" aria-expanded="false"><i class="mdi mdi-account-multiple"></i><span class="hide-menu">Employees </span></a>
                         </li>
+                        <li>
+                            <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
+                                <i class="mdi mdi-calendar-multiple-check"></i>
+                                <span class="hide-menu">Meetings</span>
+                            </a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="<?php echo base_url(); ?>Meetings/meeting_notification"> Meeting Notifications</a></li>
+                        </ul></li>
                         <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-rocket"></i><span class="hide-menu">Leave </span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="<?php echo base_url(); ?>leave/Holidays"> Holiday </a></li>
@@ -91,6 +99,18 @@
                                 <li><a href="<?php echo base_url(); ?>employee/Inactive_Employee">Inactive User </a></li>
                             </ul>
                         </li>
+                        <li>
+                            <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
+                                <i class="mdi mdi-calendar-multiple-check"></i>
+                                <span class="hide-menu">Meetings</span>
+                            </a>
+                            <ul aria-expanded="false" class="collapse">
+                                <li><a href="<?php echo base_url(); ?>Meetings/index">Meeting List</a></li>
+                                <li><a href="<?php echo base_url(); ?>Meetings/meeting_views">Meeting View</a></li>
+                                <li><a href="<?php echo base_url(); ?>Meetings/create">Create New Meeting</a></li>
+                            </ul>
+                        </li>
+
                         <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-clipboard-text"></i><span class="hide-menu">Attendance </span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="<?php echo base_url(); ?>attendance/Attendance">Attendance List </a></li>
@@ -98,6 +118,7 @@
                                 <li><a href="<?php echo base_url(); ?>attendance/Attendance_Report">Attendance Report </a></li>
                             </ul>
                         </li>
+                       
                         <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-rocket"></i><span class="hide-menu">Leave </span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="<?php echo base_url(); ?>leave/Holidays"> Holiday </a></li>
