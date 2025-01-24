@@ -54,7 +54,7 @@
 
                                         <td class="jsgrid-align-center ">
                                             <a href="view?P=<?php echo base64_encode($value->id); ?>" title="Edit" class="btn btn-sm btn-info waves-effect waves-light"><i class="fa fa-pencil-square-o"></i></a>
-                                            <a href="pDelet?D=<?php echo base64_encode($value->id); ?>" title="Delete" onclick="alert('Are Yoy Want To Delet This Project!!!')" class="btn btn-sm btn-info waves-effect waves-light projectdelet"><i class="fa fa-trash-o"></i></a>
+                                            <a href="pDelet?D=<?php echo base64_encode($value->id); ?>" title="Delete" onclick="alert('Are you sure you want to delete this project?')" class="btn btn-sm btn-info waves-effect waves-light projectdelet"><i class="fa fa-trash-o"></i></a>
                                         </td>
                                     </tr>
                                     <?php endforeach; ?>
@@ -91,7 +91,7 @@
                                 <input type="text" name="enddate" class="form-control datepicker" id="enddate" required placeholder="End Date">
                             </div>
                             <div class="form-group">
-                                <label for="message-text" class="control-label">Summery</label>
+                                <label for="message-text" class="control-label">Summary </label>
                                 <textarea class="form-control" name="summery" id="message-text1" placeholder=""></textarea>
                             </div>
                             </div>
