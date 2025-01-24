@@ -214,7 +214,7 @@ https://www.patchesoft.com/fullcalendar-with-php-and-codeigniter/
     $(".holidelet").click(function (e) {
         e.preventDefault(e);
         // Ask for confirmation before proceeding
-        var confirmation = confirm('Are you sure you want to delete this value?');
+        var confirmation = confirm('Are you sure you want to delete this Entry?');
         if (confirmation) {
             // If the user presses OK, proceed with the delete action
             var iid = $(this).attr('data-id');

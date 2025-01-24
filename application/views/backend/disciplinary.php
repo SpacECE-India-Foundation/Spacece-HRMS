@@ -65,7 +65,7 @@
                                                 <td><button class="btn btn-sm btn-success"><?php echo $value->action; ?></button></td>
                                                 <td  class="jsgrid-align-center ">
                                                     <a href="#" title="Edit" class="btn btn-sm btn-info waves-effect waves-light disiplinary" data-id="<?php echo $value->id; ?>"><i class="fa fa-pencil-square-o"></i></a>
-                                                    <a href="DeletDisiplinary?D=<?php echo $value->id; ?>" onclick="confirm('Are you sure want to delet this value?')" title="Delete" class="btn btn-sm btn-info waves-effect waves-light"><i class="fa fa-trash-o"></i></a>
+                                                    <a href="DeletDisiplinary?D=<?php echo $value->id; ?>" onclick="confirm('Are you sure want to delet this Entry?')" title="Delete" class="btn btn-sm btn-info waves-effect waves-light"><i class="fa fa-trash-o"></i></a>
                                                 </td>
                                             </tr>
                                             <?php endforeach; ?>

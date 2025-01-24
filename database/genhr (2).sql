@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 23, 2025 at 06:20 PM
+-- Generation Time: Jan 24, 2025 at 05:42 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -50,6 +50,14 @@ CREATE TABLE `address` (
   `address` varchar(512) DEFAULT NULL,
   `type` enum('Present','Permanent') DEFAULT 'Present'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `address`
+--
+
+INSERT INTO `address` (`id`, `emp_id`, `city`, `country`, `address`, `type`) VALUES
+(29, 'Doe1753', 'wwwwwwww', 'wwwwwwwwww', 'wwwwwwwwwwwww', 'Permanent'),
+(30, 'Doe1753', 'ssss', 'ssss', 'sssssssss', 'Present');
 
 -- --------------------------------------------------------
 
@@ -302,6 +310,55 @@ INSERT INTO `designation` (`id`, `des_name`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `documents`
+--
+
+CREATE TABLE `documents` (
+  `id` int(11) UNSIGNED NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `file_path` text NOT NULL,
+  `status` varchar(50) NOT NULL DEFAULT 'Pending',
+  `employee_id` varchar(1100) NOT NULL,
+  `edit_request` tinyint(1) NOT NULL DEFAULT 0,
+  `created_at` datetime NOT NULL DEFAULT current_timestamp(),
+  `updated_at` datetime NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `reason` longtext NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `documents`
+--
+
+INSERT INTO `documents` (`id`, `name`, `file_path`, `status`, `employee_id`, `edit_request`, `created_at`, `updated_at`, `reason`) VALUES
+(21, 'aadhar card', '1737473673_gym_(1).pdf', 'Accepted', 'sha1016', 0, '2025-01-23 02:36:29', '2025-01-23 02:36:46', ''),
+(22, 'aadhar card', '1737473673_gym_(1)1.pdf', 'Rejected', 'sha1016', 0, '2025-01-23 02:52:44', '2025-01-23 02:53:02', 'sss'),
+(23, 'pan card', '1737473673_gym.pdf', 'Accepted', 'sha1016', 0, '2025-01-23 02:56:48', '2025-01-23 02:57:06', ''),
+(24, 'aadhar card', '1737473673_gym_(1)2.pdf', 'Pending', 'sha1016', 0, '2025-01-24 19:36:59', '2025-01-24 19:36:59', ''),
+(25, 'aadhar card', 'Hospital_management_system.pdf', 'Pending', 'sha1016', 0, '2025-01-24 19:37:16', '2025-01-24 19:37:16', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `document_titles`
+--
+
+CREATE TABLE `document_titles` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `created_at` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `document_titles`
+--
+
+INSERT INTO `document_titles` (`id`, `title`, `created_at`) VALUES
+(11, 'aadhar card', '0000-00-00 00:00:00'),
+(12, 'pan card', '0000-00-00 00:00:00');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `earned_leave`
 --
 
@@ -365,20 +422,21 @@ CREATE TABLE `employee` (
   `em_joining_date` varchar(128) DEFAULT NULL,
   `em_contact_end` varchar(128) DEFAULT NULL,
   `em_image` varchar(128) DEFAULT NULL,
-  `em_nid` varchar(64) DEFAULT NULL
+  `em_nid` varchar(64) DEFAULT NULL,
+  `hr_role` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
 
 --
 -- Dumping data for table `employee`
 --
 
-INSERT INTO `employee` (`id`, `em_id`, `em_code`, `des_id`, `dep_id`, `first_name`, `last_name`, `em_email`, `em_password`, `em_role`, `em_address`, `status`, `em_gender`, `em_phone`, `em_birthday`, `em_blood_group`, `em_joining_date`, `em_contact_end`, `em_image`, `em_nid`) VALUES
-(36, 'Doe1753', '123456', 2, 2, 'Jhon', 'Doe', 'admin@gmail.com', 'd4e8e6deaa7b1f8381e09e3e6b83e36f0b681c5c', 'ADMIN', NULL, 'ACTIVE', 'Male', 'admin123456', '2019-02-13', 'O+', '2019-02-15', '2019-02-22', 'Doe1753.jpg', '01253568955555'),
-(37, 'Doe1754', '123444', 12, 2, 'Jhon', 'Doe', 'employee@gmail.com', 'cd5ea73cd58f827fa78eef7197b8ee606c99b2e6', 'EMPLOYEE', NULL, 'ACTIVE', 'Male', 'abc123456', '2019-02-13', 'O+', '2019-02-15', '2019-02-22', 'Doe1753.jpg', '01253568955555'),
-(41, 'sha1343', '121', 4, 4, 'Esha', 'shastri', 'eshashastri12@gmail.com', 'ab0a776bace93aed953f0c29ec41c442874b63a8', 'EMPLOYEE', NULL, 'ACTIVE', 'Male', '111111111111111', '2004-12-11', 'O+', '2003-11-11', '2000-01-22', NULL, '11111111111111'),
-(42, 'jos1005', '111', 0, 0, 'fanny', 'jose', 'esha.shastri@somaiya.edu', '279fb854eb9fa001b4629518a45c921cfad6d697', 'EMPLOYEE', NULL, 'ACTIVE', '', '111111111111111', '1111-11-11', '', '1111-11-11', '', NULL, '111111111111'),
-(43, 'sha1016', '1111', 0, 0, 'pooja', 'shah', 'eshashastri123@gmail.com', '058e3ba69de965e016e0263821539ebddb369c78', 'EMPLOYEE', NULL, 'ACTIVE', '', '21309812391239', '0011-11-11', '', '0001-11-11', '', NULL, '11111111111111'),
-(44, ';a;1973', '1111', 0, 0, 'lala', ';a;a;', 'eshash@gmail.com', '279fb854eb9fa001b4629518a45c921cfad6d697', '', NULL, 'ACTIVE', '', '111111111111111', '11111-11-11', '', '', '', NULL, '22222222222');
+INSERT INTO `employee` (`id`, `em_id`, `em_code`, `des_id`, `dep_id`, `first_name`, `last_name`, `em_email`, `em_password`, `em_role`, `em_address`, `status`, `em_gender`, `em_phone`, `em_birthday`, `em_blood_group`, `em_joining_date`, `em_contact_end`, `em_image`, `em_nid`, `hr_role`) VALUES
+(36, 'Doe1753', '123456', 2, 2, 'Jhon', 'Doe', 'admin@gmail.com', 'd4e8e6deaa7b1f8381e09e3e6b83e36f0b681c5c', 'ADMIN', NULL, 'ACTIVE', 'Male', 'admin123456', '2019-02-13', 'O+', '2019-02-15', '2019-02-22', 'Doe1753.jpg', '01253568955555', ''),
+(37, 'Doe1754', '123444', 12, 2, 'Jhon', 'Doe', 'employee@gmail.com', 'cd5ea73cd58f827fa78eef7197b8ee606c99b2e6', 'EMPLOYEE', NULL, 'ACTIVE', 'Male', 'abc123456', '2019-02-13', 'O+', '2019-02-15', '2019-02-22', 'Doe1753.jpg', '01253568955555', ''),
+(41, 'sha1343', '121', 4, 4, 'Esha', 'shastri', 'eshashastri12@gmail.com', '30c3b51488a4edb8d30d8f6ca412ebaba9b7dd13', 'EMPLOYEE', NULL, 'ACTIVE', 'Male', '111111111111111', '2004-12-11', 'O+', '2003-11-11', '2000-01-22', NULL, '11111111111111', ''),
+(42, 'jos1005', '111', 0, 0, 'fanny', 'jose', 'esha.shastri@somaiya.edu', '30c3b51488a4edb8d30d8f6ca412ebaba9b7dd13', 'EMPLOYEE', NULL, 'ACTIVE', '', '111111111111111', '1111-11-11', '', '1111-11-11', '', NULL, '111111111111', ''),
+(43, 'sha1016', '1111', 0, 0, 'pooja', 'shah', 'eshashastri123@gmail.com', '30c3b51488a4edb8d30d8f6ca412ebaba9b7dd13', 'EMPLOYEE', NULL, 'ACTIVE', 'Male', '21309812391239', '0011-11-11', '', '0001-11-11', '', NULL, '11111111111111', ''),
+(44, ';a;1973', '1222', 0, 0, 'lala', ';a;a;', 'eshash@gmail.com', '279fb854eb9fa001b4629518a45c921cfad6d697', '', NULL, 'ACTIVE', '', '111111111111111', '11111-11-11', '', '', '', NULL, '22222222222', '');
 
 -- --------------------------------------------------------
 
@@ -497,6 +555,26 @@ CREATE TABLE `emp_training` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `event`
+--
+
+CREATE TABLE `event` (
+  `id` int(11) NOT NULL,
+  `title` text NOT NULL,
+  `file_url` varchar(256) DEFAULT NULL,
+  `date` varchar(64) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `event`
+--
+
+INSERT INTO `event` (`id`, `title`, `file_url`, `date`) VALUES
+(2, 'sssssssssssssssssssssssssssssssssssssssssssssssssss', 'onlineexam.pdf', '1111-11-07');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `field_visit`
 --
 
@@ -536,6 +614,74 @@ CREATE TABLE `holiday` (
 INSERT INTO `holiday` (`id`, `holiday_name`, `from_date`, `to_date`, `number_of_days`, `year`) VALUES
 (3, 'Language Day', '2018-02-21', '2018-02-21', '1', '02-2018'),
 (4, 'independent day', '2018-03-26', '', '1', '03-2018');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hrdocuments`
+--
+
+CREATE TABLE `hrdocuments` (
+  `id` int(11) NOT NULL,
+  `emid` int(11) NOT NULL,
+  `document_name` varchar(255) NOT NULL,
+  `document_file` varchar(255) NOT NULL,
+  `uploaded_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `hrdocuments`
+--
+
+INSERT INTO `hrdocuments` (`id`, `emid`, `document_name`, `document_file`, `uploaded_at`) VALUES
+(9, 1111, 'offer letter', 'assets/images/hrdocuments/1737581267_1737473673_gym.pdf', '2025-01-22 21:57:47'),
+(10, 121, 'offer letter', 'assets/images/hrdocuments/1737637275_1737473673_gym.pdf', '2025-01-23 13:31:15'),
+(11, 121, 'offer letter', 'assets/images/hrdocuments/1737637468_1737473673_gym_(1).pdf', '2025-01-23 13:34:28'),
+(12, 121, 'offer letter', 'assets/images/hrdocuments/1737727591_1737473673_gym_(1).pdf', '2025-01-24 14:36:31');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `hr_document_names`
+--
+
+CREATE TABLE `hr_document_names` (
+  `id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `hr_document_names`
+--
+
+INSERT INTO `hr_document_names` (`id`, `title`) VALUES
+(4, 'offer letter');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `job_listings`
+--
+
+CREATE TABLE `job_listings` (
+  `id` int(11) NOT NULL,
+  `job_title` varchar(255) NOT NULL,
+  `department` varchar(255) NOT NULL,
+  `location` varchar(255) NOT NULL,
+  `job_status` enum('Open','Closed') DEFAULT 'Open',
+  `work_mode` enum('Remote','Hybrid','Onsite') NOT NULL,
+  `description` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `job_listings`
+--
+
+INSERT INTO `job_listings` (`id`, `job_title`, `department`, `location`, `job_status`, `work_mode`, `description`, `created_at`, `updated_at`) VALUES
+(9, 'sss', 'Finance, HR, & Admininstration', 'Gujarat', 'Open', 'Remote', 'ss', '2025-01-24 15:24:00', '2025-01-24 15:29:12'),
+(10, 'ss', 'Administration', 'Arunachal Pradesh', 'Open', 'Onsite', 'sss', '2025-01-24 15:29:01', '2025-01-24 15:29:12');
 
 -- --------------------------------------------------------
 
@@ -749,8 +895,11 @@ CREATE TABLE `notice` (
 --
 
 INSERT INTO `notice` (`id`, `title`, `file_url`, `date`) VALUES
-(7, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'BG-login.jpg', '2024-12-19'),
-(8, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'dataflow_drawio.png', '1111-11-11');
+(7, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'gym3.pdf', '2024-12-19'),
+(8, 'dadaddddddddddddddddddddddddddddd', 'gym2.pdf', '1111-11-11'),
+(9, 'aaaaaaaaaaaaaaaaaaaaaaaaaddddddaaaaaa', 'gym.pdf', '2024-12-19'),
+(10, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'gym1.pdf', '2024-12-19'),
+(11, 'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa', 'onlineexam.pdf', '2024-12-19');
 
 -- --------------------------------------------------------
 
@@ -969,7 +1118,7 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`id`, `sitelogo`, `sitetitle`, `description`, `copyright`, `contact`, `currency`, `symbol`, `system_email`, `address`, `address2`, `site2logo`) VALUES
-(1, 'HRPAYROLL11.png', 'Development Research Initiative (dRi)', 'Prochesta Foundation aims at the upliftment & betterment of people living below the poverty line.', 'GenIT Bangladesh', '017112233445', 'BDT', '$', 'contact@dri-int.org', 'aaaaaaaaaaa', 'Dhaka', 'logo-icon3.png');
+(1, 'logo-icon12.png', 'Development Research Initiative (dRi)', 'Prochesta Foundation aims at the upliftment & betterment of people living below the poverty line.', 'GenIT Bangladesh', '017112233445', 'BDT', '$', 'contact@dri-int.org', 'aaaaaaaaaaa', 'Dhaka', 'HRPAYROLL11.png');
 
 -- --------------------------------------------------------
 
@@ -985,6 +1134,13 @@ CREATE TABLE `social_media` (
   `google_plus` varchar(512) DEFAULT NULL,
   `skype_id` varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `social_media`
+--
+
+INSERT INTO `social_media` (`id`, `emp_id`, `facebook`, `twitter`, `google_plus`, `skype_id`) VALUES
+(5, 'Doe1753', 'https://www.instagram.com/', '', '', '');
 
 -- --------------------------------------------------------
 
@@ -1084,6 +1240,18 @@ ALTER TABLE `designation`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `documents`
+--
+ALTER TABLE `documents`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `document_titles`
+--
+ALTER TABLE `document_titles`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `earned_leave`
 --
 ALTER TABLE `earned_leave`
@@ -1138,6 +1306,12 @@ ALTER TABLE `emp_salary`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `event`
+--
+ALTER TABLE `event`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `field_visit`
 --
 ALTER TABLE `field_visit`
@@ -1147,6 +1321,24 @@ ALTER TABLE `field_visit`
 -- Indexes for table `holiday`
 --
 ALTER TABLE `holiday`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `hrdocuments`
+--
+ALTER TABLE `hrdocuments`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `hr_document_names`
+--
+ALTER TABLE `hr_document_names`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `job_listings`
+--
+ALTER TABLE `job_listings`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -1293,7 +1485,7 @@ ALTER TABLE `addition`
 -- AUTO_INCREMENT for table `address`
 --
 ALTER TABLE `address`
-  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
+  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
 -- AUTO_INCREMENT for table `assets`
@@ -1356,6 +1548,18 @@ ALTER TABLE `designation`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
+-- AUTO_INCREMENT for table `documents`
+--
+ALTER TABLE `documents`
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+
+--
+-- AUTO_INCREMENT for table `document_titles`
+--
+ALTER TABLE `document_titles`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
 -- AUTO_INCREMENT for table `earned_leave`
 --
 ALTER TABLE `earned_leave`
@@ -1410,6 +1614,12 @@ ALTER TABLE `emp_salary`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
+-- AUTO_INCREMENT for table `event`
+--
+ALTER TABLE `event`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT for table `field_visit`
 --
 ALTER TABLE `field_visit`
@@ -1420,6 +1630,24 @@ ALTER TABLE `field_visit`
 --
 ALTER TABLE `holiday`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `hrdocuments`
+--
+ALTER TABLE `hrdocuments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
+-- AUTO_INCREMENT for table `hr_document_names`
+--
+ALTER TABLE `hr_document_names`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `job_listings`
+--
+ALTER TABLE `job_listings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `leave_types`
@@ -1473,7 +1701,7 @@ ALTER TABLE `meeting_designations`
 -- AUTO_INCREMENT for table `notice`
 --
 ALTER TABLE `notice`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `notifications`
@@ -1539,7 +1767,7 @@ ALTER TABLE `settings`
 -- AUTO_INCREMENT for table `social_media`
 --
 ALTER TABLE `social_media`
-  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `to-do_list`

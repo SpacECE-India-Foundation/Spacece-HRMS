@@ -61,9 +61,9 @@
                                 </tr>
                                 </tfoot>
                                 <tbody>
-                                    <?php foreach($application as $value): ?>
+                                    <?php foreach($application as $value): ?> 
                                     <tr style="vertical-align:top">
-                                        <td><?php echo $value->id; ?></td>
+                                        
                                         <td><mark><?php echo $value->first_name.' '.$value->last_name ?></mark></td>
                                         <td><?php echo $value->em_code; ?></td>
                                         <td><?php echo $value->name; ?></td>

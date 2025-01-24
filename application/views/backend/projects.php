@@ -43,25 +43,18 @@
                                         <th>Action </th>
                                     </tr>
                                 </thead>
-                                <tfoot>
-                                    <tr>
-                                        <th>Project Title</th>
-                                        <th>Status </th>
-                                        <th>Start Date </th>
-                                        <th>End Date </th>
-                                        <th>Action </th>
-                                    </tr>
-                                </tfoot>
+                                
                                 <tbody>
                                    <?php foreach($projects as $value): ?>
                                     <tr>
                                         <td><?php echo substr($value->pro_name,0,50).'....' ?></td>
                                         <td><?php echo $value->pro_status ?></td>
-                                        <td><?php echo date('jS \of F Y',strtotime($value->pro_start_date)); ?></td>
-                                        <td><?php echo date('jS \of F Y',strtotime($value->pro_end_date)) ?></td>
+                                        <td><?php echo date('d/m/Y', strtotime($value->pro_start_date)); ?></td>
+                                        <td><?php echo date('d/m/Y', strtotime($value->pro_end_date)); ?></td>
+
                                         <td class="jsgrid-align-center ">
                                             <a href="view?P=<?php echo base64_encode($value->id); ?>" title="Edit" class="btn btn-sm btn-info waves-effect waves-light"><i class="fa fa-pencil-square-o"></i></a>
-                                            <a href="pDelet?D=<?php echo base64_encode($value->id); ?>" title="Delete" onclick="alert('Are Yoy Want To Delet This Project!!!')" class="btn btn-sm btn-info waves-effect waves-light projectdelet"><i class="fa fa-trash-o"></i></a>
+                                            <a href="pDelet?D=<?php echo base64_encode($value->id); ?>" title="Delete" onclick="alert('Are you sure you want to delete this project?')" class="btn btn-sm btn-info waves-effect waves-light projectdelet"><i class="fa fa-trash-o"></i></a>
                                         </td>
                                     </tr>
                                     <?php endforeach; ?>
@@ -98,7 +91,7 @@
                                 <input type="text" name="enddate" class="form-control datepicker" id="enddate" required placeholder="End Date">
                             </div>
                             <div class="form-group">
-                                <label for="message-text" class="control-label">Summery</label>
+                                <label for="message-text" class="control-label">Summary </label>
                                 <textarea class="form-control" name="summery" id="message-text1" placeholder=""></textarea>
                             </div>
                             </div>
