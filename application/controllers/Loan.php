@@ -25,6 +25,15 @@ class Loan extends CI_Controller
 			redirect(base_url(), 'refresh');
 		}
 	}
+	public function delete_loan($id){
+		$this->loan_model->delete_LoanDataVal($id);
+		redirect('Loan/View');
+
+	}
+	public function delete_loaninstall($id){
+		$this->loan_model->delete_LoaninstallDataVal($id);
+		redirect('Loan/installment');
+	}
 	public function Add_Loan()
 	{
 		if ($this->session->userdata('user_login_access') != false) {
