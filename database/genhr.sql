@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 23, 2025 at 02:08 PM
+-- Generation Time: Jan 24, 2025 at 05:42 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -332,7 +332,9 @@ CREATE TABLE `documents` (
 INSERT INTO `documents` (`id`, `name`, `file_path`, `status`, `employee_id`, `edit_request`, `created_at`, `updated_at`, `reason`) VALUES
 (21, 'aadhar card', '1737473673_gym_(1).pdf', 'Accepted', 'sha1016', 0, '2025-01-23 02:36:29', '2025-01-23 02:36:46', ''),
 (22, 'aadhar card', '1737473673_gym_(1)1.pdf', 'Rejected', 'sha1016', 0, '2025-01-23 02:52:44', '2025-01-23 02:53:02', 'sss'),
-(23, 'pan card', '1737473673_gym.pdf', 'Accepted', 'sha1016', 0, '2025-01-23 02:56:48', '2025-01-23 02:57:06', '');
+(23, 'pan card', '1737473673_gym.pdf', 'Accepted', 'sha1016', 0, '2025-01-23 02:56:48', '2025-01-23 02:57:06', ''),
+(24, 'aadhar card', '1737473673_gym_(1)2.pdf', 'Pending', 'sha1016', 0, '2025-01-24 19:36:59', '2025-01-24 19:36:59', ''),
+(25, 'aadhar card', 'Hospital_management_system.pdf', 'Pending', 'sha1016', 0, '2025-01-24 19:37:16', '2025-01-24 19:37:16', '');
 
 -- --------------------------------------------------------
 
@@ -634,7 +636,8 @@ CREATE TABLE `hrdocuments` (
 INSERT INTO `hrdocuments` (`id`, `emid`, `document_name`, `document_file`, `uploaded_at`) VALUES
 (9, 1111, 'offer letter', 'assets/images/hrdocuments/1737581267_1737473673_gym.pdf', '2025-01-22 21:57:47'),
 (10, 121, 'offer letter', 'assets/images/hrdocuments/1737637275_1737473673_gym.pdf', '2025-01-23 13:31:15'),
-(11, 121, 'offer letter', 'assets/images/hrdocuments/1737637468_1737473673_gym_(1).pdf', '2025-01-23 13:34:28');
+(11, 121, 'offer letter', 'assets/images/hrdocuments/1737637468_1737473673_gym_(1).pdf', '2025-01-23 13:34:28'),
+(12, 121, 'offer letter', 'assets/images/hrdocuments/1737727591_1737473673_gym_(1).pdf', '2025-01-24 14:36:31');
 
 -- --------------------------------------------------------
 
@@ -653,6 +656,32 @@ CREATE TABLE `hr_document_names` (
 
 INSERT INTO `hr_document_names` (`id`, `title`) VALUES
 (4, 'offer letter');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `job_listings`
+--
+
+CREATE TABLE `job_listings` (
+  `id` int(11) NOT NULL,
+  `job_title` varchar(255) NOT NULL,
+  `department` varchar(255) NOT NULL,
+  `location` varchar(255) NOT NULL,
+  `job_status` enum('Open','Closed') DEFAULT 'Open',
+  `work_mode` enum('Remote','Hybrid','Onsite') NOT NULL,
+  `description` text DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `job_listings`
+--
+
+INSERT INTO `job_listings` (`id`, `job_title`, `department`, `location`, `job_status`, `work_mode`, `description`, `created_at`, `updated_at`) VALUES
+(9, 'sss', 'Finance, HR, & Admininstration', 'Gujarat', 'Open', 'Remote', 'ss', '2025-01-24 15:24:00', '2025-01-24 15:29:12'),
+(10, 'ss', 'Administration', 'Arunachal Pradesh', 'Open', 'Onsite', 'sss', '2025-01-24 15:29:01', '2025-01-24 15:29:12');
 
 -- --------------------------------------------------------
 
@@ -1238,6 +1267,12 @@ ALTER TABLE `hr_document_names`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `job_listings`
+--
+ALTER TABLE `job_listings`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `leave_types`
 --
 ALTER TABLE `leave_types`
@@ -1425,7 +1460,7 @@ ALTER TABLE `designation`
 -- AUTO_INCREMENT for table `documents`
 --
 ALTER TABLE `documents`
-  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `document_titles`
@@ -1509,13 +1544,19 @@ ALTER TABLE `holiday`
 -- AUTO_INCREMENT for table `hrdocuments`
 --
 ALTER TABLE `hrdocuments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `hr_document_names`
 --
 ALTER TABLE `hr_document_names`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `job_listings`
+--
+ALTER TABLE `job_listings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `leave_types`
