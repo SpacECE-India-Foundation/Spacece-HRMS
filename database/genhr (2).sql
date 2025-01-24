@@ -811,6 +811,75 @@ CREATE TABLE `logistic_assign` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `meetings`
+--
+
+CREATE TABLE `meetings` (
+  `id` int(11) NOT NULL,
+  `meeting_title` varchar(255) NOT NULL,
+  `meeting_description` text DEFAULT NULL,
+  `meeting_date` date NOT NULL,
+  `meeting_time` time NOT NULL,
+  `recurrence` varchar(255) DEFAULT NULL,
+  `status` varchar(50) DEFAULT 'pending',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `dep_id` mediumtext NOT NULL,
+  `designation_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `meetings`
+--
+
+INSERT INTO `meetings` (`id`, `meeting_title`, `meeting_description`, `meeting_date`, `meeting_time`, `recurrence`, `status`, `created_at`, `updated_at`, `dep_id`, `designation_id`) VALUES
+(8, 'ss', 'ss', '9999-09-09', '09:59:00', 'Weekly', 'pending', '2025-01-23 15:26:22', '2025-01-23 15:26:22', '', 0),
+(10, 'knkewdnsk', 'hfhjhm', '2025-02-02', '23:59:00', 'Monthly', 'pending', '2025-01-23 15:29:44', '2025-01-23 15:29:44', '', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `meeting_departments`
+--
+
+CREATE TABLE `meeting_departments` (
+  `id` int(11) NOT NULL,
+  `meeting_id` int(11) DEFAULT NULL,
+  `department_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `meeting_departments`
+--
+
+INSERT INTO `meeting_departments` (`id`, `meeting_id`, `department_id`) VALUES
+(2, 8, 4),
+(3, 8, 5),
+(6, 10, 5);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `meeting_designations`
+--
+
+CREATE TABLE `meeting_designations` (
+  `id` int(11) NOT NULL,
+  `meeting_id` int(11) DEFAULT NULL,
+  `designation_id` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `meeting_designations`
+--
+
+INSERT INTO `meeting_designations` (`id`, `meeting_id`, `designation_id`) VALUES
+(8, 8, 4),
+(11, 10, 6);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `notice`
 --
 
@@ -1303,6 +1372,28 @@ ALTER TABLE `logistic_assign`
   ADD PRIMARY KEY (`ass_id`);
 
 --
+-- Indexes for table `meetings`
+--
+ALTER TABLE `meetings`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `meeting_departments`
+--
+ALTER TABLE `meeting_departments`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `meeting_id` (`meeting_id`),
+  ADD KEY `department_id` (`department_id`);
+
+--
+-- Indexes for table `meeting_designations`
+--
+ALTER TABLE `meeting_designations`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `meeting_id` (`meeting_id`),
+  ADD KEY `designation_id` (`designation_id`);
+
+--
 -- Indexes for table `notice`
 --
 ALTER TABLE `notice`
@@ -1589,6 +1680,24 @@ ALTER TABLE `logistic_assign`
   MODIFY `ass_id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
+-- AUTO_INCREMENT for table `meetings`
+--
+ALTER TABLE `meetings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `meeting_departments`
+--
+ALTER TABLE `meeting_departments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `meeting_designations`
+--
+ALTER TABLE `meeting_designations`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
 -- AUTO_INCREMENT for table `notice`
 --
 ALTER TABLE `notice`
@@ -1665,6 +1774,24 @@ ALTER TABLE `social_media`
 --
 ALTER TABLE `to-do_list`
   MODIFY `id` int(14) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `meeting_departments`
+--
+ALTER TABLE `meeting_departments`
+  ADD CONSTRAINT `meeting_departments_ibfk_1` FOREIGN KEY (`meeting_id`) REFERENCES `meetings` (`id`),
+  ADD CONSTRAINT `meeting_departments_ibfk_2` FOREIGN KEY (`department_id`) REFERENCES `department` (`id`);
+
+--
+-- Constraints for table `meeting_designations`
+--
+ALTER TABLE `meeting_designations`
+  ADD CONSTRAINT `meeting_designations_ibfk_1` FOREIGN KEY (`meeting_id`) REFERENCES `meetings` (`id`),
+  ADD CONSTRAINT `meeting_designations_ibfk_2` FOREIGN KEY (`designation_id`) REFERENCES `designation` (`id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
