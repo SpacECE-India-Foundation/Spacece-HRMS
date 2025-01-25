@@ -133,13 +133,12 @@ public function deleteDocumentTitle($id)
                     'upload_path' => "./assets/images/document", // Path for document upload
                     'allowed_types' => "pdf",
                     'overwrite' => False,
-                    'max_size' => "5120" // Max size 5MB
                 );
     
                 $this->load->library('upload', $config);
                 $this->upload->initialize($config);
                 if (!$this->upload->do_upload('document')) {
-                    $error = 'Invalid file type or size. Only PDF files under 5MB are allowed.';
+                    $error = 'Error in uploading.';
                     echo $error; // Return upload error as plain text
                     return;
                 }
@@ -357,13 +356,12 @@ public function deleteDocumentTitle($id)
                 'upload_path' => "./assets/images/hrdocuments", // Path for document upload
                 'allowed_types' => "pdf",
                 'overwrite' => False,
-                'max_size' => "5120" // Max size 5MB
             );
 
             $this->load->library('upload', $config);
             $this->upload->initialize($config);
             if (!$this->upload->do_upload('document')) {
-                $error = 'Invalid file type or size. Only PDF files under 5MB are allowed.';
+                $error = 'Error in uploading';
                 echo $error; // Return upload error as plain text
                 return;
             }
