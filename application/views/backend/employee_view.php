@@ -79,15 +79,15 @@
     </div>
     <div class="form-group col-md-4 m-t-10">
         <label>First Name</label>
-        <input type="text" class="form-control form-control-line" placeholder="Your first name" name="fname" value="<?php echo $basic->first_name; ?>" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> required <?php } ?> minlength="3" required> 
+        <input type="text" class="form-control form-control-line" placeholder="Your first name" name="fname" value="<?php echo $basic->first_name; ?>"minlength="3" required> 
     </div>
     <div class="form-group col-md-4 m-t-10">
         <label>Last Name</label>
-        <input type="text" id="" name="lname" class="form-control form-control-line" value="<?php echo $basic->last_name; ?>" placeholder="Your last name" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> minlength="3" required> 
+        <input type="text" id="" name="lname" class="form-control form-control-line" value="<?php echo $basic->last_name; ?>" placeholder="Your last name" minlength="3" required> 
     </div>
     <div class="form-group col-md-4 m-t-10">
         <label>Blood Group</label>
-        <select name="blood" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control custom-select">
+        <select name="blood" class="form-control custom-select">
             <option value="<?php echo $basic->em_blood_group; ?>"><?php echo $basic->em_blood_group; ?></option>
             <option value="O+">O+</option>
             <option value="O-">O-</option>
@@ -134,7 +134,7 @@
     </div>
     <div class="form-group col-md-4 m-t-10">
         <label>NID Number</label>
-        <input type="text" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control" placeholder="NID Number" name="nid" value="<?php echo $basic->em_nid; ?>" minlength="10" required> 
+        <input type="text" class="form-control" placeholder="NID Number" name="nid" value="<?php echo $basic->em_nid; ?>" minlength="10" required> 
     </div>
     <div class="form-group col-md-4 m-t-10">
         <label>Contact Number</label>
@@ -222,7 +222,7 @@
             <img src="<?php echo base_url(); ?>assets/images/users/user.png" class="img-circle" width="150" alt="<?php echo $basic->first_name ?>" title="<?php echo $basic->first_name ?>"/>                                   
         <?php } ?>
         <label>Image</label>
-        <input type="file" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> name="image_url" class="form-control" value=""> 
+        <input type="file" name="image_url" class="form-control" value=""> 
     </div>
     
     <div class="form-actions col-md-12">
@@ -281,24 +281,23 @@
 			                                <form class="row" action="Parmanent_Address" method="post" enctype="multipart/form-data">
 			                                    <div class="form-group col-md-12 m-t-5">
 			                                        <label>Address</label>
-			                                        <textarea name="paraddress" value="<?php if(!empty($permanent->address)) echo $permanent->address  ?>" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control" rows="3" minlength="7" required><?php if(!empty($permanent->address)) echo $permanent->address  ?></textarea>
+			                                        <textarea name="paraddress" value="<?php if(!empty($permanent->address)) echo $permanent->address  ?>"  class="form-control" rows="3" minlength="7" required><?php if(!empty($permanent->address)) echo $permanent->address  ?></textarea>
 			                                    </div>
 			                                    <div class="form-group col-md-6 m-t-5">
 			                                        <label>City</label>
-			                                        <input type="text" name="parcity" class="form-control form-control-line" placeholder="" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> value="<?php if(!empty($permanent->city)) echo $permanent->city ?>" minlength="2" required> 
+			                                        <input type="text" name="parcity" class="form-control form-control-line" placeholder="" value="<?php if(!empty($permanent->city)) echo $permanent->city ?>" minlength="2" required> 
 			                                    </div>
 			                                    <div class="form-group col-md-6 m-t-5">
 			                                        <label>Country</label>
-			                                        <input type="text" name="parcountry" class="form-control form-control-line" placeholder="" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> value="<?php if(!empty($permanent->country)) echo $permanent->country ?>" minlength="2" required> 
+			                                        <input type="text" name="parcountry" class="form-control form-control-line" placeholder="" value="<?php if(!empty($permanent->country)) echo $permanent->country ?>" minlength="2" required> 
 			                                    </div>
-                                                    <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>
-                                                    <?php } else { ?>			                                    
+                                                    		                                    
 			                                    <div class="form-actions col-md-12">
                                                     <input type="hidden" name="emid" value="<?php echo $basic->em_id ?>">
                                                     <input type="hidden" name="id" value="<?php if(!empty($permanent->id)) echo $permanent->id  ?>">                                                    
 			                                        <button type="submit" class="btn btn-info"> <i class="fa fa-check"></i> Save</button>
 			                                    </div>
-			                                    <?php } ?>			                                    
+			                                  	                                    
 			                                    </form>
 			                                    
 			                                    <div class="">
@@ -308,24 +307,22 @@
 			                                <form class="row" action="Present_Address" method="post" enctype="multipart/form-data">			                                    
 			                                    <div class="form-group col-md-12 m-t-5">
 			                                        <label>Address</label>
-			                                        <textarea name="presaddress" value="<?php if(!empty($present->address)) echo $present->address  ?>" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control" rows="3" minlength="7" required><?php if(!empty($present->address)) echo $present->address  ?></textarea>
+			                                        <textarea name="presaddress" value="<?php if(!empty($present->address)) echo $present->address  ?>" class="form-control" rows="3" minlength="7" required><?php if(!empty($present->address)) echo $present->address  ?></textarea>
 			                                    </div>
 			                                    <div class="form-group col-md-6 m-t-5">
 			                                        <label>City</label>
-			                                        <input type="text" name="prescity" class="form-control form-control-line" value="<?php if(!empty($present->address)) echo $present->city  ?>" placeholder=" City name" minlength="2" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> required> 
+			                                        <input type="text" name="prescity" class="form-control form-control-line" value="<?php if(!empty($present->address)) echo $present->city  ?>" placeholder=" City name" minlength="2" required> 
 			                                    </div>
 			                                    <div class="form-group col-md-6 m-t-5">
 			                                        <label>Country</label>
-			                                        <input type="text" name="prescountry" class="form-control form-control-line" placeholder="" value="<?php if(!empty($present->address)) echo $present->country  ?>" minlength="2" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> required> 
-			                                    </div>
-                                                    <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>
-                                                    <?php } else { ?>			                                    
+			                                        <input type="text" name="prescountry" class="form-control form-control-line" placeholder="" value="<?php if(!empty($present->address)) echo $present->country  ?>" minlength="2" required> 
+			                                    </div>		                                    
 			                                    <div class="form-actions col-md-12">
                                                     <input type="hidden" name="emid" value="<?php echo $basic->em_id ?>">
                                                     <input type="hidden" name="id" value="<?php if(!empty($present->id)) echo $present->id  ?>">
 			                                        <button type="submit" class="btn btn-info"> <i class="fa fa-check"></i> Save</button>
 			                                    </div>
-			                                    <?php } ?>
+			                                   
 			                                </form>
 				                        </div>
                                     </div>
@@ -363,8 +360,7 @@
                                     <td><?php echo $value->institute ?></td>
                                     <td><?php echo $value->result ?></td>
                                     <td><?php echo $value->year ?></td>
-                                   <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>
-                                                    <?php } else { ?>
+                                                  
                                     <td class="jsgrid-align-center ">
                                         <a href="#" title="Edit" class="btn btn-sm btn-info waves-effect waves-light education" data-id="<?php echo $value->id ?>"><i class="fa fa-pencil-square-o"></i></a>
                                         <a 
@@ -408,7 +404,7 @@ $(document).ready(function () {
 </script>
 
                                     </td>
-                                    <?php } ?>
+                                 
                                 </tr>
                                 <?php endforeach; ?>
                             </tbody>
@@ -423,27 +419,27 @@ $(document).ready(function () {
 			                                	<span id="error"></span>
 			                                    <div class="form-group col-md-6 m-t-5">
 			                                        <label>Degree Name</label>
-			                                        <input type="text" name="name" class="form-control form-control-line" placeholder=" Degree Name" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> minlength="1" required> 
+			                                        <input type="text" name="name" class="form-control form-control-line" placeholder=" Degree Name" minlength="1" required> 
 			                                    </div>
 			                                    <div class="form-group col-md-6 m-t-5">
 			                                        <label>Institute name</label>
-			                                        <input type="text" name="institute" class="form-control form-control-line" placeholder=" Institute name" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> minlength="7" required> 
+			                                        <input type="text" name="institute" class="form-control form-control-line" placeholder=" Institute name" minlength="7" required> 
 			                                    </div>
 			                                    <div class="form-group col-md-6 m-t-5">
 			                                        <label>Result</label>
-			                                        <input type="text" name="result" class="form-control form-control-line" placeholder=" Result" minlength="2" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> required> 
+			                                        <input type="text" name="result" class="form-control form-control-line" placeholder=" Result" minlength="2" required> 
 			                                    </div>
 			                                    <div class="form-group col-md-6 m-t-5">
 			                                        <label>Passing Year</label>
-			                                        <input type="text" name="year" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control form-control-line" placeholder="Passing Year"> 
+			                                        <input type="text" name="year" class="form-control form-control-line" placeholder="Passing Year"> 
 			                                    </div>
-			                                  <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>
-                                                    <?php } else { ?>
+			                                 
+                                                  
 			                                    <div class="form-actions col-md-6">
                                                     <input type="hidden" name="emid" value="<?php echo $basic->em_id; ?>">
 			                                        <button type="submit" class="btn btn-info"> <i class="fa fa-check"></i> Save</button>
 			                                    </div>
-			                                    <?php } ?>
+			                                  
 			                                </form>
 					                    </div>
                                     </div>
@@ -479,8 +475,8 @@ $(document).ready(function () {
                                     <td><?php echo $value->exp_com_position ?></td>
                                     <td><?php echo $value->exp_workduration ?></td>
                                     <td class="jsgrid-align-center ">
-                                       <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>
-                                       <?php } else { ?>
+                                     
+                                     
                                         <a href="#" title="Edit" class="btn btn-sm btn-info waves-effect waves-light experience" data-id="<?php echo $value->id ?>"><i class="fa fa-pencil-square-o"></i></a>
                                         <a 
    onclick="return confirmDelete(this)" 
@@ -491,7 +487,7 @@ $(document).ready(function () {
    <i class="fa fa-trash-o"></i>
 </a>
 
-                                        <?php } ?>
+                                        
                                     </td>
                                 </tr>
                                 <?php endforeach; ?>
@@ -503,15 +499,15 @@ $(document).ready(function () {
 			                                <form class="row" action="Add_Experience" method="post" enctype="multipart/form-data">
 			                                    	<div class="form-group col-md-6 m-t-5">
 			                                    	    <label> Company Name</label>
-			                                    	    <input type="text" name="company_name" class="form-control form-control-line company_name" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> placeholder="Company Name" minlength="2" required> 
+			                                    	    <input type="text" name="company_name" class="form-control form-control-line company_name"  placeholder="Company Name" minlength="2" required> 
 			                                    	</div>
 			                                    	<div class="form-group col-md-6 m-t-5">
 			                                    	    <label>Position</label>
-			                                    	    <input type="text" name="position_name" class="form-control form-control-line position_name" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> placeholder="Position" minlength="3" required> 
+			                                    	    <input type="text" name="position_name" class="form-control form-control-line position_name" placeholder="Position" minlength="3" required> 
 			                                    	</div>
 			                                    	<div class="form-group col-md-6 m-t-5">
 			                                    	    <label>Address</label>
-			                                    	    <input type="text" name="address" class="form-control form-control-line duty" placeholder="Address" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> minlength="7" required> 
+			                                    	    <input type="text" name="address" class="form-control form-control-line duty" placeholder="Address" minlength="7" required> 
 			                                    	</div>
 			                                    	<div class="form-group col-md-6 m-t-5">
     <label>Working Duration</label>
@@ -520,7 +516,7 @@ $(document).ready(function () {
             type="number" 
             name="work_duration" 
             class="form-control form-control-line working_period" 
-            <?php if($this->session->userdata('user_type') == 'EMPLOYEE'){ ?> readonly <?php } ?> 
+            
             placeholder="Working Duration" 
             min="1" 
             required 
@@ -543,13 +539,13 @@ function validateWorkDuration(input) {
 </script>
 
 
-			                                 <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>
-                                                    <?php } else { ?>
+			                                 
+                                                
 		                                    	<div class="form-actions col-md-12">
                                                     <input type="hidden" name="emid" value="<?php echo $basic->em_id; ?>">                                                
 		                                    	    <button type="submit" class="btn btn-info"> <i class="fa fa-check"></i> Save</button>
 		                                    	</div>
-		                                    	<?php } ?>
+		                                    
 			                                </form>
 					                    </div>
                                     </div>
@@ -809,21 +805,20 @@ function validateWorkDuration(input) {
                                         <form class="row" action="Add_File" method="post" enctype="multipart/form-data">
                                             <div class="form-group col-md-6 m-t-5">
                                                 <label class="">File Title</label>
-                                                <input type="text" name="title" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control" required="" aria-invalid="false" minlength="5" required>
+                                                <input type="text" name="title" class="form-control" required="" aria-invalid="false" minlength="5" required>
                                             </div>
                                             <div class="form-group col-md-6 m-t-5">
                                                 <label class="">File</label>
-                                                <input type="file" name="file_url" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control" required="" aria-invalid="false" required>
+                                                <input type="file" name="file_url" class="form-control" required="" aria-invalid="false" required>
                                             </div>
-                                            <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>
-                                                    <?php } else { ?>
+                                            
                                             <div class="form-group">
                                                 <div class="col-sm-12">
                                                     <input type="hidden" name="em_id" value="<?php echo $basic->em_id; ?>">                                                   
                                                     <button type="submit" class="btn btn-success">Add File</button>
                                                 </div>
                                             </div>
-                                            <?php } ?>
+                                        
                                         </form>
                                     </div>
                                 </div>
@@ -836,7 +831,7 @@ function validateWorkDuration(input) {
                                             <form action="Assign_leave" method="post" enctype="multipart/form-data">
                                                 <div class="form-group">
                                                 <label class="">Leave Type</label>                                 
-                                                 <select name="typeid" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="select2 form-control custom-select" style="width: 100%" id="" required>
+                                                 <select name="typeid" class="select2 form-control custom-select" style="width: 100%" id="" required>
                                                   <option value="">Select Here...</option>
                                                    <?php foreach($leavetypes as $value): ?>
                                                     <option value="<?php echo $value->type_id ?>"><?php echo $value->name ?></option>
@@ -845,7 +840,7 @@ function validateWorkDuration(input) {
                                                 </div>
 			                                 <div class="form-group">
 			                                    	<label>day</label>
-			                                    	<input type="number" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> name="noday" class="form-control form-control-line noday" placeholder="Leave Day" required> 
+			                                    	<input type="number" name="noday" class="form-control form-control-line noday" placeholder="Leave Day" required> 
 			                                 </div>
 
                                                 <div class="form-group">
@@ -858,14 +853,13 @@ function validateWorkDuration(input) {
                                                     ?>
                                                 </select>          
                                                 </div>
-                                                <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>
-                                                    <?php } else { ?>                 
+                                                         
                                             <div class="form-group">
                                                 <div class="col-sm-12">
                                                     <input type="hidden" name="em_id" value="<?php echo $basic->em_id; ?>">                                                   
                                                     <button type="submit" class="btn btn-success">Submit</button>
                                                 </div>
-                                            </div>                                                                     <?php } ?>         
+                                            </div>                                                                            
                                             </form>
 			                            </div>
 			                        </div>                                          
@@ -924,28 +918,27 @@ function validateWorkDuration(input) {
 				                                <form class="row" action="Save_Social" method="post" enctype="multipart/form-data">
 				                                    <div class="form-group col-md-6 m-t-20">
 				                                        <label>Facebook</label>
-				                                        <input type="url" class="form-control" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> name="facebook" value="<?php if(!empty($socialmedia->facebook)) echo $socialmedia->facebook ?>" placeholder="www.facebook.com"> 
+				                                        <input type="url" class="form-control" name="facebook" value="<?php if(!empty($socialmedia->facebook)) echo $socialmedia->facebook ?>" placeholder="www.facebook.com"> 
 				                                    </div>
 				                                    <div class="form-group col-md-6 m-t-20">
 				                                        <label>Twitter</label>
-				                                        <input type="text" class="form-control" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> name="twitter" value="<?php if(!empty($socialmedia->twitter)) echo $socialmedia->twitter ?>" > 
+				                                        <input type="text" class="form-control" name="twitter" value="<?php if(!empty($socialmedia->twitter)) echo $socialmedia->twitter ?>" > 
 				                                    </div>
 				                                    <div class="form-group col-md-6 m-t-20">
 				                                        <label>Google +</label>
-				                                        <input type="text" id="" name="google" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control " value="<?php if(!empty($socialmedia->google_plus)) echo $socialmedia->google_plus ?>"> 
+				                                        <input type="text" id="" name="google" class="form-control " value="<?php if(!empty($socialmedia->google_plus)) echo $socialmedia->google_plus ?>"> 
 				                                    </div>
 				                                    <div class="form-group col-md-6 m-t-20">
 				                                        <label>Skype</label>
-				                                        <input type="text" id="" name="skype" <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?> readonly <?php } ?> class="form-control " value="<?php if(!empty($socialmedia->skype_id)) echo $socialmedia->skype_id ?>"> 
+				                                        <input type="text" id="" name="skype" class="form-control " value="<?php if(!empty($socialmedia->skype_id)) echo $socialmedia->skype_id ?>"> 
 				                                    </div>
-				                                <?php if($this->session->userdata('user_type')=='EMPLOYEE'){ ?>
-                                                    <?php } else { ?>
+				                               
 				                                    <div class="form-actions col-md-12">
                                                     <input type="hidden" name="emid" value="<?php echo $basic->em_id; ?>">                                                   
                                                     <input type="hidden" name="id" value="<?php if(!empty($socialmedia->id)) echo $socialmedia->id ?>">                                                   
 				                                        <button type="submit" class="btn btn-info pull-right"> <i class="fa fa-check"></i> Save</button>
 				                                    </div>
-				                                    <?php } ?>
+				                                   
 				                                </form>
                                     </div>
                                 </div>

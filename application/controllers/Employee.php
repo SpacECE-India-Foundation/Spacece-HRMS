@@ -72,7 +72,7 @@ class Employee extends CI_Controller {
         $leavedate = $this->input->post('leavedate');	
         $username = $this->input->post('username');	
         $email = $this->input->post('email');	
-        $password = sha1($contact);	
+        $password = sha1($this->input->post('password'));	
         $confirm = $this->input->post('confirm');	
         $nid = $this->input->post('nid');		
         $blood = $this->input->post('blood');		
@@ -80,7 +80,7 @@ class Employee extends CI_Controller {
             $this->load->library('form_validation');
             $this->form_validation->set_error_delimiters();
             // Validating Name Field
-            $this->form_validation->set_rules('contact', 'contact', 'trim|required|min_length[10]|max_length[15]|xss_clean');
+            $this->form_validation->set_rules('contact', 'contact', 'trim|min_length[10]|max_length[15]|xss_clean');
             /*validating email field*/
             $this->form_validation->set_rules('email', 'Email','trim|required|min_length[7]|max_length[100]|xss_clean');
     
