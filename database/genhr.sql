@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 24, 2025 at 05:42 PM
+-- Generation Time: Jan 25, 2025 at 01:43 PM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.2.12
 
@@ -225,6 +225,24 @@ CREATE TABLE `bank_info` (
 
 INSERT INTO `bank_info` (`id`, `em_id`, `holder_name`, `bank_name`, `branch_name`, `account_number`, `account_type`) VALUES
 (11, 'Doe1753', 'ESHa shastri', 'ddddd sdd', 'dddddddd', '000111', 'Savings');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `courses`
+--
+
+CREATE TABLE `courses` (
+  `course_id` int(11) NOT NULL,
+  `title` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `department` text NOT NULL,
+  `mandatory` tinyint(1) DEFAULT 0,
+  `due_date` date NOT NULL,
+  `course_url` varchar(2083) NOT NULL,
+  `recurrence` varchar(255) DEFAULT NULL,
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -1118,7 +1136,7 @@ CREATE TABLE `settings` (
 --
 
 INSERT INTO `settings` (`id`, `sitelogo`, `sitetitle`, `description`, `copyright`, `contact`, `currency`, `symbol`, `system_email`, `address`, `address2`, `site2logo`) VALUES
-(1, 'logo-icon12.png', 'Development Research Initiative (dRi)', 'Prochesta Foundation aims at the upliftment & betterment of people living below the poverty line.', 'GenIT Bangladesh', '017112233445', 'BDT', '$', 'contact@dri-int.org', 'aaaaaaaaaaa', 'Dhaka', 'HRPAYROLL11.png');
+(1, 'HRPAYROLL122.png', 'Development Research Initiative (dRi)', 'Prochesta Foundation aims at the upliftment & betterment of people living below the poverty line.', 'GenIT Bangladesh', '017112233445', 'BDT', '$', 'contact@dri-int.org', 'aaaaaaaaaaa', 'Dhaka', 'logo-icon3.png');
 
 -- --------------------------------------------------------
 
