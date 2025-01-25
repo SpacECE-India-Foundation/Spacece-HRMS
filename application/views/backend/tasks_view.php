@@ -43,6 +43,7 @@
                                                 <th>Start Date </th>
                                                 <th>End Date </th>
                                                 <th>Assigned Employee </th>
+                                                <th>Collaborators</th>
                                                 <!--<th>Action </th>-->
                                             </tr>
                                         </thead>
@@ -53,6 +54,7 @@
                                                 <th>Start Date </th>
                                                 <th>End Date </th>
                                                 <th>Assigned Employee </th>
+                                                <th>Collaborators</th>
                                                 <!--<th>Action </th>-->
                                             </tr>
                                         </tfoot>
@@ -66,9 +68,43 @@
                                                 <td>
                                                 <?php
                                                 $id = $value->id;
-                                                $assignvalue = $this->project_model->getTaskAssignUser($id);  ?>
+                                                $assignvalue = $this->project_model->getTaskAssignUser($id);  
+                                                ?>
+
                                                 <?php foreach($assignvalue as $value1): ?>
-                                                <img src="<?php echo base_url(); ?>assets/images/users/<?php echo $value1->em_image ?>" height="40px" width="40px" style="border-radius:50px" alt="" data-toggle="tooltip" data-placement="top" title="" data-original-title="<?php echo $value1->first_name; ?>">
+                                                    <?php if ($value1->user_type === 'Team Head'): ?>
+                                                        <img 
+                                                            src="<?php echo base_url(); ?>assets/images/users/<?php echo $value1->em_image ?>" 
+                                                            height="40px" 
+                                                            width="40px" 
+                                                            style="border-radius:50px" 
+                                                            alt="" 
+                                                            data-toggle="tooltip" 
+                                                            data-placement="top" 
+                                                            title="" 
+                                                            data-original-title="<?php echo $value1->first_name; ?>">
+                                                    <?php endif; ?>
+                                                <?php endforeach; ?>
+                                                </td>
+                                                <td>
+                                                <?php
+                                                $id = $value->id;
+                                                $assignvalue = $this->project_model->getTaskAssignUser($id);  
+                                                ?>
+
+                                                <?php foreach($assignvalue as $value1): ?>
+                                                    <?php if ($value1->user_type === 'Collaborators'): ?>
+                                                        <img 
+                                                            src="<?php echo base_url(); ?>assets/images/users/<?php echo $value1->em_image ?>" 
+                                                            height="40px" 
+                                                            width="40px" 
+                                                            style="border-radius:50px" 
+                                                            alt="" 
+                                                            data-toggle="tooltip" 
+                                                            data-placement="top" 
+                                                            title="" 
+                                                            data-original-title="<?php echo $value1->first_name; ?>">
+                                                    <?php endif; ?>
                                                 <?php endforeach; ?>
                                                 </td>
 <!--                                                <td class="jsgrid-align-center ">

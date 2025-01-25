@@ -41,20 +41,20 @@
     <!-- First Row -->
     <div class="form-group col-md-3 m-t-20">
         <label>First Name</label>
-        <input type="text" name="fname" class="form-control form-control-line" placeholder="Please enter your first name" minlength="2" required>
+        <input type="text" name="fname" class="form-control form-control-line" placeholder="Please enter your first name" minlength="2" >
     </div>
     <div class="form-group col-md-3 m-t-20">
         <label>Last Name</label>
-        <input type="text" name="lname" class="form-control form-control-line" placeholder="Please enter your last name" minlength="2" required>
+        <input type="text" name="lname" class="form-control form-control-line" placeholder="Please enter your last name" minlength="2" >
     </div>
     <div class="form-group col-md-3 m-t-20">
         <label>Employee Code</label>
-        <input type="text" name="eid" class="form-control form-control-line" placeholder="Please enter your ID">
+        <input type="text" name="eid" class="form-control form-control-line" placeholder="Please enter your ID" required>
     </div>
     <div class="form-group col-md-3 m-t-20">
         <label>Department</label>
         <select name="dept" class="form-control custom-select" required>
-            <option>Select Department</option>
+            <option value="" selected disabled>Select Department</option>
             <?php foreach ($depvalue as $value): ?>
             <option value="<?php echo $value->id ?>"><?php echo $value->dep_name ?></option>
             <?php endforeach; ?>
@@ -77,7 +77,7 @@
     <div class="form-group col-md-3 m-t-20">
         <label>Designation</label>
         <select name="deg" class="form-control custom-select" required>
-            <option>Select Designation</option>
+            <option value="" selected disabled>Select Designation</option>
             <?php foreach ($degvalue as $value): ?>
             <option value="<?php echo $value->id ?>"><?php echo $value->des_name ?></option>
             <?php endforeach; ?>
@@ -86,7 +86,7 @@
     <div class="form-group col-md-3 m-t-20">
         <label>Role</label>
         <select name="role" class="form-control custom-select" required>
-            <option>Select Role</option>
+            <option value="" selected disabled>Select Role</option>
             <option value="ADMIN">ADMIN</option>
             <option value="EMPLOYEE">Employee</option>
             <option value="SUPER ADMIN">Super Admin</option>
@@ -94,7 +94,7 @@
     </div>
     <div class="form-group col-md-3 m-t-20">
         <label>Gender</label>
-        <select name="gender" class="form-control custom-select" required>
+        <select name="gender" class="form-control custom-select" >
             <option value="MALE" <?= (isset($basic->em_gender) && $basic->em_gender == 'MALE') ? 'selected' : '' ?>>Male</option>
             <option value="FEMALE" <?= (isset($basic->em_gender) && $basic->em_gender == 'FEMALE') ? 'selected' : '' ?>>Female</option>
         </select>
@@ -103,19 +103,19 @@
     <!-- Third Row -->
     <div class="form-group col-md-3 m-t-20">
         <label>NID</label>
-        <input type="text" name="nid" class="form-control" placeholder="Please enter your NID" minlength="10" required>
+        <input type="text" name="nid" class="form-control" placeholder="Please enter your NID" minlength="10">
     </div>
     <div class="form-group col-md-3 m-t-20">
         <label>Contact Number</label>
-        <input type="text" name="contact" class="form-control" placeholder="Please enter your contact number" minlength="10" maxlength="15" required>
+        <input type="text" name="contact" class="form-control" placeholder="Please enter your contact number" minlength="10" maxlength="15" >
     </div>
     <div class="form-group col-md-3 m-t-20">
         <label>Date Of Birth</label>
-        <input type="date" name="dob" class="form-control" required>
+        <input type="date" name="dob" class="form-control">
     </div>
     <div class="form-group col-md-3 m-t-20">
         <label>Date Of Joining</label>
-        <input type="date" name="joindate" class="form-control">
+        <input type="date" name="joindate" class="form-control" required>
     </div>
 
     <!-- Fourth Row -->
@@ -132,10 +132,13 @@
         <input type="email" name="email" class="form-control" placeholder="Please enter your email" minlength="7" required>
     </div>
     <div class="form-group col-md-3 m-t-20">
+        <label>Password</label>
+        <input type="text" name="password" placeholder="Please enter your password" class="form-control" required>
+    </div>
+    <div class="form-group col-md-3 m-t-20">
         <label>Image</label>
         <input type="file" name="image_url" class="form-control">
     </div>
-
     <!-- Submit Buttons -->
     <div class="form-actions col-md-12">
         <button type="submit" class="btn btn-info"> <i class="fa fa-check"></i> Save</button>

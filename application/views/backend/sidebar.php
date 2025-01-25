@@ -1,4 +1,4 @@
-        <aside class="left-sidebar">
+<aside class="left-sidebar">
             <!-- Sidebar scroll-->
             <div class="scroll-sidebar">
                 <!-- User profile -->
