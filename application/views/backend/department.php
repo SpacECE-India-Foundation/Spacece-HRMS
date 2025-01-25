@@ -65,13 +65,11 @@
                                     <form method="post" action="Save_dep" enctype="multipart/form-data">
                                         <div class="form-body">
                                             <div class="row ">
-                                            <div class="col-md-12">
-                                                <div class="form-group">
-                                                    <label class="control-label">Department Name</label>
-                                                    <input type="text" name="department" id="firstName" value="" class="form-control" 
-                                                        placeholder="Enter department name" minlength="3" required
-                                                        pattern="^[a-zA-Z0-9\s]+$" 
-                                                        title="Only letters, numbers, and spaces are allowed.">
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <label class="control-label">Department Name</label>
+                                                        <input type="text" name="department" id="firstName" value="" class="form-control" placeholder="" minlength="3" required>
+                                                    </div>
                                                 </div>
                                                 <!--/span-->
                                             </div>
