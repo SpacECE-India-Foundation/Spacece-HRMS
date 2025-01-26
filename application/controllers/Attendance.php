@@ -131,10 +131,7 @@ class Attendance extends CI_Controller
             if (empty($id)) {
                 $day = date("D", strtotime($new_date_changed));
                 if ($day == "Fri") {
-                    $duplicate = $this->attendance_model->getDuplicateVal($em_id, $new_date_changed);
-                    if (!empty($duplicate)) {
-                        echo "Already Exist";
-                    } else {
+                    
                         $emcode = $this->employee_model->emselectByCode($em_id);
                         $emid = $emcode->em_id;
                         $earnval = $this->leave_model->emEarnselectByLeave($emid);
@@ -154,15 +151,14 @@ class Attendance extends CI_Controller
                             'status' => 'E'
                         );
                         $this->attendance_model->Add_AttendanceData($data);
-                        echo "Successfully added.";
-                    }
+                        // echo "Successfully added.";
+                        redirect('attendance/Save_Attendance');
+
+                    
                 } else {
                     $holiday = $this->leave_model->get_holiday_between_dates($new_date_changed);
                     if ($holiday) {
-                        $duplicate = $this->attendance_model->getDuplicateVal($em_id, $new_date_changed);
-                        if (!empty($duplicate)) {
-                            echo "Already Exist";
-                        } else {
+                        
                             $emcode = $this->employee_model->emselectByCode($em_id);
                             $emid = $emcode->em_id;
                             $earnval = $this->leave_model->emEarnselectByLeave($emid);
@@ -182,13 +178,12 @@ class Attendance extends CI_Controller
                                 'status' => 'E'
                             );
                             $this->attendance_model->Add_AttendanceData($data);
-                            echo "Successfully added.";
-                        }
+                            // echo "Successfully added.";
+                            redirect('attendance/Save_Attendance');
+
+                        
                     } else {
-                        $duplicate = $this->attendance_model->getDuplicateVal($em_id, $new_date_changed);
-                        if (!empty($duplicate)) {
-                            echo "Already Exist";
-                        } else {
+                        
                             $data = array(
                                 'emp_id' => $em_id,
                                 'atten_date' => $new_date_changed,
@@ -200,8 +195,10 @@ class Attendance extends CI_Controller
                             );
                             $this->attendance_model->Add_AttendanceData($data);
                             echo "Successfully added.";
+                            redirect('attendance/Save_Attendance');
+
                         }
-                    }
+                    
                 }
             } else {
                 $data = array(
@@ -214,10 +211,12 @@ class Attendance extends CI_Controller
                 );
                 $this->attendance_model->Update_AttendanceData($id, $data);
                 echo "Successfully updated.";
+                redirect('attendance/Save_Attendance');
+
             }
         }
     } else {
-        redirect(base_url(), 'refresh');
+        redirect('attendance/Save_Attendance');
     }
 }
 
@@ -306,7 +305,6 @@ public function import()
             }
 
             // Check if attendance record exists for the employee on the given date
-            $duplicate = $this->attendance_model->getDuplicateVal($row["Employee No"], $date);
 
             if (!empty($duplicate)) {
                 // Update existing record if duplicate found
