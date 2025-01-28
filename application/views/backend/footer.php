@@ -1,9 +1,14 @@
             </div>
 
-            <footer class="footer"> © 2017 GenIT Bangladesh </footer>
-
+            <footer class="footer">
+                <div class="footer-content">
+                    <p>&copy; 2025 SpaceECE Foundation. All Rights Reserved.</p>
+                    <p>Email: <a href="mailto:contact@yourcompany.com">technology.spaceece@gmail.com</a></p>
+                    <p>Contact: <a href="tel:+1234567890">+91 00000 00000</a></p>
+                    <p>Address: city, street</p>
+                </div>
+            </footer>
         </div>
-
     </div>
 
 
