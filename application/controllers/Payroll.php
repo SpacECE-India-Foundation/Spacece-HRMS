@@ -1185,16 +1185,29 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
             redirect(base_url() , 'refresh');
         }      
     }
-    public function Payslip_Report(){
-        if($this->session->userdata('user_login_access') != False) {  
-        $data=array();    
-        $data['employee'] = $this->employee_model->emselect();
-        $this->load->view('backend/salary_report',$data);
+    public function Payslip_Report() {
+        // Check if user is logged in
+        if ($this->session->userdata('user_login_access') != False) {  
+            $data = array();
+    
+            // Fetch employee data
+            $data['employee'] = $this->employee_model->emselect();
+    
+            // Check if employee data is retrieved
+            if (empty($data['employee'])) {
+                log_message('error', 'No employee data found.');
+                $data['error'] = 'No employee data available.';
+            }
+    
+            // Load the salary report view
+            $this->load->view('backend/salary_report', $data);
+        } else {
+            // Redirect to base URL if session is invalid
+            redirect(base_url(), 'refresh');
         }
-    else{
-        redirect(base_url() , 'refresh');
-    }        
     }
+         
+    
 
     /**
      * Submit Expense Form

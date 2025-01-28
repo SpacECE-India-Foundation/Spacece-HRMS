@@ -218,7 +218,7 @@ $this->load->view('backend/sidebar');
                 <label class="control-label text-left col-md-5">Basic Salary
                 </label>
                 <div class="col-md-7">
-                <input type="text" name="basic" class="form-control" id="" value="">
+                <input type="text" name="basic" class="form-control" id="" value=""readonly>
               </div> 
               </div>                                     
               <div class="form-group row">

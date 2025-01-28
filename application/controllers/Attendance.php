@@ -275,8 +275,9 @@ public function import()
         if ($row["Check-in at"] > '0:00:00') {
             $date = date('Y-m-d', strtotime($row["Date"]));
 
-            // Calculate working hours if 'Work Duration' is not provided
-            if (empty($row["Work Duration"])) {
+         
+              // Calculate working hours if 'Work Duration' is not provided
+              if (empty($row["Work Duration"])) {
                 $checkInTime = strtotime($row["Check-in at"]);
                 $checkOutTime = strtotime($row["Check-out at"]);
                 if ($checkInTime && $checkOutTime) {
