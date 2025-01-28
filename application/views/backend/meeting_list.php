@@ -59,28 +59,44 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php if (!empty($meetings)): ?>
-                                        <?php foreach ($meetings as $meeting): ?>
-                                            <tr>
-                                                <td><?php echo htmlspecialchars(is_array($meeting) ? $meeting['meeting_title'] : $meeting->meeting_title); ?></td>
-                                                <td><?php echo htmlspecialchars(is_array($meeting) ? $meeting['meeting_date'] : $meeting->meeting_date); ?></td>
-                                                <td><?php echo htmlspecialchars(is_array($meeting) ? $meeting['meeting_time'] : $meeting->meeting_time); ?></td>
-                                                <td><?php echo htmlspecialchars(is_array($meeting) ? $meeting['department'] : $meeting->dep_name); ?></td>
-                                                <td><?php echo htmlspecialchars(is_array($meeting) ? $meeting['designation'] : $meeting->des_name); ?></td>
-                                                <td><?php echo htmlspecialchars(is_array($meeting) ? $meeting['status'] : $meeting->status); ?></td>
-                                                <td>
-                                                    <a href="<?php echo base_url(); ?>Meetings/meeting_views?I=<?php echo base64_encode(is_array($meeting) ? $meeting['id'] : $meeting->id); ?>" class="btn btn-sm btn-warning">Edit</a>
-                                                    <a href="<?php echo base_url(); ?>Meetings/delete/<?php echo is_array($meeting) ? $meeting['id'] : $meeting->id; ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
-                                                    <a href="<?php echo base_url(); ?>Meetings/view_uploaded_files?I=<?php echo base64_encode(is_array($meeting) ? $meeting['id'] : $meeting->id); ?>" class="btn btn-sm btn-info">Uploaded Files</a>
-                                                </td>
-                                            </tr>
-                                        <?php endforeach; ?>
-                                    <?php else: ?>
-                                        <tr>
-                                            <td colspan="7" class="text-center">No meetings scheduled.</td>
-                                        </tr>
-                                    <?php endif; ?>
-                                </tbody>
+    <?php if (!empty($meetings)): ?>
+        <?php foreach ($meetings as $meeting): ?>
+            <?php 
+                $meetingId = is_array($meeting) ? $meeting['id'] : $meeting->id;
+                $meetingTitle = is_array($meeting) ? $meeting['meeting_title'] : $meeting->meeting_title;
+                $meetingDate = is_array($meeting) ? $meeting['meeting_date'] : $meeting->meeting_date;
+                $meetingTime = is_array($meeting) ? $meeting['meeting_time'] : $meeting->meeting_time;
+                $department = is_array($meeting) ? $meeting['department'] : $meeting->dep_name;
+                $designation = is_array($meeting) ? $meeting['designation'] : $meeting->des_name;
+                $status = is_array($meeting) ? $meeting['status'] : $meeting->status;
+            ?>
+            <tr>
+                <td><?php echo htmlspecialchars($meetingTitle); ?></td>
+                <td><?php echo htmlspecialchars($meetingDate); ?></td>
+                <td><?php echo htmlspecialchars($meetingTime); ?></td>
+                <td><?php echo htmlspecialchars($department); ?></td>
+                <td><?php echo htmlspecialchars($designation); ?></td>
+                <td><?php echo htmlspecialchars($status); ?></td>
+                <td>
+                    <a href="<?php echo base_url(); ?>Meetings/meeting_views?I=<?php echo base64_encode($meetingId); ?>" class="btn btn-sm btn-warning">Edit</a>
+                    <a href="<?php echo base_url(); ?>Meetings/delete/<?php echo $meetingId; ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure?')">Delete</a>
+                    <?php if (!empty($meeting['uploaded_files'])): ?>
+        <?php foreach ($meeting['uploaded_files'] as $file): ?>
+            <a href="<?php echo base_url(); ?>assets/uploads/<?php echo $file['file_name']; ?>" target="_blank" class="btn btn-sm btn-info">View Uploaded File</a><br>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <span>No uploaded files</span>
+    <?php endif; ?>
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    <?php else: ?>
+        <tr>
+            <td colspan="7" class="text-center">No meetings scheduled.</td>
+        </tr>
+    <?php endif; ?>
+</tbody>
+
                             </table>
                         </div>
                     </div>

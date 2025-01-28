@@ -42,12 +42,14 @@
 
                                 <!-- Date and Time (2 columns) -->
                                 <div class="row">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label>Date</label>
-                                            <input type="date" name="meeting_date" class="form-control" required>
-                                        </div>
-                                    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <label>Date</label>
+            <input type="date" name="meeting_date" class="form-control" required>
+        </div>
+    </div>
+</div>
+
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Time</label>
@@ -76,7 +78,7 @@
                                             <label for="designations">Designations Invited</label>
                                             <select id="designations" name="designations[]" class="form-control custom-select" multiple required>
                                                 <?php foreach ($designations as $designation): ?>
-                                                    <option value="<?php echo $designation->id; ?>"><?php echo $designation->name; ?></option>
+                                                    <option value="<?php echo $designation->id; ?>"><?php echo $designation->des_name; ?></option>
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>
@@ -116,9 +118,20 @@
                                 <!-- Actions -->
                                 <div class="form-actions">
                                     <div class="row">
-                                        <div class="col-md-6">
-                                            <button type="button" class="btn btn-info btn-block" onclick="uploadFiles()">Upload Relevant Files</button>
-                                        </div>
+                        <h4 class="m-b-0 text-white">Upload Document</h4>
+                    </div> <div class="form-group">
+                                    <label for="document">Upload Document (PDF only):</label>
+                                    <input type="file" name="document" id="document" class="form-control" required onchange="previewDocument()">
+                                </div>
+                            </div>
+                            <div id="previewSection" style="display:none;">
+                                <h5>Document Preview:</h5>
+                                <embed id="documentPreview" src="" type="application/pdf" width="100%" height="400px">
+                                <div class="mt-3">
+                                    <button type="button" class="btn btn-danger" id="deleteButton" onclick="deleteDocument()">Delete</button>
+                                    <button type="button" class="btn btn-info" id="replaceButton" onclick="replaceDocument()">Replace</button>
+                                </div>
+                          
                                         <div class="col-md-6">
     <button type="button" class="btn btn-primary btn-block" onclick="showNotificationModal()">Create and Send Notifications</button>
 </div>
@@ -157,6 +170,8 @@
         </div>
     </div>
 </div>
+
+
 <script type="text/javascript">
     function showNotificationModal() {
         $('#notificationModal').modal('show');
@@ -199,10 +214,7 @@
                                             <button type="submit" class="btn btn-success btn-block">Save</button>
                                         </div>
                                         <div class="col-md-4">
-                                            <button type="reset" class="btn btn-danger btn-block">Cancel</button>
-                                        </div>
-                                        <div class="col-md-4">
-                                            <button type="button" class="btn btn-warning btn-block" onclick="editMeeting()">Edit</button>
+                                        <button type="button" class="btn btn-danger" onclick="window.location.href='<?php echo site_url('meetings'); ?>'">Cancel</button>
                                         </div>
                                     </div>
                                 </div>
@@ -215,6 +227,41 @@
     </div>
 </div>
 
+<?php foreach ($meetings as $meeting): ?>
+    <div class="meeting-details">
+        <h4>Meeting: <?php echo htmlspecialchars($meeting->meeting_title); ?></h4>
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Attendee Name</th>
+                    <th>RSVP Status</th>
+                    <th>Attendance</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if (!empty($meeting->attendees)): ?>
+                    <?php foreach ($meeting->attendees as $attendee): ?>
+                        <tr>
+                            <td><?php echo htmlspecialchars($attendee->employee_name); ?></td>
+                            <td><?php echo htmlspecialchars($attendee->rsvp_status); ?></td>
+                            <td>
+                                <input 
+                                    type="checkbox" 
+                                    name="attendance[<?php echo $attendee->id; ?>]" 
+                                    <?php echo $attendee->attended ? 'checked' : ''; ?>
+                                >
+                            </td>
+                        </tr>
+                    <?php endforeach; ?>
+                <?php else: ?>
+                    <tr>
+                        <td colspan="3" class="text-center">No attendees available.</td>
+                    </tr>
+                <?php endif; ?>
+            </tbody>
+        </table>
+    </div>
+<?php endforeach; ?>
 <?php $this->load->view('backend/footer'); ?>
 
 <script>
@@ -232,4 +279,35 @@
         // Implement edit functionality here
         alert('Edit functionality to be implemented.');
     }
+
+    function previewDocument() {
+        const fileInput = document.getElementById('document');
+        const previewSection = document.getElementById('previewSection');
+        const documentPreview = document.getElementById('documentPreview');
+
+        // Ensure the file is selected and it's a PDF
+        if (fileInput.files && fileInput.files[0] && fileInput.files[0].type === 'application/pdf') {
+            const fileURL = URL.createObjectURL(fileInput.files[0]);
+            documentPreview.src = fileURL;
+            previewSection.style.display = 'block';
+        } else {
+            alert("Please upload a PDF document.");
+        }
+    }
+
+    function deleteDocument() {
+        const fileInput = document.getElementById('document');
+        fileInput.value = ''; // Clear the file input
+        document.getElementById('previewSection').style.display = 'none'; // Hide preview
+    }
+
+    function replaceDocument() {
+        const fileInput = document.getElementById('document');
+        fileInput.click(); // Trigger the file input to replace document
+    }
+    document.addEventListener("DOMContentLoaded", function () {
+        const dateInput = document.querySelector('input[name="meeting_date"]');
+        const today = new Date().toISOString().split('T')[0];
+        dateInput.setAttribute('min', today);
+    });
 </script>
