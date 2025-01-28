@@ -27,7 +27,7 @@ class Employee extends CI_Controller {
         $this->load->model('payroll_model');
         $this->load->model('settings_model');
         $this->load->model('leave_model');
-  
+        $this->load->model('course_model');
     }
     
 	public function index()
@@ -72,7 +72,7 @@ class Employee extends CI_Controller {
         $leavedate = $this->input->post('leavedate');	
         $username = $this->input->post('username');	
         $email = $this->input->post('email');	
-        $password = sha1($contact);	
+        $password = sha1($this->input->post('password'));	
         $confirm = $this->input->post('confirm');	
         $nid = $this->input->post('nid');		
         $blood = $this->input->post('blood');		
@@ -80,7 +80,7 @@ class Employee extends CI_Controller {
             $this->load->library('form_validation');
             $this->form_validation->set_error_delimiters();
             // Validating Name Field
-            $this->form_validation->set_rules('contact', 'contact', 'trim|required|min_length[10]|max_length[15]|xss_clean');
+            $this->form_validation->set_rules('contact', 'contact', 'trim|min_length[10]|max_length[15]|xss_clean');
             /*validating email field*/
             $this->form_validation->set_rules('email', 'Email','trim|required|min_length[7]|max_length[100]|xss_clean');
     
@@ -1074,5 +1074,187 @@ class Employee extends CI_Controller {
             echo "failure"; // Failure response
         }
     }
+    public function createcourse() {
+        if ($this->session->userdata('user_login_access') != False) {
+            // Load necessary models
+            $this->load->model('employee_model');
+            $this->load->model('course_model'); // Assuming you have a model for courses
+
+            // Fetch employee data if needed
+            $data['employee'] = $this->employee_model->emselect();
+            $data['departments'] = $this->course_model->getAllDepartments();
+            // Check if there's an ID in the request (for editing an existing course)
+           
+                $data['courses'] = $this->course_model->get_all_courses(); // Fetch course data for editing
+            
+
+            // Load the view for creating a course
+            $this->load->view('backend/create_course', $data);
+        } else {
+            redirect(base_url(), 'refresh');
+        }
+    }
+
+    public function add_course() {
+        // Load the database library
+        $this->load->model('Course_model');
     
+        // Validate form inputs
+        $this->form_validation->set_rules('title', 'Title', 'required|trim');
+        $this->form_validation->set_rules('description', 'Description', 'required|trim');
+        $this->form_validation->set_rules('due_date', 'Due Date', 'required');
+        $this->form_validation->set_rules('course_url', 'Course URL', 'required|valid_url');
+    
+        if ($this->form_validation->run() == FALSE) {
+            // Validation failed, return errors
+            $this->output
+                ->set_content_type('application/json')
+                ->set_output(json_encode([
+                    'status' => 'error',
+                    'message' => validation_errors()
+                ]));
+            return;
+        }
+    
+        // Prepare course data
+        $courseData = [
+            'title' => $this->input->post('title'),
+            'description' => $this->input->post('description'),
+            'mandatory' => $this->input->post('mandatory') ? 1 : 0,
+            'due_date' => $this->input->post('due_date'),
+            'course_url' => $this->input->post('course_url'),
+            'recurrence' => $this->input->post('recurrence'),
+            'department' =>$this->input->post('department')
+        ];
+    
+        // Add file upload handling if needed
+        if (!empty($_FILES['course_files']['name'])) {
+            // Configure upload settings
+            $config['upload_path'] = './uploads/courses/';
+            $config['allowed_types'] = 'pdf|doc|docx|jpg|png';
+            $this->load->library('upload', $config);
+    
+            if ($this->upload->do_upload('course_files')) {
+                $fileData = $this->upload->data();
+                $courseData['file_path'] = $fileData['file_name'];
+            }
+        }
+    
+        // Insert course to database
+        $result = $this->Course_model->add_course($courseData);
+    
+        if ($result) {
+            $this->output
+                ->set_content_type('application/json')
+                ->set_output(json_encode([
+                    'status' => 'success',
+                    'message' => 'Course added successfully'
+                ]));
+        } else {
+            $this->output
+                ->set_content_type('application/json')
+                ->set_output(json_encode([
+                    'status' => 'error',
+                    'message' => 'Failed to add course'
+                ]));
+        }
+    }
+    public function edit_course() {
+        if ($this->session->userdata('user_login_access') != false) {
+            $id = $this->input->get('id'); // Get the course ID from the URL
+            $this->load->model('course_model');
+            
+            // Fetch the course data
+            $data['course'] = $this->course_model->get_course_by_id($id);
+            $data['departments'] = $this->course_model->getAllDepartments(); // Fetch departments for the dropdown
+    
+            // Load the edit view
+            $this->load->view('backend/edit_course', $data);
+        } else {
+            redirect(base_url(), 'refresh');
+        }
+    }
+    public function update_course() {
+        if ($this->session->userdata('user_login_access') != false) {
+            // Set validation rules
+            $this->form_validation->set_rules('title', 'Title', 'required');
+            $this->form_validation->set_rules('description', 'Description', 'required');
+            $this->form_validation->set_rules('due_date', 'Due Date', 'required');
+            $this->form_validation->set_rules('course_url', 'Course URL', 'required|valid_url');
+            $this->form_validation->set_rules('recurrence', 'Recurrence', 'required');
+        
+            if ($this->form_validation->run() == FALSE) {
+                // Validation failed, reload the form with error messages
+                $id = $this->input->post('id'); // Get the course ID
+                $this->edit_course($id); // Reload the edit course view with errors and course data
+            } else {
+                // Validation passed, process the form data
+                $data = array(
+                    'title' => $this->input->post('title'),
+                    'description' => $this->input->post('description'),
+                    'department' => $this->input->post('department'), // Capture department
+                    'mandatory' => $this->input->post('mandatory') ? 1 : 0,
+                    'due_date' => $this->input->post('due_date'),
+                    'course_url' => $this->input->post('course_url'),
+                    'recurrence' => $this->input->post('recurrence')
+                );
+        
+                $id = $this->input->post('id'); // Get the course ID
+                
+                // Call the model method to update the course
+                if ($this->course_model->update_course($id, $data)) {
+                    // Redirect to the course list or success page
+                    $this->session->set_flashdata('success', 'Course updated successfully!');
+                    redirect('employee/createcourse'); // Redirect to the course list
+                } else {
+                    // Handle update failure
+                    $this->session->set_flashdata('error', 'Failed to update course.');
+                    redirect('employee/edit_course?id=' . $id); // Redirect back to the edit form
+                }
+            }
+        } else {
+            redirect(base_url(), 'refresh');
+        }
+    }
+    
+ // Display Course Assignment Page
+ public function course_assignment() {
+    $data['departments'] = $this->Course_model->get_all_departments();
+    $data['courses'] = $this->Course_model->get_all_courses();
+
+    $this->load->view('backend/header');
+    $this->load->view('backend/sidebar');
+    $this->load->view('backend/course_assignment', $data);
+    $this->load->view('backend/footer');
 }
+
+// Handle Course Filtering
+public function filter_courses() {
+    $department = $this->input->post('department');
+    $date = $this->input->post('date');
+    $nature = $this->input->post('nature');
+
+    $courses = $this->Course_model->filter_courses($department, $nature, $date);
+
+    echo json_encode(['courses' => $courses]);
+}
+
+// Create Course Assignment
+public function create_course_assignment() {
+    $data = [
+        'course_id' => $this->input->post('course'),
+        'department' => $this->input->post('department'),
+        'date' => $this->input->post('date'),
+        'nature' => $this->input->post('nature'),
+    ];
+
+    if ($this->Course_model->assign_course($data)) {
+        $this->session->set_flashdata('success', 'Course assignment created successfully!');
+    } else {
+        $this->session->set_flashdata('error', 'Failed to create course assignment.');
+    }
+
+    redirect('employee/course_assignment');
+}
+}
+    

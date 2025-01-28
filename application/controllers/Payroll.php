@@ -1196,4 +1196,43 @@ $obj_merged = (object) array_merge((array) $employee_info, (array) $salaryvalueb
     }        
     }
 
+    /**
+     * Submit Expense Form
+     */
+    public function submit_expense_form() {
+        if ($this->session->userdata('user_login_access') != False) {
+            // Validate form input
+            $this->form_validation->set_rules('expense_title', 'Expense Title', 'required');
+            $this->form_validation->set_rules('expense_amount', 'Expense Amount', 'required|numeric');
+            $this->form_validation->set_rules('expense_date', 'Expense Date', 'required');
+            $this->form_validation->set_rules('expense_description', 'Expense Description', 'required');
+
+            if ($this->form_validation->run() == FALSE) {
+                // Validation failed, reload the form with errors
+                $this->load->view('backend/expense_form'); // Replace with the correct view name
+            } else {
+                // Prepare data for insertion
+                $expense_data = array(
+                    'title' => $this->input->post('expense_title'),
+                    'amount' => $this->input->post('expense_amount'),
+                    'expense_date' => $this->input->post('expense_date'),
+                    'description' => $this->input->post('expense_description'),
+                    'employee_id' => $this->session->userdata('user_id'), // Assuming employee ID is stored in session
+                    'created_at' => date('Y-m-d H:i:s'),
+                );
+
+                // Insert data into the database
+                if ($this->Expense_model->insert_expense($expense_data)) {
+                    $this->session->set_flashdata('success', 'Expense submitted successfully.');
+                    redirect('expenses/list'); // Redirect to expense listing page
+                } else {
+                    $this->session->set_flashdata('error', 'Failed to submit expense. Please try again.');
+                    $this->load->view('backend/expense_form'); // Reload the form with an error message
+                }
+            }
+        } else {
+            redirect(base_url(), 'refresh'); // Redirect to login if not logged in
+        }
+    }
 }
+

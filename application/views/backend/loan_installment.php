@@ -69,7 +69,7 @@
                                                 <td><?php echo $value->install_no ?></td>
                                                 <td class="jsgrid-align-center">
                                                     <a href="#" title="Edit" class="btn btn-sm btn-info waves-effect waves-light installment" data-id="<?php echo $value->id ?>"><i class="fa fa-pencil-square-o"></i></a>
-                                                    <a href="#" title="Delete" class="btn btn-sm btn-info waves-effect waves-light"><i class="fa fa-trash-o"></i></a>
+                                                    <a href="<?php echo base_url('loan/delete_loaninstall/'.$value->id); ?>"  onclick="return confirm('Are you sure you want to delete this loan installment?');" class="btn btn-sm btn-info waves-effect waves-light"><i class="fa fa-trash-o"></i></a>
                                                 </td>
                                             </tr>
                                             <?php endforeach; ?>

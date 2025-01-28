@@ -69,6 +69,14 @@
   		$this->db->where('id', $id);
   		$this->db->update('loan',$data);  
     }
+    public function delete_LoanDataVal($id){
+  		$this->db->where('id', $id);
+  		$this->db->delete('loan');  
+    }
+    public function delete_LoaninstallDataVal($id){
+      $this->db->where('id', $id);
+  		$this->db->delete('loan_installment');  
+    }
     public function update_LoanInstallData($id,$data){
   		$this->db->where('id', $id);
   		$this->db->update('loan_installment',$data);  
