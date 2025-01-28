@@ -42,6 +42,7 @@
                                         <th>Date</th>
                                         <th>Time</th>
                                         <th>Status</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -52,11 +53,24 @@
                                                 <td><?php echo htmlspecialchars($meeting->meeting_date); ?></td>
                                                 <td><?php echo htmlspecialchars($meeting->meeting_time); ?></td>
                                                 <td><?php echo htmlspecialchars($meeting->status); ?></td>
+                                                <td>
+                                                    <!-- Approve Button -->
+                                                    <a href="<?php echo site_url('meetings/approveMeeting/' . $meeting->id); ?>" 
+                                                       class="btn btn-success btn-sm">
+                                                       Approve
+                                                    </a>
+
+                                                    <!-- Reject Button -->
+                                                    <a href="<?php echo site_url('meetings/rejectMeeting/' . $meeting->id); ?>" 
+                                                       class="btn btn-danger btn-sm">
+                                                       Reject
+                                                    </a>
+                                                </td>
                                             </tr>
                                         <?php endforeach; ?>
                                     <?php else: ?>
                                         <tr>
-                                            <td colspan="4" class="text-center">No meetings scheduled.</td>
+                                            <td colspan="5" class="text-center">No meetings scheduled.</td>
                                         </tr>
                                     <?php endif; ?>
                                 </tbody>

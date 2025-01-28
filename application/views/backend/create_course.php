@@ -111,15 +111,15 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-    <div class="form-group">
-        <label for="natureFilter">Nature</label> <!-- Correctly placed label -->
-        <select class="form-control" name="nature" id="natureFilter">
-            <option value="">Select Nature</option>
-            <option value="mandatory">Mandatory</option>
-            <option value="not_mandatory">Not Mandatory</option>
-        </select>
-    </div>
-</div>
+                            <div class="form-group">
+                                <label for="natureFilter">Nature</label> <!-- Correctly placed label -->
+                                <select class="form-control" name="nature" id="natureFilter">
+                                    <option value="">Select Nature</option>
+                                    <option value="mandatory">Mandatory</option>
+                                    <option value="not_mandatory">Not Mandatory</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
                     <div class="table-responsive ">
                         <table id="coursesList" class="display nowrap table table-hover table-striped table-bordered" cellspacing="0" width="100%">

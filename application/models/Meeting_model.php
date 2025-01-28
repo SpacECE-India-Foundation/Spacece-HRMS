@@ -287,7 +287,5 @@ class Meeting_model extends CI_Model {
         $query = $this->db->get('designation'); // Ensure 'designation' is the correct table name
         return $query->result(); // This should return an array of designation objects
     }
-    
-    
 
 }

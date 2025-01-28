@@ -46,7 +46,7 @@
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Date</label>
-                                            <input type="date" name="meeting_date" class="form-control" required>
+                                            <input type="date" name="meeting_date" class="form-control" required id="meeting_date">
                                         </div>
                                     </div>
                                     <div class="col-md-6">
@@ -108,8 +108,9 @@
 
                                 <!-- Actions -->
                                 <div class="form-actions">
-                                    <button type="submit" class="btn btn-success">Save</button>
-                                    <button type="reset" class="btn btn-danger">Cancel</button>
+                                        <button type="submit" class="btn btn-success">Save</button>
+                                        <button type="button" class="btn btn-danger" onclick="window.location.href='<?php echo site_url('meetings'); ?>'">Cancel</button>
+                                    </div>
                                 </div>
                             </div>
                         </form>
@@ -137,6 +138,19 @@
             allowClear: true
         });
     });
+</script>
+<script>
+    // Get today's date
+    const today = new Date();
+    const dd = String(today.getDate()).padStart(2, '0');
+    const mm = String(today.getMonth() + 1).padStart(2, '0'); // January is 0!
+    const yyyy = today.getFullYear();
+
+    // Format the date to YYYY-MM-DD
+    const formattedDate = yyyy + '-' + mm + '-' + dd;
+
+    // Set the min attribute of the input
+    document.getElementById('meeting_date').setAttribute('min', formattedDate);
 </script>
 
 <?php $this->load->view('backend/footer'); ?>

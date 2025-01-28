@@ -45,7 +45,7 @@ class Meetings extends CI_Controller {
         $this->form_validation->set_rules('departments[]', 'Departments', 'required');
         $this->form_validation->set_rules('designations[]', 'Designations', 'required');
         $this->form_validation->set_rules('recurrence', 'Recurrence', 'required'); // Ensure this is validated
-
+    
         if ($this->form_validation->run() == FALSE) {
             // Validation failed, reload the form with errors
             $data['departments'] = $this->settings_model->get_departments();
@@ -59,10 +59,10 @@ class Meetings extends CI_Controller {
                 'meeting_date' => $this->input->post('meeting_date', TRUE),
                 'meeting_time' => $this->input->post('meeting_time', TRUE),
                 'recurrence' => $this->input->post('recurrence', TRUE), // Ensure this is included
-                'departments' => $this->input->post('departments', TRUE), // No need to implode here
-                'designations' => $this->input->post('designations', TRUE) // No need to implode here
+                'departments' => json_encode($this->input->post('departments', TRUE)), // Store departments as JSON
+                'designations' => json_encode($this->input->post('designations', TRUE)) // Store designations as JSON
             );
-
+    
             // Save the meeting data using the model
             if ($this->Meeting_model->insert_meeting($data)) {
                 // Set success message and redirect to the meeting list page
@@ -71,10 +71,11 @@ class Meetings extends CI_Controller {
                 // Set error message
                 $this->session->set_flashdata('error', 'Failed to schedule the meeting.');
             }
-
+    
             redirect('meetings/index'); // Adjust the redirection as needed
         }
     }
+    
 
     public function edit($id) {
         // Fetch meeting details for editing
@@ -182,4 +183,6 @@ class Meetings extends CI_Controller {
         $this->load->view('backend/meeting_notification', $data); // Ensure this path is correct
 
     }
+    
+    
 }
