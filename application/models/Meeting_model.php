@@ -229,6 +229,47 @@ class Meeting_model extends CI_Model {
         $query = $this->db->get('meetings');
         return $query->result();
     }
+    public function get_meeting_by_id($meetingId) {
+        // Check if the meetingId is valid
+        if (empty($meetingId)) {
+            return null;
+        }
+    
+        // Query the database to fetch the meeting details
+        $this->db->where('id', $meetingId); // Replace 'id' with your primary key column name
+        $query = $this->db->get('meetings'); // Replace 'meetings' with your table name
+    
+        // Return the result as an associative array
+        if ($query->num_rows() > 0) {
+            return $query->row_array();
+        } else {
+            return null; // Return null if no meeting is found
+        }
+    }
+    public function get_departments() {
+        return $this->db->get('department')->result();
+    }
+
+    public function get_meeting_departments($meeting_id) {
+        $this->db->select('department_id');
+        $this->db->from('meeting_departments');
+        $this->db->where('meeting_id', $meeting_id);
+        $query = $this->db->get();
+
+        // Extract department IDs into an array
+        $result = $query->result();
+        return array_column($result, 'department_id');
+    }
+    public function get_meeting_designations($meeting_id) {
+        $this->db->select('designation_id');
+        $this->db->from('meeting_designations');
+        $this->db->where('meeting_id', $meeting_id);
+        $query = $this->db->get();
+
+        // Extract department IDs into an array
+        $result = $query->result();
+        return array_column($result, 'designation_id');
+    }
     public function get_meeting_details($meeting_id = null) {
         $this->db->select('
             m.id,
@@ -273,10 +314,6 @@ class Meeting_model extends CI_Model {
      *
      * @return array List of department objects.
      */
-    public function get_departments() {
-        $query = $this->db->get('department'); // Ensure 'department' is the correct table name
-        return $query->result(); // This should return an array of department objects
-    }
     
     /**
      * Get all designations.

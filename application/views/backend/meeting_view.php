@@ -23,37 +23,37 @@
                         <h4 class="m-b-0 text-white">Meeting Details</h4>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="<?php echo site_url('meetings/store'); ?>">
-                            <!-- CSRF Token -->
+                    <form method="post" action="<?php echo site_url('meetings/update/' . $meeting_details['id']); ?>">
+                    <!-- CSRF Token -->
                             <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>" />
 
                             <div class="form-body">
                                 <!-- Title (1 column) -->
                                 <div class="form-group">
                                     <label>Title of the Meeting</label>
-                                    <input type="text" name="meeting_title" class="form-control" placeholder="Enter meeting title" required>
+                                    <input type="text" name="meeting_title" class="form-control" placeholder="Enter meeting title" value="<?php echo isset($meeting_details['meeting_title']) ? htmlspecialchars($meeting_details['meeting_title']) : ''; ?>" required>
                                 </div>
 
                                 <!-- Description (1 column) -->
                                 <div class="form-group">
                                     <label>Description/Agenda</label>
-                                    <textarea name="meeting_description" class="form-control" placeholder="Add meeting agenda or description" rows="3" required></textarea>
+                                    <textarea name="meeting_description" class="form-control" placeholder="Add meeting agenda or description" rows="3" required><?php echo isset($meeting_details['meeting_description']) ? htmlspecialchars($meeting_details['meeting_description']) : ''; ?></textarea>
                                 </div>
 
                                 <!-- Date and Time (2 columns) -->
                                 <div class="row">
-    <div class="col-md-6">
-        <div class="form-group">
-            <label>Date</label>
-            <input type="date" name="meeting_date" class="form-control" required>
-        </div>
-    </div>
-</div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label>Date</label>
+                                        <input type="date" name="meeting_date" value="<?php echo isset($meeting_details['meeting_date']) ? htmlspecialchars($meeting_details['meeting_date']) : ''; ?>" class="form-control" required>
+                                    </div>
+                                </div>
+                            </div>
 
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             <label>Time</label>
-                                            <input type="time" name="meeting_time" class="form-control" required>
+                                            <input type="time" name="meeting_time" class="form-control" value="<?php echo isset($meeting_details['meeting_time']) ? htmlspecialchars($meeting_details['meeting_time']) : ''; ?>"  required>
                                         </div>
                                     </div>
                                 </div>
@@ -62,33 +62,41 @@
                                 <div class="row">
                                     <!-- Departments Involved Dropdown -->
                                     <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="departments">Departments Involved</label>
-                                            <select id="departments" name="departments[]" class="form-control custom-select" multiple required>
-                                                <?php foreach ($departments as $department): ?>
-                                                    <option value="<?php echo $department->id; ?>"><?php echo $department->dep_name; ?></option>
-                                                <?php endforeach; ?>
-                                            </select>
-                                        </div>
+                                    <div class="form-group">
+                                        <label for="departments">Departments Involved</label>
+                                        <select id="departments" name="departments[]" class="form-control custom-select" multiple required>
+                                            <?php foreach ($departments as $department): ?>
+                                                <option value="<?php echo $department->id; ?>" 
+                                                    <?php echo (in_array($department->id, $selected_departments)) ? 'selected' : ''; ?>>
+                                                    <?php echo $department->dep_name; ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
                                     </div>
+                                </div>
+
 
                                     <!-- Designations Invited Dropdown -->
                                     <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="designations">Designations Invited</label>
-                                            <select id="designations" name="designations[]" class="form-control custom-select" multiple required>
-                                                <?php foreach ($designations as $designation): ?>
-                                                    <option value="<?php echo $designation->id; ?>"><?php echo $designation->des_name; ?></option>
-                                                <?php endforeach; ?>
-                                            </select>
-                                        </div>
+                                    <div class="form-group">
+                                        <label for="designations">Designations Invited</label>
+                                        <select id="designations" name="designations[]" class="form-control custom-select" multiple required>
+                                            <?php foreach ($designations as $designation): ?>
+                                                <option value="<?php echo $designation->id; ?>" 
+                                                    <?php echo (in_array($designation->id, $selected_designations)) ? 'selected' : ''; ?>>
+                                                    <?php echo $designation->des_name; ?>
+                                                </option>
+                                            <?php endforeach; ?>
+                                        </select>
                                     </div>
+                                    </div>
+
                                 </div>
 
                                 <!-- Recurrence (if needed) -->
                                 <div class="form-group">
                                     <label>Recurrence</label>
-                                    <input type="text" name="recurrence" class="form-control" placeholder="Enter recurrence details (if any)">
+                                    <input type="text" name="recurrence" class="form-control" value="<?php echo isset($meeting_details['recurrence']) ? htmlspecialchars($meeting_details['recurrence']) : ''; ?>" placeholder="Enter recurrence details (if any)">
                                 </div>
 
                                 <!-- Meeting Notes -->
@@ -97,23 +105,7 @@
                                     <textarea name="meeting_notes" class="form-control" placeholder="Add any additional notes or comments" rows="3"></textarea>
                                 </div>
 
-                                <!-- Include jQuery -->
-                                <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-                                <!-- Include Select2 JS -->
-                                <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
-                                <script>
-                                    $(document).ready(function() {
-                                        $('#departments').select2({
-                                            placeholder: "Select departments",
-                                            allowClear: true
-                                        });
-
-                                        $('#designations').select2({
-                                            placeholder: "Select designations",
-                                            allowClear: true
-                                        });
-                                    });
-                                </script>
+                                <!-- Include jQuery --
 
                                 <!-- Actions -->
                                 <div class="form-actions">
@@ -137,39 +129,6 @@
 </div>
 
 <!-- Notification Modal -->
-<div class="modal fade" id="notificationModal" tabindex="-1" role="dialog" aria-labelledby="notificationModalLabel">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title" id="notificationModalLabel">Send Notifications</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form id="notificationForm">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="notificationType">Notification Type</label>
-                        <select class="form-control" id="notificationType" name="notificationType" required>
-                            <option value="">Select Notification Type</option>
-                            <option value="Email">Email</option>
-                            <option value="SMS">SMS</option>
-                            <option value="Push Notification">Push Notification</option>
-                        </select>
-                    </div>
-                    <div class="form-group">
-                        <label for="notificationDescription">Description</label>
-                        <textarea class="form-control" id="notificationDescription" name="notificationDescription" rows="3" required></textarea>
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-                    <button type="submit" class="btn btn-primary">Confirm and Submit</button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
 
 
 <script type="text/javascript">
@@ -261,6 +220,40 @@
             </tbody>
         </table>
     </div>
+    <div class="modal fade" id="notificationModal" tabindex="-1" role="dialog" aria-labelledby="notificationModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title" id="notificationModalLabel">Send Notifications</h4>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form id="notificationForm">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="notificationType">Notification Type</label>
+                        <select class="form-control" id="notificationType" name="notificationType" required>
+                            <option value="">Select Notification Type</option>
+                            <option value="Email">Email</option>
+                            <option value="SMS">SMS</option>
+                            <option value="Push Notification">Push Notification</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="notificationDescription">Description</label>
+                        <textarea class="form-control" id="notificationDescription" name="notificationDescription" rows="3" required></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Confirm and Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
 <?php endforeach; ?>
 <?php $this->load->view('backend/footer'); ?>
 
@@ -308,6 +301,21 @@
     document.addEventListener("DOMContentLoaded", function () {
         const dateInput = document.querySelector('input[name="meeting_date"]');
         const today = new Date().toISOString().split('T')[0];
-        dateInput.setAttribute('min', today);
     });
 </script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+                                <!-- Include Select2 JS -->
+                                <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.13/js/select2.min.js"></script>
+                                <script>
+                                    $(document).ready(function() {
+                                        $('#departments').select2({
+                                            placeholder: "Select departments",
+                                            allowClear: true
+                                        });
+
+                                        $('#designations').select2({
+                                            placeholder: "Select designations",
+                                            allowClear: true
+                                        });
+                                    });
+                                </script>
