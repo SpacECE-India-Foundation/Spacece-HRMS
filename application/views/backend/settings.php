@@ -42,20 +42,7 @@
                                     </div>
                                 </div>
                                 <!-- Second site logo upload -->
-                                <div class="form-group clearfix">
-                                    <label for="" class="col-md-3">Upload site logo 2</label>
-                                    <div class="col-md-9">
-                                        <div class="file_prev inb">
-                                            <?php if($settingsvalue->site2logo){ ?>
-                                                <img src="<?php echo base_url(); ?>assets/images/<?php echo $settingsvalue->site2logo; ?>" height="100" width="167">
-                                            <?php } else { ?>
-                                                <img src="<?php echo base_url(); ?>assets/img/ci-logo.png" height="100" width="167">
-                                            <?php } ?>
-                                        </div>
-                                        <label for="img_url2" class="custom-file-upload"><i class="fa fa-camera" aria-hidden="true"></i> Upload Logo 2</label>
-                                        <input type="file" value="" class="" id="img_url2" name="img_url2" aria-describedby="fileHelp">
-                                    </div>
-                                </div>
+                                
                                 <div class="form-group clearfix">
                                     <label for="title" class="col-md-3">Site Title</label>
                                     <div class="col-md-9">
@@ -70,12 +57,7 @@
                                         <small id="descriptionError" class="text-danger"></small>
                                     </div>                                      
                                 </div>                                                                
-                                <div class="form-group clearfix">
-                                    <label for="copyright" class="col-md-3">Copyright</label>
-                                    <div class="col-md-9">
-                                        <input type="text" class="form-control" name="copyright" value="<?php echo $settingsvalue->copyright; ?>" id="copyright" placeholder="copyright..." required>
-                                    </div>
-                                </div>                                  
+                                                               
                                 <div class="form-group clearfix">
                                 <label for="contact" class="col-md-3">Contact</label>
                                 <div class="col-md-9">
@@ -84,22 +66,9 @@
                                 </div>
                             </div>
 
-                            <div class="form-group clearfix">
-                                <label for="currency" class="col-md-3">Currency</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" name="currency" value="<?php echo $settingsvalue->currency; ?>" id="currency" placeholder="currency..." required>
-                                    <span id="currencyError" class="text-danger"></span>
-                                </div>
-                            </div>
+                       
 
-                            <div class="form-group clearfix">
-                                <label for="symbol" class="col-md-3">Symbol</label>
-                                <div class="col-md-9">
-                                    <input type="text" class="form-control" name="symbol" value="<?php echo $settingsvalue->symbol; ?>" id="symbol" placeholder="symbol..." required>
-                                    <span id="symbolError" class="text-danger"></span>
-                                </div>
-                            </div>
-                                        
+                          
                                 <div class="form-group clearfix">
                                     <label for="email" class="col-md-3">System Email</label>
                                     <div class="col-md-9">
@@ -114,12 +83,7 @@
                                         <small id="addressError" class="text-danger"></small>
                                     </div>
                                 </div>                                  
-                                <div class="form-group clearfix">
-                                    <label for="address2" class="col-md-3">Address 2</label>
-                                    <div class="col-md-9">
-                                        <input type="text" class="form-control" name="address2" id="address2" value="<?php echo $settingsvalue->address2; ?>" placeholder="address more...">
-                                    </div>
-                                </div>
+                                
                                 <div class="form-group clearfix">
                                     <div class="col-md-9 col-md-offset-3">
                                         <input type="hidden" name="id" value="<?php echo $settingsvalue->id; ?>"/>

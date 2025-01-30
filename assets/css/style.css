@@ -36,7 +36,7 @@ body {
     font-family: 'Open Sans', sans-serif;
     margin: 0;
     overflow-x: hidden;
-    color: #67757c;
+    color: #263238;
     font-weight: 300;
 }
 
@@ -58,7 +58,7 @@ a.link {
 
 a.link:focus,
 a.link:hover {
-    color: #1976d2
+    color: #FFA500
 }
 
 .img-responsive {
@@ -146,7 +146,7 @@ html body .db {
 }
 
 html body blockquote {
-    border-left: 5px solid #1976d2;
+    border-left: 5px solid #FFA500;
     border: 1px solid rgba(120, 130, 140, 0.13);
     padding: 15px
 }
@@ -463,7 +463,7 @@ html body .b-all {
 }
 
 .text-danger {
-    color: #ef5350!important
+    color: #FFA500!important
 }
 
 .text-muted {
@@ -475,15 +475,15 @@ html body .b-all {
 }
 
 .text-success {
-    color: #26dad2!important
+    color: #FFA500!important
 }
 
 .text-info {
-    color: #1976d2!important
+    color: #FFA500!important
 }
 
 .text-inverse {
-    color: #2f3d4a!important
+    color: #FFA500!important
 }
 
 html body .text-blue {
@@ -503,11 +503,11 @@ html body .text-megna {
 }
 
 html body .text-dark {
-    color: #67757c
+    color: #FFA500
 }
 
 html body .text-themecolor {
-    color: #1976d2
+    color: #1976D2
 }
 
 .bg-primary {
@@ -515,11 +515,11 @@ html body .text-themecolor {
 }
 
 .bg-success {
-    background-color: #26dad2!important
+    background-color: #FFA500!important
 }
 
 .bg-info {
-    background-color: #1976d2!important
+    background-color: #FFA500!important
 }
 
 .bg-warning {
@@ -527,7 +527,7 @@ html body .text-themecolor {
 }
 
 .bg-danger {
-    background-color: #ef5350!important
+    background-color: #FFA500!important
 }
 
 html body .bg-megna {
@@ -535,11 +535,11 @@ html body .bg-megna {
 }
 
 html body .bg-theme {
-    background-color: #1976d2
+    background-color: #FFA500
 }
 
 html body .bg-inverse {
-    background-color: #2f3d4a
+    background-color: #FFA500
 }
 
 html body .bg-purple {
@@ -595,7 +595,7 @@ html body .bg-white {
     font-weight: 400;
     text-align: center;
     border-radius: 100%;
-    background: #1976d2
+    background: #FFA500
 }
 
 .round img {
@@ -610,7 +610,7 @@ html body .bg-white {
 }
 
 .round.round-info {
-    background: #1976d2
+    background: #FFA500
 }
 
 .round.round-warning {
@@ -618,11 +618,11 @@ html body .bg-white {
 }
 
 .round.round-danger {
-    background: #ef5350
+    background: #FFA500
 }
 
 .round.round-success {
-    background: #26dad2
+    background: #FFA500
 }
 
 .round.round-primary {
@@ -647,11 +647,11 @@ html body .bg-white {
 }
 
 .label-success {
-    background-color: #26dad2
+    background-color: #FFA500
 }
 
 .label-info {
-    background-color: #1976d2
+    background-color: #FFA500
 }
 
 .label-warning {
@@ -659,7 +659,7 @@ html body .bg-white {
 }
 
 .label-danger {
-    background-color: #ef5350
+    background-color: #FFA500
 }
 
 .label-megna {
@@ -679,7 +679,7 @@ html body .bg-white {
 }
 
 .label-inverse {
-    background-color: #2f3d4a
+    background-color: #FFA500
 }
 
 .label-default {
@@ -692,12 +692,12 @@ html body .bg-white {
 
 .label-light-success {
     background-color: #e8fdeb;
-    color: #26dad2
+    color: #FFA500
 }
 
 .label-light-info {
     background-color: #cfecfe;
-    color: #1976d2
+    color: #FFA500
 }
 
 .label-light-warning {
@@ -707,7 +707,7 @@ html body .bg-white {
 
 .label-light-danger {
     background-color: #f9e7eb;
-    color: #ef5350
+    color: #FFA500
 }
 
 .label-light-megna {
@@ -722,7 +722,7 @@ html body .bg-white {
 
 .label-light-inverse {
     background-color: #f6f6f6;
-    color: #2f3d4a
+    color: #FFA500
 }
 
 .pagination>li:first-child>a,
@@ -771,8 +771,8 @@ html body .bg-white {
 .pagination>.active>span,
 .pagination>.active>span:focus,
 .pagination>.active>span:hover {
-    background-color: #1976d2;
-    border-color: #1976d2
+    background-color: #FFA500;
+    border-color: #FFA500
 }
 
 .pager li>a,
@@ -964,11 +964,11 @@ html body .waves-notransition {
 }
 
 .badge-success {
-    background-color: #26dad2
+    background-color: #FFA500
 }
 
 .badge-info {
-    background-color: #1976d2
+    background-color: #FFA500
 }
 
 .badge-primary {
@@ -980,7 +980,7 @@ html body .waves-notransition {
 }
 
 .badge-danger {
-    background-color: #ef5350
+    background-color: #FFA500
 }
 
 .badge-purple {
@@ -992,7 +992,7 @@ html body .waves-notransition {
 }
 
 .badge-inverse {
-    background-color: #2f3d4a
+    background-color: #FFA500
 }
 
 .btn {
@@ -1006,7 +1006,7 @@ html body .waves-notransition {
 }
 
 .btn-group label.btn-secondary {
-    color: #67757c!important
+    color: #FFA500!important
 }
 
 .btn-lg {
@@ -1103,7 +1103,7 @@ html body .waves-notransition {
     -o-transition: 0.2s ease-in;
     transition: 0.2s ease-in;
     background-color: #ffffff;
-    color: #67757c;
+    color: #FFA500;
     border-color: #b1b8bb
 }
 
@@ -1155,16 +1155,16 @@ html body .waves-notransition {
 
 .btn-themecolor,
 .btn-themecolor.disabled {
-    background: #1976d2;
+    background: #FFA500;
     color: #ffffff;
-    border: 1px solid #1976d2
+    border: 1px solid #FFA500
 }
 
 .btn-themecolor.disabled:hover,
 .btn-themecolor:hover {
-    background: #1976d2;
+    background: #FFA500;
     opacity: 0.7;
-    border: 1px solid #1976d2
+    border: 1px solid #FFA500
 }
 
 .btn-themecolor.active,
@@ -1178,8 +1178,8 @@ html body .waves-notransition {
 
 .btn-success,
 .btn-success.disabled {
-    background: #26dad2;
-    border: 1px solid #26dad2;
+    background: #FFA500;
+    border: 1px solid #FFA500;
     -webkit-box-shadow: 0 2px 2px 0 rgba(40, 190, 189, 0.14), 0 3px 1px -2px rgba(40, 190, 189, 0.2), 0 1px 5px 0 rgba(40, 190, 189, 0.12);
     box-shadow: 0 2px 2px 0 rgba(40, 190, 189, 0.14), 0 3px 1px -2px rgba(40, 190, 189, 0.2), 0 1px 5px 0 rgba(40, 190, 189, 0.12);
     -webkit-transition: 0.2s ease-in;
@@ -1189,10 +1189,10 @@ html body .waves-notransition {
 
 .btn-success.disabled:hover,
 .btn-success:hover {
-    background: #26dad2;
+    background: #FFA500;
     -webkit-box-shadow: 0 14px 26px -12px rgba(40, 190, 189, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(40, 190, 189, 0.2);
     box-shadow: 0 14px 26px -12px rgba(40, 190, 189, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(40, 190, 189, 0.2);
-    border: 1px solid #26dad2
+    border: 1px solid #FFA500
 }
 
 .btn-success.active,
@@ -1208,8 +1208,8 @@ html body .waves-notransition {
 
 .btn-info,
 .btn-info.disabled {
-    background: #1976d2;
-    border: 1px solid #1976d2;
+    background: #FFA500;
+    border: 1px solid #FFA500;
     -webkit-box-shadow: 0 2px 2px 0 rgba(66, 165, 245, 0.14), 0 3px 1px -2px rgba(66, 165, 245, 0.2), 0 1px 5px 0 rgba(66, 165, 245, 0.12);
     box-shadow: 0 2px 2px 0 rgba(66, 165, 245, 0.14), 0 3px 1px -2px rgba(66, 165, 245, 0.2), 0 1px 5px 0 rgba(66, 165, 245, 0.12);
     -webkit-transition: 0.2s ease-in;
@@ -1219,8 +1219,8 @@ html body .waves-notransition {
 
 .btn-info.disabled:hover,
 .btn-info:hover {
-    background: #1976d2;
-    border: 1px solid #1976d2;
+    background: #FFA500;
+    border: 1px solid #FFA500;
     -webkit-box-shadow: 0 14px 26px -12px rgba(23, 105, 255, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(23, 105, 255, 0.2);
     box-shadow: 0 14px 26px -12px rgba(23, 105, 255, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(23, 105, 255, 0.2)
 }
@@ -1272,8 +1272,8 @@ html body .waves-notransition {
 
 .btn-danger,
 .btn-danger.disabled {
-    background: #ef5350;
-    border: 1px solid #ef5350;
+    background: #FFA500;
+    border: 1px solid #FFA500;
     -webkit-box-shadow: 0 2px 2px 0 rgba(239, 83, 80, 0.14), 0 3px 1px -2px rgba(239, 83, 80, 0.2), 0 1px 5px 0 rgba(239, 83, 80, 0.12);
     box-shadow: 0 2px 2px 0 rgba(239, 83, 80, 0.14), 0 3px 1px -2px rgba(239, 83, 80, 0.2), 0 1px 5px 0 rgba(239, 83, 80, 0.12);
     -webkit-transition: 0.2s ease-in;
@@ -1283,10 +1283,10 @@ html body .waves-notransition {
 
 .btn-danger.disabled:hover,
 .btn-danger:hover {
-    background: #ef5350;
+    background: #FFA500;
     -webkit-box-shadow: 0 14px 26px -12px rgba(239, 83, 80, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(239, 83, 80, 0.2);
     box-shadow: 0 14px 26px -12px rgba(239, 83, 80, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(239, 83, 80, 0.2);
-    border: 1px solid #ef5350
+    border: 1px solid #FFA500
 }
 
 .btn-danger.active,
@@ -1302,17 +1302,17 @@ html body .waves-notransition {
 
 .btn-inverse,
 .btn-inverse.disabled {
-    background: #2f3d4a;
-    border: 1px solid #2f3d4a;
+    background: #FFA500;
+    border: 1px solid #FFA500;
     color: #ffffff
 }
 
 .btn-inverse.disabled:hover,
 .btn-inverse:hover {
-    background: #2f3d4a;
+    background: #FFA500;
     opacity: 0.7;
     color: #ffffff;
-    border: 1px solid #2f3d4a
+    border: 1px solid #FFA500
 }
 
 .btn-inverse.active,
@@ -1401,9 +1401,9 @@ html body .waves-notransition {
 }
 
 .btn-outline-success {
-    color: #26dad2;
+    color: #FFA500;
     background-color: transparent;
-    border-color: #26dad2;
+    border-color: #FFA500;
     -webkit-box-shadow: 0 2px 2px 0 rgba(40, 190, 189, 0.14), 0 3px 1px -2px rgba(40, 190, 189, 0.2), 0 1px 5px 0 rgba(40, 190, 189, 0.12);
     box-shadow: 0 2px 2px 0 rgba(40, 190, 189, 0.14), 0 3px 1px -2px rgba(40, 190, 189, 0.2), 0 1px 5px 0 rgba(40, 190, 189, 0.12);
     -webkit-transition: 0.2s ease-in;
@@ -1414,8 +1414,8 @@ html body .waves-notransition {
 .btn-outline-success.focus,
 .btn-outline-success:focus,
 .btn-outline-success:hover {
-    background: #26dad2;
-    border-color: #26dad2;
+    background: #FFA500;
+    border-color: #FFA500;
     color: #ffffff;
     -webkit-box-shadow: 0 14px 26px -12px rgba(40, 190, 189, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(40, 190, 189, 0.2);
     box-shadow: 0 14px 26px -12px rgba(40, 190, 189, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(40, 190, 189, 0.2)
@@ -1430,9 +1430,9 @@ html body .waves-notransition {
 }
 
 .btn-outline-info {
-    color: #1976d2;
+    color: #FFA500;
     background-color: transparent;
-    border-color: #1976d2;
+    border-color: #FFA500;
     -webkit-box-shadow: 0 2px 2px 0 rgba(66, 165, 245, 0.14), 0 3px 1px -2px rgba(66, 165, 245, 0.2), 0 1px 5px 0 rgba(66, 165, 245, 0.12);
     box-shadow: 0 2px 2px 0 rgba(66, 165, 245, 0.14), 0 3px 1px -2px rgba(66, 165, 245, 0.2), 0 1px 5px 0 rgba(66, 165, 245, 0.12);
     -webkit-transition: 0.2s ease-in;
@@ -1443,8 +1443,8 @@ html body .waves-notransition {
 .btn-outline-info.focus,
 .btn-outline-info:focus,
 .btn-outline-info:hover {
-    background: #1976d2;
-    border-color: #1976d2;
+    background: #FFA500;
+    border-color: #FFA500;
     color: #ffffff;
     -webkit-box-shadow: 0 14px 26px -12px rgba(23, 105, 255, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(23, 105, 255, 0.2);
     box-shadow: 0 14px 26px -12px rgba(23, 105, 255, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(23, 105, 255, 0.2)
@@ -1488,9 +1488,9 @@ html body .waves-notransition {
 }
 
 .btn-outline-danger {
-    color: #ef5350;
+    color: #FFA500;
     background-color: transparent;
-    border-color: #ef5350;
+    border-color: #FFA500;
     -webkit-box-shadow: 0 2px 2px 0 rgba(239, 83, 80, 0.14), 0 3px 1px -2px rgba(239, 83, 80, 0.2), 0 1px 5px 0 rgba(239, 83, 80, 0.12);
     box-shadow: 0 2px 2px 0 rgba(239, 83, 80, 0.14), 0 3px 1px -2px rgba(239, 83, 80, 0.2), 0 1px 5px 0 rgba(239, 83, 80, 0.12);
     -webkit-transition: 0.2s ease-in;
@@ -1501,8 +1501,8 @@ html body .waves-notransition {
 .btn-outline-danger.focus,
 .btn-outline-danger:focus,
 .btn-outline-danger:hover {
-    background: #ef5350;
-    border-color: #ef5350;
+    background: #FFA500;
+    border-color: #FFA500;
     color: #ffffff;
     -webkit-box-shadow: 0 14px 26px -12px rgba(239, 83, 80, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(239, 83, 80, 0.2);
     box-shadow: 0 14px 26px -12px rgba(239, 83, 80, 0.42), 0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(239, 83, 80, 0.2)
@@ -1541,16 +1541,16 @@ html body .waves-notransition {
 }
 
 .btn-outline-inverse {
-    color: #2f3d4a;
+    color: #FFA500;
     background-color: transparent;
-    border-color: #2f3d4a
+    border-color: #FFA500
 }
 
 .btn-outline-inverse.focus,
 .btn-outline-inverse:focus,
 .btn-outline-inverse:hover {
-    background: #2f3d4a;
-    border-color: #2f3d4a;
+    background: #FFA500;
+    border-color: #FFA500;
     color: #ffffff
 }
 
@@ -1741,7 +1741,7 @@ html body .waves-notransition {
     height: 25px;
     width: 25px;
     z-index: 10;
-    border: 5px solid #ef5350;
+    border: 5px solid #FFA500;
     border-radius: 70px;
     -moz-animation: heartbit 1s ease-out;
     -moz-animation-iteration-count: infinite;
@@ -1758,7 +1758,7 @@ html body .waves-notransition {
     -webkit-border-radius: 30px;
     -moz-border-radius: 30px;
     border-radius: 30px;
-    background-color: #ef5350;
+    background-color: #FFA500;
     position: absolute;
     right: 6px;
     top: -10px
@@ -1864,7 +1864,7 @@ html body .waves-notransition {
 
 .mega-dropdown .nav-accordion .card-header h5 a {
     text-decoration: none;
-    color: #67757c
+    color: #FFA500
 }
 
 ul.list-style-none {
@@ -1877,19 +1877,19 @@ ul.list-style-none li {
 }
 
 ul.list-style-none li a {
-    color: #67757c;
+    color: #FFA500;
     padding: 8px 0px;
     display: block;
     text-decoration: none
 }
 
 ul.list-style-none li a:hover {
-    color: #1976d2
+    color: #FFA500
 }
 
 .dropdown-item {
     padding: 8px 1rem;
-    color: #67757c
+    color: #FFA500
 }
 
 .custom-select {
@@ -1901,7 +1901,7 @@ textarea {
 }
 
 .form-control {
-    color: #67757c;
+    color: #FFA500;
     min-height: 38px;
     display: initial
 }
@@ -1922,7 +1922,7 @@ textarea {
 }
 
 .custom-control-input:checked~.custom-control-indicator {
-    background-color: #26dad2
+    background-color: #FFA500
 }
 
 form label {
@@ -2169,12 +2169,12 @@ form label {
 .topbar ul.dropdown-user li a {
     padding: 9px 15px;
     display: block;
-    color: #67757c
+    color: #FFA500
 }
 
 .topbar ul.dropdown-user li a:hover {
     background: #f2f4f8;
-    color: #1976d2;
+    color: #FFA500;
     text-decoration: none
 }
 
@@ -2349,7 +2349,7 @@ form label {
     color: #ffffff;
     text-transform: uppercase;
     font-size: 15px;
-    background: #1976d2
+    background: #FFA500
 }
 
 .right-sidebar .rpanel-title span {
@@ -2395,7 +2395,7 @@ form label {
 }
 
 .chatonline li a span {
-    color: #67757c
+    color: #FFA500
 }
 
 .chatonline li a span small {
@@ -2443,7 +2443,7 @@ ul#themecolors li a.working:before {
 }
 
 .green-theme {
-    background: #26dad2
+    background: #FFA500
 }
 
 .yellow-theme {
@@ -2451,11 +2451,11 @@ ul#themecolors li a.working:before {
 }
 
 .red-theme {
-    background: #ef5350
+    background: #FFA500
 }
 
 .blue-theme {
-    background: #1976d2
+    background: #FFA500
 }
 
 .purple-theme {
@@ -2477,30 +2477,30 @@ ul#themecolors li a.working:before {
 
 .green-dark-theme {
     background: #263238;
-    background: -moz-linear-gradient(left, #263238 0%, #263238 23%, #26dad2 23%, #26dad2 99%);
-    background: -webkit-linear-gradient(left, #263238 0%, #263238 23%, #00c292 23%, #26dad2 99%);
-    background: -webkit-gradient(linear, left top, right top, from(#263238), color-stop(23%, #263238), color-stop(23%, #26dad2), color-stop(99%, #26dad2));
-    background: -webkit-linear-gradient(left, #263238 0%, #263238 23%, #26dad2 23%, #26dad2 99%);
-    background: -o-linear-gradient(left, #263238 0%, #263238 23%, #26dad2 23%, #26dad2 99%);
-    background: linear-gradient(to right, #263238 0%, #263238 23%, #26dad2 23%, #26dad2 99%)
+    background: -moz-linear-gradient(left, #263238 0%, #263238 23%, #FFA500 23%, #FFA500 99%);
+    background: -webkit-linear-gradient(left, #263238 0%, #263238 23%, #00c292 23%, #FFA500 99%);
+    background: -webkit-gradient(linear, left top, right top, from(#263238), color-stop(23%, #263238), color-stop(23%, #FFA500), color-stop(99%, #FFA500));
+    background: -webkit-linear-gradient(left, #263238 0%, #263238 23%, #FFA500 23%, #FFA500 99%);
+    background: -o-linear-gradient(left, #263238 0%, #263238 23%, #FFA500 23%, #FFA500 99%);
+    background: linear-gradient(to right, #263238 0%, #263238 23%, #FFA500 23%, #FFA500 99%)
 }
 
 .yellow-dark-theme {
     background: #263238;
-    background: -moz-linear-gradient(left, #263238 0%, #263238 23%, #ef5350 23%, #ef5350 99%);
-    background: -webkit-linear-gradient(left, #263238 0%, #263238 23%, #ef5350 23%, #ef5350 99%);
-    background: -webkit-gradient(linear, left top, right top, from(#263238), color-stop(23%, #263238), color-stop(23%, #ef5350), color-stop(99%, #ef5350));
-    background: -o-linear-gradient(left, #263238 0%, #263238 23%, #ef5350 23%, #ef5350 99%);
-    background: linear-gradient(to right, #263238 0%, #263238 23%, #ef5350 23%, #ef5350 99%)
+    background: -moz-linear-gradient(left, #263238 0%, #263238 23%, #FFA500 23%, #FFA500 99%);
+    background: -webkit-linear-gradient(left, #263238 0%, #263238 23%, #FFA500 23%, #FFA500 99%);
+    background: -webkit-gradient(linear, left top, right top, from(#263238), color-stop(23%, #263238), color-stop(23%, #FFA500), color-stop(99%, #FFA500));
+    background: -o-linear-gradient(left, #263238 0%, #263238 23%, #FFA500 23%, #FFA500 99%);
+    background: linear-gradient(to right, #263238 0%, #263238 23%, #FFA500 23%, #FFA500 99%)
 }
 
 .blue-dark-theme {
     background: #263238;
-    background: -moz-linear-gradient(left, #263238 0%, #263238 23%, #1976d2 23%, #1976d2 99%);
-    background: -webkit-linear-gradient(left, #263238 0%, #263238 23%, #1976d2 23%, #1976d2 99%);
-    background: -webkit-gradient(linear, left top, right top, from(#263238), color-stop(23%, #263238), color-stop(23%, #1976d2), color-stop(99%, #1976d2));
-    background: -o-linear-gradient(left, #263238 0%, #263238 23%, #1976d2 23%, #1976d2 99%);
-    background: linear-gradient(to right, #263238 0%, #263238 23%, #1976d2 23%, #1976d2 99%)
+    background: -moz-linear-gradient(left, #263238 0%, #263238 23%, #FFA500 23%, #FFA500 99%);
+    background: -webkit-linear-gradient(left, #263238 0%, #263238 23%, #FFA500 23%, #FFA500 99%);
+    background: -webkit-gradient(linear, left top, right top, from(#263238), color-stop(23%, #263238), color-stop(23%, #FFA500), color-stop(99%, #FFA500));
+    background: -o-linear-gradient(left, #263238 0%, #263238 23%, #FFA500 23%, #FFA500 99%);
+    background: linear-gradient(to right, #263238 0%, #263238 23%, #FFA500 23%, #FFA500 99%)
 }
 
 .purple-dark-theme {
@@ -2523,11 +2523,11 @@ ul#themecolors li a.working:before {
 
 .red-dark-theme {
     background: #263238;
-    background: -moz-linear-gradient(left, #263238 0%, #263238 23%, #ef5350 23%, #ef5350 99%);
-    background: -webkit-linear-gradient(left, #263238 0%, #263238 23%, #ef5350 23%, #ef5350 99%);
-    background: -webkit-gradient(linear, left top, right top, from(#263238), color-stop(23%, #263238), color-stop(23%, #ef5350), color-stop(99%, #ef5350));
-    background: -o-linear-gradient(left, #263238 0%, #263238 23%, #ef5350 23%, #ef5350 99%);
-    background: linear-gradient(to right, #263238 0%, #263238 23%, #ef5350 23%, #ef5350 99%)
+    background: -moz-linear-gradient(left, #263238 0%, #263238 23%, #FFA500 23%, #FFA500 99%);
+    background: -webkit-linear-gradient(left, #263238 0%, #263238 23%, #FFA500 23%, #FFA500 99%);
+    background: -webkit-gradient(linear, left top, right top, from(#263238), color-stop(23%, #263238), color-stop(23%, #FFA500), color-stop(99%, #FFA500));
+    background: -o-linear-gradient(left, #263238 0%, #263238 23%, #FFA500 23%, #FFA500 99%);
+    background: linear-gradient(to right, #263238 0%, #263238 23%, #FFA500 23%, #FFA500 99%)
 }
 
 .page-titles {
@@ -2575,13 +2575,13 @@ ul#themecolors li a.working:before {
 }
 
 .card-success {
-    background: #26dad2;
-    border-color: #26dad2
+    background: #FFA500;
+    border-color: #FFA500
 }
 
 .card-danger {
-    background: #ef5350;
-    border-color: #ef5350
+    background: #FFA500;
+    border-color: #FFA500
 }
 
 .card-warning {
@@ -2590,8 +2590,8 @@ ul#themecolors li a.working:before {
 }
 
 .card-info {
-    background: #1976d2;
-    border-color: #1976d2
+    background: #FFA500;
+    border-color: #FFA500
 }
 
 .card-primary {
@@ -2600,8 +2600,8 @@ ul#themecolors li a.working:before {
 }
 
 .card-dark {
-    background: #2f3d4a;
-    border-color: #2f3d4a
+    background: #FFA500;
+    border-color: #FFA500
 }
 
 .card-megna {
@@ -2637,7 +2637,7 @@ ul#themecolors li a.working:before {
 
 .card-actions a {
     cursor: pointer;
-    color: #67757c;
+    color: #FFA500;
     opacity: 0.7;
     padding-left: 7px;
     font-size: 13px
@@ -2658,8 +2658,8 @@ ul#themecolors li a.working:before {
 }
 
 .card-info {
-    background: #1976d2;
-    border-color: #1976d2
+    background: #FFA500;
+    border-color: #FFA500
 }
 
 .card-primary {
@@ -2668,21 +2668,21 @@ ul#themecolors li a.working:before {
 }
 
 .card-outline-info {
-    border-color: #1976d2
+    border-color: #FFA500
 }
 
 .card-outline-info .card-header {
-    background: #1976d2;
-    border-color: #1976d2
+    background: #FFA500;
+    border-color: #FFA500
 }
 
 .card-outline-inverse {
-    border-color: #2f3d4a
+    border-color: #FFA500
 }
 
 .card-outline-inverse .card-header {
-    background: #2f3d4a;
-    border-color: #2f3d4a
+    background: #FFA500;
+    border-color: #FFA500
 }
 
 .card-outline-warning {
@@ -2695,21 +2695,21 @@ ul#themecolors li a.working:before {
 }
 
 .card-outline-success {
-    border-color: #26dad2
+    border-color: #FFA500
 }
 
 .card-outline-success .card-header {
-    background: #26dad2;
-    border-color: #26dad2
+    background: #FFA500;
+    border-color: #FFA500
 }
 
 .card-outline-danger {
-    border-color: #ef5350
+    border-color: #FFA500
 }
 
 .card-outline-danger .card-header {
-    background: #ef5350;
-    border-color: #ef5350
+    background: #FFA500;
+    border-color: #FFA500
 }
 
 .card-outline-primary {
@@ -2754,11 +2754,11 @@ ul.list-icons li {
 }
 
 ul.list-icons li a {
-    color: #67757c
+    color: #FFA500
 }
 
 ul.list-icons li a:hover {
-    color: #1976d2
+    color: #FFA500
 }
 
 ul.list-icons li i {
@@ -2879,17 +2879,17 @@ body .jqstooltip {
 }
 
 .amp-pxl .ct-series-a .ct-bar {
-    stroke: #1976d2
+    stroke: #FFA500
 }
 
 .amp-pxl .ct-series-b .ct-bar {
-    stroke: #26dad2
+    stroke: #FFA500
 }
 
 .c3-chart-arcs-title,
 .c3-legend-item {
     font-family: "Poppins", sans-serif;
-    fill: #67757c
+    fill: #FFA500
 }
 
 html body #visitor .c3-chart-arcs-title {
@@ -2910,7 +2910,7 @@ html body #visitor .c3-chart-arcs-title {
 
 .stylish-table tbody tr.active,
 .stylish-table tbody tr:hover {
-    border-left: 4px solid #1976d2
+    border-left: 4px solid #FFA500
 }
 
 .stylish-table tbody td {
@@ -2939,18 +2939,18 @@ html body #visitor .c3-chart-arcs-title {
 
 .campaign .ct-series-a .ct-line,
 .campaign .ct-series-a .ct-point {
-    stroke: #26dad2;
+    stroke: #FFA500;
     stroke-width: 2px
 }
 
 .campaign .ct-series-b .ct-area {
-    fill: #1976d2;
+    fill: #FFA500;
     fill-opacity: 0.1
 }
 
 .campaign .ct-series-b .ct-line,
 .campaign .ct-series-b .ct-point {
-    stroke: #1976d2;
+    stroke: #FFA500;
     stroke-width: 2px
 }
 
@@ -2966,18 +2966,18 @@ html body #visitor .c3-chart-arcs-title {
 
 .campaign2 .ct-series-a .ct-line,
 .campaign2 .ct-series-a .ct-point {
-    stroke: #26dad2;
+    stroke: #FFA500;
     stroke-width: 2px
 }
 
 .campaign2 .ct-series-b .ct-area {
-    fill: #1976d2;
+    fill: #FFA500;
     fill-opacity: 0.1
 }
 
 .campaign2 .ct-series-b .ct-line,
 .campaign2 .ct-series-b .ct-point {
-    stroke: #1976d2;
+    stroke: #FFA500;
     stroke-width: 2px
 }
 
@@ -2996,19 +2996,19 @@ html body #visitor .c3-chart-arcs-title {
 }
 
 .total-sales .chartist-tooltip {
-    background: #2f3d4a
+    background: #FFA500
 }
 
 .total-sales .ct-series-a .ct-bar {
-    stroke: #1976d2
+    stroke: #FFA500
 }
 
 .total-sales .ct-series-b .ct-bar {
-    stroke: #26dad2
+    stroke: #FFA500
 }
 
 .total-sales .ct-series-c .ct-bar {
-    stroke: #ef5350
+    stroke: #FFA500
 }
 
 .ct-chart {
@@ -3016,7 +3016,7 @@ html body #visitor .c3-chart-arcs-title {
 }
 
 .ct-chart .ct-series-a .ct-slice-donut {
-    stroke: #26dad2
+    stroke: #FFA500
 }
 
 .ct-chart .ct-series-b .ct-slice-donut {
@@ -3024,7 +3024,7 @@ html body #visitor .c3-chart-arcs-title {
 }
 
 .ct-chart .ct-series-c .ct-slice-donut {
-    stroke: #1976d2
+    stroke: #FFA500
 }
 
 #visitfromworld path.jvectormap-region.jvectormap-element {
@@ -3062,32 +3062,32 @@ html body #visitor .c3-chart-arcs-title {
 }
 
 .total-revenue4 .ct-series-a .ct-line {
-    stroke: #1976d2;
+    stroke: #FFA500;
     stroke-width: 1px
 }
 
 .total-revenue4 .ct-series-a .ct-point {
-    stroke: #1976d2;
+    stroke: #FFA500;
     stroke-width: 5px
 }
 
 .total-revenue4 .ct-series-b .ct-line {
-    stroke: #26dad2;
+    stroke: #FFA500;
     stroke-width: 1px
 }
 
 .total-revenue4 .ct-series-b .ct-point {
-    stroke: #26dad2;
+    stroke: #FFA500;
     stroke-width: 5px
 }
 
 .total-revenue4 .ct-series-a .ct-area {
-    fill: #1976d2;
+    fill: #FFA500;
     fill-opacity: 0.2
 }
 
 .total-revenue4 .ct-series-b .ct-area {
-    fill: #26dad2;
+    fill: #FFA500;
     fill-opacity: 0.2
 }
 
@@ -3206,19 +3206,19 @@ html body #visitor .c3-chart-arcs-title {
 .profile-tab li a.nav-link {
     border: 0px;
     padding: 15px 20px;
-    color: #67757c
+    color: #FFA500
 }
 
 .customtab li a.nav-link.active,
 .profile-tab li a.nav-link.active {
-    border-bottom: 2px solid #1976d2;
-    color: #1976d2;
+    border-bottom: 2px solid #FFA500;
+    color: #FFA500;
     /* font-family: 'Open Sans', sans-serif; */
 }
 
 .customtab li a.nav-link:hover,
 .profile-tab li a.nav-link:hover {
-    color: #1976d2
+    color: #FFA500
 }
 
 .bootstrap-select:not([class*=col-]):not([class*=form-control]):not(.input-group-btn) {
@@ -3231,13 +3231,13 @@ html body #visitor .c3-chart-arcs-title {
     clear: both;
     font-weight: 400;
     line-height: 1.42857143;
-    color: #67757c;
+    color: #FFA500;
     white-space: nowrap
 }
 
 .bootstrap-select .dropdown-menu li a:focus,
 .bootstrap-select .dropdown-menu li a:hover {
-    color: #1976d2;
+    color: #FFA500;
     background: #f2f4f8
 }
 
@@ -3288,10 +3288,10 @@ html body #visitor .c3-chart-arcs-title {
 .form-material .form-control,
 .form-material .form-control.focus,
 .form-material .form-control:focus {
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#1976d2), to(#1976d2)), -webkit-gradient(linear, left top, left bottom, from(rgba(120, 130, 140, 0.13)), to(rgba(120, 130, 140, 0.13)));
-    background-image: -webkit-linear-gradient(#1976d2, #1976d2), -webkit-linear-gradient(rgba(120, 130, 140, 0.13), rgba(120, 130, 140, 0.13));
-    background-image: -o-linear-gradient(#1976d2, #1976d2), -o-linear-gradient(rgba(120, 130, 140, 0.13), rgba(120, 130, 140, 0.13));
-    background-image: linear-gradient(#1976d2, #1976d2), linear-gradient(rgba(120, 130, 140, 0.13), rgba(120, 130, 140, 0.13));
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#FFA500), to(#FFA500)), -webkit-gradient(linear, left top, left bottom, from(rgba(120, 130, 140, 0.13)), to(rgba(120, 130, 140, 0.13)));
+    background-image: -webkit-linear-gradient(#FFA500, #FFA500), -webkit-linear-gradient(rgba(120, 130, 140, 0.13), rgba(120, 130, 140, 0.13));
+    background-image: -o-linear-gradient(#FFA500, #FFA500), -o-linear-gradient(rgba(120, 130, 140, 0.13), rgba(120, 130, 140, 0.13));
+    background-image: linear-gradient(#FFA500, #FFA500), linear-gradient(rgba(120, 130, 140, 0.13), rgba(120, 130, 140, 0.13));
     border: 0 none;
     border-radius: 0;
     -webkit-box-shadow: none;
@@ -3320,7 +3320,7 @@ html body #visitor .c3-chart-arcs-title {
 }
 
 .form-control-line .form-control:focus {
-    border-bottom: 1px solid #1976d2
+    border-bottom: 1px solid #FFA500
 }
 
 .floating-labels .form-group {
@@ -3341,7 +3341,7 @@ html body #visitor .c3-chart-arcs-title {
 }
 
 .floating-labels .has-error .form-control {
-    border-bottom: 1px solid #ef5350
+    border-bottom: 1px solid #FFA500
 }
 
 .floating-labels .has-warning .form-control {
@@ -3349,7 +3349,7 @@ html body #visitor .c3-chart-arcs-title {
 }
 
 .floating-labels .has-success .form-control {
-    border-bottom: 1px solid #26dad2
+    border-bottom: 1px solid #FFA500
 }
 
 .floating-labels .form-control:focus {
@@ -3358,7 +3358,7 @@ html body #visitor .c3-chart-arcs-title {
 }
 
 .floating-labels label {
-    color: #67757c;
+    color: #FFA500;
     position: absolute;
     cursor: auto;
     top: 5px;
@@ -3386,7 +3386,7 @@ html body #visitor .c3-chart-arcs-title {
     width: 0;
     bottom: 1px;
     position: absolute;
-    background: #1976d2;
+    background: #FFA500;
     -o-transition: 0.2s ease all;
     transition: 0.2s ease all;
     -moz-transition: 0.2s ease all;
@@ -3433,12 +3433,12 @@ html body #visitor .c3-chart-arcs-title {
 
 .has-success .bar:after,
 .has-success .bar:before {
-    background: #26dad2
+    background: #FFA500
 }
 
 .has-error .bar:after,
 .has-error .bar:before {
-    background: #ef5350
+    background: #FFA500
 }
 
 .has-warning .form-control:focus~label,
@@ -3448,12 +3448,12 @@ html body #visitor .c3-chart-arcs-title {
 
 .has-success .form-control:focus~label,
 .has-success .form-control:valid~label {
-    color: #26dad2
+    color: #FFA500
 }
 
 .has-error .form-control:focus~label,
 .has-error .form-control:valid~label {
-    color: #ef5350
+    color: #FFA500
 }
 
 .has-feedback label~.t-0 {
@@ -3463,18 +3463,18 @@ html body #visitor .c3-chart-arcs-title {
 .form-group.error input,
 .form-group.error select,
 .form-group.error textarea {
-    border: 1px solid #ef5350
+    border: 1px solid #FFA500
 }
 
 .form-group.validate input,
 .form-group.validate select,
 .form-group.validate textarea {
-    border: 1px solid #26dad2
+    border: 1px solid #FFA500
 }
 
 .form-group.error .help-block ul {
     padding: 0px;
-    color: #ef5350
+    color: #FFA500
 }
 
 .form-group.error .help-block ul li {
@@ -3491,7 +3491,7 @@ html body #visitor .c3-chart-arcs-title {
 }
 
 .pagination-circle li.active a {
-    background: #26dad2
+    background: #FFA500
 }
 
 .pagination-circle li a {
@@ -3509,7 +3509,7 @@ html body #visitor .c3-chart-arcs-title {
 }
 
 .pagination-circle li a:hover {
-    background: #26dad2;
+    background: #FFA500;
     color: #ffffff
 }
 
@@ -3554,14 +3554,14 @@ table th {
 
 .daterangepicker td.active,
 .daterangepicker td.active:hover {
-    background-color: #1976d2
+    background-color: #FFA500
 }
 
 .datepicker table tr td.today,
 .datepicker table tr td.today.disabled,
 .datepicker table tr td.today.disabled:hover,
 .datepicker table tr td.today:hover {
-    background: #1976d2;
+    background: #FFA500;
     color: #ffffff
 }
 
@@ -3599,7 +3599,7 @@ table th {
 }
 
 .icolors>li.orange {
-    background: #ef5350
+    background: #FFA500
 }
 
 .icolors>li.yellow {
@@ -3607,11 +3607,11 @@ table th {
 }
 
 .icolors>li.info {
-    background: #1976d2
+    background: #FFA500
 }
 
 .icolors>li.green {
-    background: #26dad2
+    background: #FFA500
 }
 
 .icolors>li.red {
@@ -3673,12 +3673,12 @@ table th {
 }
 
 .color-table.success-table thead th {
-    background-color: #26dad2;
+    background-color: #FFA500;
     color: #ffffff
 }
 
 .color-table.info-table thead th {
-    background-color: #1976d2;
+    background-color: #FFA500;
     color: #ffffff
 }
 
@@ -3688,12 +3688,12 @@ table th {
 }
 
 .color-table.danger-table thead th {
-    background-color: #ef5350;
+    background-color: #FFA500;
     color: #ffffff
 }
 
 .color-table.inverse-table thead th {
-    background-color: #2f3d4a;
+    background-color: #FFA500;
     color: #ffffff
 }
 
@@ -3727,20 +3727,20 @@ table th {
 }
 
 .color-bordered-table.success-bordered-table {
-    border: 2px solid #26dad2
+    border: 2px solid #FFA500
 }
 
 .color-bordered-table.success-bordered-table thead th {
-    background-color: #26dad2;
+    background-color: #FFA500;
     color: #ffffff
 }
 
 .color-bordered-table.info-bordered-table {
-    border: 2px solid #1976d2
+    border: 2px solid #FFA500
 }
 
 .color-bordered-table.info-bordered-table thead th {
-    background-color: #1976d2;
+    background-color: #FFA500;
     color: #ffffff
 }
 
@@ -3754,20 +3754,20 @@ table th {
 }
 
 .color-bordered-table.danger-bordered-table {
-    border: 2px solid #ef5350
+    border: 2px solid #FFA500
 }
 
 .color-bordered-table.danger-bordered-table thead th {
-    background-color: #ef5350;
+    background-color: #FFA500;
     color: #ffffff
 }
 
 .color-bordered-table.inverse-bordered-table {
-    border: 2px solid #2f3d4a
+    border: 2px solid #FFA500
 }
 
 .color-bordered-table.inverse-bordered-table thead th {
-    background-color: #2f3d4a;
+    background-color: #FFA500;
     color: #ffffff
 }
 
@@ -3831,7 +3831,7 @@ table th {
 }
 
 .full-color-table.full-success-table thead th {
-    background-color: #26dad2;
+    background-color: #FFA500;
     border: 0;
     color: #ffffff
 }
@@ -3841,7 +3841,7 @@ table th {
 }
 
 .full-color-table.full-success-table tr:hover {
-    background-color: #26dad2;
+    background-color: #FFA500;
     color: #ffffff
 }
 
@@ -3850,7 +3850,7 @@ table th {
 }
 
 .full-color-table.full-info-table thead th {
-    background-color: #1976d2;
+    background-color: #FFA500;
     border: 0;
     color: #ffffff
 }
@@ -3860,7 +3860,7 @@ table th {
 }
 
 .full-color-table.full-info-table tr:hover {
-    background-color: #1976d2;
+    background-color: #FFA500;
     color: #ffffff
 }
 
@@ -3888,7 +3888,7 @@ table th {
 }
 
 .full-color-table.full-danger-table thead th {
-    background-color: #ef5350;
+    background-color: #FFA500;
     border: 0;
     color: #ffffff
 }
@@ -3898,7 +3898,7 @@ table th {
 }
 
 .full-color-table.full-danger-table tr:hover {
-    background-color: #ef5350;
+    background-color: #FFA500;
     color: #ffffff
 }
 
@@ -3907,7 +3907,7 @@ table th {
 }
 
 .full-color-table.full-inverse-table thead th {
-    background-color: #2f3d4a;
+    background-color: #FFA500;
     border: 0;
     color: #ffffff
 }
@@ -3917,7 +3917,7 @@ table th {
 }
 
 .full-color-table.full-inverse-table tr:hover {
-    background-color: #2f3d4a;
+    background-color: #FFA500;
     color: #ffffff
 }
 
@@ -4011,13 +4011,13 @@ table th {
 .dt-buttons .dt-button {
     padding: 5px 15px;
     border-radius: 4px;
-    background: #1976d2;
+    background: #FFA500;
     color: #ffffff;
     margin-right: 3px
 }
 
 .dt-buttons .dt-button:hover {
-    background: #2f3d4a
+    background: #FFA500
 }
 
 .dataTables_info,
@@ -4031,10 +4031,10 @@ table th {
 
 .dataTables_length select {
     border: 0;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#1976d2), to(#1976d2)), -webkit-gradient(linear, left top, left bottom, from(#b1b8bb), to(#b1b8bb));
-    background-image: -webkit-linear-gradient(#1976d2, #1976d2), -webkit-linear-gradient(#b1b8bb, #b1b8bb);
-    background-image: -o-linear-gradient(#1976d2, #1976d2), -o-linear-gradient(#b1b8bb, #b1b8bb);
-    background-image: linear-gradient(#1976d2, #1976d2), linear-gradient(#b1b8bb, #b1b8bb);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#FFA500), to(#FFA500)), -webkit-gradient(linear, left top, left bottom, from(#b1b8bb), to(#b1b8bb));
+    background-image: -webkit-linear-gradient(#FFA500, #FFA500), -webkit-linear-gradient(#b1b8bb, #b1b8bb);
+    background-image: -o-linear-gradient(#FFA500, #FFA500), -o-linear-gradient(#b1b8bb, #b1b8bb);
+    background-image: linear-gradient(#FFA500, #FFA500), linear-gradient(#b1b8bb, #b1b8bb);
     background-size: 0 2px, 100% 1px;
     background-repeat: no-repeat;
     background-position: center bottom, center calc(100% - 1px);
@@ -4047,10 +4047,10 @@ table th {
 
 .dataTables_length select:focus {
     outline: none;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#1976d2), to(#1976d2)), -webkit-gradient(linear, left top, left bottom, from(#b1b8bb), to(#b1b8bb));
-    background-image: -webkit-linear-gradient(#1976d2, #1976d2), -webkit-linear-gradient(#b1b8bb, #b1b8bb);
-    background-image: -o-linear-gradient(#1976d2, #1976d2), -o-linear-gradient(#b1b8bb, #b1b8bb);
-    background-image: linear-gradient(#1976d2, #1976d2), linear-gradient(#b1b8bb, #b1b8bb);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#FFA500), to(#FFA500)), -webkit-gradient(linear, left top, left bottom, from(#b1b8bb), to(#b1b8bb));
+    background-image: -webkit-linear-gradient(#FFA500, #FFA500), -webkit-linear-gradient(#b1b8bb, #b1b8bb);
+    background-image: -o-linear-gradient(#FFA500, #FFA500), -o-linear-gradient(#b1b8bb, #b1b8bb);
+    background-image: linear-gradient(#FFA500, #FFA500), linear-gradient(#b1b8bb, #b1b8bb);
     background-size: 100% 2px, 100% 1px;
     -webkit-box-shadow: none;
     box-shadow: none;
@@ -4066,10 +4066,10 @@ table th {
 
 .dataTables_filter input {
     border: 0;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#1976d2), to(#1976d2)), -webkit-gradient(linear, left top, left bottom, from(#b1b8bb), to(#b1b8bb));
-    background-image: -webkit-linear-gradient(#1976d2, #1976d2), -webkit-linear-gradient(#b1b8bb, #b1b8bb);
-    background-image: -o-linear-gradient(#1976d2, #1976d2), -o-linear-gradient(#b1b8bb, #b1b8bb);
-    background-image: linear-gradient(#1976d2, #1976d2), linear-gradient(#b1b8bb, #b1b8bb);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#FFA500), to(#FFA500)), -webkit-gradient(linear, left top, left bottom, from(#b1b8bb), to(#b1b8bb));
+    background-image: -webkit-linear-gradient(#FFA500, #FFA500), -webkit-linear-gradient(#b1b8bb, #b1b8bb);
+    background-image: -o-linear-gradient(#FFA500, #FFA500), -o-linear-gradient(#b1b8bb, #b1b8bb);
+    background-image: linear-gradient(#FFA500, #FFA500), linear-gradient(#b1b8bb, #b1b8bb);
     background-size: 0 2px, 100% 1px;
     background-repeat: no-repeat;
     background-position: center bottom, center calc(100% - 1px);
@@ -4086,10 +4086,10 @@ table th {
 
 .dataTables_filter input:focus {
     outline: none;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#1976d2), to(#1976d2)), -webkit-gradient(linear, left top, left bottom, from(#b1b8bb), to(#b1b8bb));
-    background-image: -webkit-linear-gradient(#1976d2, #1976d2), -webkit-linear-gradient(#b1b8bb, #b1b8bb);
-    background-image: -o-linear-gradient(#1976d2, #1976d2), -o-linear-gradient(#b1b8bb, #b1b8bb);
-    background-image: linear-gradient(#1976d2, #1976d2), linear-gradient(#b1b8bb, #b1b8bb);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#FFA500), to(#FFA500)), -webkit-gradient(linear, left top, left bottom, from(#b1b8bb), to(#b1b8bb));
+    background-image: -webkit-linear-gradient(#FFA500, #FFA500), -webkit-linear-gradient(#b1b8bb, #b1b8bb);
+    background-image: -o-linear-gradient(#FFA500, #FFA500), -o-linear-gradient(#b1b8bb, #b1b8bb);
+    background-image: linear-gradient(#FFA500, #FFA500), linear-gradient(#b1b8bb, #b1b8bb);
     background-size: 100% 2px, 100% 1px;
     -webkit-box-shadow: none;
     box-shadow: none;
@@ -4144,22 +4144,22 @@ table.dataTable thead .sorting:after {
     text-decoration: none;
     cursor: pointer;
     *cursor: hand;
-    color: #67757c;
+    color: #FFA500;
     border: 1px solid #ddd
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button.current,
 .dataTables_wrapper .dataTables_paginate .paginate_button.current:hover {
     color: #ffffff!important;
-    border: 1px solid #1976d2;
-    background-color: #1976d2
+    border: 1px solid #FFA500;
+    background-color: #FFA500
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button.disabled,
 .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:active,
 .dataTables_wrapper .dataTables_paginate .paginate_button.disabled:hover {
     cursor: default;
-    color: #67757c;
+    color: #FFA500;
     border: 1px solid #ddd;
     background: transparent;
     -webkit-box-shadow: none;
@@ -4168,13 +4168,13 @@ table.dataTable thead .sorting:after {
 
 .dataTables_wrapper .dataTables_paginate .paginate_button:hover {
     color: white;
-    border: 1px solid #1976d2;
-    background-color: #1976d2
+    border: 1px solid #FFA500;
+    background-color: #FFA500
 }
 
 .dataTables_wrapper .dataTables_paginate .paginate_button:active {
     outline: none;
-    background-color: #67757c
+    background-color: #FFA500
 }
 
 .dataTables_wrapper .dataTables_paginate .ellipsis {
@@ -4182,7 +4182,7 @@ table.dataTable thead .sorting:after {
 }
 
 .tablesaw-bar .btn-group label {
-    color: #67757c!important
+    color: #FFA500!important
 }
 
 .dt-bootstrap {
@@ -4205,16 +4205,16 @@ table.dataTable thead .sorting:after {
 
 .paging_simple_numbers .pagination .paginate_button.active a,
 .paging_simple_numbers .pagination .paginate_button:hover a {
-    background: #1976d2;
+    background: #FFA500;
     color: #ffffff
 }
 
 #demo-show-entries {
     border: 0;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#1976d2), to(#1976d2)), -webkit-gradient(linear, left top, left bottom, from(#b1b8bb), to(#b1b8bb));
-    background-image: -webkit-linear-gradient(#1976d2, #1976d2), -webkit-linear-gradient(#b1b8bb, #b1b8bb);
-    background-image: -o-linear-gradient(#1976d2, #1976d2), -o-linear-gradient(#b1b8bb, #b1b8bb);
-    background-image: linear-gradient(#1976d2, #1976d2), linear-gradient(#b1b8bb, #b1b8bb);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#FFA500), to(#FFA500)), -webkit-gradient(linear, left top, left bottom, from(#b1b8bb), to(#b1b8bb));
+    background-image: -webkit-linear-gradient(#FFA500, #FFA500), -webkit-linear-gradient(#b1b8bb, #b1b8bb);
+    background-image: -o-linear-gradient(#FFA500, #FFA500), -o-linear-gradient(#b1b8bb, #b1b8bb);
+    background-image: linear-gradient(#FFA500, #FFA500), linear-gradient(#b1b8bb, #b1b8bb);
     background-size: 0 2px, 100% 1px;
     background-repeat: no-repeat;
     background-position: center bottom, center calc(100% - 1px);
@@ -4223,15 +4223,15 @@ table.dataTable thead .sorting:after {
     -o-transition: background 0s ease-out;
     transition: background 0s ease-out;
     padding-bottom: 5px;
-    color: #67757c
+    color: #FFA500
 }
 
 #demo-show-entries:focus {
     outline: none;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#1976d2), to(#1976d2)), -webkit-gradient(linear, left top, left bottom, from(#b1b8bb), to(#b1b8bb));
-    background-image: -webkit-linear-gradient(#1976d2, #1976d2), -webkit-linear-gradient(#b1b8bb, #b1b8bb);
-    background-image: -o-linear-gradient(#1976d2, #1976d2), -o-linear-gradient(#b1b8bb, #b1b8bb);
-    background-image: linear-gradient(#1976d2, #1976d2), linear-gradient(#b1b8bb, #b1b8bb);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#FFA500), to(#FFA500)), -webkit-gradient(linear, left top, left bottom, from(#b1b8bb), to(#b1b8bb));
+    background-image: -webkit-linear-gradient(#FFA500, #FFA500), -webkit-linear-gradient(#b1b8bb, #b1b8bb);
+    background-image: -o-linear-gradient(#FFA500, #FFA500), -o-linear-gradient(#b1b8bb, #b1b8bb);
+    background-image: linear-gradient(#FFA500, #FFA500), linear-gradient(#b1b8bb, #b1b8bb);
     background-size: 100% 2px, 100% 1px;
     -webkit-box-shadow: none;
     box-shadow: none;
@@ -4242,10 +4242,10 @@ table.dataTable thead .sorting:after {
 
 #demo-input-search2 {
     border: 0;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#1976d2), to(#1976d2)), -webkit-gradient(linear, left top, left bottom, from(#b1b8bb), to(#b1b8bb));
-    background-image: -webkit-linear-gradient(#1976d2, #1976d2), -webkit-linear-gradient(#b1b8bb, #b1b8bb);
-    background-image: -o-linear-gradient(#1976d2, #1976d2), -o-linear-gradient(#b1b8bb, #b1b8bb);
-    background-image: linear-gradient(#1976d2, #1976d2), linear-gradient(#b1b8bb, #b1b8bb);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#FFA500), to(#FFA500)), -webkit-gradient(linear, left top, left bottom, from(#b1b8bb), to(#b1b8bb));
+    background-image: -webkit-linear-gradient(#FFA500, #FFA500), -webkit-linear-gradient(#b1b8bb, #b1b8bb);
+    background-image: -o-linear-gradient(#FFA500, #FFA500), -o-linear-gradient(#b1b8bb, #b1b8bb);
+    background-image: linear-gradient(#FFA500, #FFA500), linear-gradient(#b1b8bb, #b1b8bb);
     background-size: 0 2px, 100% 1px;
     background-repeat: no-repeat;
     background-position: center bottom, center calc(100% - 1px);
@@ -4258,15 +4258,15 @@ table.dataTable thead .sorting:after {
     box-shadow: none;
     border-radius: 0;
     margin-left: 10px;
-    color: #67757c
+    color: #FFA500
 }
 
 #demo-input-search2:focus {
     outline: none;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#1976d2), to(#1976d2)), -webkit-gradient(linear, left top, left bottom, from(#b1b8bb), to(#b1b8bb));
-    background-image: -webkit-linear-gradient(#1976d2, #1976d2), -webkit-linear-gradient(#b1b8bb, #b1b8bb);
-    background-image: -o-linear-gradient(#1976d2, #1976d2), -o-linear-gradient(#b1b8bb, #b1b8bb);
-    background-image: linear-gradient(#1976d2, #1976d2), linear-gradient(#b1b8bb, #b1b8bb);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#FFA500), to(#FFA500)), -webkit-gradient(linear, left top, left bottom, from(#b1b8bb), to(#b1b8bb));
+    background-image: -webkit-linear-gradient(#FFA500, #FFA500), -webkit-linear-gradient(#b1b8bb, #b1b8bb);
+    background-image: -o-linear-gradient(#FFA500, #FFA500), -o-linear-gradient(#b1b8bb, #b1b8bb);
+    background-image: linear-gradient(#FFA500, #FFA500), linear-gradient(#b1b8bb, #b1b8bb);
     background-size: 100% 2px, 100% 1px;
     -webkit-box-shadow: none;
     box-shadow: none;
@@ -4315,7 +4315,7 @@ table.dataTable thead .sorting:after {
     cursor: pointer;
     line-height: 60px;
     white-space: nowrap;
-    color: #67757c
+    color: #FFA500
 }
 
 .icon-list-demo div:hover {
@@ -4397,13 +4397,13 @@ table.dataTable thead .sorting:after {
 .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-info,
 .bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-info {
     color: #ffffff;
-    background: #1976d2
+    background: #FFA500
 }
 
 .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-success,
 .bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-success {
     color: #ffffff;
-    background: #26dad2
+    background: #FFA500
 }
 
 .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-warning,
@@ -4415,7 +4415,7 @@ table.dataTable thead .sorting:after {
 .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-danger,
 .bootstrap-switch .bootstrap-switch-handle-on.bootstrap-switch-danger {
     color: #ffffff;
-    background: #ef5350
+    background: #FFA500
 }
 
 .bootstrap-switch .bootstrap-switch-handle-off.bootstrap-switch-default,
@@ -4440,7 +4440,7 @@ table.dataTable thead .sorting:after {
     display: block;
     overflow: hidden;
     cursor: pointer;
-    border: 2px solid #26dad2;
+    border: 2px solid #FFA500;
     border-radius: 20px
 }
 
@@ -4470,7 +4470,7 @@ table.dataTable thead .sorting:after {
 .onoffswitch-inner:before {
     content: "ON";
     padding-left: 27px;
-    background-color: #26dad2;
+    background-color: #FFA500;
     color: #FFFFFF
 }
 
@@ -4491,7 +4491,7 @@ table.dataTable thead .sorting:after {
     top: 0;
     bottom: 0;
     right: 56px;
-    border: 2px solid #26dad2;
+    border: 2px solid #FFA500;
     border-radius: 20px;
     -webkit-transition: all 0.3s ease-in 0s;
     -o-transition: all 0.3s ease-in 0s;
@@ -4507,7 +4507,7 @@ table.dataTable thead .sorting:after {
 }
 
 .dp-selected[style] {
-    background-color: #1976d2!important
+    background-color: #FFA500!important
 }
 
 .datepaginator-lg .pagination li a,
@@ -4564,7 +4564,7 @@ table.dataTable thead .sorting:after {
 .tabs-vertical li .nav-link.active,
 .tabs-vertical li .nav-link.active:focus,
 .tabs-vertical li .nav-link:hover {
-    background: #1976d2;
+    background: #FFA500;
     border: 0px;
     color: #ffffff
 }
@@ -4574,9 +4574,9 @@ table.dataTable thead .sorting:after {
 .customvtab .tabs-vertical li .nav-link:hover {
     background: #ffffff;
     border: 0px;
-    border-right: 2px solid #1976d2;
+    border-right: 2px solid #FFA500;
     margin-right: -1px;
-    color: #1976d2
+    color: #FFA500
 }
 
 .tabcontent-border {
@@ -4587,17 +4587,17 @@ table.dataTable thead .sorting:after {
 .customtab2 li a.nav-link {
     border: 0px;
     margin-right: 3px;
-    color: #67757c
+    color: #FFA500
 }
 
 .customtab2 li a.nav-link.active {
-    background: #1976d2;
+    background: #FFA500;
     color: #ffffff
 }
 
 .customtab2 li a.nav-link:hover {
     color: #ffffff;
-    background: #1976d2
+    background: #FFA500
 }
 
 .progress-bar.active,
@@ -4651,17 +4651,17 @@ table.dataTable thead .sorting:after {
 }
 
 .jq-icon-info {
-    background-color: #1976d2;
+    background-color: #FFA500;
     color: #ffffff
 }
 
 .jq-icon-success {
-    background-color: #26dad2;
+    background-color: #FFA500;
     color: #ffffff
 }
 
 .jq-icon-error {
-    background-color: #ef5350;
+    background-color: #FFA500;
     color: #ffffff
 }
 
@@ -4680,8 +4680,8 @@ table.dataTable thead .sorting:after {
 
 .list-group-item.active,
 .list-group .list-group-item.active:hover {
-    background: #1976d2;
-    border-color: #1976d2
+    background: #FFA500;
+    border-color: #FFA500
 }
 
 .list-group-item.disabled {
@@ -4717,11 +4717,11 @@ table.dataTable thead .sorting:after {
 }
 
 .el-element-overlay .el-card-item .el-card-content a {
-    color: #67757c
+    color: #FFA500
 }
 
 .el-element-overlay .el-card-item .el-card-content a:hover {
-    color: #1976d2
+    color: #FFA500
 }
 
 .el-element-overlay .el-card-item .el-overlay-1 {
@@ -4782,8 +4782,8 @@ table.dataTable thead .sorting:after {
 }
 
 .el-element-overlay .el-card-item .el-overlay-1 .el-info>li a:hover {
-    background: #1976d2;
-    border-color: #1976d2
+    background: #FFA500;
+    border-color: #FFA500
 }
 
 .el-element-overlay .el-card-item .el-overlay {
@@ -4944,7 +4944,7 @@ table.dataTable thead .sorting:after {
 }
 
 .timeline-badge.success {
-    background-color: #26dad2
+    background-color: #FFA500
 }
 
 .timeline-badge.warning {
@@ -4952,11 +4952,11 @@ table.dataTable thead .sorting:after {
 }
 
 .timeline-badge.danger {
-    background-color: #ef5350
+    background-color: #FFA500
 }
 
 .timeline-badge.info {
-    background-color: #1976d2
+    background-color: #FFA500
 }
 
 .timeline-title {
@@ -4976,16 +4976,16 @@ table.dataTable thead .sorting:after {
 
 .cd-horizontal-timeline .events a {
     padding-bottom: 6px;
-    color: #1976d2
+    color: #FFA500
 }
 
 .cd-horizontal-timeline .events a.selected:after,
 .cd-horizontal-timeline .filling-line {
-    background: #1976d2
+    background: #FFA500
 }
 
 .cd-horizontal-timeline .events a.selected:after {
-    border-color: #1976d2
+    border-color: #FFA500
 }
 
 .myadmin-dd .dd-list .dd-item .dd-handle {
@@ -5015,7 +5015,7 @@ table.dataTable thead .sorting:after {
 }
 
 .dd3-handle:before {
-    color: #67757c;
+    color: #FFA500;
     top: 7px
 }
 
@@ -5169,8 +5169,8 @@ table.dataTable thead .sorting:after {
     height: 0;
     content: '';
     border: 30px solid transparent;
-    border-top-color: #1976d2;
-    border-left-color: #1976d2
+    border-top-color: #FFA500;
+    border-left-color: #FFA500
 }
 
 .ribbon-corner.ribbon-right:before {
@@ -5200,17 +5200,17 @@ table.dataTable thead .sorting:after {
 }
 
 .ribbon-custom {
-    background: #1976d2
+    background: #FFA500
 }
 
 .ribbon-bookmark.ribbon-right.ribbon-custom:before {
-    border-right-color: #1976d2;
+    border-right-color: #FFA500;
     border-left-color: transparent
 }
 
 .ribbon-bookmark.ribbon-vertical-l.ribbon-custom:before,
 .ribbon-bookmark.ribbon-vertical-r.ribbon-custom:before {
-    border-right-color: #1976d2;
+    border-right-color: #FFA500;
     border-bottom-color: transparent
 }
 
@@ -5250,73 +5250,73 @@ table.dataTable thead .sorting:after {
 }
 
 .ribbon-success {
-    background: #26dad2
+    background: #FFA500
 }
 
 .ribbon-bookmark.ribbon-success:before {
-    border-color: #26dad2;
+    border-color: #FFA500;
     border-right-color: transparent
 }
 
 .ribbon-bookmark.ribbon-right.ribbon-success:before {
-    border-right-color: #26dad2;
+    border-right-color: #FFA500;
     border-left-color: transparent
 }
 
 .ribbon-bookmark.ribbon-vertical-l.ribbon-success:before,
 .ribbon-bookmark.ribbon-vertical-r.ribbon-success:before {
-    border-right-color: #26dad2;
+    border-right-color: #FFA500;
     border-bottom-color: transparent
 }
 
 .ribbon-success.ribbon-corner:before {
-    border-top-color: #26dad2;
-    border-left-color: #26dad2
+    border-top-color: #FFA500;
+    border-left-color: #FFA500
 }
 
 .ribbon-success.ribbon-corner.ribbon-right:before {
-    border-right-color: #26dad2;
+    border-right-color: #FFA500;
     border-left-color: transparent
 }
 
 .ribbon-success.ribbon-corner.ribbon-bottom:before {
     border-top-color: transparent;
-    border-bottom-color: #26dad2
+    border-bottom-color: #FFA500
 }
 
 .ribbon-info {
-    background: #1976d2
+    background: #FFA500
 }
 
 .ribbon-bookmark.ribbon-info:before {
-    border-color: #1976d2;
+    border-color: #FFA500;
     border-right-color: transparent
 }
 
 .ribbon-bookmark.ribbon-right.ribbon-info:before {
-    border-right-color: #1976d2;
+    border-right-color: #FFA500;
     border-left-color: transparent
 }
 
 .ribbon-bookmark.ribbon-vertical-l.ribbon-info:before,
 .ribbon-bookmark.ribbon-vertical-r.ribbon-info:before {
-    border-right-color: #1976d2;
+    border-right-color: #FFA500;
     border-bottom-color: transparent
 }
 
 .ribbon-info.ribbon-corner:before {
-    border-top-color: #1976d2;
-    border-left-color: #1976d2
+    border-top-color: #FFA500;
+    border-left-color: #FFA500
 }
 
 .ribbon-info.ribbon-corner.ribbon-right:before {
-    border-right-color: #1976d2;
+    border-right-color: #FFA500;
     border-left-color: transparent
 }
 
 .ribbon-info.ribbon-corner.ribbon-bottom:before {
     border-top-color: transparent;
-    border-bottom-color: #1976d2
+    border-bottom-color: #FFA500
 }
 
 .ribbon-warning {
@@ -5355,38 +5355,38 @@ table.dataTable thead .sorting:after {
 }
 
 .ribbon-danger {
-    background: #ef5350
+    background: #FFA500
 }
 
 .ribbon-bookmark.ribbon-danger:before {
-    border-color: #ef5350;
+    border-color: #FFA500;
     border-right-color: transparent
 }
 
 .ribbon-bookmark.ribbon-right.ribbon-danger:before {
-    border-right-color: #ef5350;
+    border-right-color: #FFA500;
     border-left-color: transparent
 }
 
 .ribbon-bookmark.ribbon-vertical-l.ribbon-danger:before,
 .ribbon-bookmark.ribbon-vertical-r.ribbon-danger:before {
-    border-right-color: #ef5350;
+    border-right-color: #FFA500;
     border-bottom-color: transparent
 }
 
 .ribbon-danger.ribbon-corner:before {
-    border-top-color: #ef5350;
-    border-left-color: #ef5350
+    border-top-color: #FFA500;
+    border-left-color: #FFA500
 }
 
 .ribbon-danger.ribbon-corner.ribbon-right:before {
-    border-right-color: #ef5350;
+    border-right-color: #FFA500;
     border-left-color: transparent
 }
 
 .ribbon-danger.ribbon-corner.ribbon-bottom:before {
     border-top-color: transparent;
-    border-bottom-color: #ef5350
+    border-bottom-color: #FFA500
 }
 
 .ribbon-default {
@@ -5425,8 +5425,8 @@ table.dataTable thead .sorting:after {
 }
 
 #idletimeout {
-    background: #1976d2;
-    border: 3px solid #1976d2;
+    background: #FFA500;
+    border: 3px solid #FFA500;
     color: #fff;
     font-family: arial, sans-serif;
     text-align: center;
@@ -5623,7 +5623,7 @@ table.dataTable thead .sorting:after {
     bottom: 100%;
     border-radius: 50%;
     text-align: center;
-    background: #1976d2;
+    background: #FFA500;
     color: #ffffff;
     opacity: 0;
     margin-bottom: 20px;
@@ -5802,7 +5802,7 @@ table.dataTable thead .sorting:after {
 }
 
 .tooltip-text3 {
-    border-bottom: 10px solid #1976d2;
+    border-bottom: 10px solid #FFA500;
     overflow: hidden;
     -webkit-transform: scale3d(0, 1, 1);
     transform: scale3d(0, 1, 1);
@@ -5835,7 +5835,7 @@ table.dataTable thead .sorting:after {
     position: absolute;
     pointer-events: none;
     border-color: transparent;
-    border-top-color: #1976d2;
+    border-top-color: #FFA500;
     border-width: 10px;
     margin-left: -10px
 }
@@ -5894,7 +5894,7 @@ table.dataTable thead .sorting:after {
 
 a.mytooltip {
     font-weight: 500;
-    color: #1976d2
+    color: #FFA500
 }
 
 .tooltip-effect-7 .tooltip-content2 {
@@ -6056,7 +6056,7 @@ a.mytooltip {
 }
 
 .search-listing li h3 a {
-    color: #1976d2
+    color: #FFA500
 }
 
 .search-listing li h3 a:hover {
@@ -6064,7 +6064,7 @@ a.mytooltip {
 }
 
 .search-listing li a {
-    color: #26dad2
+    color: #FFA500
 }
 
 .login-register {
@@ -6225,10 +6225,10 @@ a.mytooltip {
 .chat-main-box .chat-left-aside .chat-left-inner .form-control {
     height: 60px;
     padding: 15px;
-    background-image: -webkit-gradient(linear, left top, left bottom, from(#1976d2), to(#1976d2)), -webkit-gradient(linear, left top, left bottom, from(rgba(120, 130, 140, 0.13)), to(rgba(120, 130, 140, 0.13)));
-    background-image: -webkit-linear-gradient(#1976d2, #1976d2), -webkit-linear-gradient(rgba(120, 130, 140, 0.13), rgba(120, 130, 140, 0.13));
-    background-image: -o-linear-gradient(#1976d2, #1976d2), -o-linear-gradient(rgba(120, 130, 140, 0.13), rgba(120, 130, 140, 0.13));
-    background-image: linear-gradient(#1976d2, #1976d2), linear-gradient(rgba(120, 130, 140, 0.13), rgba(120, 130, 140, 0.13))
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#FFA500), to(#FFA500)), -webkit-gradient(linear, left top, left bottom, from(rgba(120, 130, 140, 0.13)), to(rgba(120, 130, 140, 0.13)));
+    background-image: -webkit-linear-gradient(#FFA500, #FFA500), -webkit-linear-gradient(rgba(120, 130, 140, 0.13), rgba(120, 130, 140, 0.13));
+    background-image: -o-linear-gradient(#FFA500, #FFA500), -o-linear-gradient(rgba(120, 130, 140, 0.13), rgba(120, 130, 140, 0.13));
+    background-image: linear-gradient(#FFA500, #FFA500), linear-gradient(rgba(120, 130, 140, 0.13), rgba(120, 130, 140, 0.13))
 }
 
 .chat-main-box .chat-left-aside .chat-left-inner .style-none {
@@ -6287,7 +6287,7 @@ a.mytooltip {
 }
 
 .chat-main-box .chat-right-aside .send-chat-box .custom-send .cst-icon {
-    color: #67757c;
+    color: #FFA500;
     margin-right: 10px
 }
 
@@ -6298,13 +6298,13 @@ a.mytooltip {
 }
 
 .inbox-panel .list-group .list-group-item a {
-    color: #67757c
+    color: #FFA500
 }
 
 .inbox-panel .list-group .list-group-item.active,
 .inbox-panel .list-group .list-group-item:hover {
     background: #f2f4f8;
-    border-left: 3px solid #1976d2
+    border-left: 3px solid #FFA500
 }
 
 .inbox-center .unread td {
@@ -6317,7 +6317,7 @@ a.mytooltip {
 }
 
 .inbox-center a {
-    color: #67757c;
+    color: #FFA500;
     padding: 2px 0 3px 0;
     overflow: hidden;
     vertical-align: middle;
@@ -6395,11 +6395,11 @@ a.mytooltip {
 .list-style-none li a {
     padding: 15px 10px;
     display: block;
-    color: #67757c
+    color: #FFA500
 }
 
 .list-style-none li a:hover {
-    color: #1976d2
+    color: #FFA500
 }
 
 .list-style-none li a span {
@@ -6446,18 +6446,18 @@ a.mytooltip {
     text-align: center;
     text-decoration: none;
     cursor: pointer;
-    color: #67757c;
+    color: #FFA500;
     border: 1px solid #ddd
 }
 
 .jsgrid-pager-nav-button a:hover,
 .jsgrid-pager-page a:hover {
-    background-color: #1976d2;
+    background-color: #FFA500;
     color: #ffffff
 }
 
 .jsgrid-pager-current-page {
-    background-color: #1976d2;
+    background-color: #FFA500;
     color: #ffffff
 }
 
@@ -6522,7 +6522,7 @@ a.mytooltip {
 }
 
 .user-profile .profile-text>a:hover {
-    color: #1976d2
+    color: #FFA500
 }
 
 .user-profile .profile-text>a:after {
@@ -6590,12 +6590,12 @@ a.mytooltip {
 
 .sidebar-nav ul li a.active,
 .sidebar-nav ul li a:hover {
-    color: #1976d2
+    color: #FFA500
 }
 
 .sidebar-nav ul li a.active i,
 .sidebar-nav ul li a:hover i {
-    color: #1976d2
+    color: #FFA500
 }
 
 .sidebar-nav ul li a.active {
@@ -6658,13 +6658,13 @@ a.mytooltip {
 }
 
 .sidebar-nav>ul>li.active>a {
-    color: #1976d2;
+    color: #FFA500;
     font-weight: 500;
-    border-left: 3px solid #1976d2
+    border-left: 3px solid #FFA500
 }
 
 .sidebar-nav>ul>li.active>a i {
-    color: #1976d2
+    color: #FFA500
 }
 
 .sidebar-nav .has-arrow {
@@ -6869,11 +6869,11 @@ a.mytooltip {
 }
 
 .mailbox .message-center a .user-img .online {
-    background: #26dad2
+    background: #FFA500
 }
 
 .mailbox .message-center a .user-img .busy {
-    background: #ef5350
+    background: #FFA500
 }
 
 .mailbox .message-center a .user-img .away {
@@ -6902,7 +6902,7 @@ a.mytooltip {
     -o-text-overflow: ellipsis;
     text-overflow: ellipsis;
     overflow: hidden;
-    color: #67757c;
+    color: #FFA500;
     white-space: nowrap
 }
 
@@ -6943,7 +6943,7 @@ a.mytooltip {
 .city-weather-days li i {
     display: block;
     font-size: 20px;
-    color: #1976d2
+    color: #FFA500
 }
 
 .city-weather-days li h3 {
@@ -6998,7 +6998,7 @@ a.mytooltip {
 
 .comment-footer .action-icons a.active,
 .comment-footer .action-icons a:hover {
-    color: #1976d2
+    color: #FFA500
 }
 
 .todo-list li {
@@ -7202,11 +7202,11 @@ a.mytooltip {
 }
 
 .message-box .message-widget a .user-img .online {
-    background: #26dad2
+    background: #FFA500
 }
 
 .message-box .message-widget a .user-img .busy {
-    background: #ef5350
+    background: #FFA500
 }
 
 .message-box .message-widget a .user-img .away {
@@ -7235,7 +7235,7 @@ a.mytooltip {
     -o-text-overflow: ellipsis;
     text-overflow: ellipsis;
     overflow: hidden;
-    color: #67757c;
+    color: #FFA500;
     white-space: nowrap
 }
 
@@ -7285,7 +7285,7 @@ a.mytooltip {
 }
 
 .fc th.fc-widget-header {
-    color: #67757c;
+    color: #FFA500;
     font-size: 13px;
     font-weight: 300;
     line-height: 20px;
@@ -7318,7 +7318,7 @@ a.mytooltip {
 .fc-button {
     background: #ffffff;
     border: 1px solid rgba(120, 130, 140, 0.13);
-    color: #67757c;
+    color: #FFA500;
     text-transform: capitalize
 }
 
@@ -7337,7 +7337,7 @@ a.mytooltip {
 }
 
 .fc-unthemed .fc-today {
-    border: 1px solid #ef5350;
+    border: 1px solid #FFA500;
     background: #f2f4f8!important
 }
 
@@ -7362,7 +7362,7 @@ a.mytooltip {
     margin: 1px -1px 0 -1px;
     padding: 5px 5px;
     text-align: center;
-    background: #1976d2
+    background: #FFA500
 }
 
 .calendar-event {
@@ -7373,7 +7373,7 @@ a.mytooltip {
     color: #ffffff;
     min-width: 140px;
     text-align: center;
-    background: #1976d2
+    background: #FFA500
 }
 
 .calendar-event a {
@@ -7988,7 +7988,7 @@ a.mytooltip {
 .has-success .form-check-label,
 .has-success .form-control-feedback,
 .has-success .form-control-label {
-    color: #26dad2
+    color: #FFA500
 }
 
 .has-success .form-control-success {
@@ -7996,7 +7996,7 @@ a.mytooltip {
 }
 
 .has-success .form-control {
-    border-color: #26dad2
+    border-color: #FFA500
 }
 
 .has-warning .col-form-label,
@@ -8020,7 +8020,7 @@ a.mytooltip {
 .has-danger .form-check-label,
 .has-danger .form-control-feedback,
 .has-danger .form-control-label {
-    color: #ef5350
+    color: #FFA500
 }
 
 .has-danger .form-control-danger {
@@ -8028,7 +8028,7 @@ a.mytooltip {
 }
 
 .has-danger .form-control {
-    border-color: #ef5350
+    border-color: #FFA500
 }
 
 .input-group-addon [type=checkbox]:checked,
@@ -9899,7 +9899,7 @@ a.btn.btn-sm.btn-info.waves-effect.waves-light {border-radius: 0px;}
 }
 .sidebar-nav > ul > li.active > a {
     color: #ffffff;
-    border-color: #1976d2;
+    border-color: #FFA500;
 }
 .sidebar-nav ul li a.active, .sidebar-nav ul li a:hover {
     color: #ffffff!important;
@@ -10140,11 +10140,11 @@ button.btn.btn-info.btn-lg.btn-logino {
 
 .card-outline-info .card-header {
    background-color: inherit!important;
-    border-color: #1976d2;
+    border-color: #FFA500;
     position: relative;
 }
 .card-outline-info .card-header > h4{
-color: #67757c!important
+color: #FFA500!important
 }
 .card-header:before {
     content: '';

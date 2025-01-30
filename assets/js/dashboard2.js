@@ -264,7 +264,7 @@ $(function () {
             barWidth: '4',
             resize: true,
             barSpacing: '5',
-            barColor: '#ef5350'
+            barColor: '#FFA500'
         });
           $('#spark10').sparkline([ 0, 5, 6, 10, 9, 12, 4, 9], {
             type: 'bar',

@@ -3,7 +3,7 @@
          <div class="page-wrapper">
             <div class="row page-titles">
                 <div class="col-md-5 align-self-center">
-                    <h3 class="text-themecolor"><i class="fa fa-map-o" style="color:#1976d2"></i> Designation</h3>
+                    <h3 class="text-themecolor"><i class="fa fa-map-o" style="color:#FFA500"></i> Designation</h3>
                 </div>
                 <div class="col-md-7 align-self-center">
                     <ol class="breadcrumb">
@@ -77,8 +77,7 @@
                                 </div>
                                 <div class="form-actions">
                                     <button type="submit" class="btn btn-info"> <i class="fa fa-check"></i> Save</button>
-                                    <button type="button" class="btn btn-info">Cancel</button>
-                                </div>
+                                    <a href="<?php echo base_url();?>organization/Designation" class="btn btn-info">Cancel</a>                                </div>
                             </form>
                     </div>
                 </div>

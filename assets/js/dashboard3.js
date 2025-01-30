@@ -126,7 +126,7 @@ $(function () {
      // ============================================================== 
     // icons
     // ==============================================================  
-   var icons = new Skycons({"color": "#1976d2"}),
+   var icons = new Skycons({"color": "#FFA500"}),
           list  = [
             "clear-day", "clear-night", "partly-cloudy-day",
             "partly-cloudy-night", "cloudy", "rain", "sleet", "snow", "wind",

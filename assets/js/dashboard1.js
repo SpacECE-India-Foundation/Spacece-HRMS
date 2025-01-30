@@ -54,12 +54,12 @@ $(function() {
         labels: ['Sales', 'Earning'],
         pointSize: 3,
         fillOpacity: 0,
-        pointStrokeColors: ['#1976d2', '#26c6da', '#1976d2'],
+        pointStrokeColors: ['#FFA500', '#26c6da', '#FFA500'],
         behaveLikeLine: true,
         gridLineColor: '#e0e0e0',
         lineWidth: 3,
         hideHover: 'auto',
-        lineColors: ['#1976d2', '#26c6da', '#1976d2'],
+        lineColors: ['#FFA500', '#26c6da', '#FFA500'],
         resize: true
 
     });

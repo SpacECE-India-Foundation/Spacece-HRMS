@@ -121,8 +121,8 @@ $( document ).ready(function() {
         },
 		 {
             value: 50,
-            color: "#2f3d4a",
-            highlight: "#2f3d4a",
+            color: "#FFA500",
+            highlight: "#FFA500",
             label: "Dark"
         },
 		 {
@@ -156,8 +156,8 @@ $( document ).ready(function() {
     var data4 = [
         {
             value: 300,
-            color:"#2f3d4a",
-            highlight: "#2f3d4a",
+            color:"#FFA500",
+            highlight: "#FFA500",
             label: "Megna"
         },
         {
@@ -191,8 +191,8 @@ $( document ).ready(function() {
     var data5 =  [
         {
             value: 300,
-            color:"#2f3d4a",
-            highlight: "#2f3d4a",
+            color:"#FFA500",
+            highlight: "#FFA500",
             label: "Megna"
         },
         {

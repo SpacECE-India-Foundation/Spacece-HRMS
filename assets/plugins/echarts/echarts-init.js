@@ -219,7 +219,7 @@ option = {
             saveAsImage : {show: true}
         }
     },
-    color: ["#f62d51", "#dddddd","#ffbc34", "#7460ee","#009efb", "#2f3d4a","#90a4ae", "#55ce63"],
+    color: ["#f62d51", "#dddddd","#ffbc34", "#7460ee","#009efb", "#FFA500","#90a4ae", "#55ce63"],
     calculable : true,
     series : [
         {
@@ -402,7 +402,7 @@ option = {
             saveAsImage : {show: true}
         }
     },
-    color: ["#f62d51", "#009efb", "#55ce63", "#ffbc34", "#2f3d4a"],
+    color: ["#f62d51", "#009efb", "#55ce63", "#ffbc34", "#FFA500"],
     calculable : true,
     series : [
         {

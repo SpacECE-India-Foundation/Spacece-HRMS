@@ -59,9 +59,7 @@ date_default_timezone_set('Asia/Dhaka');
         <header class="topbar">
             <nav class="navbar top-navbar navbar-expand-md navbar-light">
                 <div class="navbar-header">
-                    <a class="navbar-brand" href="<?php echo base_url(); ?>"><b>
-                    <img src="<?php echo base_url(); ?>assets/images/<?php echo $settingsvalue->site2logo; ?>" alt="homepage" class="dark-logo" height="60px" width="100px" />
-                    </b>
+                    <a class="navbar-brand" href="<?php echo base_url(); ?>">
                         <!-- Logo text --><span>
                          <img src="<?php echo base_url(); ?>assets/images/<?php echo $settingsvalue->sitelogo; ?>" alt="homepage" class="dark-logo" height="60px" width="100px" />
                          <!-- Light Logo text -->    

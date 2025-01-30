@@ -80,7 +80,7 @@ $(function () {
             value: 4870
         }],
         resize: true,
-        colors:['#26c6da', '#1976d2', '#ef5350']
+        colors:['#26c6da', '#FFA500', '#FFA500']
     });
     // ============================================================== 
     // sales difference

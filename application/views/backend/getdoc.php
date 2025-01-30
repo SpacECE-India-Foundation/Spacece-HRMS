@@ -5,7 +5,7 @@
     <div class="message"></div>
     <div class="row page-titles">
         <div class="col-md-5 align-self-center">
-            <h3 class="text-themecolor"><i class="fa fa-file-text" style="color:#1976d2"></i> View Document</h3>
+            <h3 class="text-themecolor"><i class="fa fa-file-text" style="color:#FFA500"></i> View Document</h3>
         </div>
         <div class="col-md-7 align-self-center">
             <ol class="breadcrumb">
