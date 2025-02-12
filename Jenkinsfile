@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'Built-In Node' }
+    agent any
     environment {
         GITHUB_TOKEN = credentials('github-token')
         BUILD_NUMBER = "${env.BUILD_NUMBER}"
