@@ -1,5 +1,5 @@
 pipeline {
-    agent { label 'hrms-dev' }
+    agent { label 'Built-InNode' }
     environment {
         GITHUB_TOKEN = credentials('github-token')
         BUILD_NUMBER = "${env.BUILD_NUMBER}"
