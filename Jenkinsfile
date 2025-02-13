@@ -1,4 +1,4 @@
-pipeline {
+pipeline { 
     agent any
     environment {
         GITHUB_TOKEN = credentials('github-token')
@@ -46,14 +46,18 @@ pipeline {
             steps {
                 echo "Deploying PHP application files..."
                 script {
-                    def artifactPath = '/home/devopsadmin/workspace/hrms-cicd/'
+                    def backendPath = '/home/devopsadmin/workspace/hrms-cicd/application/'
+                    def frontendPath = '/home/devopsadmin/workspace/hrms-cicd/assets/'
                     def targetDir = "/var/www/html/Spacece-HRMS/build_version/build_${BUILD_NUMBER}"
 
                     // Ensure the target directory exists
                     sh "mkdir -p ${targetDir}"
 
-                    // Copy PHP application files
-                    sh "cp -r ${artifactPath}/* ${targetDir}/"
+                    // Copy PHP application files (backend)
+                    sh "cp -r ${backendPath}/* ${targetDir}/"
+
+                    // Copy frontend assets (CSS, JS, images, etc.)
+                    sh "cp -r ${frontendPath}/* ${targetDir}/"
                 }
             }
         }
